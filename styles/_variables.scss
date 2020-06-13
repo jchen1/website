@@ -1,0 +1,25 @@
+//
+// VARIABLES
+//
+
+// Colors
+$blue: #4183c4;
+$red: #f03009;
+
+// Grays
+$black: #090909;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fbfbfb;
+
+// Font stacks
+$helvetica: "Inter", sans-serif;
+
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
