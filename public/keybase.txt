@@ -1,0 +1,88 @@
+==================================================================
+https://keybase.io/jeffchen
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jeffchen.dev
+  * I am jeffchen (https://keybase.io/jeffchen) on keybase.
+  * I have a public key with fingerprint 9125 418B 553D 9058 6457  9D92 AAF0 F090 A8CC 806A
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120fcf43627d098f9ac38ff9b990e2c2f57b884cc0321e08876c73d444c848fa81b0a",
+      "fingerprint": "9125418b553d905864579d92aaf0f090a8cc806a",
+      "host": "keybase.io",
+      "key_id": "aaf0f090a8cc806a",
+      "kid": "0101536114abb738029041351e8073e49a852fbe73e883c01b87e3ed5eec5a91912a0a",
+      "uid": "c4dd1924b9084375324c965a7ab54e19",
+      "username": "jeffchen"
+    },
+    "merkle_root": {
+      "ctime": 1551457627,
+      "hash_meta": "1fc065d23bfc143401fa01cc25451d9a2ed3557cebf9d0e3f8461285acd52a1a",
+      "seqno": 4856648
+    },
+    "revoke": {
+      "sig_ids": [
+        "9b820b4dcf295fab856b095f1a2df694a99c4111f3dd7e1749da1608217a453c0f"
+      ]
+    },
+    "service": {
+      "hostname": "jeffchen.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1551457641,
+  "expire_in": 157680000,
+  "prev": "8c4666c7d8fdd3305c7488cfb36306f30b39b645df37f1d4b750c64e90fa25d9",
+  "seqno": 46,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.0
+Comment: https://keybase.io/crypto
+
+yMP6AnicbZN7bBRFHMevgEobGx4K//goWRDTJzO7M7szV8MrUsAWyyOiCM05OzvT
+O9relbvtQVNJq6KVolBOKRaIPBLer4gUQiwiba0i1SBCS0A0glohmhaxDWAB5xpJ
+DHH/2ZnZ7+/3+/4++5uW5IGepIRd3d21O9qqFiacbIqWeRaUFwQqNDvklGveCq1I
+9L9EsSMirq8o4GheDUAdSC6RYeqWAyiRlHGDSEltSoHQuS6xZROCOAeGDgUgxDK5
+ZTgIIU4QkYxAGzAtQ5OBYKEIl4YDQVelpVDHCBIbY8OhABMTYYs6VGdMAgkoYIRz
+Asx4oD8UiUcoczaLiKxASJ2pja/f3v/o7/kGEBsmhIjZtmUQoFOAoIGhIMAyBKKM
+YF3aQq0JMTiANrGEIRwsBMeMQmWQ9fsu60/HkeNAqiObAoIMCxs64tTEzGI2RgLS
+uDAiwkFWIpR6oZCS+0VQW5qhlYhwUbHwhUMhNw6Xu4G4BGIMVcsKqmqQRfy+EuEy
+FQklByZ2dMOWHCIDASgZgJwrWhg6lOnCMTC2uLAldYAwJEEm1Alm3ME6g3HDEbEo
+GNK8iGDTREQ5CItoqEjEi0cChQpbRPPO16hNdGAjh0udYslspbaBWkGmO9KkiFHK
+EYRQGo5jCWgh6jBoAqJDiyGsgEmtYGm8WDga4P3J4//pvv6zHBFVjkrDITfEQ8Xq
+i991SyPeOBe3vDQuXSxs379JfHYg6KgpURFREY4EQkHFSSnvQ4ZghiaWlAbCwheI
+K9QRAeqJ11HlvBrhyDTVEDpEOo5hAMwtRAiXtmEawJQGsA1qq4FzpGFJ6CDbwoCb
+SFAgmY4d+h+GpvLJClVORS7I3LKw0JY2HV8wyJOQ5HnwgQHx6+NJShx671JFxwz1
+bPRUpMvnV6YsX/1hY1VnDt87J7/om5e6nrh8Ya1V9N7Wyp714zPKG/Jike6Dh2wr
++fHcKft9I2pOnEnJ+DM2tXLY1+vThzRl3ozi002jZ+9dlVvQvc/IyV6258feK13+
+9lS/W7ehJrrb/bzhwoXKL0fVXrw4KXvtueZj6O7cuqsZHb8leP1kRcdmeez2tdaH
+Xg3HDrTWjMx039acvrPfrxry7v5Ng55xV2yombgl4eStGtByZ9T+O/V3J397+OVZ
+PT3rW5bH3ho4LXj+ncGsY2LqUxuqBxyNZV9v23bUzd5+KanvoyPrrm+bvP0RlL95
+y5Nrcqrv7qF5p0/XtPQUslY59ueUMa3Nv04qyEpfkHWzc8ZrJfx2X+PhcP7m8U1z
+u49XVDRkptWHL4FA4ozEvEnrNoW/K/GXvdB0vsogZdeK9T1e9/11a9qnj/59ssys
+OVfZnPJ0+99nnh15pGVwfd7QRwcXtxz0TwlUj2seVJV4Im0Onj8986/ZTRt3kNo/
+Pv4JdSWbP5zbOifvqzc6a1NFcKX/s5a2Q/nDX1+dGjNy5n2acpamj9qaPu36hAP7
+OhuKX/lkSsWYNY81plXV9ZYlr06r1m6FugZ8sKS2sa9w+LjRu3on7O5tH3t1Zu6s
+0MOxnZdfnHplcWnDiHnPDat/c1Hd8tk5N4LpvwzfWblqfs6pjnldB2JblpnZp3Kt
+ti9uTJ1ZVvcPYDYFLA==
+=ZKof
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jeffchen
+
+==================================================================

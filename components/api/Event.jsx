@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { prettifyData } from "../lib/util";
+import { prettifyData } from "../../lib/util";
 
 const EventCard = styled.div`
   padding: 0.5rem 0.5rem 0.5rem 0;

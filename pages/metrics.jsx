@@ -2,43 +2,15 @@ import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Header from "./header";
-import Event from "./event";
-import InputContainer from "./inputcontainer";
-import Widget, { typeOrder } from "./widget";
-
-const Container = styled.div`
-  min-height: 100vh;
-  padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-const Main = styled.main`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  margin: 0 0 1rem 0;
-  align-items: center;
-  justify-content: space-evenly;
-
-  h1 {
-    font-size: 3rem;
-    margin: 0;
-  }
-`;
+import Header from "../components/Header";
+import Event from "../components/api/Event";
+import {
+  RootContainer,
+  MainContainer,
+  TitleContainer,
+} from "../components/containers";
+import InputContainer from "../components/api/InputContainer";
+import Widget, { typeOrder } from "../components/api/Widget";
 
 const WSIndicator = styled.div`
   background-color: ${props => props.color};
@@ -84,10 +56,8 @@ const InnerContainer = styled.div`
 `;
 
 function connect(setEvents, setWs) {
-  const ws = new WebSocket(
-    // "wss://api.jeffchen.dev:444" ||
-    process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:9001"
-  );
+  const url = `wss://${process.env.NEXT_PUBLIC_APISERVER_BASE_URL}:444`;
+  const ws = new WebSocket(url);
   ws.onmessage = event => {
     const response = JSON.parse(event.data);
 
@@ -160,7 +130,7 @@ function connect(setEvents, setWs) {
   return ws;
 }
 
-export default function Home() {
+export default function Api() {
   const [hours, setHours] = useState(24);
   const [events, setEvents] = useState({ all: [], keys: {} });
   const [ws, setWs] = useState(null);
@@ -221,15 +191,14 @@ export default function Home() {
   );
 
   return (
-    <Container>
+    <RootContainer>
       <Head>
-        <title>api.jeffchen.dev</title>
-        <link rel="icon" href="https://jeffchen.dev/favicon.ico" />
+        <title key="title">api.jeffchen.dev</title>
       </Head>
 
       <Header></Header>
 
-      <Main>
+      <MainContainer>
         <TitleContainer>
           <h1>Metrics</h1>
           <WSIndicator color={socketColor} />
@@ -240,7 +209,7 @@ export default function Home() {
           setHours={setHours}
         ></InputContainer>
         {widgets}
-      </Main>
-    </Container>
+      </MainContainer>
+    </RootContainer>
   );
 }

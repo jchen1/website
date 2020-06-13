@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { last, prettifyData } from "../lib/util";
+import { last, prettifyData } from "../../lib/util";
 
 const WidgetText = styled.h1`
   text-align: center;
@@ -38,9 +38,6 @@ const WidgetWrapper = styled.div`
 function TextWidget({ events, opts }) {
   const value = last(events, {}).data;
   const formatter = opts.formatter || prettifyData;
-  if (opts.formatter) {
-    console.log("!!!", opts.title, events.length, last(events, {}));
-  }
 
   return <WidgetText>{value ? formatter(value) : "---"}</WidgetText>;
 }

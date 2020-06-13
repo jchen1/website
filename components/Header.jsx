@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "localhost:4000";
 
@@ -8,12 +9,14 @@ export default function Header() {
       <div className="container">
         <header className="masthead clearfix">
           <a href={`${BASE_URL}/`} className="site-avatar">
-            <img src="https://jeffchen.dev/images/profile.jpg" />
+            <img src="/images/profile.jpg" />
           </a>
 
           <div className="site-info">
             <h1 className="site-name">
-              <a href={`${BASE_URL}/`}>Jeff Chen</a>
+              <Link href="/">
+                <a>Jeff Chen</a>
+              </Link>
             </h1>
             <p className="site-description">Engineering & more</p>
           </div>
@@ -22,6 +25,9 @@ export default function Header() {
             <a href={`${BASE_URL}/about/`}>About</a>
             <a href={`${BASE_URL}/projects/`}>Projects</a>
             <a href={`${BASE_URL}/resume/`}>Résumé</a>
+            <Link href="/metrics">
+              <a>Metrics</a>
+            </Link>
           </nav>
         </header>
       </div>
