@@ -1,16 +1,59 @@
 import React from "react";
 import Link from "next/link";
+import styled from "styled-components";
+import { DARK_GRAY, RED } from "../lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "localhost:4000";
+
+const HeaderContainer = styled.header`
+  padding: 20px 0;
+  max-width: 740px;
+
+  @media screen and (max-width: 640px) {
+    text-align: center;
+  }
+`;
+
+const Nav = styled.nav`
+  float: right;
+  margin-top: 23px;
+  font-size: 18px;
+
+  @media screen and (max-width: 640px) {
+    float: none;
+    margin-top: 9px;
+    display: block;
+    font-size: 16px;
+  }
+
+  a {
+    margin-left: 20px;
+    color: ${DARK_GRAY};
+    text-align: right;
+    font-weight: 600;
+    text-decoration: none;
+
+    @media screen and (max-width: 640px) {
+      margin: 0 10px;
+    }
+
+    &:hover,
+    &:active {
+      color: ${RED};
+    }
+  }
+`;
 
 export default function Header() {
   return (
     <div className="wrapper-masthead">
       <div className="container">
-        <header className="masthead clearfix">
-          <a href={`${BASE_URL}/`} className="site-avatar">
-            <img src="/images/profile.jpg" />
-          </a>
+        <HeaderContainer className="clearfix">
+          <Link href="/">
+            <a className="site-avatar">
+              <img src="/images/profile.jpg" />
+            </a>
+          </Link>
 
           <div className="site-info">
             <h1 className="site-name">
@@ -18,18 +61,22 @@ export default function Header() {
                 <a>Jeff Chen</a>
               </Link>
             </h1>
-            <p className="site-description">Engineering & more</p>
+            <p className="site-description">I make stuff!</p>
           </div>
 
-          <nav>
-            <a href={`${BASE_URL}/about/`}>About</a>
-            <a href={`${BASE_URL}/projects/`}>Projects</a>
+          <Nav>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+            <Link href="/projects">
+              <a>Projects</a>
+            </Link>
             <a href={`${BASE_URL}/resume/`}>Résumé</a>
             <Link href="/metrics">
               <a>Metrics</a>
             </Link>
-          </nav>
-        </header>
+          </Nav>
+        </HeaderContainer>
       </div>
     </div>
   );

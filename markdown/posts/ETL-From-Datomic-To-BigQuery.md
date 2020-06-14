@@ -10,7 +10,7 @@ This post is cross-posted from [Ladder's engineering blog](https://ladderlife.gi
 
 At [Ladder](https://www.ladderlife.com), we use [Datomic](https://www.datomic.com/) as our primary data store and [Google BigQuery](https://cloud.google.com/bigquery/) as our data warehouse. We've iterated on how we send data from Datomic to BigQuery - starting from a nightly job dumping every entity and ending with a streaming solution with just seconds of latency. In this post, we'll walk through bucketing Datomic entities into BigQuery tables, transforming entities into rows, and using one of Datomic's superpowers to stream changed entities into BigQuery.
 
-<!--more-->
+<!-- excerpt -->
 
 In this post, we'll cover:
 

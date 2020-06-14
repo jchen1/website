@@ -1,0 +1,29 @@
+- title: MiniPlay
+  preimage: miniplay.png
+  homepage: https://chrome.google.com/webstore/detail/miniplay/dfddfiedihbijfeacjamchlliogmjjnd
+  content: >
+    **MiniPlay** is a Chrome extension that adds a miniplayer popup and global keyboard shortcuts to popular streaming music players like Spotify and Google Play Music. It also provides Last.fm scrobbling, rich notifications, and more.
+
+- title: µCal
+  preimage: uCal.png
+  homepage: https://www.github.com/jchen1/uCal
+  content: >
+    **µCal** is a tiny replacement for the macOS menubar clock. Includes a monthly calendar view, an icon containing the day of the month, and upcoming calendar events.
+
+- title: Espresso
+  preimage: espresso.png
+  homepage: https://caretcaret.github.io/espresso/
+  content: >
+    **Espresso** is a simple deep learning framework written the [Halide](http://halide-lang.org/) image proessing language compatible with [Caffe](http://caffe.berkeleyvision.org/) configuration files.
+
+- title: CLAHE
+  preimage: clahe.jpg
+  homepage: https://www.github.com/jchen1/CLAHE-iOS
+  content: >
+    An iPhone app implementing [contrast limited adaptive histogram equalization (CLAHE)](https://en.wikipedia.org/wiki/Adaptive_histogram_equalization) to improve contrast in low-light videos. Speedy enough (100+fps for 720p video) to incorporate into a real-time computer vision pipeline.
+
+- title: threadpool
+  preimage: threadpool.png
+  homepage: https://www.github.com/jchen1/threadpool
+  content: >
+    A lightweight header-only **threadpool** library for C++11 that offers more control than `std::async` while remaining simpler than manual thread management. threadpool automatically allocates and deallocates threads as necessary, handles any callable object (including lambdas and function objects), and can return futures from callables.

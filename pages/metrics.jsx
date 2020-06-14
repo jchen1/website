@@ -191,25 +191,20 @@ export default function Api() {
   );
 
   return (
-    <RootContainer>
+    <MainContainer>
       <Head>
         <title key="title">api.jeffchen.dev</title>
       </Head>
-
-      <Header></Header>
-
-      <MainContainer>
-        <TitleContainer>
-          <h1>Metrics</h1>
-          <WSIndicator color={socketColor} />
-        </TitleContainer>
-        <InputContainer
-          ws={ws}
-          hours={hours}
-          setHours={setHours}
-        ></InputContainer>
-        {widgets}
-      </MainContainer>
-    </RootContainer>
+      <TitleContainer>
+        <h1>Metrics</h1>
+        <WSIndicator color={socketColor} />
+      </TitleContainer>
+      <InputContainer
+        ws={ws}
+        hours={hours}
+        setHours={setHours}
+      ></InputContainer>
+      {widgets}
+    </MainContainer>
   );
 }

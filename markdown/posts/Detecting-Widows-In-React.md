@@ -6,11 +6,11 @@ author: Jeff Chen
 tags: resume,react,widow,typography,javascript,js
 ---
 
-![widows]({{ site.baseurl }}/images/widows.png)
+![widows](/images/widows.png)
 
 I've been working with fixed-width containers in React recently, so I've been able to focus on typesetting. One problem I've had is noticing [widows](https://www.fonts.com/content/learning/fontology/level-2/text-typography/rags-widows-orphans) in paragraph text as I change copy and styling. (`widow` is apparently an overloaded term in typesetting -- here, I mean a single word that overflows into a new line, not a single line overflowing into a new page.) I ended up building a React component that automates widow detection - let's dig in!
 
-<!--more-->
+<!-- excerpt -->
 
 ## Getting a container reference in React
 

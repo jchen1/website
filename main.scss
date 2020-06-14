@@ -247,64 +247,9 @@ img {
   }
 }
 
-nav {
-  float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helvetica;
-  font-size: 18px;
-
-  @include mobile {
-    float: none;
-    margin-top: 9px;
-    display: block;
-    font-size: 16px;
-  }
-
-  a {
-    margin-left: 20px;
-    color: $darkGray;
-    text-align: right;
-    font-weight: 600;
-    text-decoration: none;
-
-    @include mobile {
-      margin: 0 10px;
-    }
-  }
-}
-
 //
 // .main
 //
-
-.posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-}
-
-.posts > .post:last-child {
-  padding-bottom: 1em;
-  border-bottom: none;
-}
-
-.post {
-  blockquote {
-    margin: 1.8em 0.8em;
-    border-left: 2px solid $gray;
-    padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
-    font-style: italic;
-  }
-
-  .comments {
-    margin-top: 10px;
-  }
-
-  .read-more {
-    font-size: 15px;
-  }
-}
 
 .pagination {
   text-align: center;
@@ -333,21 +278,6 @@ nav {
   }
 }
 
-.wrapper-footer {
-  margin-top: 50px;
-}
-
-footer {
-  padding: 20px 0;
-  text-align: center;
-  border-top: 1px solid $lightGray;
-
-  .icon {
-    font-size: 20px;
-    padding: 5px;
-  }
-}
-
 .project {
   img {
     width: 100%;
@@ -358,3 +288,5 @@ footer {
     border-bottom: 1px solid $lightGray;
   }
 }
+
+@import "highlights";

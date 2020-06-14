@@ -4,28 +4,22 @@ import ErrorPage from "next/error";
 import Head from "next/head";
 
 import { markdownToHtml, getPostBySlug, getAllPosts } from "../../lib/blogs";
-import { RootContainer, MainContainer } from "../../components/containers";
-import Header from "../../components/Header";
+import { MainContainer } from "../../components/containers";
 
 import BlogPost from "../../components/BlogPost";
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <RootContainer>
+    <MainContainer>
       <Head>
         <title key="title">{post.title}</title>
       </Head>
-
-      <Header />
-
-      <MainContainer>
-        <BlogPost post={post}></BlogPost>
-      </MainContainer>
-    </RootContainer>
+      <BlogPost post={post}></BlogPost>
+    </MainContainer>
   );
 }
 
