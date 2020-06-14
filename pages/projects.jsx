@@ -1,7 +1,7 @@
 import React from "react";
-import { MainContainer, BlogContainer } from "../components/containers";
+import { MainContainer } from "../components/containers";
 import Head from "next/head";
-import { getPageBySlug, getProjects, markdownToHtml } from "../lib/blogs";
+import { getProjects } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 import styled from "styled-components";
 
@@ -22,7 +22,7 @@ export default function Projects({ projects }) {
         <BlogPost
           key={project.title}
           post={project}
-          opts={{ showDate: false, headingLevel: 2 }}
+          opts={{ showDate: false, setTitle: false, headingLevel: 2 }}
         ></BlogPost>
       ))}
     </MainContainer>
