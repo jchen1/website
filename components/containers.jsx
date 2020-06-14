@@ -38,6 +38,7 @@ export const BlogContainer = styled.article`
   max-width: 740px;
   padding-bottom: 2em;
   border-bottom: 1px solid ${LIGHT_GRAY};
+  width: 100%;
 
   &:last-child {
     padding-bottom: 1em;
