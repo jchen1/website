@@ -23,27 +23,36 @@ function ReadMore({ post }) {
   );
 }
 
+function Title({ headingLevel, title, slug, homepage, noLink }) {
+  const Heading = `h${headingLevel || 1}`;
+
+  if (noLink) {
+    return <Heading>{title}</Heading>;
+  }
+
+  if (homepage) {
+    return (
+      <Heading>
+        <a href={homepage} target="_blank">
+          {title}
+        </a>
+      </Heading>
+    );
+  }
+
+  return (
+    <Heading>
+      <Link key={slug} href="/posts/[slug]" as={`/posts/${slug}`}>
+        <a>{title}</a>
+      </Link>
+    </Heading>
+  );
+}
+
 export default function BlogPost({ post, opts = {} }) {
   const { title, homepage, date, preimage, slug, author, content } = post;
   const { noLink, readMore, showDate, headingLevel, setTitle } = opts;
   const dateStr = moment(date).format("MMMM Do, YYYY");
-  const Heading = `h${headingLevel || 1}`;
-
-  const titleLink = !homepage ? (
-    <Link key={post.slug} href="/posts/[slug]" as={`/posts/${post.slug}`}>
-      <Heading>
-        <a>{title}</a>
-      </Heading>
-    </Link>
-  ) : (
-    <Heading>
-      <a href={homepage} target="_blank">
-        {title}
-      </a>
-    </Heading>
-  );
-
-  const titleJsx = noLink ? <Heading>{title}</Heading> : titleLink;
 
   return (
     <BlogContainer>
@@ -54,7 +63,13 @@ export default function BlogPost({ post, opts = {} }) {
       ) : (
         ""
       )}
-      {titleJsx}
+      <Title
+        headingLevel={headingLevel}
+        title={title}
+        slug={slug}
+        homepage={homepage}
+        noLink={noLink}
+      />
       {preimage ? <img src={`/images/${preimage}`} /> : ""}
       {showDate !== false ? <Date>{dateStr}</Date> : ""}
       <div dangerouslySetInnerHTML={{ __html: content }} />
