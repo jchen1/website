@@ -1,10 +1,18 @@
 // import App from 'next/app'
 
 import Head from "next/head";
-import "../main.scss";
+import NProgress from "nprogress";
+import Router from "next/router";
+
+import "../styles/main.scss";
+
 import { RootContainer } from "../components/containers";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   return (
