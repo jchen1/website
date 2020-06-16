@@ -16,6 +16,12 @@
   content: >
     **µCal** is a tiny replacement for the macOS menubar clock. Includes a monthly calendar view, an icon containing the day of the month, and upcoming calendar events.
 
+- title: ripoff-watch-face
+  preimage: garmin.jpg
+  homepage: https://github.com/jchen1/ripoff-watch-face
+  content: >
+    A shameless ripoff of Nike's Apple Watch watchface for Garmin devices.
+
 - title: JOTA
   preimage: jota.png
   homepage: https://apps.apple.com/us/app/jota-easy-2fa/id1478072187
