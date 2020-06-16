@@ -20,7 +20,7 @@
   preimage: garmin.jpg
   homepage: https://github.com/jchen1/ripoff-watch-face
   content: >
-    A shameless ripoff of Nike's Apple Watch watchface for Garmin devices.
+    A shameless ripoff of Nike's Apple Watch watchface for Garmin devices (only tested on Forerunner 245).
 
 - title: JOTA
   preimage: jota.png
