@@ -5,8 +5,10 @@ code {
 }
 
 pre {
-  padding: 7px 0;
-  margin: 20px 0 20px 0;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid $gray;
+
   overflow: auto;
 
   code.hljs {
