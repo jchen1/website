@@ -1,9 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { DARK_GRAY, RED } from "../lib/constants";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "localhost:4000";
+import { Colors } from "../lib/constants";
 
 const HeaderContainer = styled.header`
   padding: 20px 0;
@@ -28,7 +26,7 @@ const Nav = styled.nav`
 
   a {
     margin-left: 20px;
-    color: ${DARK_GRAY};
+    color: ${Colors.DARK_GRAY};
     text-align: right;
     font-weight: 600;
     text-decoration: none;
@@ -39,7 +37,7 @@ const Nav = styled.nav`
 
     &:hover,
     &:active {
-      color: ${RED};
+      color: ${Colors.RED};
     }
   }
 `;

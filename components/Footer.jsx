@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { LIGHT_GRAY } from "../lib/constants";
+import { Colors } from "../lib/constants";
 
 const FooterContainer = styled.footer`
   margin-top: 50px;
   padding: 20px 0;
   text-align: center;
-  border-top: 1px solid ${LIGHT_GRAY};
+  border-top: 1px solid ${Colors.LIGHT_GRAY};
 
   width: 100%;
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GRAY, LIGHT_GRAY } from "../lib/constants";
+import { Colors } from "../lib/constants";
 
 export const RootContainer = styled.div`
   min-height: 100vh;
@@ -37,7 +37,7 @@ export const TitleContainer = styled.div`
 export const BlogContainer = styled.article`
   max-width: 740px;
   padding-bottom: 2em;
-  border-bottom: 1px solid ${LIGHT_GRAY};
+  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   width: 100%;
 
   &:last-child {
@@ -55,7 +55,7 @@ export const BlogContainer = styled.article`
     margin: 1.8em 0.8em;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
-    color: ${GRAY};
+    color: ${Colors.GRAY};
     font-size: 22px;
     font-style: italic;
   }

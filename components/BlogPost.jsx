@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 
-import { GRAY } from "../lib/constants";
+import { Colors } from "../lib/constants";
 import { BlogContainer } from "../components/containers";
 
 const ReadMoreLink = styled.a`
@@ -12,7 +12,7 @@ const ReadMoreLink = styled.a`
 `;
 
 const Date = styled.em`
-  color: ${GRAY};
+  color: ${Colors.GRAY};
 `;
 
 function ReadMore({ post }) {

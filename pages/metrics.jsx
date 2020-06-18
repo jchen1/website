@@ -1,16 +1,27 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
+
 import styled from "styled-components";
 
-import Header from "../components/Header";
-import Event from "../components/api/Event";
+import Event from "../components/metrics/Event";
+import { MainContainer, TitleContainer } from "../components/containers";
+
 import {
-  RootContainer,
-  MainContainer,
-  TitleContainer,
-} from "../components/containers";
-import InputContainer from "../components/api/InputContainer";
-import Widget, { typeOrder } from "../components/api/Widget";
+  Colors,
+  metrics,
+  FrequentMetrics,
+  InfrequentMetrics,
+  AllMetrics,
+  metricType,
+} from "../lib/constants";
+import {
+  useGlobalState,
+  addFrequentMetrics,
+  addInfrequentMetrics,
+} from "../lib/state";
+import { Plot } from "../components/charts";
+import { transformEvents } from "../lib/util";
+import { getEvents, connect } from "../lib/api";
 
 const WSIndicator = styled.div`
   background-color: ${props => props.color};
@@ -55,156 +66,118 @@ const InnerContainer = styled.div`
   }
 `;
 
-function connect(setEvents, setWs) {
-  const url = `wss://${process.env.NEXT_PUBLIC_APISERVER_BASE_URL}:444`;
-  const ws = new WebSocket(url);
-  ws.onmessage = event => {
-    const response = JSON.parse(event.data);
+const CategoryHeader = styled.h2`
+  flex-basis: 100%;
+  text-align: center;
+`;
 
-    setEvents(events => {
-      const nextEvents = response.events.reduce(
-        (acc, event) => {
-          if (event.event === "all" || event.event === "keys") {
-            console.warn(`unsupported event type ${event.event}, skipping`);
-            return acc;
-          }
-          event.time = new Date(event.time);
-          if (!acc.hasOwnProperty("all")) {
-            acc.all = [];
-          }
-          acc.all.push(event);
+function getSocketColor(ws) {
+  if (!ws) return Colors.RED;
 
-          // only store one event per minute for widgets
-          const key = `${event.event}-${Math.floor(
-            event.time.getTime() / 1000 / 60
-          )}`;
-          if (!events.keys.hasOwnProperty(key)) {
-            events.keys[key] = true;
-
-            if (!acc.hasOwnProperty(event.event)) {
-              acc[event.event] = { events: [], last: [] };
-            }
-            if (["int", "bigint", "real"].includes(event.type)) {
-              acc[event.event].last.push(event);
-              acc[event.event].last = acc[event.event].last.filter(
-                e => event.time.getTime() - e.time.getTime() < 1000 * 60 * 15
-              );
-
-              event.dataAvg =
-                acc[event.event].last.reduce((s, e) => s + e.data, 0) /
-                Math.max(1, acc[event.event].last.length);
-            }
-
-            acc[event.event].events.push(event);
-          }
-
-          return acc;
-        },
-        // make a copy so react knows it changed
-        { ...events }
-      );
-
-      return Object.keys(nextEvents).reduce((acc, key) => {
-        if (key === "all" || key === "keys") {
-          acc[key] = nextEvents[key];
-        } else {
-          acc[key] = {
-            events: [...nextEvents[key].events].sort(
-              (a, b) => a.time.getTime() - b.time.getTime()
-            ),
-            last: nextEvents[key].last,
-          };
-        }
-
-        return acc;
-      }, {});
-    });
-  };
-
-  ws.onclose = () =>
-    setTimeout(() => {
-      const ws = connect(setEvents, setWs);
-      return setWs(ws);
-    }, 1000);
-
-  return ws;
+  switch (ws.readyState) {
+    case WebSocket.OPEN:
+      return Colors.GREEN;
+    case WebSocket.CONNECTING:
+      return Colors.YELLOW;
+    // CLOSING/CLOSED/NULL
+    default:
+      return Colors.RED;
+  }
 }
 
-export default function Api() {
-  const [hours, setHours] = useState(24);
-  const [events, setEvents] = useState({ all: [], keys: {} });
-  const [ws, setWs] = useState(null);
+export default function Metrics() {
+  const [ws, setWs] = useGlobalState("ws");
+  const [frequentMetrics] = useGlobalState("frequentMetrics");
+  const [infrequentMetrics] = useGlobalState("infrequentMetrics");
+
+  const [socketColor, setSocketColor] = useState(Colors.RED);
+  const [firstMsg, setFirstMsg] = useState(true);
 
   useEffect(() => {
-    const ws = connect(setEvents, setWs);
-
-    ws.onopen = () => {
-      ws.send(JSON.stringify({ type: "connect", hours }));
+    const fetchData = async () => {
+      const { infrequent, frequent } = await getEvents();
+      addInfrequentMetrics(infrequent);
+      addFrequentMetrics(frequent);
     };
+    fetchData();
 
+    const ws = connect(
+      ws => {
+        ws.send(
+          JSON.stringify({
+            type: "connect",
+            eventFilter: Object.keys(FrequentMetrics),
+          })
+        );
+        setWs(ws);
+      },
+      (ws, msg) => {
+        const response = JSON.parse(event.data);
+
+        // hack: ignore first events sent by server
+        if (firstMsg) {
+          setFirstMsg(false);
+        } else {
+          addFrequentMetrics(response.events);
+        }
+      }
+    );
     setWs(ws);
+
     return () => ws.close();
   }, []);
 
-  useEffect(() => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify({ type: "historical", hours }));
-    }
-    setEvents({ all: [], keys: {} });
-  }, [hours]);
+  const nextSocketColor = getSocketColor(ws);
+  if (nextSocketColor !== socketColor) {
+    setSocketColor(nextSocketColor);
+  }
 
-  const eventRows = events.all
-    .slice(events.all.length - 100)
-    .reverse()
-    .map((event, i) => Event({ event, idx: i }));
-
-  const socketColor = (function () {
-    // if server-side rendered
-    if (!ws) return "#f03009";
-
-    const socketState = ws.readyState;
-    switch (socketState) {
-      case WebSocket.OPEN:
-        return "#68b723";
-      case WebSocket.CONNECTING:
-        return "#f37329";
-      // CLOSING/CLOSED/NULL
-      default:
-        return "#f03009";
-    }
-  })();
-
-  const miniWidgets = typeOrder.map(type => (
-    <Widget key={type} type={type} events={events[type]} />
-  ));
-
-  const widgets = (
-    <InnerContainer>
-      <WidgetContainer>{miniWidgets}</WidgetContainer>
-      <FeedContainer>
-        <h2>
-          Raw Event Feed <br /> ({events.all.length} received)
-        </h2>
-        <EventContainer>{eventRows}</EventContainer>
-      </FeedContainer>
-    </InnerContainer>
-  );
+  const plots = Object.keys(metrics).map(title => {
+    const metricPlots = metrics[title]
+      .map(e => AllMetrics[e])
+      .map(e => [
+        e,
+        transformEvents(
+          metricType(e.name) === "infrequent"
+            ? infrequentMetrics
+            : frequentMetrics,
+          e.name,
+          e
+        ),
+      ])
+      .filter(([e, d]) => d[0].length > 0)
+      .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
+    return (
+      <>
+        <CategoryHeader>{title}</CategoryHeader>
+        {metricPlots}
+      </>
+    );
+  });
 
   return (
     <MainContainer>
       <Head>
-        <title key="title">api.jeffchen.dev</title>
+        <title key="title">Metrics</title>
       </Head>
       <TitleContainer>
         <h1>Metrics</h1>
         <WSIndicator color={socketColor} />
       </TitleContainer>
-      <InputContainer
-        ws={ws}
-        hours={hours}
-        setHours={setHours}
-      ></InputContainer>
-      {widgets}
+      <InnerContainer>
+        <WidgetContainer>{plots}</WidgetContainer>
+        <FeedContainer>
+          <h2>Raw Event Feed</h2>
+          <EventContainer>
+            {frequentMetrics
+              .slice(frequentMetrics.length - 100)
+              .reverse()
+              .map((event, i) => (
+                <Event key={i} event={event} idx={i} />
+              ))}
+          </EventContainer>
+        </FeedContainer>
+      </InnerContainer>
     </MainContainer>
   );
 }
