@@ -12,18 +12,20 @@ const defaultSeriesOpts = {
 };
 
 const Container = styled.div`
-  flex-basis: 50%;
+  flex-basis: 33%;
   margin: 50px 0;
 
   &:nth-of-type(1),
-  &:nth-of-type(2) {
+  &:nth-of-type(2),
+  &:nth-of-type(3) {
     margin-top: 0;
   }
 
   @media screen and (max-width: 640px) {
     flex-basis: 100%;
 
-    &:nth-of-type(2) {
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
       margin-top: 50px;
     }
   }

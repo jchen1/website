@@ -56,7 +56,7 @@ const WidgetTabContainer = styled.div`
   flex: 1 1 67%;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid ${Colors.LIGHT_GRAY};
+  /* border: 1px solid ${Colors.LIGHT_GRAY}; */
   border-radius: 5px;
 
   @media screen and (max-width: 640px) {
@@ -186,7 +186,7 @@ export default function Metrics() {
           />
           <PlotContainer>{plots}</PlotContainer>
         </WidgetTabContainer>
-        <FeedContainer>
+        {/* <FeedContainer>
           <h2>Raw Event Feed</h2>
           <EventContainer>
             {frequentMetrics
@@ -196,7 +196,7 @@ export default function Metrics() {
                 <Event key={i} event={event} idx={i} />
               ))}
           </EventContainer>
-        </FeedContainer>
+        </FeedContainer> */}
       </InnerContainer>
     </MainContainer>
   );
