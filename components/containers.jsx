@@ -69,6 +69,7 @@ const TabContainerRoot = styled.div`
 
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   margin: 1rem 0 2rem 0;
+  height: 3rem;
 `;
 
 const Tab = styled.div`
@@ -96,7 +97,6 @@ const Tab = styled.div`
 `;
 
 export function TabContainer({ tabs, activeTab, setActiveTab }) {
-  console.log(tabs, activeTab);
   const tabMarkup = tabs.map(({ name, value }, idx) => (
     <Tab
       className={activeTab === value ? "active" : "inactive"}

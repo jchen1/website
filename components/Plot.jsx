@@ -32,6 +32,17 @@ const Container = styled.div`
 
   .uplot {
     position: absolute;
+
+    .overlay {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.5rem;
+      margin: 0.75rem;
+      color: ${Colors.WHITE};
+      z-index: 10;
+      pointer-events: none;
+      font-size: 14px;
+    }
   }
 `;
 
@@ -59,7 +70,9 @@ function mountPlot(el, props, width, height) {
     height,
     class: props.class || "spark",
     series,
-    plugins: [tooltipsPlugin()],
+    legend: props.legend || { show: false },
+    cursor: { y: false, ...(props.cursor || {}) },
+    plugins: [tooltipsPlugin(props.opts)],
   };
 
   return new uPlot(opts, data, el);

@@ -18,7 +18,6 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hooks-global-state": "^1.0.0",
-    "recharts": "^1.8.5",
     "remark": "^12.0.0",
     "remark-excerpt": "^1.0.0-beta.1",
     "remark-highlight.js": "^6.0.0",
