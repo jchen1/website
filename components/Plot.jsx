@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-basis: 50%;
   margin: 50px 0;
 
-  &:first-of-type,
+  &:nth-of-type(1),
   &:nth-of-type(2) {
     margin-top: 0;
   }
@@ -75,7 +75,7 @@ export default class Plot extends React.Component {
       this.setState({
         dimensions: {
           width: this.el.offsetWidth,
-          height: this.el.offsetWidth * 0.75,
+          height: this.el.offsetWidth * (this.props.aspectRatio || 0.5),
         },
       });
     }
@@ -89,7 +89,7 @@ export default class Plot extends React.Component {
       this.setState({
         dimensions: {
           width: this.el.offsetWidth,
-          height: this.el.offsetWidth * 0.75,
+          height: this.el.offsetWidth * (this.props.aspectRatio || 0.5),
         },
       });
     }

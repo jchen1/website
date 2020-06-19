@@ -4,7 +4,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import Event from "../components/metrics/Event";
-import { MainContainer, TitleContainer } from "../components/containers";
+import {
+  MainContainer,
+  TabContainer,
+  TitleContainer,
+} from "../components/containers";
 
 import {
   Colors,
@@ -34,27 +38,51 @@ const WSIndicator = styled.div`
 
 const FeedContainer = styled.div`
   padding: 0 2rem;
-  max-height: 40rem;
+  max-height: 60vh;
   flex: 1 1 33%;
+
   @media screen and (max-width: 640px) {
     flex: 1 1 100%;
   }
 `;
 
-const WidgetContainer = styled.div`
+const WidgetTabContainer = styled.div`
   padding: 0 2rem;
   flex: 1 1 67%;
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid ${Colors.LIGHT_GRAY};
+  border-radius: 5px;
+
   @media screen and (max-width: 640px) {
+    border: 0;
     flex: 1 1 100%;
     padding: 0;
+  }
+`;
+
+const PlotContainer = styled.div`
+  /* position: relative; */
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  max-height: 60vh;
+  overflow-y: auto;
+
+  @media screen and (max-width: 640px) {
+    max-height: initial;
+    overflow: initial;
   }
 `;
 
 const EventContainer = styled.div`
   overflow-y: auto;
   height: 100%;
+
+  @media screen and (max-width: 640px) {
+    max-height: 70vh;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -64,11 +92,6 @@ const InnerContainer = styled.div`
   @media screen and (max-width: 640px) {
     flex-wrap: wrap;
   }
-`;
-
-const CategoryHeader = styled.h2`
-  flex-basis: 100%;
-  text-align: center;
 `;
 
 function getSocketColor(ws) {
@@ -90,6 +113,7 @@ export default function Metrics() {
   const [frequentMetrics] = useGlobalState("frequentMetrics");
   const [infrequentMetrics] = useGlobalState("infrequentMetrics");
 
+  const [activeTab, setActiveTab] = useState("Personal");
   const [socketColor, setSocketColor] = useState(Colors.RED);
   const [firstMsg, setFirstMsg] = useState(true);
 
@@ -132,28 +156,22 @@ export default function Metrics() {
     setSocketColor(nextSocketColor);
   }
 
-  const plots = Object.keys(metrics).map(title => {
-    const metricPlots = metrics[title]
-      .map(e => AllMetrics[e])
-      .map(e => [
-        e,
-        transformEvents(
-          metricType(e.name) === "infrequent"
-            ? infrequentMetrics
-            : frequentMetrics,
-          e.name,
-          e
-        ),
-      ])
-      .filter(([e, d]) => d[0].length > 0)
-      .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
-    return (
-      <>
-        <CategoryHeader>{title}</CategoryHeader>
-        {metricPlots}
-      </>
-    );
-  });
+  const tabs = Object.keys(metrics).map(t => ({ name: t, value: t }));
+
+  const plots = metrics[activeTab]
+    .map(e => AllMetrics[e])
+    .map(e => [
+      e,
+      transformEvents(
+        metricType(e.name) === "infrequent"
+          ? infrequentMetrics
+          : frequentMetrics,
+        e.name,
+        e
+      ),
+    ])
+    .filter(([e, d]) => d[0].length > 0)
+    .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
 
   return (
     <MainContainer>
@@ -165,7 +183,14 @@ export default function Metrics() {
         <WSIndicator color={socketColor} />
       </TitleContainer>
       <InnerContainer>
-        <WidgetContainer>{plots}</WidgetContainer>
+        <WidgetTabContainer>
+          <TabContainer
+            tabs={tabs}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <PlotContainer>{plots}</PlotContainer>
+        </WidgetTabContainer>
         <FeedContainer>
           <h2>Raw Event Feed</h2>
           <EventContainer>
