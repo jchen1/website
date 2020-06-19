@@ -38,12 +38,17 @@ const WSIndicator = styled.div`
 
 const FeedContainer = styled.div`
   padding: 0 2rem;
-  max-height: 60vh;
   flex: 1 1 33%;
 
   @media screen and (max-width: 640px) {
     flex: 1 1 100%;
   }
+`;
+
+const EventContainer = styled.div`
+  overflow-y: auto;
+  height: 100%;
+  max-height: 65vh;
 `;
 
 const WidgetTabContainer = styled.div`
@@ -62,26 +67,16 @@ const WidgetTabContainer = styled.div`
 `;
 
 const PlotContainer = styled.div`
-  /* position: relative; */
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   max-height: 60vh;
   overflow-y: auto;
 
   @media screen and (max-width: 640px) {
     max-height: initial;
     overflow: initial;
-  }
-`;
-
-const EventContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
-
-  @media screen and (max-width: 640px) {
-    max-height: 70vh;
   }
 `;
 
