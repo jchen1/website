@@ -94,7 +94,6 @@ export default function Metrics() {
 
   const [activeTab, setActiveTab] = useState("Personal");
   const [socketColor, setSocketColor] = useState(Colors.RED);
-  const [firstMsg, setFirstMsg] = useState(true);
 
   const [loadState, setLoadState] = useState("loading");
 
@@ -124,13 +123,7 @@ export default function Metrics() {
       },
       (ws, msg) => {
         const response = JSON.parse(event.data);
-
-        // hack: ignore first events sent by server
-        if (firstMsg) {
-          setFirstMsg(false);
-        } else {
-          addFrequentMetrics(response.events);
-        }
+        addFrequentMetrics(response.events);
       }
     );
     setWs(ws);
