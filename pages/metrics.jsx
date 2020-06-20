@@ -36,27 +36,11 @@ const WSIndicator = styled.div`
   margin-left: 1rem;
 `;
 
-const FeedContainer = styled.div`
-  padding: 0 2rem;
-  flex: 1 1 33%;
-
-  @media screen and (max-width: 640px) {
-    flex: 1 1 100%;
-  }
-`;
-
-const EventContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  max-height: 65vh;
-`;
-
 const WidgetTabContainer = styled.div`
   padding: 0 2rem;
   flex: 1 1 67%;
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid ${Colors.LIGHT_GRAY}; */
   border-radius: 5px;
 
   @media screen and (max-width: 640px) {
@@ -112,11 +96,19 @@ export default function Metrics() {
   const [socketColor, setSocketColor] = useState(Colors.RED);
   const [firstMsg, setFirstMsg] = useState(true);
 
+  const [loadState, setLoadState] = useState("loading");
+
   useEffect(() => {
     const fetchData = async () => {
-      const { infrequent, frequent } = await getEvents();
-      addInfrequentMetrics(infrequent);
-      addFrequentMetrics(frequent);
+      try {
+        const { infrequent, frequent } = await getEvents();
+        addInfrequentMetrics(infrequent);
+        addFrequentMetrics(frequent);
+        setLoadState("loaded");
+      } catch (e) {
+        console.error(e);
+        setLoadState("error");
+      }
     };
     fetchData();
 
@@ -153,20 +145,24 @@ export default function Metrics() {
 
   const tabs = Object.keys(metrics).map(t => ({ name: t, value: t }));
 
-  const plots = metrics[activeTab]
-    .map(e => AllMetrics[e])
-    .map(e => [
-      e,
-      transformEvents(
-        metricType(e.name) === "infrequent"
-          ? infrequentMetrics
-          : frequentMetrics,
-        e.name,
-        e
-      ),
-    ])
-    .filter(([e, d]) => d[0].length > 0)
-    .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
+  const plots = (() => {
+    if (loadState === "loading") return <h2>Loading...</h2>;
+    if (loadState === "error") return <h2>Error loading plots...</h2>;
+    return metrics[activeTab]
+      .map(e => AllMetrics[e])
+      .map(e => [
+        e,
+        transformEvents(
+          metricType(e.name) === "infrequent"
+            ? infrequentMetrics
+            : frequentMetrics,
+          e.name,
+          e
+        ),
+      ])
+      .filter(([e, d]) => d[0].length > 0)
+      .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
+  })();
 
   return (
     <MainContainer>
@@ -186,17 +182,6 @@ export default function Metrics() {
           />
           <PlotContainer>{plots}</PlotContainer>
         </WidgetTabContainer>
-        {/* <FeedContainer>
-          <h2>Raw Event Feed</h2>
-          <EventContainer>
-            {frequentMetrics
-              .slice(frequentMetrics.length - 100)
-              .reverse()
-              .map((event, i) => (
-                <Event key={i} event={event} idx={i} />
-              ))}
-          </EventContainer>
-        </FeedContainer> */}
       </InnerContainer>
     </MainContainer>
   );
