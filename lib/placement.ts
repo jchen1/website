@@ -77,7 +77,7 @@ export default function (
     secondary[key] = NAMES[key][side === "top" || side === "bottom" ? 1 : 0];
   }
 
-  // overlay.style.position = "absolute";
+  overlay.style.position = "absolute";
   overlay.style.maxWidth = "";
   overlay.style.maxHeight = "";
 

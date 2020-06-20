@@ -34,17 +34,6 @@ const Container = styled.div`
 
   .uplot {
     position: absolute;
-
-    .overlay {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 0.5rem;
-      margin: 0.75rem;
-      color: ${Colors.WHITE};
-      z-index: 10;
-      pointer-events: none;
-      font-size: 14px;
-    }
   }
 `;
 
