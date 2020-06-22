@@ -3,21 +3,13 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import Event from "../components/metrics/Event";
 import {
   MainContainer,
   TabContainer,
   TitleContainer,
 } from "../components/containers";
 
-import {
-  Colors,
-  metrics,
-  FrequentMetrics,
-  InfrequentMetrics,
-  AllMetrics,
-  metricType,
-} from "../lib/constants";
+import { Colors, metrics, FrequentMetrics, metricType } from "../lib/constants";
 import {
   useGlobalState,
   addFrequentMetrics,
@@ -116,7 +108,7 @@ export default function Metrics() {
         ws.send(
           JSON.stringify({
             type: "connect",
-            eventFilter: Object.keys(FrequentMetrics),
+            eventFilter: FrequentMetrics,
           })
         );
         setWs(ws);
@@ -137,24 +129,32 @@ export default function Metrics() {
   }
 
   const tabs = Object.keys(metrics).map(t => ({ name: t, value: t }));
-
   const plots = (() => {
     if (loadState === "loading") return <h2>Loading...</h2>;
     if (loadState === "error") return <h2>Error loading plots...</h2>;
-    return metrics[activeTab]
-      .map(e => AllMetrics[e])
-      .map(e => [
-        e,
-        transformEvents(
-          metricType(e.name) === "infrequent"
-            ? infrequentMetrics
-            : frequentMetrics,
-          e.name,
-          e
-        ),
-      ])
-      .filter(([e, d]) => d[0].length > 0)
-      .map(([e, d]) => <Plot title={e.title} key={e.name} data={d} opts={e} />);
+    return (
+      metrics[activeTab]
+        // .map(e => AllMetrics[e])
+        .map(e => [
+          e,
+          transformEvents(
+            metricType(e.datatype) === "infrequent"
+              ? infrequentMetrics
+              : frequentMetrics,
+            e.datatype,
+            e
+          ),
+        ])
+        .filter(([e, d]) => d[0].length > 0)
+        .map(([e, d]) => (
+          <Plot
+            title={e.title}
+            key={`${e.title}-${e.datatype}`}
+            data={d}
+            opts={e}
+          />
+        ))
+    );
   })();
 
   return (

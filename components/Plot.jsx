@@ -56,7 +56,7 @@ function mountPlot(el, props, width, height) {
 
   const opts = {
     ...props.opts,
-    title: title || props.opts.name,
+    title: title || props.opts.datatype,
     width,
     height,
     class: props.class || "spark",

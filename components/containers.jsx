@@ -101,6 +101,7 @@ export function TabContainer({ tabs, activeTab, setActiveTab }) {
     <Tab
       className={activeTab === value ? "active" : "inactive"}
       tabIndex={idx}
+      key={name}
       role="button"
       onClick={e => setActiveTab(value)}
     >
