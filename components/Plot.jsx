@@ -1,17 +1,10 @@
-import uPlot from "uplot";
 import React from "react";
 import styled from "styled-components";
 
-import { Colors } from "../lib/constants";
-import { tooltipsPlugin } from "../lib/chartPlugins";
+import LinePlot from "./plots/LinePlot";
+import GithubPlot from "./plots/GithubPlot";
 
-const defaultSeriesOpts = {
-  show: true,
-  stroke: Colors.RED,
-  // fill: Colors.RED,
-};
-
-const Container = styled.div`
+const PlotContainer = styled.div`
   flex-basis: 33%;
   margin: 50px 0;
 
@@ -19,6 +12,10 @@ const Container = styled.div`
   &:nth-of-type(2),
   &:nth-of-type(3) {
     margin-top: 0;
+  }
+
+  h3 {
+    text-align: center;
   }
 
   @media screen and (max-width: 640px) {
@@ -29,122 +26,26 @@ const Container = styled.div`
       margin-top: 50px;
     }
   }
-
-  position: relative;
-
-  .uplot {
-    position: absolute;
-  }
 `;
 
-function mountPlot(el, props, width, height) {
-  const { title, data } = props;
-
-  const series = (props.series || [])
-    .map(s => ({ ...defaultSeriesOpts, ...s }))
-    .concat(
-      Array(data.length - (props.series || []).length)
-        .fill(null)
-        .map(a => ({
-          ...defaultSeriesOpts,
-        }))
-    );
-
-  if (props.opts && props.opts.unit) {
-    series[1].label = props.opts.unit;
-  }
-
-  const opts = {
-    ...props.opts,
-    title: title || props.opts.datatype,
-    width,
-    height,
-    class: props.class || "spark",
-    series,
-    legend: props.legend || { show: false },
-    cursor: { y: false, ...(props.cursor || {}) },
-    plugins: [tooltipsPlugin(props.opts)],
-  };
-
-  return new uPlot(opts, data, el);
-}
-
 export default class Plot extends React.Component {
-  state = {
-    dimensions: null,
-  };
-
-  onResize() {
-    if (this.el) {
-      this.setState({
-        dimensions: {
-          width: this.el.offsetWidth,
-          height: this.el.offsetWidth * (this.props.aspectRatio || 0.5),
-        },
-      });
-    }
-  }
-
-  componentDidMount() {
-    if (this.el) {
-      this.ro = new ResizeObserver(e => this.onResize());
-      this.ro.observe(this.el);
-
-      this.setState({
-        dimensions: {
-          width: this.el.offsetWidth,
-          height: this.el.offsetWidth * (this.props.aspectRatio || 0.5),
-        },
-      });
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.plot) {
-      if (this.props.data[0].length !== prevProps.data[0].length) {
-        this.plot.setData(this.props.data);
-      }
-
-      const { dimensions } = this.state;
-
-      if (
-        dimensions !== null &&
-        (this.plot.width !== dimensions.width ||
-          this.plot.height !== dimensions.height)
-      ) {
-        this.plot.setSize({
-          width: dimensions.width,
-          height: dimensions.height,
-        });
-      }
-    } else {
-      if (this.state.dimensions !== null) {
-        this.plot = mountPlot(
-          this.el,
-          this.props,
-          this.state.dimensions.width,
-          this.state.dimensions.height
-        );
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.plot) {
-      this.plot.destroy();
-    }
-    this.ro?.disconnect();
-  }
-
   render() {
-    const { dimensions } = this.state;
+    const Element = (() => {
+      switch (this.props.type) {
+        case "line":
+          return LinePlot;
+        case "github":
+          return GithubPlot;
+        default:
+          return LinePlot;
+      }
+    })();
+
     return (
-      <Container
-        ref={el => (this.el = el)}
-        style={dimensions ? { height: `${dimensions.height}px` } : {}}
-      >
-        {this.props.children}
-      </Container>
+      <PlotContainer>
+        <h3>{this.props.title || this.props.opts?.datatypes[0]}</h3>
+        <Element {...this.props} />
+      </PlotContainer>
     );
   }
 }

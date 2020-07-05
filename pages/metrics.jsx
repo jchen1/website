@@ -9,12 +9,8 @@ import {
   TitleContainer,
 } from "../components/containers";
 
-import { Colors, metrics, FrequentMetrics, metricType } from "../lib/constants";
-import {
-  useGlobalState,
-  addFrequentMetrics,
-  addInfrequentMetrics,
-} from "../lib/state";
+import { Colors, Plots, FrequentMetrics, metricType } from "../lib/constants";
+import { useGlobalState, addMetrics } from "../lib/state";
 import { Plot } from "../components/charts";
 import { transformEvents } from "../lib/util";
 import { getEvents, connect } from "../lib/api";
@@ -81,8 +77,7 @@ function getSocketColor(ws) {
 
 export default function Metrics() {
   const [ws, setWs] = useGlobalState("ws");
-  const [frequentMetrics] = useGlobalState("frequentMetrics");
-  const [infrequentMetrics] = useGlobalState("infrequentMetrics");
+  const [metrics] = useGlobalState("metrics");
 
   const [activeTab, setActiveTab] = useState("Personal");
   const [socketColor, setSocketColor] = useState(Colors.RED);
@@ -93,8 +88,7 @@ export default function Metrics() {
     const fetchData = async () => {
       try {
         const { infrequent, frequent } = await getEvents();
-        addInfrequentMetrics(infrequent);
-        addFrequentMetrics(frequent);
+        addMetrics(infrequent.concat(frequent));
         setLoadState("loaded");
       } catch (e) {
         console.error(e);
@@ -115,7 +109,7 @@ export default function Metrics() {
       },
       (ws, msg) => {
         const response = JSON.parse(event.data);
-        addFrequentMetrics(response.events);
+        addMetrics(response.events);
       }
     );
     setWs(ws);
@@ -128,33 +122,22 @@ export default function Metrics() {
     setSocketColor(nextSocketColor);
   }
 
-  const tabs = Object.keys(metrics).map(t => ({ name: t, value: t }));
+  const tabs = Object.keys(Plots).map(t => ({ name: t, value: t }));
   const plots = (() => {
     if (loadState === "loading") return <h2>Loading...</h2>;
     if (loadState === "error") return <h2>Error loading plots...</h2>;
-    return (
-      metrics[activeTab]
-        // .map(e => AllMetrics[e])
-        .map(e => [
-          e,
-          transformEvents(
-            metricType(e.datatype) === "infrequent"
-              ? infrequentMetrics
-              : frequentMetrics,
-            e.datatype,
-            e
-          ),
-        ])
-        .filter(([e, d]) => d[0].length > 0)
-        .map(([e, d]) => (
-          <Plot
-            title={e.title}
-            key={`${e.title}-${e.datatype}`}
-            data={d}
-            opts={e}
-          />
-        ))
-    );
+    return Plots[activeTab]
+      .map(e => [e, transformEvents(metrics, e.datatypes, e)])
+      .filter(([e, d]) => d[0].length > 0)
+      .map(([e, d]) => (
+        <Plot
+          title={e.title}
+          key={`${e.title}-${e.datatypes.toString()}`}
+          data={d}
+          opts={e}
+          type={e.plotType || "line"}
+        />
+      ));
   })();
 
   return (

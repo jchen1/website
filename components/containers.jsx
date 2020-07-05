@@ -5,6 +5,7 @@ import { Colors } from "../lib/constants";
 
 export const RootContainer = styled.div`
   min-height: 100vh;
+  max-height: 100vh;
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
@@ -109,4 +110,39 @@ export function TabContainer({ tabs, activeTab, setActiveTab }) {
     </Tab>
   ));
   return <TabContainerRoot>{tabMarkup}</TabContainerRoot>;
+}
+
+export class ResizableContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = React.createRef();
+  }
+
+  onResize(evt) {
+    if (!this.el?.current) return;
+
+    const rect = this.el.current.getBoundingClientRect();
+    return this.props.onResize(evt, rect);
+  }
+
+  componentDidMount() {
+    if (this.el?.current) {
+      this.ro = new ResizeObserver(e => this.onResize(e));
+      this.ro.observe(this.el.current);
+
+      this.onResize();
+    }
+  }
+
+  componentWillUnmount() {
+    this.ro?.disconnect();
+  }
+
+  render() {
+    return (
+      <div className={this.props.className} ref={this.el}>
+        {this.props.children}
+      </div>
+    );
+  }
 }
