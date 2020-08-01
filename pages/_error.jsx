@@ -20,12 +20,7 @@ function CustomError({ statusCode }) {
   );
 }
 
-CustomError.getInitialProps = ({ asPath, res, err }) => {
-  if (asPath.endsWith("/")) {
-    res.writeHead(302, { Location: asPath.substring(0, asPath.length - 1) });
-    return res.end();
-  }
-
+CustomError.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };

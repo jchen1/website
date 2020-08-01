@@ -4,6 +4,7 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  trailingSlash: true,
   webpack: (config, options) => {
     if (options.isServer) {
       config.externals = [

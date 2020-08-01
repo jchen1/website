@@ -33,7 +33,7 @@ function normalizeRect(rect: DOMRect | ClientRect): Coordinates {
   };
 }
 
-export default function (
+export default function Placement(
   overlay: HTMLElement,
   anchor: Element | Range | Coordinates,
   side: Side = "bottom",

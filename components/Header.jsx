@@ -69,7 +69,7 @@ export default function Header() {
             <Link href="/projects">
               <a>Projects</a>
             </Link>
-            <a href="./resume/index.html">Résumé</a>
+            <a href="/resume/index.html">Résumé</a>
             <Link href="/metrics">
               <a>Metrics</a>
             </Link>
