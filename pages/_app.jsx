@@ -25,6 +25,14 @@ function MyApp({ Component, pageProps }) {
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
           crossOrigin="anonymous"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135975758-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-135975758-1');
+        </script>
       </Head>
       <Header />
       <Component {...pageProps} />
