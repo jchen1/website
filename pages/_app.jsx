@@ -10,12 +10,12 @@ import "uplot/dist/uPlot.min.css";
 import { RootContainer } from "../components/containers";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { GA_TRACKING_ID } from "../lib/gtag";
+import { GA_TRACKING_ID, pageview } from "../lib/gtag";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
   NProgress.done();
-  gtag.pageview(url);
+  pageview(url);
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
