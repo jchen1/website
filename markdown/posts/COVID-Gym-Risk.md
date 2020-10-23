@@ -22,7 +22,7 @@ This page is interactive: try estimating risk for your own gym sessions!
   - An infected individual is infectious for <span class="active-infection-days"></span> days, after which they've either recovered or passed away.
 - `risky_behavior_multiplier` = <input type="number" id="risky-behavior-multiplier" step=0.1 value=1.5 onchange="calculate()" min=0 max=99 />
   - I assumed that gym-goers are more likely to be infected because they're more likely to conduct risky activities.
-- `gym_infected_interaction_transmission_risk_per_minute` = <input type="number" disabled id="gym-infected-interaction-transmission-risk-per-minute" value=0.001 min=0 max=1000 />
+- `infected_transmission_risk_min` = <input type="number" disabled id="infected-transmission-risk-min" value=0.001 min=0 max=1000 />
   - [microcovid.org](https://www.microcovid.org/paper/5-activity-risk) calculates transmission risk of a one-hour, indoor, unmasked interaction with someone who has COVID from three feet away to be 6%.
 - `gym_6ft_interaction_rate` = <input type="number" id="gym-6ft-interaction-rate" value=0.15 onchange="calculate()" min=0 max=1000 step=0.01 />
   - % of time inside a gym where I am within 6 ft of another person
@@ -48,14 +48,14 @@ This page is interactive: try estimating risk for your own gym sessions!
 
 Finally, we can calculate our risk per session, which is the amount of time spent within 6ft of another person in a single session multiplied by the probability that they are infectious.
 
-`risk_per_session` = `gym_goer_infection_probability * gym_6ft_interaction_rate * gym_session_duration * gym_infected_interaction_transmission_risk_per_minute` = <br /> <strong id="risk-per-session">0.0003042</strong> = <strong id="risk-per-session-pct">0.0003042%</strong>.
+`risk_per_session` = `gym_goer_infection_probability * gym_6ft_interaction_rate * gym_session_duration * infected_transmission_risk_min` = <br /> <strong id="risk-per-session">0.0003042</strong> = <strong id="risk-per-session-pct">0.0003042%</strong>.
 
 <script>
 function calculate() {
   console.log("calc");
   var activeInfectionDays = document.getElementById("active-infection-days").value;
   var riskyBehaviorMultiplier = document.getElementById("risky-behavior-multiplier").value;
-  var gymInfectedInteractionTransmissionRiskPerMinute = document.getElementById("gym-infected-interaction-transmission-risk-per-minute").value;
+  var infectedTransmissionRiskMin = document.getElementById("infected-transmission-risk-min").value;
   var gym6ftInteractionRate = document.getElementById("gym-6ft-interaction-rate").value;
   var gymSessionDuration = document.getElementById("gym-session-duration").value;
   var countyCasesReported = document.getElementById("county-cases-reported").value;
@@ -65,7 +65,7 @@ function calculate() {
   var countyTrueActiveInfections = Math.round(countyCasesReported * (16 * Math.sqrt(countyPositivityRate) + 2.5));
   var gymGoerInfectionProbability = countyTrueActiveInfections * riskyBehaviorMultiplier / countyPopulation;
 
-  var riskPerSession = gymGoerInfectionProbability * gym6ftInteractionRate * gymSessionDuration * gymInfectedInteractionTransmissionRiskPerMinute;
+  var riskPerSession = gymGoerInfectionProbability * gym6ftInteractionRate * gymSessionDuration * infectedTransmissionRiskMin;
 
   document.getElementById("county-true-active-infections").value = countyTrueActiveInfections;
   document.getElementById("gym-goer-infection-probability").value = gymGoerInfectionProbability.toFixed(4);
