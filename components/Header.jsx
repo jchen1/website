@@ -59,7 +59,7 @@ export default function Header() {
                 <a>Jeff Chen</a>
               </Link>
             </h1>
-            <p className="site-description">I make stuff!</p>
+            <p className="site-description">Code &amp; fitness</p>
           </div>
 
           <Nav>
