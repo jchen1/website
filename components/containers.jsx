@@ -46,7 +46,7 @@ export const BlogContainer = styled.article`
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   width: 100%;
 
-  &:last-child {
+  &:last-of-type {
     padding-bottom: 1em;
     border-bottom: none;
   }
@@ -107,7 +107,7 @@ export function TabContainer({ tabs, activeTab, setActiveTab }) {
       tabIndex={idx}
       key={name}
       role="button"
-      onClick={(e) => setActiveTab(value)}
+      onClick={e => setActiveTab(value)}
     >
       <span className="text">{name}</span>
     </Tab>
@@ -130,7 +130,7 @@ export class ResizableContainer extends React.Component {
 
   componentDidMount() {
     if (this.el?.current) {
-      this.ro = new ResizeObserver((e) => this.onResize(e));
+      this.ro = new ResizeObserver(e => this.onResize(e));
       this.ro.observe(this.el.current);
 
       this.onResize();
