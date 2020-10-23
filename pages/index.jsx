@@ -7,5 +7,5 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  return IndexPage.getStaticProps({ params: { page: "0" } });
+  return IndexPage.getStaticProps({ params: { page: "1" } });
 }

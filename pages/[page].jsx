@@ -35,7 +35,7 @@ export default function IndexPage(props) {
 }
 
 export async function getStaticProps({ params }) {
-  const page = parseInt(params.page);
+  const page = parseInt(params.page) - 1;
   const start = POSTS_PER_PAGE * page;
 
   const allPosts = await Promise.all(
@@ -50,9 +50,9 @@ export async function getStaticProps({ params }) {
   const posts = allPosts.slice(start, start + POSTS_PER_PAGE);
   const numPages = 1 + Math.floor(allPosts.length / POSTS_PER_PAGE);
   const pages = [...Array(numPages).keys()].map(p => ({
-    link: p === 0 ? "/" : `/${p}`, // special-case page 0 to homepage
+    link: p === 0 ? "/" : `/${p + 1}`, // special-case page 0 to homepage
     isCurrent: page === p,
-    title: `${p}`,
+    title: `${p + 1}`,
   }));
 
   return {
@@ -70,7 +70,7 @@ export async function getStaticPaths() {
   return {
     paths: [...Array(numPages).keys()].map(page => {
       return {
-        params: { page: `${page}` },
+        params: { page: `${page + 1}` },
       };
     }),
     fallback: false,
