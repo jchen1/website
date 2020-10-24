@@ -64,10 +64,10 @@ Now, on to my ballot!
 ### State
 
 - Prop 14: **No**
-  - Prop 14 authorizes \$5.5 in bonds for stem cell research.
+  - Prop 14 authorizes $5.5B in bonds for stem cell research.
   - Stem cell research is probably important - but why is this measure before the uninformed people rather than the state legislature?
 - Prop 15: **Yes**
-  - Prop 15 effectively repeals Prop 13 for commercial and industrial real estate worth more than \$3M.
+  - Prop 15 effectively repeals Prop 13 for commercial and industrial real estate worth more than $3M.
   - This seems like a win to me - why should big businesses have property tax benefits based on how long they've owned the building?
 - Prop 16: **No**
   - Prop 16 allows government agencies to consider race, sex, color, ethnicity, and national origin when making decisions - this repeals the Prop 209 from 1996 which disallowed those factors. The justification is to "address diversity".
@@ -79,7 +79,7 @@ Now, on to my ballot!
   - Prop 18 allows 17-year-olds who will be 18 & eligible to vote for the general election to vote in primaries.
   - As with the last proposition - we should enfranchise as many people as possible. If you're going to vote in the general election anyways, you should have a voice in who ends up on that ballot.
 - Prop 19: **Yes**
-  - Prop 19, like Prop 15, reduces the scope of Prop 13 while maintaining exceptions for the disabled and elderly. In particular, children would now only inherit lower property taxes from one of their parent's properties instead of all of them, and any properties worth more than \$1M at the time of inheritance would have their property tax increased as well.
+  - Prop 19, like Prop 15, reduces the scope of Prop 13 while maintaining exceptions for the disabled and elderly. In particular, children would now only inherit lower property taxes from one of their parent's properties instead of all of them, and any properties worth more than $1M at the time of inheritance would have their property tax increased as well.
   - Overall, artificially low property taxes contribute to NIMBYism and stagnation: why would I move out of my house of 30 years, even if it doesn't make sense for my living situation, if it means my property taxes could double or even more? I'll take any chance I get to chip away at Prop 13.
 - Prop 20: **No**
   - Prop 20 limits parole access for certain non-violent crimes like theft.
@@ -112,7 +112,7 @@ Now, on to my ballot!
 - Measure V: **Yes**
   - Alameda County originally passed this proposition in 1992. Utility users taxes seem fairly common, at least in the Bay Area. Vote for the status quo!
 - Measure W: **No**
-  - California cities have historically been extremely bad at managing homelessness funds. I see no reason why this measure would be any different - so I'd prefer to not light \$150M on fire every year.
+  - California cities have historically been extremely bad at managing homelessness funds. I see no reason why this measure would be any different - so I'd prefer to not light $150M on fire every year.
 
 ## Resources
 
