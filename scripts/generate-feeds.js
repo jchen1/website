@@ -4,7 +4,7 @@ const matter = require("gray-matter");
 const rss = require("rss");
 
 // copied from lib/constants
-const BASE_URL = "jeffchen.dev";
+const BASE_URL = "https://jeffchen.dev";
 const SITE_TITLE = "Jeff Chen";
 
 function generateSitemap({ posts, pages }) {
