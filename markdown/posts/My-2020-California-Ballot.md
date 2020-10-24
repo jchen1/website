@@ -118,5 +118,5 @@ Now, on to my ballot!
 
 - [California Voter Guide](https://vig.cdn.sos.ca.gov/2020/general/pdf/complete-vig.pdf)
 - [Dublin Candidate Statements - Mayor](https://dublin.ca.gov/DocumentCenter/View/23273/Candidate-Statements---Mayor)
-- [Dublin Candidate Statements - City Countil](https://dublin.ca.gov/DocumentCenter/View/23272/Candidate-Statements---City-Council)
+- [Dublin Candidate Statements - City Council](https://dublin.ca.gov/DocumentCenter/View/23272/Candidate-Statements---City-Council)
 - [Alameda County Ballot Measures](https://ballotpedia.org/Alameda_County,_California_ballot_measures)
