@@ -56,7 +56,6 @@ function generateRssFeed(posts) {
       ...data,
     };
   });
-  //  getAllPosts(["title", "date", "slug", "author"]);
 
   // ignore prefixed & dynamic pages
   const pages = (await globby(["pages/*.jsx"]))

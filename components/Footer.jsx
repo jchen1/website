@@ -1,6 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+
+import Envelope from "../assets/envelope-f.svg";
+import Github from "../assets/github.svg";
+import Twitter from "../assets/twitter.svg";
+import Linkedin from "../assets/linkedin.svg";
+
 import { Colors } from "../lib/constants";
+
+const ICON_SIZE = 30;
+
+const Button = styled.a`
+  display: inline-block;
+  padding: 5px 7px;
+
+  > svg:hover {
+    fill: ${Colors.RED};
+  }
+`;
 
 const FooterContainer = styled.footer`
   margin-top: 50px;
@@ -9,28 +26,23 @@ const FooterContainer = styled.footer`
   border-top: 1px solid ${Colors.LIGHT_GRAY};
 
   width: 100%;
-
-  .icon {
-    font-size: 20px;
-    padding: 5px;
-  }
 `;
 
 export default function Footer() {
   return (
     <FooterContainer>
-      <a href="mailto:hello@jeff.yt">
-        <i className="icon fa fa-envelope-o"></i>
-      </a>
-      <a href="https://github.com/jchen1">
-        <i className="icon fa fa-github"></i>
-      </a>
-      <a href="https://www.twitter.com/iambald">
-        <i className="icon fa fa-twitter"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/jchen94">
-        <i className="icon fa fa-linkedin"></i>
-      </a>
+      <Button href="mailto:hello@jeff.yt">
+        <Envelope width={ICON_SIZE} height={ICON_SIZE} />
+      </Button>
+      <Button href="https://github.com/jchen1">
+        <Github width={ICON_SIZE} height={ICON_SIZE} />
+      </Button>
+      <Button href="https://www.twitter.com/iambald">
+        <Twitter width={ICON_SIZE} height={ICON_SIZE} />
+      </Button>
+      <Button href="https://www.linkedin.com/in/jchen94">
+        <Linkedin width={ICON_SIZE} height={ICON_SIZE} />
+      </Button>
     </FooterContainer>
   );
 }
