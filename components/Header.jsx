@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { Colors } from "../lib/constants";
+import { Colors, SITE_TITLE } from "../lib/constants";
 
 const HeaderContainer = styled.header`
   padding: 20px 0;
@@ -56,7 +56,7 @@ export default function Header() {
           <div className="site-info">
             <h1 className="site-name">
               <Link href="/">
-                <a>Jeff Chen</a>
+                <a>{SITE_TITLE}</a>
               </Link>
             </h1>
             <p className="site-description">Code &amp; fitness</p>

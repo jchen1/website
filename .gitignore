@@ -30,3 +30,7 @@ yarn-error.log*
 .env.production.local
 
 .vercel
+
+# generated files
+public/rss-feed.xml
+public/sitemap.xml

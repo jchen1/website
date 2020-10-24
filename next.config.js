@@ -13,6 +13,8 @@ module.exports = {
         "styled-components",
         ...config.externals,
       ];
+
+      require("./scripts/generate-feeds");
     } else {
       config.node = {
         fs: "empty",
