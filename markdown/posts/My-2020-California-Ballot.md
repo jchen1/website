@@ -95,7 +95,7 @@ Now, on to my ballot!
 - Prop 23: **No**
   - Prop 23 requires dialysis clinics to have a doctor, nurse practitioner, or physician assistant on site.
   - It seems like requiring a doctor equivalent on-site for a dialysis clinic could force many clinics to shut down - these people don't grow on trees. If clinics shut down, people could lose access to dialysis - an obviously bad outcome we should avoid.
-- Prop **No**
+- Prop 24: **No**
   - California passed the CCPA last year. This prop updates it in the following ways:
     - changes the threshold for data privacy requirements from 50,000 consumers, households, or devices to 100,000 consumers or households (removing devices). This is probably a bigger change than it sounds - most consumers have multiple devices, so this probably increases the threshold by 3-5x, not just 2x.
     - gives new rights to consumers to "limit sharing of personal data", "correct personal data", and "limit use of 'sensitive' personal data"
