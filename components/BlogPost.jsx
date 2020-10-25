@@ -70,7 +70,11 @@ export default function BlogPost({ post, opts = {} }) {
         homepage={homepage}
         noLink={noLink}
       />
-      {preimage ? <img src={`/images/${preimage}`} /> : ""}
+      {preimage ? (
+        <img src={`/images/${preimage}`} alt={preimage.replace(/\..*$/, "")} />
+      ) : (
+        ""
+      )}
       {showDate !== false ? <Date>{dateStr}</Date> : ""}
       <div dangerouslySetInnerHTML={{ __html: content }} />
       {readMore ? <ReadMore post={post} /> : ""}

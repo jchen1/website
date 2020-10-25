@@ -48,8 +48,8 @@ export default function Header() {
       <div className="container">
         <HeaderContainer className="clearfix">
           <Link href="/">
-            <a className="site-avatar">
-              <img src="/images/profile.jpg" />
+            <a className="site-avatar" aria-label="Home">
+              <img src="/images/profile.jpg" alt="Profile Picture" />
             </a>
           </Link>
 

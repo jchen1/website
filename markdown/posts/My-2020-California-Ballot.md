@@ -10,7 +10,7 @@ It's election time! I like to ~~argue~~talk about politics, and friends have tol
 
 According to [this political compass site](https://politicalcompass.org), I lean economic-left, social-libertarian:
 
-![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fjeffchen%2FovGphNsHMN.png?alt=media&token=2b01939e-36c6-49d3-93b8-1575b23835a5)
+![Political Compass: -3.0 Economic, -6.31 Social](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fjeffchen%2FovGphNsHMN.png?alt=media&token=2b01939e-36c6-49d3-93b8-1575b23835a5)
 
 I identify most closely with the Democratic party - if forced to choose based solely on party affiliation, I'll take the Democrats every time.
 

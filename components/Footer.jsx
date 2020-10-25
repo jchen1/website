@@ -31,16 +31,16 @@ const FooterContainer = styled.footer`
 export default function Footer() {
   return (
     <FooterContainer>
-      <Button href="mailto:hello@jeff.yt">
+      <Button href="mailto:hello@jeff.yt" aria-label="Send me an email!">
         <Envelope width={ICON_SIZE} height={ICON_SIZE} />
       </Button>
-      <Button href="https://github.com/jchen1">
+      <Button href="https://github.com/jchen1" aria-label="Github">
         <Github width={ICON_SIZE} height={ICON_SIZE} />
       </Button>
-      <Button href="https://www.twitter.com/iambald">
+      <Button href="https://www.twitter.com/iambald" aria-label="Twitter">
         <Twitter width={ICON_SIZE} height={ICON_SIZE} />
       </Button>
-      <Button href="https://www.linkedin.com/in/jchen94">
+      <Button href="https://www.linkedin.com/in/jchen94" aria-label="Linkedin">
         <Linkedin width={ICON_SIZE} height={ICON_SIZE} />
       </Button>
     </FooterContainer>
