@@ -42,7 +42,7 @@ function Title({ headingLevel, title, slug, homepage, noLink }) {
 
   return (
     <Heading>
-      <Link key={slug} href="/posts/[slug]" as={`/posts/${slug}`}>
+      <Link key={slug} href="/posts/[slug]/" as={`/posts/${slug}/`}>
         <a>{title}</a>
       </Link>
     </Heading>
