@@ -110,7 +110,11 @@ export default function BlogPost({ post, opts = {} }) {
         ""
       )}
       {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      <InnerHTML html={content} />
+      {/\<script\>/.test(content) && !readMore ? (
+        <InnerHTML html={content} />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      )}
       {readMore ? <ReadMore post={post} /> : ""}
     </BlogContainer>
   );
