@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
@@ -11,7 +10,7 @@ const ReadMoreLink = styled.a`
   font-size: 15px;
 `;
 
-const Date = styled.em`
+const DateComp = styled.em`
   color: ${Colors.GRAY};
 `;
 
@@ -49,10 +48,29 @@ function Title({ headingLevel, title, slug, homepage, noLink }) {
   );
 }
 
+function formatDate(date) {
+  const month = date.toLocaleDateString("default", {
+    month: "long",
+    timeZone: "UTC",
+  });
+  const day = date.toLocaleDateString("default", {
+    day: "numeric",
+    timeZone: "UTC",
+  });
+  const year = date.toLocaleDateString("default", {
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+  const suffix = { 1: "st", 2: "nd", 3: "rd" }[day % 10] || "th";
+
+  return `${month} ${day}${suffix}, ${year}`;
+}
+
 export default function BlogPost({ post, opts = {} }) {
   const { title, homepage, date, preimage, slug, author, content } = post;
   const { noLink, readMore, showDate, headingLevel, setTitle } = opts;
-  const dateStr = moment(date).format("MMMM Do, YYYY");
+  const dateStr = formatDate(new Date(date));
 
   return (
     <BlogContainer>
@@ -75,7 +93,7 @@ export default function BlogPost({ post, opts = {} }) {
       ) : (
         ""
       )}
-      {showDate !== false ? <Date>{dateStr}</Date> : ""}
+      {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
       <div dangerouslySetInnerHTML={{ __html: content }} />
       {readMore ? <ReadMore post={post} /> : ""}
     </BlogContainer>
