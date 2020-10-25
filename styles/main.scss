@@ -1,11 +1,20 @@
+@use "~inter-ui/default" as inter-ui with (
+  $inter-font-display: swap,
+  $inter-font-path: '~inter-ui/Inter (web latin)'
+);
+
 //
 // IMPORTS
 //
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 @import "reset";
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
+
+@include inter-ui.weight-400;
+@include inter-ui.weight-400-italic;
+@include inter-ui.weight-700;
 
 /**************/
 /* BASE RULES */

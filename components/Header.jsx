@@ -37,7 +37,7 @@ const Nav = styled.nav`
     margin-left: 20px;
     color: ${Colors.DARK_GRAY};
     text-align: right;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
 
     @media screen and (max-width: 640px) {

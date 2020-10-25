@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
+import InnerHTML from "dangerously-set-html-content";
 
 import { Colors } from "../lib/constants";
 import { BlogContainer } from "../components/containers";
@@ -94,7 +95,7 @@ export default function BlogPost({ post, opts = {} }) {
         ""
       )}
       {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <InnerHTML html={content} />
       {readMore ? <ReadMore post={post} /> : ""}
     </BlogContainer>
   );

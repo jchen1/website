@@ -52,7 +52,6 @@ Finally, we can calculate our risk per session, which is the amount of time spen
 
 <script>
 function calculate() {
-  console.log("calc");
   var activeInfectionDays = document.getElementById("active-infection-days").value;
   var riskyBehaviorMultiplier = document.getElementById("risky-behavior-multiplier").value;
   var infectedTransmissionRiskMin = document.getElementById("infected-transmission-risk-min").value;
