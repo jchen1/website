@@ -12,7 +12,7 @@
 /**************/
 
 * {
-  font-family: $helvetica;
+  font-family: $font-face;
 }
 
 @supports (font-variation-settings: normal) {
@@ -27,19 +27,8 @@ html {
 
 body {
   background: $white;
-  font: 18px/1.6 $helvetica;
+  font: 18px/1.6 $font-face;
   color: $darkGray;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 0 10px;
-  width: 100%;
-
-  @include mobile {
-    padding: 0 20px;
-  }
 }
 
 h1,
@@ -48,7 +37,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $helvetica;
+  font-family: $font-face;
   color: $darkerGray;
   font-weight: bold;
 
@@ -144,149 +133,10 @@ img {
   max-width: 100%;
 }
 
-// Fixes images in popup boxes from Google Translate
-.gmnoprint img {
-  max-width: none;
-}
-
-.date {
-  font-style: italic;
-  color: $gray;
-}
-
 // Specify the color of the selection
-::-moz-selection {
-  color: $black;
-  background: $lightGray;
-}
 ::selection {
-  color: $black;
-  background: $lightGray;
-}
-
-// Nicolas Gallagher's micro clearfix hack
-// http://nicolasgallagher.com/micro-clearfix-hack/
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
-/*********************/
-/* LAYOUT / SECTIONS */
-/*********************/
-
-//
-// .masthead
-//
-
-.wrapper-masthead {
-  margin-bottom: 50px;
-  width: 100%;
-  max-width: 1400px;
-  border-bottom: 1px solid $lightGray;
-}
-
-.masthead {
-  padding: 20px 0;
-  max-width: 740px;
-
-  @include mobile {
-    text-align: center;
-  }
-}
-
-.site-avatar {
-  float: left;
-  width: 70px;
-  height: 70px;
-  margin-right: 15px;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-
-  img {
-    border-radius: 100%;
-  }
-}
-
-.site-info {
-  float: left;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.site-name {
-  margin: 0;
-  color: $darkGray;
-  cursor: pointer;
-  font-family: $helvetica;
-  font-weight: 740;
-  font-size: 28px;
-  letter-spacing: -0.02em;
-}
-
-.site-description {
-  margin: -5px 0 0 0;
-  color: $gray;
-  font-size: 16px;
-
-  @include mobile {
-    margin: 3px 0;
-  }
-}
-
-//
-// .main
-//
-
-.pagination {
-  text-align: center;
-  font-size: 18px;
-
-  margin-bottom: 50px;
-
-  @include mobile {
-    font-size: 16px;
-  }
-
-  a.pagination-item {
-    user-select: none;
-    font-weight: bold;
-    margin: 0 20px;
-    text-decoration: none;
-
-    @include mobile {
-      margin: 0 10px;
-    }
-
-    &.disabled {
-      color: lighten($darkGray, 60%);
-      cursor: default;
-    }
-  }
-}
-
-.project {
-  img {
-    width: 100%;
-  }
-
-  &:not(:last-child) {
-    padding-bottom: 1em;
-    border-bottom: 1px solid $lightGray;
-  }
+  color: $white;
+  background: $black;
 }
 
 .placement-overlay {

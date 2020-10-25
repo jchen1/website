@@ -7,20 +7,29 @@ const HeaderContainer = styled.header`
   padding: 20px 0;
   max-width: 740px;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
   @media screen and (max-width: 640px) {
     text-align: center;
+    flex-direction: column;
   }
 `;
 
+const Masthead = styled.div`
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 1400px;
+  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+`;
+
 const Nav = styled.nav`
-  float: right;
-  margin-top: 23px;
   font-size: 18px;
 
   @media screen and (max-width: 640px) {
-    float: none;
     margin-top: 9px;
-    display: block;
     font-size: 16px;
   }
 
@@ -42,40 +51,83 @@ const Nav = styled.nav`
   }
 `;
 
+const Description = styled.p`
+  margin: -5px 0 0 0;
+  color: ${Colors.GRAY};
+  font-size: 16px;
+
+  @media screen and (max-width: 640px) {
+    margin: 3px 0;
+  }
+`;
+
+const SiteInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SiteName = styled.h1`
+  color: ${Colors.DARK_GRAY};
+  margin: 0;
+
+  @media screen and (max-width: 640px) {
+    margin-top: 6px;
+  }
+`;
+
+const SiteAvatar = styled.img`
+  height: 70px;
+  width: 70px;
+  margin-right: 15px;
+
+  @media screen and (max-width: 640px) {
+    margin: 0 auto;
+  }
+
+  border-radius: 100%;
+`;
+
+const HeaderLeft = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+`;
+
 export default function Header() {
   return (
-    <div className="wrapper-masthead">
-      <div className="container">
-        <HeaderContainer className="clearfix">
+    <Masthead>
+      <HeaderContainer>
+        <HeaderLeft>
           <Link href="/">
-            <a className="site-avatar" aria-label="Home">
-              <img src="/images/profile.jpg" alt="Profile Picture" />
+            <a aria-label="Home">
+              <SiteAvatar src="/images/profile.jpg" alt="Profile Picture" />
             </a>
           </Link>
 
-          <div className="site-info">
-            <h1 className="site-name">
+          <SiteInfo>
+            <SiteName>
               <Link href="/">
                 <a>{SITE_TITLE}</a>
               </Link>
-            </h1>
-            <p className="site-description">Code &amp; fitness</p>
-          </div>
-
-          <Nav>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-            <Link href="/projects">
-              <a>Projects</a>
-            </Link>
-            <a href="/resume/index.html">Résumé</a>
-            <Link href="/metrics">
-              <a>Metrics</a>
-            </Link>
-          </Nav>
-        </HeaderContainer>
-      </div>
-    </div>
+            </SiteName>
+            <Description>Code &amp; fitness</Description>
+          </SiteInfo>
+        </HeaderLeft>
+        <Nav>
+          <Link href="/about">
+            <a>About</a>
+          </Link>
+          <Link href="/projects">
+            <a>Projects</a>
+          </Link>
+          <a href="/resume/index.html">Résumé</a>
+          <Link href="/metrics">
+            <a>Metrics</a>
+          </Link>
+        </Nav>
+      </HeaderContainer>
+    </Masthead>
   );
 }
