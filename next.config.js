@@ -5,6 +5,7 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   trailingSlash: true,
+  crossOrigin: "anonymous",
   webpack: (config, options) => {
     if (options.isServer) {
       config.externals = [
