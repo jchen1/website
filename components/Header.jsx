@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { Colors, SITE_TITLE } from "../lib/constants";
@@ -73,7 +74,7 @@ const SiteName = styled.h1`
   }
 `;
 
-const SiteAvatar = styled.img`
+const SiteAvatar = styled.a`
   height: 70px;
   width: 70px;
   margin-right: 15px;
@@ -82,7 +83,9 @@ const SiteAvatar = styled.img`
     margin: 0 auto;
   }
 
-  border-radius: 100%;
+  img {
+    border-radius: 100%;
+  }
 `;
 
 const HeaderLeft = styled.div`
@@ -99,9 +102,14 @@ export default function Header() {
       <HeaderContainer>
         <HeaderLeft>
           <Link href="/">
-            <a aria-label="Home">
-              <SiteAvatar src="/images/profile.jpg" alt="Profile Picture" />
-            </a>
+            <SiteAvatar aria-label="Home">
+              <Image
+                src="/images/profile.jpg"
+                alt="Profile Picture"
+                height="70"
+                width="70"
+              />
+            </SiteAvatar>
           </Link>
 
           <SiteInfo>
