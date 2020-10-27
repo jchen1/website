@@ -26,8 +26,6 @@ const Masthead = styled.div`
 `;
 
 const Nav = styled.nav`
-  font-size: 18px;
-
   @media screen and (max-width: 640px) {
     margin-top: 9px;
     font-size: 16px;
