@@ -109,6 +109,10 @@ export default function BlogPost({ post, opts = {} }) {
           <meta name="twitter:site" content="@iambald" />
           <meta name="og:title" content={title} />
           <meta name="og:description" content={excerpt} />
+          <meta
+            name="og:image"
+            content={preimage ? `/images/${preimage}` : `/images/profile.jpg`}
+          />
         </Head>
       ) : (
         ""
