@@ -20,7 +20,7 @@ export default function IndexPage(props) {
       key={post.title}
       post={post}
       opts={{ readMore: true, setTitle: false }}
-    ></BlogPost>
+    />
   ));
 
   return (
@@ -40,10 +40,17 @@ export async function getStaticProps({ params }) {
 
   const allPosts = await Promise.all(
     getAllPosts(["title", "date", "slug", "author", "content"]).map(
-      async post => ({
-        ...post,
-        content: await markdownToHtml(post.content || "", true),
-      })
+      async post => {
+        const { contentHTML, excerptHTML } = await markdownToHtml(
+          post.content || ""
+        );
+
+        return {
+          ...post,
+          content: contentHTML,
+          excerpt: excerptHTML,
+        };
+      }
     )
   );
 

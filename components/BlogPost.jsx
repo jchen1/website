@@ -84,15 +84,31 @@ function InnerHTML(props) {
 }
 
 export default function BlogPost({ post, opts = {} }) {
-  const { title, homepage, date, preimage, slug, author, content } = post;
+  const {
+    title,
+    homepage,
+    date,
+    preimage,
+    slug,
+    author,
+    content,
+    excerpt,
+  } = post;
   const { noLink, readMore, showDate, headingLevel, setTitle } = opts;
   const dateStr = formatDate(new Date(date));
+
+  const displayHTML = readMore ? excerpt : content;
 
   return (
     <BlogContainer>
       {setTitle !== false ? (
         <Head>
           <title key="title">{title}</title>
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:creator" content="@iambald" />
+          <meta name="twitter:site" content="@iambald" />
+          <meta name="og:title" content={title} />
+          <meta name="og:description" content={excerpt} />
         </Head>
       ) : (
         ""
@@ -110,10 +126,10 @@ export default function BlogPost({ post, opts = {} }) {
         ""
       )}
       {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      {/\<script\>/.test(content) && !readMore ? (
-        <InnerHTML html={content} />
+      {/\<script\>/.test(displayHTML) && !readMore ? (
+        <InnerHTML html={displayHTML} />
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
       )}
       {readMore ? <ReadMore post={post} /> : ""}
     </BlogContainer>

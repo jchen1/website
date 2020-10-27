@@ -23,7 +23,7 @@ export default function Projects({ projects }) {
           key={project.title}
           post={project}
           opts={{ showDate: false, setTitle: false, headingLevel: 2 }}
-        ></BlogPost>
+        />
       ))}
     </MainContainer>
   );

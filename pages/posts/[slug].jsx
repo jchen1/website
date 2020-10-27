@@ -29,13 +29,14 @@ export async function getStaticProps({ params }) {
     "ogImage",
     "coverImage",
   ]);
-  const content = await markdownToHtml(post.content || "");
+  const { contentHTML, excerptHTML } = await markdownToHtml(post.content || "");
 
   return {
     props: {
       post: {
         ...post,
-        content,
+        content: contentHTML,
+        excerpt: excerptHTML,
       },
     },
   };
