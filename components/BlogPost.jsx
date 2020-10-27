@@ -104,15 +104,17 @@ export default function BlogPost({ post, opts = {} }) {
       {setTitle !== false ? (
         <Head>
           <title key="title">{title}</title>
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content="@iambald" />
-          <meta name="twitter:site" content="@iambald" />
           <meta name="og:title" content={title} />
           <meta name="og:description" content={excerpt} />
           <meta
             name="og:image"
-            content={preimage ? `/images/${preimage}` : `/images/profile.jpg`}
+            content={
+              preimage
+                ? `https://jeffchen.dev/images/${preimage}`
+                : `https://jeffchen.dev/images/profile.jpg`
+            }
           />
+          <meta name="og:type" content="article" />
         </Head>
       ) : (
         ""

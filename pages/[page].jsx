@@ -25,9 +25,6 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
-      <Head>
-        <title key="title">Jeff Chen</title>
-      </Head>
       {postMarkup}
       <Pagination pages={pages} />
     </MainContainer>
