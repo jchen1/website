@@ -4,7 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { event } from "../lib/gtag";
-import { Colors, SITE_TITLE } from "../lib/constants";
+import { Colors, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
 const HeaderContainer = styled.header`
   padding: 20px 0;
@@ -120,7 +120,7 @@ export default function Header() {
                 <a>{SITE_TITLE}</a>
               </Link>
             </SiteName>
-            <Description>Code &amp; fitness</Description>
+            <Description>{SITE_DESCRIPTION}</Description>
           </SiteInfo>
         </HeaderLeft>
         <Nav>

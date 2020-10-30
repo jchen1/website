@@ -16,9 +16,12 @@ export default function Projects({ projects }) {
     <MainContainer>
       <Head>
         <title key="title">Projects</title>
+        <meta name="og:title" content="Projects" />
+        <meta name="og:description" content="Projects" />
+        <meta name="og:type" content="article" />
       </Head>
       <Title>Projects</Title>
-      {projects.map(project => (
+      {projects.map((project) => (
         <BlogPost
           key={project.title}
           post={project}
