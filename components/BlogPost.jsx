@@ -4,7 +4,6 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { Colors } from "../lib/constants";
-import { BlogContainer } from "../components/containers";
 
 const ReadMoreLink = styled.a`
   font-size: 15px;
@@ -21,6 +20,44 @@ function ReadMore({ post }) {
     </Link>
   );
 }
+
+export const BlogContainer = styled.article`
+  padding-bottom: 2em;
+  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr min(65ch, 100%) 1fr;
+
+  & > * {
+    grid-column: 2;
+  }
+
+  .full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  &:last-of-type {
+    padding-bottom: 1em;
+    border-bottom: none;
+  }
+
+  &:first-child {
+    h1 {
+      margin-top: 0;
+    }
+  }
+
+  blockquote {
+    margin: 1.8em 0.8em;
+    border-left: 2px solid $gray;
+    padding: 0.1em 1em;
+    color: ${Colors.GRAY};
+    font-size: 22px;
+    font-style: italic;
+  }
+`;
 
 function Title({ headingLevel, title, slug, homepage, noLink }) {
   const Heading = `h${headingLevel || 1}`;
@@ -101,24 +138,24 @@ export default function BlogPost({ post, opts = {} }) {
 
   return (
     <BlogContainer>
-      {setTitle !== false ? (
-        <Head>
-          <title key="title">{title}</title>
-          <meta name="og:title" content={title} />
-          <meta name="og:description" content={excerpt} />
-          <meta
-            name="og:image"
-            content={
-              preimage
+      {setTitle !== false
+        ? (
+          <Head>
+            <title key="title">{title}</title>
+            <meta name="og:title" content={title} />
+            <meta name="og:description" content={excerpt} />
+            <meta
+              name="og:image"
+              content={preimage
                 ? `https://jeffchen.dev/images/${preimage}`
-                : `https://jeffchen.dev/images/profile.jpg`
-            }
-          />
-          <meta name="og:type" content="article" />
-        </Head>
-      ) : (
-        ""
-      )}
+                : `https://jeffchen.dev/images/profile.jpg`}
+            />
+            <meta name="og:type" content="article" />
+          </Head>
+        )
+        : (
+          ""
+        )}
       <Title
         headingLevel={headingLevel}
         title={title}
@@ -126,17 +163,24 @@ export default function BlogPost({ post, opts = {} }) {
         homepage={homepage}
         noLink={noLink}
       />
-      {preimage ? (
-        <img src={`/images/${preimage}`} alt={preimage.replace(/\..*$/, "")} />
-      ) : (
-        ""
-      )}
+      {preimage
+        ? (
+          <img
+            src={`/images/${preimage}`}
+            alt={preimage.replace(/\..*$/, "")}
+          />
+        )
+        : (
+          ""
+        )}
       {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      {/\<script\>/.test(displayHTML) && !readMore ? (
-        <InnerHTML html={displayHTML} />
-      ) : (
-        <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
-      )}
+      {/\<script\>/.test(displayHTML) && !readMore
+        ? (
+          <InnerHTML html={displayHTML} />
+        )
+        : (
+          <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
+        )}
       {readMore ? <ReadMore post={post} /> : ""}
     </BlogContainer>
   );
