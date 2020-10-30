@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+
+import { event } from "../lib/gtag";
 import { Colors, SITE_TITLE } from "../lib/constants";
 
 const HeaderContainer = styled.header`
@@ -128,7 +130,12 @@ export default function Header() {
           <Link href="/projects">
             <a>Projects</a>
           </Link>
-          <a href="/resume/index.html">Résumé</a>
+          <a
+            href="/resume/index.html"
+            onClick={() => event({ action: "resume", label: "header" })}
+          >
+            Résumé
+          </a>
           <Link href="/metrics">
             <a>Metrics</a>
           </Link>

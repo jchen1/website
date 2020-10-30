@@ -8,6 +8,7 @@ import Twitter from "../assets/twitter.svg";
 import Linkedin from "../assets/linkedin.svg";
 import RSS from "../assets/rss-feed.svg";
 
+import { event } from "../lib/gtag";
 import { Colors } from "../lib/constants";
 
 const ICON_SIZE = 30;
@@ -30,23 +31,47 @@ const FooterContainer = styled.footer`
   width: 100%;
 `;
 
+function sendEvent(name) {
+  event({ action: name, label: "footer" });
+}
+
 export default function Footer() {
   return (
     <FooterContainer>
       <Button href="mailto:hello@jeff.yt" aria-label="Send me an email!">
-        <Envelope width={ICON_SIZE} height={ICON_SIZE} />
+        <Envelope
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          onClick={() => sendEvent("email")}
+        />
       </Button>
       <Button href="https://github.com/jchen1" aria-label="Github">
-        <Github width={ICON_SIZE} height={ICON_SIZE} />
+        <Github
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          onClick={() => sendEvent("github")}
+        />
       </Button>
       <Button href="https://www.twitter.com/iambald" aria-label="Twitter">
-        <Twitter width={ICON_SIZE} height={ICON_SIZE} />
+        <Twitter
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          onClick={() => sendEvent("twitter")}
+        />
       </Button>
       <Button href="https://www.linkedin.com/in/jchen94" aria-label="Linkedin">
-        <Linkedin width={ICON_SIZE} height={ICON_SIZE} />
+        <Linkedin
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          onClick={() => sendEvent("linkedin")}
+        />
       </Button>
       <Button href="/rss-feed.xml" aria-label="RSS Feed">
-        <RSS width={ICON_SIZE} height={ICON_SIZE} />
+        <RSS
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          onClick={() => sendEvent("rss")}
+        />
       </Button>
     </FooterContainer>
   );
