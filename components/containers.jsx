@@ -13,10 +13,6 @@ export const RootContainer = styled.div`
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-
-  @media screen and (min-width: 640px) {
-    max-height: 100vh;
-  }
 `;
 
 export const MainContainer = styled.main`
@@ -107,7 +103,7 @@ export function TabContainer({ tabs, activeTab, setActiveTab }) {
       tabIndex={idx}
       key={name}
       role="button"
-      onClick={e => setActiveTab(value)}
+      onClick={(e) => setActiveTab(value)}
     >
       <span className="text">{name}</span>
     </Tab>
@@ -130,7 +126,7 @@ export class ResizableContainer extends React.Component {
 
   componentDidMount() {
     if (this.el?.current) {
-      this.ro = new ResizeObserver(e => this.onResize(e));
+      this.ro = new ResizeObserver((e) => this.onResize(e));
       this.ro.observe(this.el.current);
 
       this.onResize();
