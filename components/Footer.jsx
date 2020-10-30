@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+// https://jam-icons.com/
 import Envelope from "../assets/envelope-f.svg";
 import Github from "../assets/github.svg";
 import Twitter from "../assets/twitter.svg";
 import Linkedin from "../assets/linkedin.svg";
+import RSS from "../assets/rss-feed.svg";
 
 import { Colors } from "../lib/constants";
 
@@ -42,6 +44,9 @@ export default function Footer() {
       </Button>
       <Button href="https://www.linkedin.com/in/jchen94" aria-label="Linkedin">
         <Linkedin width={ICON_SIZE} height={ICON_SIZE} />
+      </Button>
+      <Button href="/rss-feed.xml" aria-label="RSS Feed">
+        <RSS width={ICON_SIZE} height={ICON_SIZE} />
       </Button>
     </FooterContainer>
   );
