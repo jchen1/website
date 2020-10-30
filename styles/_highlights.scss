@@ -35,7 +35,8 @@ pre {
 .hljs .hljs-literal {
   color: #93a1a1;
 } /* Literal */
-.hljs .hljs-n {
+.hljs .hljs-n,
+.hljs .hljs-name {
   color: #b58900;
 } /* Name */
 .hljs .hljs-o {
@@ -119,14 +120,15 @@ pre {
   color: #2aa198;
 } /* Literal.Number */
 .hljs .hljs-string {
-  color: #2aa198;
+  color: #586e75;
 } /* Literal.String */
 .hljs .hljs-attr {
   color: #93a1a1;
 } /* Name.Attribute */
-.hljs .hljs-nb {
-  color: #268bd2;
-  font-weight: bold;
+.hljs .hljs-nb,
+.hljs .hljs-builtin-name {
+  color: #cb4b16;
+  // font-weight: bold;
 } /* Name.Builtin */
 .hljs .hljs-class {
   color: #268bd2;
@@ -213,8 +215,9 @@ pre {
 .hljs .hljs-s1 {
   color: #2aa198;
 } /* Literal.String.Single */
-.hljs .hljs-ss {
-  color: #2aa198;
+.hljs .hljs-ss,
+.hljs .hljs-symbol {
+  color: #268bd2;
 } /* Literal.String.Symbol */
 .hljs .hljs-bp {
   color: #268bd2;
