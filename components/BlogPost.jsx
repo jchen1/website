@@ -21,6 +21,12 @@ function ReadMore({ post }) {
   );
 }
 
+const ScrollToTop = styled.a`
+  padding-top: 2rem;
+  font-style: italic;
+  font-size: 0.75em;
+`;
+
 export const BlogContainer = styled.article`
   padding-bottom: 2em;
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
@@ -186,7 +192,15 @@ export default function BlogPost({ post, opts = {} }) {
         : (
           <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
         )}
-      {readMore ? <ReadMore post={post} /> : ""}
+      {readMore ? <ReadMore post={post} /> : <ScrollToTop
+        href=""
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
+        Scroll to top
+      </ScrollToTop>}
     </BlogContainer>
   );
 }
