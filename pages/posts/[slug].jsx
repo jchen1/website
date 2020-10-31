@@ -14,7 +14,7 @@ export default function Post({ post }) {
   }
   return (
     <MainContainer>
-      <BlogPost post={post}></BlogPost>
+      <BlogPost post={post} opts={{ showScroll: true }}></BlogPost>
     </MainContainer>
   );
 }
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
   const posts = getAllPosts(["slug"]);
 
   return {
-    paths: posts.map(post => {
+    paths: posts.map((post) => {
       return {
         params: {
           slug: post.slug,

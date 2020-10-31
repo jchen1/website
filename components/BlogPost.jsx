@@ -137,7 +137,8 @@ export default function BlogPost({ post, opts = {} }) {
     content,
     excerpt,
   } = post;
-  const { noLink, readMore, showDate, headingLevel, setTitle } = opts;
+  const { noLink, readMore, showDate, headingLevel, setTitle, showScroll } =
+    opts;
   const dateStr = formatDate(new Date(date));
 
   const displayHTML = readMore ? excerpt : content;
@@ -192,15 +193,18 @@ export default function BlogPost({ post, opts = {} }) {
         : (
           <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
         )}
-      {readMore ? <ReadMore post={post} /> : <ScrollToTop
-        href=""
-        onClick={(e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-      >
-        Scroll to top
-      </ScrollToTop>}
+      {readMore ? <ReadMore post={post} /> : ""}
+      {showScroll
+        ? <ScrollToTop
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          Scroll to top
+        </ScrollToTop>
+        : ""}
     </BlogContainer>
   );
 }
