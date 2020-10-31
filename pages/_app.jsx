@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
         <meta
           name="og:url"
           property="og:url"
-          content={`https://${BASE_URL}${router.asPath}`}
+          content={`https://${BASE_URL}${router.asPath}/`}
         />
         <meta
           name="og:description"

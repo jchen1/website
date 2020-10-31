@@ -16,9 +16,13 @@ export default function Projects({ projects }) {
     <MainContainer>
       <Head>
         <title key="title">Projects</title>
-        <meta name="og:title" content="Projects" />
-        <meta name="og:description" content="Projects" />
-        <meta name="og:type" content="article" />
+        <meta name="og:title" property="og:title" content="Projects" />
+        <meta
+          name="og:description"
+          property="og:description"
+          content="Projects"
+        />
+        <meta name="og:type" property="og:type" content="article" />
       </Head>
       <Title>Projects</Title>
       {projects.map((project) => (
