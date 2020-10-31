@@ -142,15 +142,20 @@ export default function BlogPost({ post, opts = {} }) {
         ? (
           <Head>
             <title key="title">{title}</title>
-            <meta name="og:title" content={title} />
-            <meta name="og:description" content={excerpt} />
+            <meta name="og:title" property="og:title" content={title} />
+            <meta
+              name="og:description"
+              property="og:description"
+              content={excerpt}
+            />
             <meta
               name="og:image"
+              property="og:imagef"
               content={preimage
                 ? `https://jeffchen.dev/images/${preimage}`
                 : `https://jeffchen.dev/images/profile.jpg`}
             />
-            <meta name="og:type" content="article" />
+            <meta name="og:type" property="og:type" content="article" />
           </Head>
         )
         : (

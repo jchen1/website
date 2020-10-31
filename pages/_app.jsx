@@ -27,15 +27,24 @@ function MyApp({ Component, pageProps }) {
         <title key="title">Jeff Chen</title>
         <meta name="twitter:creator" content="@iambald" />
         <meta name="twitter:site" content="@iambald" />
-        <meta name="og:title" content={SITE_TITLE} />
-        <meta name="og:url" content={`https://${BASE_URL}${router.asPath}`} />
-        <meta name="og:description" content={SITE_DESCRIPTION} />;
         <meta name="twitter:card" content="summary" />
+        <meta name="og:title" property="og:title" content={SITE_TITLE} />
+        <meta
+          name="og:url"
+          property="og:url"
+          content={`https://${BASE_URL}${router.asPath}`}
+        />
+        <meta
+          name="og:description"
+          property="og:description"
+          content={SITE_DESCRIPTION}
+        />;
         <meta
           name="og:image"
+          property="og:image"
           content="https://jeffchen.dev/images/profile.jpg"
         />
-        <meta name="og:type" content="website" />
+        <meta name="og:type" property="og:type" content="website" />
       </Head>
       <Header />
       <Component {...pageProps} />
