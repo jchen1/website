@@ -10,6 +10,12 @@
   content: >
     **MiniPlay** is a Chrome extension that adds a miniplayer popup and global keyboard shortcuts to popular streaming music players like Spotify and Google Play Music. It also provides Last.fm scrobbling, rich notifications, and more.
 
+- title: chrome-wasted-time
+  preimage: wasted-time.png
+  homepage: https://www.github.com/jchen1/chrome-wasted-time
+  content: >
+    **wasted-time** shows you just how much time you spend on pointless websites.
+
 - title: µCal
   preimage: uCal.png
   homepage: https://www.github.com/jchen1/uCal
