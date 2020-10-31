@@ -150,7 +150,7 @@ export default function BlogPost({ post, opts = {} }) {
             />
             <meta
               name="og:image"
-              property="og:imagef"
+              property="og:image"
               content={preimage
                 ? `https://jeffchen.dev/images/${preimage}`
                 : `https://jeffchen.dev/images/profile.jpg`}
