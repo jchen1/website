@@ -61,7 +61,7 @@ function generateRssFeed(posts) {
   const pages = (await globby(["pages/*.jsx"]))
     .map(page => page.replace(/\.jsx$/, ""))
     .map(page => page.replace(/^pages\//, ""))
-    .filter(page => !/^pages\/[_\[]/.test(page));
+    .filter(page => !/^[_\[]/.test(page));
 
   fs.writeFileSync("public/rss-feed.xml", generateRssFeed(posts));
   fs.writeFileSync("public/sitemap.xml", generateSitemap({ posts, pages }));
