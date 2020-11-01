@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
     "twitter:site": "@iambald",
     "twitter:card": "summary",
     "og:url": `https://${BASE_URL}${router.asPath}/`,
-    "og:description": SITE_DESCRIPTION,
+    description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/profile.jpg`,
     "og:type": "website",
   };

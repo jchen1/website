@@ -6,7 +6,7 @@ import { Colors, BASE_URL } from "../lib/constants";
 import Meta from "./Meta";
 import { Small } from "./typography";
 
-const OG_DESCRIPTION_MAX_LENGTH = 200;
+const DESCRIPTION_MAX_LENGTH = 200;
 
 const ReadMoreLink = styled(Small).attrs({ as: "a" })``;
 
@@ -155,15 +155,15 @@ export default function BlogPost({ post, opts = {} }) {
   const dateStr = formatDate(new Date(date));
 
   const displayHTML = readMore ? excerptHTML : contentHTML;
-  const ogDescription =
-    excerpt.length > OG_DESCRIPTION_MAX_LENGTH
-      ? excerpt.substring(0, OG_DESCRIPTION_MAX_LENGTH - 3) + "..."
+  const description =
+    excerpt.length > DESCRIPTION_MAX_LENGTH
+      ? excerpt.substring(0, DESCRIPTION_MAX_LENGTH - 3) + "..."
       : excerpt;
 
   const meta = {
     title: title,
     "og:title": title,
-    "og:description": ogDescription,
+    description: description,
     "og:image": `https://${BASE_URL}/images/${
       preimage ? preimage : "profile.jpg"
     }`,

@@ -10,6 +10,15 @@ export default function Meta(props) {
             <title key={key}>{val}</title>,
             <meta name="og:title" property="og:title" content={val} />,
           ];
+        case "description":
+          return [
+            <meta name="description" content={val} />,
+            <meta
+              name="og:description"
+              property="og:description"
+              content={val}
+            />,
+          ];
         default:
           return <meta name={key} property={key} content={val} />;
       }

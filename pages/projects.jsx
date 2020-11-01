@@ -14,7 +14,7 @@ const Title = styled.h1`
 export default function Projects({ projects }) {
   const metas = {
     title: "Projects",
-    "og:description": "Projects",
+    description: "Projects",
     "og:type": "article",
   };
   return (

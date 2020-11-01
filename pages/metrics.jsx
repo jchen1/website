@@ -142,7 +142,7 @@ export default function Metrics() {
 
   const metas = {
     title: "Metrics",
-    "og:description": "Metrics",
+    description: "Metrics",
   };
 
   return (
