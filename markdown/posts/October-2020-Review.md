@@ -40,7 +40,7 @@ At work, I'm devoting about half my time to recruiting. Running several intervie
 This month, I started using [Readwise](https://readwise.io/i/jeff346), which will hopefully help me retain information that I read a little better. It also has a great Roam integration!
 
 - [Lab Rats: How Silicon Valley Made Work Miserable for the Rest of Us by Dan Lyons](https://www.goodreads.com/book/show/38901702-lab-rats)
-- Lies My Teacher Told Me: Everything Your American History Textbook Got Wrong by James W. Loewen](https://www.goodreads.com/book/show/296662.Lies_My_Teacher_Told_Me)
+- [Lies My Teacher Told Me: Everything Your American History Textbook Got Wrong by James W. Loewen](https://www.goodreads.com/book/show/296662.Lies_My_Teacher_Told_Me)
 
 ## Links & Quotes
 
