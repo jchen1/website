@@ -10,13 +10,13 @@ This post dives deep into a scary data loss scenario - we'll cover identifying t
 
 **This bug affected Readwise users who exported their highlights (both manually & automatically) to Roam on 10/27. If you are one of those users, you should contact Roam support & use [my recovery code](https://github.com/jchen1/roam-restore) ASAP!**
 
+<!-- excerpt -->
+
 ## Background
 
 [Roam](https://roamresearch.com) is a "note-taking tool for networked thought". It supports all sorts of cool things - what's relevant here is that it automatically creates a new page for every day, your Daily Notes. Recently, I started using [Readwise](https://readwise.io), which ingests Kindle highlights and uses [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) to help you remember what you read. Readwise has a Roam integration, which automatically adds Kindle highlights to Roam. Unfortunately, since Roam doesn't have a public API yet, Readwise's integration seems to be effectively using Selenium - clicking on elements and pasting highlights which is inherently flaky.
 
 Yesterday, I woke up without my Daily Notes from the day before. Disaster! Fortunately, with the help of the Roam Slack group and Tristan from Readwise, I was able to isolate the cause of note deletion and even restore my lost data. Here's what happened:
-
-<!-- excerpt -->
 
 ## Roam architecture
 

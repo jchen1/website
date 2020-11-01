@@ -24,7 +24,7 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
-      {postMarkup}
+      <div>{postMarkup}</div>
       <Pagination pages={pages} />
     </MainContainer>
   );

@@ -10,6 +10,8 @@ I've been in Boise all month! I'm enjoying my team here - I'll make sure to writ
 
 At work, I'm devoting about half my time to recruiting. Running several interviews a day is pretty stressful for an introvert like me. If you are or know a software engineer looking for work, help me out by [checking out our job description here](https://grnh.se/5cebfb331us)!
 
+<!-- excerpt -->
+
 ## Fitness
 
 - I'm dealing with what I suspect to be [Athletic pubalgia](https://en.wikipedia.org/wiki/Athletic_pubalgia) - a sports hernia. I've had to cut back on both running and core work, but most weight room exercises seem to be OK.

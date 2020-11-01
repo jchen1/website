@@ -30,8 +30,6 @@ const ScrollToTop = styled.a`
 `;
 
 export const BlogContainer = styled.article`
-  padding-bottom: 2em;
-  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   width: 100%;
 
   display: grid;
@@ -44,11 +42,6 @@ export const BlogContainer = styled.article`
   .full-bleed {
     width: 100%;
     grid-column: 1 / -1;
-  }
-
-  &:last-of-type {
-    padding-bottom: 1em;
-    border-bottom: none;
   }
 
   &:first-child {
@@ -64,6 +57,17 @@ export const BlogContainer = styled.article`
     color: ${Colors.GRAY};
     font-size: 22px;
     font-style: italic;
+  }
+`;
+
+const Border = styled.div`
+  padding-bottom: 2em;
+  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+  width: min(65ch, 100%);
+
+  &:last-of-type {
+    padding-bottom: 1em;
+    border-bottom: none;
   }
 `;
 
@@ -167,40 +171,46 @@ export default function BlogPost({ post, opts = {} }) {
   };
 
   return (
-    <BlogContainer>
-      {setTitle !== false ? <Meta {...meta} /> : ""}
-      <Title
-        headingLevel={headingLevel}
-        title={title}
-        slug={slug}
-        homepage={homepage}
-        noLink={noLink}
-      />
-      {preimage ? (
-        <img src={`/images/${preimage}`} alt={preimage.replace(/\..*$/, "")} />
-      ) : (
-        ""
-      )}
-      {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      {/\<script\>/.test(displayHTML) && !readMore ? (
-        <InnerHTML html={displayHTML} />
-      ) : (
-        <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
-      )}
-      {readMore ? <ReadMore post={post} /> : ""}
-      {showScroll ? (
-        <ScrollToTop
-          href=""
-          onClick={e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          Scroll to top
-        </ScrollToTop>
-      ) : (
-        ""
-      )}
-    </BlogContainer>
+    <>
+      <BlogContainer>
+        {setTitle !== false ? <Meta {...meta} /> : ""}
+        <Title
+          headingLevel={headingLevel}
+          title={title}
+          slug={slug}
+          homepage={homepage}
+          noLink={noLink}
+        />
+        {preimage ? (
+          <img
+            src={`/images/${preimage}`}
+            alt={preimage.replace(/\..*$/, "")}
+          />
+        ) : (
+          ""
+        )}
+        {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
+        {/\<script\>/.test(displayHTML) && !readMore ? (
+          <InnerHTML html={displayHTML} />
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
+        )}
+        {readMore ? <ReadMore post={post} /> : ""}
+        {showScroll ? (
+          <ScrollToTop
+            href=""
+            onClick={e => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Scroll to top
+          </ScrollToTop>
+        ) : (
+          ""
+        )}
+      </BlogContainer>
+      <Border />
+    </>
   );
 }
