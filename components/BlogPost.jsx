@@ -3,7 +3,10 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 
-import { Colors } from "../lib/constants";
+import { Colors, BASE_URL } from "../lib/constants";
+import Meta from "./Meta";
+
+const OG_DESCRIPTION_MAX_LENGTH = 200;
 
 const ReadMoreLink = styled.a`
   font-size: 15px;
@@ -134,40 +137,39 @@ export default function BlogPost({ post, opts = {} }) {
     preimage,
     slug,
     author,
-    content,
+    contentHTML,
+    excerptHTML,
     excerpt,
   } = post;
-  const { noLink, readMore, showDate, headingLevel, setTitle, showScroll } =
-    opts;
+  const {
+    noLink,
+    readMore,
+    showDate,
+    headingLevel,
+    setTitle,
+    showScroll,
+  } = opts;
   const dateStr = formatDate(new Date(date));
 
-  const displayHTML = readMore ? excerpt : content;
+  const displayHTML = readMore ? excerptHTML : contentHTML;
+  const ogDescription =
+    excerpt.length > OG_DESCRIPTION_MAX_LENGTH
+      ? excerpt.substring(0, OG_DESCRIPTION_MAX_LENGTH - 3) + "..."
+      : excerpt;
+
+  const meta = {
+    title: title,
+    "og:title": title,
+    "og:description": ogDescription,
+    "og:image": `https://${BASE_URL}/images/${
+      preimage ? preimage : "profile.jpg"
+    }`,
+    "og:type": "article",
+  };
 
   return (
     <BlogContainer>
-      {setTitle !== false
-        ? (
-          <Head>
-            <title key="title">{title}</title>
-            <meta name="og:title" property="og:title" content={title} />
-            <meta
-              name="og:description"
-              property="og:description"
-              content={excerpt}
-            />
-            <meta
-              name="og:image"
-              property="og:image"
-              content={preimage
-                ? `https://jeffchen.dev/images/${preimage}`
-                : `https://jeffchen.dev/images/profile.jpg`}
-            />
-            <meta name="og:type" property="og:type" content="article" />
-          </Head>
-        )
-        : (
-          ""
-        )}
+      {setTitle !== false ? <Meta {...meta} /> : ""}
       <Title
         headingLevel={headingLevel}
         title={title}
@@ -175,36 +177,31 @@ export default function BlogPost({ post, opts = {} }) {
         homepage={homepage}
         noLink={noLink}
       />
-      {preimage
-        ? (
-          <img
-            src={`/images/${preimage}`}
-            alt={preimage.replace(/\..*$/, "")}
-          />
-        )
-        : (
-          ""
-        )}
+      {preimage ? (
+        <img src={`/images/${preimage}`} alt={preimage.replace(/\..*$/, "")} />
+      ) : (
+        ""
+      )}
       {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
-      {/\<script\>/.test(displayHTML) && !readMore
-        ? (
-          <InnerHTML html={displayHTML} />
-        )
-        : (
-          <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
-        )}
+      {/\<script\>/.test(displayHTML) && !readMore ? (
+        <InnerHTML html={displayHTML} />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: displayHTML }} />
+      )}
       {readMore ? <ReadMore post={post} /> : ""}
-      {showScroll
-        ? <ScrollToTop
+      {showScroll ? (
+        <ScrollToTop
           href=""
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
           Scroll to top
         </ScrollToTop>
-        : ""}
+      ) : (
+        ""
+      )}
     </BlogContainer>
   );
 }

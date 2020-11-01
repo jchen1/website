@@ -4,6 +4,7 @@ import Head from "next/head";
 import { getProjects } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 import styled from "styled-components";
+import Meta from "../components/Meta";
 
 const Title = styled.h1`
   max-width: 740px;
@@ -12,20 +13,17 @@ const Title = styled.h1`
 `;
 
 export default function Projects({ projects }) {
+  const metas = {
+    title: "Projects",
+    "og:description": "Projects",
+    "og:type": "article",
+  };
   return (
     <MainContainer>
-      <Head>
-        <title key="title">Projects</title>
-        <meta name="og:title" property="og:title" content="Projects" />
-        <meta
-          name="og:description"
-          property="og:description"
-          content="Projects"
-        />
-        <meta name="og:type" property="og:type" content="article" />
-      </Head>
+      <Meta {...metas} />
+
       <Title>Projects</Title>
-      {projects.map((project) => (
+      {projects.map(project => (
         <BlogPost
           key={project.title}
           post={project}

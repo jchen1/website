@@ -26,6 +26,7 @@
     "remark-highlight.js": "^6.0.0",
     "remark-html": "^11.0.2",
     "sass": "^1.27.0",
+    "strip-markdown": "^4.0.0",
     "styled-components": "^5.2.0",
     "uplot": "^1.2.2"
   },

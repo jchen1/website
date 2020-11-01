@@ -38,14 +38,11 @@ export async function getStaticProps({ params }) {
   const allPosts = await Promise.all(
     getAllPosts(["title", "date", "slug", "author", "content"]).map(
       async post => {
-        const { contentHTML, excerptHTML } = await markdownToHtml(
-          post.content || ""
-        );
+        const content = await markdownToHtml(post.content || "");
 
         return {
           ...post,
-          content: contentHTML,
-          excerpt: excerptHTML,
+          ...content,
         };
       }
     )

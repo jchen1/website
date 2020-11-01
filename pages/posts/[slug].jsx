@@ -29,14 +29,13 @@ export async function getStaticProps({ params }) {
     "ogImage",
     "coverImage",
   ]);
-  const { contentHTML, excerptHTML } = await markdownToHtml(post.content || "");
+  const content = await markdownToHtml(post.content || "");
 
   return {
     props: {
       post: {
         ...post,
-        content: contentHTML,
-        excerpt: excerptHTML,
+        ...content,
       },
     },
   };
@@ -46,7 +45,7 @@ export async function getStaticPaths() {
   const posts = getAllPosts(["slug"]);
 
   return {
-    paths: posts.map((post) => {
+    paths: posts.map(post => {
       return {
         params: {
           slug: post.slug,
