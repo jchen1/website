@@ -60,6 +60,7 @@ function generateRssFeed(posts) {
   // ignore prefixed & dynamic pages
   const pages = (await globby(["pages/*.jsx"]))
     .map(page => page.replace(/\.jsx$/, ""))
+    .map(page => page.replace(/^pages\//, ""))
     .filter(page => !/^pages\/[_\[]/.test(page));
 
   fs.writeFileSync("public/rss-feed.xml", generateRssFeed(posts));
