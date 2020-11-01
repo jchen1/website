@@ -64,6 +64,7 @@ const Border = styled.div`
   padding-bottom: 2em;
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   width: min(65ch, 100%);
+  margin: 0 auto;
 
   &:last-of-type {
     padding-bottom: 1em;
