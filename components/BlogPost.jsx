@@ -1,18 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import Head from "next/head";
 
 import { Colors, BASE_URL } from "../lib/constants";
 import Meta from "./Meta";
+import { Small } from "./typography";
 
 const OG_DESCRIPTION_MAX_LENGTH = 200;
 
-const ReadMoreLink = styled.a`
-  font-size: 15px;
-`;
+const ReadMoreLink = styled(Small).attrs({ as: "a" })``;
 
-const DateComp = styled.em`
+const DateComp = styled(Small)`
+  font-style: italic;
   color: ${Colors.GRAY};
 `;
 

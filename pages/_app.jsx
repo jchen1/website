@@ -1,6 +1,5 @@
 import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
-import Head from "next/head";
 
 import "../styles/main.scss";
 import "uplot/dist/uPlot.min.css";

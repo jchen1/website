@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
@@ -14,9 +13,10 @@ import { useGlobalState, addMetrics } from "../lib/state";
 import { Plot } from "../components/charts";
 import { transformEvents } from "../lib/util";
 import { getEvents, connect } from "../lib/api";
+import Meta from "../components/Meta";
 
 const WSIndicator = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${props => props.color};
   height: 1rem;
   width: 1rem;
   border-radius: 50%;
@@ -98,19 +98,19 @@ export default function Metrics() {
     fetchData();
 
     const ws = connect(
-      (ws) => {
+      ws => {
         ws.send(
           JSON.stringify({
             type: "connect",
             eventFilter: FrequentMetrics,
-          }),
+          })
         );
         setWs(ws);
       },
       (ws, msg) => {
         const response = JSON.parse(event.data);
         addMetrics(response.events);
-      },
+      }
     );
     setWs(ws);
 
@@ -122,12 +122,12 @@ export default function Metrics() {
     setSocketColor(nextSocketColor);
   }
 
-  const tabs = Object.keys(Plots).map((t) => ({ name: t, value: t }));
+  const tabs = Object.keys(Plots).map(t => ({ name: t, value: t }));
   const plots = (() => {
     if (loadState === "loading") return <h2>Loading...</h2>;
     if (loadState === "error") return <h2>Error loading plots...</h2>;
     return Plots[activeTab]
-      .map((e) => [e, transformEvents(metrics, e.datatypes, e)])
+      .map(e => [e, transformEvents(metrics, e.datatypes, e)])
       .filter(([e, d]) => d[0].length > 0)
       .map(([e, d]) => (
         <Plot
@@ -140,11 +140,14 @@ export default function Metrics() {
       ));
   })();
 
+  const metas = {
+    title: "Metrics",
+    "og:description": "Metrics",
+  };
+
   return (
     <MainContainer>
-      <Head>
-        <title key="title">Metrics</title>
-      </Head>
+      <Meta {...metas} />
       <TitleContainer>
         <h1>Metrics</h1>
         <WSIndicator color={socketColor} />

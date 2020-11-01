@@ -26,6 +26,10 @@ const Masthead = styled.div`
   width: 100%;
   max-width: 1400px;
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+
+  @media screen and (max-width: 640px) {
+    margin-bottom: 25px;
+  }
 `;
 
 const Nav = styled.nav`

@@ -1,6 +1,5 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
 import React from "react";
+import { useRouter } from "next/router";
 
 import { MainContainer } from "../components/containers";
 import { getAllPosts, markdownToHtml, POSTS_PER_PAGE } from "../lib/blogs";
