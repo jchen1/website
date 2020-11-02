@@ -28,12 +28,14 @@ function Icon({
   eventAction,
   eventLabel,
   className,
+  rel,
   size,
 }) {
   return (
     <Button
       href={href}
       aria-label={label}
+      rel={rel || ""}
       target={target || "_self"}
       className={className}
     >
@@ -67,6 +69,7 @@ export function Github(props) {
         eventAction: "github",
         href: "https://github.com/jchen1",
         label: "@jchen1 on GitHub",
+        rel: "noopener",
         IconComponent: GithubIcon,
         target: "_blank",
         ...props,
@@ -82,6 +85,7 @@ export function Twitter(props) {
         eventAction: "twitter",
         href: "https://www.twitter.com/iambald",
         label: "@iambald on Twitter",
+        rel: "noopener",
         IconComponent: TwitterIcon,
         target: "_blank",
         ...props,
@@ -97,6 +101,7 @@ export function Linkedin(props) {
         eventAction: "linkedin",
         href: "https://www.linkedin.com/in/jchen94",
         label: "LinkedIn",
+        rel: "noopener",
         IconComponent: LinkedinIcon,
         target: "_blank",
         ...props,
