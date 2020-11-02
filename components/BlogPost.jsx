@@ -20,7 +20,7 @@ const DateComp = styled(Small)`
 
 function ReadMore({ post }) {
   return (
-    <Link key={post.slug} href="/posts/[slug]" as={`/posts/${post.slug}`}>
+    <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
       <ReadMoreLink>Read More</ReadMoreLink>
     </Link>
   );
@@ -76,6 +76,7 @@ const Border = styled.div`
 `;
 
 function Title({ headingLevel, title, slug, homepage, noLink }) {
+  const router = useRouter();
   const Heading = `h${headingLevel || 1}`;
 
   if (noLink) {
@@ -92,9 +93,13 @@ function Title({ headingLevel, title, slug, homepage, noLink }) {
     );
   }
 
+  useEffect(() => {
+    router.prefetch(`/posts/${encodeURIComponent(slug)}`);
+  }, []);
+
   return (
     <Heading>
-      <Link key={slug} href={`/posts/${slug}`}>
+      <Link href={`/posts/${encodeURIComponent(slug)}/`} prefetch={false}>
         <a>{title}</a>
       </Link>
     </Heading>
