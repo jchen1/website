@@ -8,19 +8,25 @@ export default function Meta(props) {
         case "title":
           return [
             <title key={key}>{val}</title>,
-            <meta name="og:title" property="og:title" content={val} />,
+            <meta
+              key="og:title"
+              name="og:title"
+              property="og:title"
+              content={val}
+            />,
           ];
         case "description":
           return [
-            <meta name="description" content={val} />,
+            <meta key="description" name="description" content={val} />,
             <meta
+              key="og:description"
               name="og:description"
               property="og:description"
               content={val}
             />,
           ];
         default:
-          return <meta name={key} property={key} content={val} />;
+          return <meta name={key} key={key} property={key} content={val} />;
       }
     })
     .flat();
