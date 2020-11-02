@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { event } from "../lib/gtag";
 import { Colors, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
+const PROFILE_SIZE = 80;
+
 const HeaderContainer = styled.header`
   padding: 20px 0;
   max-width: 740px;
@@ -81,8 +83,8 @@ const SiteName = styled.h1`
 `;
 
 const SiteAvatar = styled.a`
-  height: 70px;
-  width: 70px;
+  height: ${PROFILE_SIZE}px;
+  width: ${PROFILE_SIZE}px;
   margin-right: 15px;
 
   @media screen and (max-width: 640px) {
@@ -112,8 +114,8 @@ export default function Header() {
               <Image
                 src="/images/profile.jpg"
                 alt="Profile Picture"
-                height="70"
-                width="70"
+                height={PROFILE_SIZE}
+                width={PROFILE_SIZE}
               />
             </SiteAvatar>
           </Link>
