@@ -1,25 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-// https://jam-icons.com/
-import Envelope from "../assets/envelope-f.svg";
-import Github from "../assets/github.svg";
-import Twitter from "../assets/twitter.svg";
-import Linkedin from "../assets/linkedin.svg";
-import RSS from "../assets/rss-feed.svg";
-
-import { event } from "../lib/gtag";
+import { Envelope, Github, Twitter, Linkedin, RSS } from "../components/Icon";
 import { Colors } from "../lib/constants";
 
-const ICON_SIZE = 30;
-
-const Button = styled.a`
+const Button = styled.div`
   display: inline-block;
   padding: 5px 7px;
-
-  > svg:hover {
-    fill: ${Colors.RED};
-  }
 `;
 
 const FooterContainer = styled.footer`
@@ -31,47 +18,23 @@ const FooterContainer = styled.footer`
   width: 100%;
 `;
 
-function sendEvent(name) {
-  event({ action: name, label: "footer" });
-}
-
 export default function Footer() {
   return (
     <FooterContainer>
-      <Button href="mailto:hello@jeff.yt" aria-label="Send me an email!">
-        <Envelope
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          onClick={() => sendEvent("email")}
-        />
+      <Button>
+        <Envelope eventLabel="footer" />
       </Button>
-      <Button href="https://github.com/jchen1" aria-label="Github">
-        <Github
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          onClick={() => sendEvent("github")}
-        />
+      <Button>
+        <Github eventLabel="footer" />
       </Button>
-      <Button href="https://www.twitter.com/iambald" aria-label="Twitter">
-        <Twitter
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          onClick={() => sendEvent("twitter")}
-        />
+      <Button>
+        <Twitter eventLabel="footer" />
       </Button>
-      <Button href="https://www.linkedin.com/in/jchen94" aria-label="Linkedin">
-        <Linkedin
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          onClick={() => sendEvent("linkedin")}
-        />
+      <Button>
+        <Linkedin eventLabel="footer" />
       </Button>
-      <Button href="/rss-feed.xml" aria-label="RSS Feed">
-        <RSS
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          onClick={() => sendEvent("rss")}
-        />
+      <Button>
+        <RSS eventLabel="footer" />
       </Button>
     </FooterContainer>
   );

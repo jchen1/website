@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { Colors, BASE_URL } from "../lib/constants";
 import Meta from "./Meta";
 import { Small } from "./typography";
+
+import { Twitter } from "../components/Icon";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
@@ -133,6 +136,35 @@ function InnerHTML(props) {
   return <div {...rest} ref={divRef}></div>;
 }
 
+const BylineWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+function Byline({ date, showTweetButton, showDate }) {
+  const dateStr = formatDate(new Date(date));
+  const router = useRouter();
+
+  return (
+    <BylineWrapper>
+      {showDate ? <DateComp>{dateStr}</DateComp> : ""}
+      {showTweetButton ? (
+        <Twitter
+          href={`https://www.twitter.com/share?url=${encodeURIComponent(
+            `https://${BASE_URL}${router.asPath}`
+          )}`}
+          label="Tweet this post"
+          eventLabel="post"
+          size={25}
+        />
+      ) : (
+        ""
+      )}
+    </BylineWrapper>
+  );
+}
+
 export default function BlogPost({ post, opts = {} }) {
   const {
     title,
@@ -145,6 +177,7 @@ export default function BlogPost({ post, opts = {} }) {
     excerptHTML,
     excerpt,
   } = post;
+
   const {
     noLink,
     readMore,
@@ -153,7 +186,6 @@ export default function BlogPost({ post, opts = {} }) {
     setTitle,
     showScroll,
   } = opts;
-  const dateStr = formatDate(new Date(date));
 
   const displayHTML = readMore ? excerptHTML : contentHTML;
   const description =
@@ -190,7 +222,12 @@ export default function BlogPost({ post, opts = {} }) {
         ) : (
           ""
         )}
-        {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""}
+        <Byline
+          showDate={showDate !== false}
+          date={date}
+          showTweetButton={!readMore}
+        />
+        {/* {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""} */}
         {/\<script\>/.test(displayHTML) && !readMore ? (
           <InnerHTML html={displayHTML} />
         ) : (
