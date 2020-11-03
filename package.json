@@ -13,6 +13,7 @@
     "highlight.js": "^10.3.1",
     "inter-ui": "^3.15.0",
     "js-yaml": "^3.14.0",
+    "mdast-util-definitions": "^4.0.0",
     "moment": "^2.29.1",
     "next": "^10.0.0",
     "nprogress": "^0.2.0",
@@ -28,6 +29,7 @@
     "sass": "^1.27.0",
     "strip-markdown": "^4.0.0",
     "styled-components": "^5.2.0",
+    "unist-util-visit": "^2.0.3",
     "uplot": "^1.2.2"
   },
   "peerDependencies": {
