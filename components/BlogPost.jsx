@@ -177,7 +177,6 @@ export default function BlogPost({ post, opts = {} }) {
     title,
     homepage,
     date,
-    preimage,
     slug,
     author,
     contentHTML,
@@ -204,9 +203,7 @@ export default function BlogPost({ post, opts = {} }) {
     title: title,
     "og:title": title,
     description: description,
-    "og:image": `https://${BASE_URL}/images/${
-      preimage ? preimage : "profile.jpg"
-    }`,
+    "og:image": `https://${BASE_URL}/images/profile.jpg`,
     "og:type": "article",
   };
 
@@ -221,20 +218,11 @@ export default function BlogPost({ post, opts = {} }) {
           homepage={homepage}
           noLink={noLink}
         />
-        {preimage ? (
-          <img
-            src={`/images/${preimage}`}
-            alt={preimage.replace(/\..*$/, "")}
-          />
-        ) : (
-          ""
-        )}
         <Byline
           showDate={showDate !== false}
           date={date}
-          showTweetButton={!readMore}
+          showTweetButton={showDate !== false && !readMore}
         />
-        {/* {showDate !== false ? <DateComp>{dateStr}</DateComp> : ""} */}
         {/\<script\>/.test(displayHTML) && !readMore ? (
           <InnerHTML html={displayHTML} />
         ) : (
