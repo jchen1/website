@@ -157,7 +157,9 @@ function Byline({ date, showTweetButton, showDate }) {
       {showTweetButton ? (
         <Twitter
           href={`https://www.twitter.com/share?url=${encodeURIComponent(
-            `https://${BASE_URL}${router.asPath}`
+            `https://${BASE_URL}${router.asPath}${
+              router.asPath.endsWith("/") ? "" : "/"
+            }`
           )}`}
           label="Tweet this post"
           eventLabel="post"
