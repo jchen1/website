@@ -11,7 +11,9 @@ import { Twitter } from "../components/Icon";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
-const ReadMoreLink = styled(Small).attrs({ as: "a" })``;
+const ReadMoreLink = styled(Small).attrs({ as: "a" })`
+  width: fit-content;
+`;
 
 const DateComp = styled(Small)`
   font-style: italic;
@@ -21,7 +23,7 @@ const DateComp = styled(Small)`
 function ReadMore({ post }) {
   return (
     <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
-      <ReadMoreLink>Read More</ReadMoreLink>
+      <ReadMoreLink>Read More →</ReadMoreLink>
     </Link>
   );
 }

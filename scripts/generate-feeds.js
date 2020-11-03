@@ -20,7 +20,6 @@ function generateSitemap({ posts, pages }) {
   );
 
   const epilogue = `</urlset>`;
-
   const sitemap = [prologue].concat(blogItems, pageItems, epilogue);
 
   return sitemap.join("\n");
