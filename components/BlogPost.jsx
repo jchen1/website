@@ -33,7 +33,7 @@ export const BlogContainer = styled.article`
   width: 100%;
 
   display: grid;
-  grid-template-columns: 1fr min(65ch, 100%) 1fr;
+  grid-template-columns: 1fr min(45rem, 100%) 1fr;
 
   & > * {
     grid-column: 2;
@@ -63,7 +63,7 @@ export const BlogContainer = styled.article`
 const Border = styled.div`
   padding-bottom: 2em;
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
-  width: min(65ch, 100%);
+  width: min(45rem, 100%);
   margin: 0 auto;
 
   &:last-of-type {

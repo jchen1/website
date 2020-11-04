@@ -7,7 +7,7 @@ import Meta from "../components/Meta";
 import { H1 } from "../components/typography";
 
 const Title = styled.div`
-  width: min(65ch, 100%);
+  width: min(45rem, 100%);
   text-align: left;
 
   > h1 {
