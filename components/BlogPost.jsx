@@ -15,11 +15,6 @@ const ReadMoreLink = styled(Small).attrs({ as: "a" })`
   width: fit-content;
 `;
 
-const DateComp = styled(Small)`
-  font-style: italic;
-  color: ${Colors.GRAY};
-`;
-
 function ReadMore({ post }) {
   return (
     <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
@@ -127,6 +122,45 @@ function formatDate(date) {
   return `${month} ${day}${suffix}, ${year}`;
 }
 
+const DateComp = styled(Small)`
+  font-style: italic;
+`;
+
+const BylineWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: ${Colors.GRAY};
+
+  svg {
+    fill: ${Colors.GRAY};
+  }
+
+  > * {
+    padding-right: 0.5em;
+  }
+`;
+
+function Byline({ date, slug }) {
+  const dateStr = formatDate(new Date(date));
+
+  return (
+    <BylineWrapper>
+      <DateComp>{dateStr}</DateComp>
+      <Twitter
+        href={`https://www.twitter.com/share?url=${encodeURIComponent(
+          `https://${BASE_URL}/posts/${slug}/`
+        )}`}
+        label="Tweet this post"
+        eventLabel="post"
+        circle={true}
+        size={25}
+      />
+    </BylineWrapper>
+  );
+}
+
 // https://github.com/christo-pr/dangerously-set-html-content/blob/master/src/index.js
 function InnerHTML(props) {
   const { html, ...rest } = props;
@@ -141,37 +175,6 @@ function InnerHTML(props) {
   }, [html]);
 
   return <div {...rest} ref={divRef}></div>;
-}
-
-const BylineWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-function Byline({ date, showTweetButton, showDate }) {
-  const dateStr = formatDate(new Date(date));
-  const router = useRouter();
-
-  return (
-    <BylineWrapper>
-      {showDate ? <DateComp>{dateStr}</DateComp> : ""}
-      {showTweetButton ? (
-        <Twitter
-          href={`https://www.twitter.com/share?url=${encodeURIComponent(
-            `https://${BASE_URL}${router.asPath}${
-              router.asPath.endsWith("/") ? "" : "/"
-            }`
-          )}`}
-          label="Tweet this post"
-          eventLabel="post"
-          size={25}
-        />
-      ) : (
-        ""
-      )}
-    </BylineWrapper>
-  );
 }
 
 export default function BlogPost({ post, opts = {} }) {
@@ -220,11 +223,7 @@ export default function BlogPost({ post, opts = {} }) {
           homepage={homepage}
           noLink={noLink}
         />
-        <Byline
-          showDate={showDate !== false}
-          date={date}
-          showTweetButton={showDate !== false && !readMore}
-        />
+        {showDate !== false ? <Byline date={date} slug={slug} /> : ""}
         {/\<script\>/.test(displayHTML) && !readMore ? (
           <InnerHTML html={displayHTML} />
         ) : (
