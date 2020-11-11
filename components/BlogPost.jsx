@@ -8,6 +8,7 @@ import Meta from "./Meta";
 import { Small } from "./typography";
 
 import { Twitter } from "../components/Icon";
+import Image from "next/image";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
@@ -117,7 +118,10 @@ function formatDate(date) {
     timeZone: "UTC",
   });
 
-  const suffix = { 1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st" }[day] || "th";
+  const suffix =
+    { 1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st" }[
+      day
+    ] || "th";
 
   return `${month} ${day}${suffix}, ${year}`;
 }
@@ -188,6 +192,7 @@ export default function BlogPost({ post, opts = {} }) {
     contentHTML,
     excerptHTML,
     excerpt,
+    heroImageSize,
   } = post;
 
   const {
@@ -213,6 +218,10 @@ export default function BlogPost({ post, opts = {} }) {
     "og:type": "article",
   };
 
+  const HeroImageContainer = styled.div`
+    padding: 15px 0;
+  `;
+
   return (
     <>
       <BlogContainer>
@@ -225,6 +234,17 @@ export default function BlogPost({ post, opts = {} }) {
           noLink={noLink}
         />
         {showDate !== false ? <Byline date={date} slug={slug} /> : ""}
+        {heroImage ? (
+          <HeroImageContainer>
+            <Image
+              src={heroImage}
+              width={heroImageSize.width}
+              height={heroImageSize.height}
+            />
+          </HeroImageContainer>
+        ) : (
+          ""
+        )}
         {/\<script\>/.test(displayHTML) && !readMore ? (
           <InnerHTML html={displayHTML} />
         ) : (

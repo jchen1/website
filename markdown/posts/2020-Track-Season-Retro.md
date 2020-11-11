@@ -7,8 +7,6 @@ tags: 2020,november,track.review
 heroImage: "/images/2020-track-retro/cover.jpg"
 ---
 
-![](/images/2020-track-retro/cover.jpg)
-
 2020's been a bad year in a lot of ways. I've been fortunate that I've been able to keep training throughout the year. Despite having no official track meets to attend and despite dealing with a couple injuries, I closed my 2020 track season faster and stronger than I've ever been before! Not only have my weight room numbers skyrocketed, I set PRs in every distance (60m-400m) I compete in!
 
 In this post, I walk through my training, recovery, and competition in 2020, and gather learnings for next year.

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
 import { markdownToHtml, getPostBySlug, getAllPosts } from "../../lib/blogs";
+import { sizeImage } from "../../lib/util";
 import { MainContainer } from "../../components/containers";
 
 import BlogPost from "../../components/BlogPost";
@@ -30,11 +31,19 @@ export async function getStaticProps({ params }) {
   ]);
   const content = await markdownToHtml(post.content || "");
 
+  const heroImageSize = (function () {
+    if (post.heroImage) {
+      return sizeImage(post.heroImage, { basepath: "public" }) || {};
+    }
+    return {};
+  })();
+
   return {
     props: {
       post: {
         ...post,
         ...content,
+        heroImageSize,
       },
     },
   };

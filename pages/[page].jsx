@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 
 import { MainContainer } from "../components/containers";
 import { getAllPosts, markdownToHtml, POSTS_PER_PAGE } from "../lib/blogs";
+import { sizeImage } from "../lib/util";
+
 import BlogPost from "../components/BlogPost";
 import ErrorPage from "next/error";
 import Pagination from "../components/Pagination";
@@ -35,16 +37,29 @@ export async function getStaticProps({ params }) {
   const start = POSTS_PER_PAGE * page;
 
   const allPosts = await Promise.all(
-    getAllPosts(["title", "date", "slug", "author", "content"]).map(
-      async post => {
-        const content = await markdownToHtml(post.content || "");
+    getAllPosts([
+      "title",
+      "date",
+      "slug",
+      "author",
+      "content",
+      "heroImage",
+    ]).map(async post => {
+      const content = await markdownToHtml(post.content || "");
 
-        return {
-          ...post,
-          ...content,
-        };
-      }
-    )
+      const heroImageSize = (function () {
+        if (post.heroImage) {
+          return sizeImage(post.heroImage, { basepath: "public" }) || {};
+        }
+        return {};
+      })();
+
+      return {
+        ...post,
+        ...content,
+        heroImageSize,
+      };
+    })
   );
 
   const posts = allPosts.slice(start, start + POSTS_PER_PAGE);
