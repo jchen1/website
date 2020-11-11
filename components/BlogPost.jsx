@@ -184,6 +184,7 @@ export default function BlogPost({ post, opts = {} }) {
     date,
     slug,
     author,
+    heroImage,
     contentHTML,
     excerptHTML,
     excerpt,
@@ -208,7 +209,7 @@ export default function BlogPost({ post, opts = {} }) {
     title: title,
     "og:title": title,
     description: description,
-    "og:image": `https://${BASE_URL}/images/profile.jpg`,
+    "og:image": `https://${BASE_URL}${heroImage || "/images/profile.jpg"}`,
     "og:type": "article",
   };
 

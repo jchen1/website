@@ -26,8 +26,7 @@ export async function getStaticProps({ params }) {
     "slug",
     "author",
     "content",
-    "ogImage",
-    "coverImage",
+    "heroImage",
   ]);
   const content = await markdownToHtml(post.content || "");
 
