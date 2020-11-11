@@ -26,7 +26,7 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
-      <div>{postMarkup}</div>
+      <>{postMarkup}</>
       <Pagination pages={pages} />
     </MainContainer>
   );
@@ -36,15 +36,18 @@ export async function getStaticProps({ params }) {
   const page = parseInt(params.page) - 1;
   const start = POSTS_PER_PAGE * page;
 
-  const allPosts = await Promise.all(
-    getAllPosts([
-      "title",
-      "date",
-      "slug",
-      "author",
-      "content",
-      "heroImage",
-    ]).map(async post => {
+  const allPosts = getAllPosts([
+    "title",
+    "date",
+    "slug",
+    "author",
+    "content",
+    "heroImage",
+    "tags",
+  ]);
+
+  const posts = await Promise.all(
+    allPosts.slice(start, start + POSTS_PER_PAGE).map(async post => {
       const content = await markdownToHtml(post.content || "");
 
       const heroImageSize = (function () {
@@ -62,7 +65,6 @@ export async function getStaticProps({ params }) {
     })
   );
 
-  const posts = allPosts.slice(start, start + POSTS_PER_PAGE);
   const numPages = 1 + Math.floor(allPosts.length / POSTS_PER_PAGE);
   const pages = [...Array(numPages).keys()].map(p => ({
     link: p === 0 ? "/" : `/${p + 1}`, // special-case page 0 to homepage

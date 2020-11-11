@@ -31,6 +31,11 @@ const PageLink = styled.button`
     font-weight: bold;
   }
 
+  &:hover {
+    color: ${Colors.RED};
+    cursor: pointer;
+  }
+
   width: 2.5em;
   font-size: 18px;
   line-height: 2em;
@@ -44,9 +49,13 @@ const PageLink = styled.button`
 export default function Pagination({ pages }) {
   const pageMarkup = pages?.map(page => {
     return (
-      <PageLink key={page.link} className={page.isCurrent ? "current" : ""}>
-        <Link href={page.link}>{page.title}</Link>
-      </PageLink>
+      <Link key={page.link} href={page.link}>
+        <a>
+          <PageLink className={page.isCurrent ? "current" : ""}>
+            {page.title}
+          </PageLink>
+        </a>
+      </Link>
     );
   });
 

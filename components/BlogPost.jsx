@@ -9,6 +9,7 @@ import { Small } from "./typography";
 
 import { Twitter } from "../components/Icon";
 import Image from "next/image";
+import Tags from "./Tags";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
@@ -181,6 +182,10 @@ function InnerHTML(props) {
   return <div {...rest} ref={divRef}></div>;
 }
 
+const HeroImageContainer = styled.div`
+  padding: 15px 0;
+`;
+
 export default function BlogPost({ post, opts = {} }) {
   const {
     title,
@@ -193,6 +198,7 @@ export default function BlogPost({ post, opts = {} }) {
     excerptHTML,
     excerpt,
     heroImageSize,
+    tags,
   } = post;
 
   const {
@@ -218,9 +224,7 @@ export default function BlogPost({ post, opts = {} }) {
     "og:type": "article",
   };
 
-  const HeroImageContainer = styled.div`
-    padding: 15px 0;
-  `;
+  const tagArray = (tags || "").split(",");
 
   return (
     <>
@@ -234,6 +238,7 @@ export default function BlogPost({ post, opts = {} }) {
           noLink={noLink}
         />
         {showDate !== false ? <Byline date={date} slug={slug} /> : ""}
+        <Tags tags={tagArray} />
         {heroImage ? (
           <HeroImageContainer>
             <Image

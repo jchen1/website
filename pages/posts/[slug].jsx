@@ -28,6 +28,7 @@ export async function getStaticProps({ params }) {
     "author",
     "content",
     "heroImage",
+    "tags",
   ]);
   const content = await markdownToHtml(post.content || "");
 
