@@ -15,7 +15,10 @@ export default function Post({ post }) {
   }
   return (
     <MainContainer>
-      <BlogPost post={post} opts={{ showScroll: true }}></BlogPost>
+      <BlogPost
+        post={post}
+        opts={{ showScroll: true, preloadHero: true }}
+      ></BlogPost>
     </MainContainer>
   );
 }

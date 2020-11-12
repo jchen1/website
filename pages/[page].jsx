@@ -16,11 +16,11 @@ export default function IndexPage(props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const postMarkup = posts.map(post => (
+  const postMarkup = posts.map((post, idx) => (
     <BlogPost
       key={post.title}
       post={post}
-      opts={{ readMore: true, setTitle: false }}
+      opts={{ readMore: true, setTitle: false, preloadHero: idx === 0 }}
     />
   ));
 

@@ -208,6 +208,7 @@ export default function BlogPost({ post, opts = {} }) {
     headingLevel,
     setTitle,
     showScroll,
+    preloadHero,
   } = opts;
 
   const displayHTML = readMore ? excerptHTML : contentHTML;
@@ -247,6 +248,8 @@ export default function BlogPost({ post, opts = {} }) {
               alt={title}
               width={heroImageSize.width}
               height={heroImageSize.height}
+              priority={preloadHero === true}
+              loading={preloadHero === true ? "eager" : "lazy"}
             />
           </HeroImageContainer>
         ) : (
