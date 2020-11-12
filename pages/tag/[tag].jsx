@@ -25,7 +25,7 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
-      <div>{postMarkup}</div>
+      <>{postMarkup}</>
     </MainContainer>
   );
 }
