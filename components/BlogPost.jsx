@@ -248,6 +248,7 @@ export default function BlogPost({ post, opts = {} }) {
               alt={title}
               width={heroImageSize.width}
               height={heroImageSize.height}
+              layout="responsive"
               priority={preloadHero === true}
               loading={preloadHero === true ? "eager" : "lazy"}
             />
