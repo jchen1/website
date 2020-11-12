@@ -55,6 +55,7 @@ export async function getStaticProps({ params }) {
       .map(async post => {
         const content = await markdownToHtml(post.content || "");
         delete content.contentHTML;
+        delete post.content;
 
         const heroImageSize = (function () {
           if (post.heroImage) {
