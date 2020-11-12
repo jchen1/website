@@ -7,13 +7,13 @@ const Container = styled.ul`
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  margin: 15px 0 -8px -5px;
+  margin: 15px 0 -5px;
 `;
 
 const TagItem = styled.li`
   display: inline;
   padding: 2px 8px;
-  margin: 0 5px 8px 5px;
+  margin: 0 5px 5px 0;
   background-color: ${Colors.DARK_GRAY};
   border-radius: 5px;
 

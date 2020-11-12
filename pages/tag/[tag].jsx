@@ -1,15 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import { MainContainer } from "../../components/containers";
-import { getAllPosts, markdownToHtml, POSTS_PER_PAGE } from "../../lib/blogs";
+import { getAllPosts, markdownToHtml } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
 
 import BlogPost from "../../components/BlogPost";
 import ErrorPage from "next/error";
+import { H1, H3 } from "../../components/typography";
+
+const Title = styled(H3)`
+  text-align: left;
+  width: min(45rem, 100%);
+  margin: 0;
+`;
 
 export default function IndexPage(props) {
-  const { posts } = props;
+  const { posts, tag } = props;
   const router = useRouter();
   if (!router.isFallback && !posts) {
     return <ErrorPage statusCode={404} />;
@@ -25,6 +33,7 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
+      <Title>Posts tagged "{tag}"</Title>
       <>{postMarkup}</>
     </MainContainer>
   );
@@ -62,6 +71,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       posts,
+      tag,
     },
   };
 }
@@ -75,7 +85,6 @@ export async function getStaticPaths() {
         .flat()
     ),
   ];
-  console.log(tags);
   return {
     paths: tags.map(tag => {
       return {
