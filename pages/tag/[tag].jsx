@@ -54,6 +54,8 @@ export async function getStaticProps({ params }) {
       .filter(post => post.tags.split(",").includes(tag))
       .map(async post => {
         const content = await markdownToHtml(post.content || "");
+        delete content.contentHTML;
+
         const heroImageSize = (function () {
           if (post.heroImage) {
             return sizeImage(post.heroImage, { basepath: "public" }) || {};

@@ -49,6 +49,7 @@ export async function getStaticProps({ params }) {
   const posts = await Promise.all(
     allPosts.slice(start, start + POSTS_PER_PAGE).map(async post => {
       const content = await markdownToHtml(post.content || "");
+      delete content.contentHTML;
 
       const heroImageSize = (function () {
         if (post.heroImage) {
