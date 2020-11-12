@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { event } from "../lib/gtag";
 import { Colors, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
+import { useRouter } from "next/router";
 
 const PROFILE_SIZE = 80;
 
@@ -105,11 +106,12 @@ const HeaderLeft = styled.div`
 `;
 
 export default function Header() {
+  const router = useRouter();
   return (
     <Masthead>
       <HeaderContainer>
         <HeaderLeft>
-          <Link href="/">
+          <Link href="/" prefetch={router.pathname !== "/"}>
             <SiteAvatar aria-label="Home">
               <Image
                 src="/images/profile.jpg"
