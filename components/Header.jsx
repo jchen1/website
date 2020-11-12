@@ -124,7 +124,7 @@ export default function Header() {
 
           <SiteInfo>
             <SiteName>
-              <Link href="/">
+              <Link href="/" prefetch={router.pathname !== "/"}>
                 <a>{SITE_TITLE}</a>
               </Link>
             </SiteName>
