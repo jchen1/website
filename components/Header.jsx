@@ -65,7 +65,7 @@ const Description = styled.p`
   font-size: 16px;
 
   @media screen and (max-width: 640px) {
-    margin: 3px 0;
+    display: none;
   }
 `;
 
@@ -118,6 +118,9 @@ export default function Header() {
                 alt="Profile Picture"
                 height={PROFILE_SIZE}
                 width={PROFILE_SIZE}
+                priority={true}
+                loading="eager"
+                layout="fixed"
               />
             </SiteAvatar>
           </Link>
