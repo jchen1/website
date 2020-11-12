@@ -221,6 +221,7 @@ export default function BlogPost({ post, opts = {} }) {
     "og:title": title,
     description: description,
     "og:image": `https://${BASE_URL}${heroImage || "/images/profile.jpg"}`,
+    "twitter:card": heroImage ? "summary_large_image" : "summary",
     "og:type": "article",
   };
 
