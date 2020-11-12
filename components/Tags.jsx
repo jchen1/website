@@ -30,17 +30,20 @@ const TagItem = styled.li`
 
 // array of string tags
 export default function Tags({ tags }) {
-  const tagMarkup = tags?.sort().map(tag => {
-    return (
-      <TagItem>
-        <Link href={`/tag/${tag}`} key={tag}>
-          <a>
-            <small>{tag}</small>
-          </a>
-        </Link>
-      </TagItem>
-    );
-  });
+  const tagMarkup = tags
+    ?.filter(t => t.length > 0)
+    .sort()
+    .map(tag => {
+      return (
+        <TagItem key={tag}>
+          <Link href={`/tag/${tag}`}>
+            <a>
+              <small>{tag}</small>
+            </a>
+          </Link>
+        </TagItem>
+      );
+    });
 
   return <Container>{tagMarkup}</Container>;
 }
