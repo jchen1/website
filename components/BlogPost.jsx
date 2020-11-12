@@ -244,6 +244,7 @@ export default function BlogPost({ post, opts = {} }) {
           <HeroImageContainer>
             <Image
               src={heroImage}
+              alt={title}
               width={heroImageSize.width}
               height={heroImageSize.height}
             />

@@ -28,11 +28,11 @@ In this post, I walk through my training, recovery, and competition in 2020, and
 
 - My sleep quality was quite good overall:
 
-![](/images/2020-track-retro/sleep.png)
+![Chart: Whoop sleep quality](/images/2020-track-retro/sleep.png)
 
 - Despite that, my Whoop recovery scores were pretty mediocre besides a spike in July:
 
-![](/images/2020-track-retro/recovery.png)
+![Chart: Whoop recovery score](/images/2020-track-retro/recovery.png)
 
 - Beyond sleep - my recovery tactics were fairly lightweight. I took a **lot** of hot baths and made sure to stretch after every workout. However, I rarely foam rolled and got no massages the entire season.
 
