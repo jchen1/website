@@ -112,6 +112,25 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
+          <link
+            rel="preload"
+            href="/fonts/Inter-Regular.woff2"
+            as="font"
+            crossorigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Inter-Italic.woff2"
+            as="font"
+            crossorigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Inter-Bold.woff2"
+            as="font"
+            crossorigin=""
+          />
+
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
