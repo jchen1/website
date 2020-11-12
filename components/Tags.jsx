@@ -36,7 +36,8 @@ export default function Tags({ tags }) {
     .map(tag => {
       return (
         <TagItem key={tag}>
-          <Link href={`/tag/${tag}`}>
+          {/* no prefetch - people don't click on tags */}
+          <Link href={`/tag/${tag}`} prefetch={false}>
             <a>
               <small>{tag}</small>
             </a>
