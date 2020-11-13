@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 2rem 0 0;
 `;
 
-const PageLink = styled.button`
+const PageLink = styled.a`
   &:first-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -23,11 +23,7 @@ const PageLink = styled.button`
     border-right-width: 1px;
   }
 
-  & > a {
-    text-decoration: none;
-  }
-
-  &.current > a {
+  &.current {
     font-weight: bold;
   }
 
@@ -41,6 +37,8 @@ const PageLink = styled.button`
   line-height: 2em;
   border: 1px solid ${Colors.LIGHT_GRAY};
   border-right-width: 0;
+  text-align: center;
+  text-decoration: none;
 
   background-color: unset;
 `;
@@ -50,11 +48,9 @@ export default function Pagination({ pages }) {
   const pageMarkup = pages?.map(page => {
     return (
       <Link key={page.link} href={page.link}>
-        <a>
-          <PageLink className={page.isCurrent ? "current" : ""}>
-            {page.title}
-          </PageLink>
-        </a>
+        <PageLink className={page.isCurrent ? "current" : ""}>
+          {page.title}
+        </PageLink>
       </Link>
     );
   });

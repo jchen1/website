@@ -38,7 +38,7 @@ const Button = styled.button`
   padding: 0 1rem;
   border-radius: 0 5px 5px 0;
   color: white;
-  transition: background ease-in 0.2s;
+  transition: background ease-in 0.25s;
   flex-grow: 1;
   margin: 0;
 
