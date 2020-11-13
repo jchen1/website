@@ -107,11 +107,13 @@ const HeaderLeft = styled.div`
 
 export default function Header() {
   const router = useRouter();
+  // prevent "auto-prefetch based on viewport... warning"
+  const prefetch = router.pathname === "/" ? false : undefined;
   return (
     <Masthead>
       <HeaderContainer>
         <HeaderLeft>
-          <Link href="/" prefetch={router.pathname !== "/"}>
+          <Link href="/" prefetch={prefetch}>
             <SiteAvatar aria-label="Home">
               <Image
                 src="/images/profile.jpg"
@@ -127,7 +129,7 @@ export default function Header() {
 
           <SiteInfo>
             <SiteName>
-              <Link href="/" prefetch={router.pathname !== "/"}>
+              <Link href="/" prefetch={prefetch}>
                 <a>{SITE_TITLE}</a>
               </Link>
             </SiteName>
