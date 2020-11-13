@@ -2,7 +2,12 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { MainContainer } from "../components/containers";
-import { getAllPosts, markdownToHtml, POSTS_PER_PAGE } from "../lib/blogs";
+import {
+  getAllPosts,
+  markdownToHtml,
+  POSTS_PER_PAGE,
+  POST_FIELDS,
+} from "../lib/blogs";
 import { sizeImage } from "../lib/util";
 
 import BlogPost from "../components/BlogPost";
@@ -36,15 +41,7 @@ export async function getStaticProps({ params }) {
   const page = parseInt(params.page) - 1;
   const start = POSTS_PER_PAGE * page;
 
-  const allPosts = getAllPosts([
-    "title",
-    "date",
-    "slug",
-    "author",
-    "content",
-    "heroImage",
-    "tags",
-  ]);
+  const allPosts = getAllPosts(POST_FIELDS);
 
   const posts = await Promise.all(
     allPosts.slice(start, start + POSTS_PER_PAGE).map(async post => {

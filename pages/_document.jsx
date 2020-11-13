@@ -116,19 +116,19 @@ export default class MyDocument extends Document {
             rel="preload"
             href="/fonts/Inter-Regular.woff2"
             as="font"
-            crossorigin=""
+            crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/Inter-Italic.woff2"
             as="font"
-            crossorigin=""
+            crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/Inter-Bold.woff2"
             as="font"
-            crossorigin=""
+            crossOrigin=""
           />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}

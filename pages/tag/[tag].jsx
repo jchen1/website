@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import { MainContainer } from "../../components/containers";
-import { getAllPosts, markdownToHtml } from "../../lib/blogs";
+import { getAllPosts, markdownToHtml, POST_FIELDS } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
 
 import BlogPost from "../../components/BlogPost";
 import ErrorPage from "next/error";
-import { H1, H3 } from "../../components/typography";
+import { H3 } from "../../components/typography";
 
 const Title = styled(H3)`
   text-align: left;
@@ -42,15 +42,7 @@ export default function IndexPage(props) {
 export async function getStaticProps({ params }) {
   const tag = params.tag;
   const posts = await Promise.all(
-    getAllPosts([
-      "title",
-      "date",
-      "slug",
-      "author",
-      "content",
-      "heroImage",
-      "tags",
-    ])
+    getAllPosts(POST_FIELDS)
       .filter(post => post.tags.split(",").includes(tag))
       .map(async post => {
         const content = await markdownToHtml(post.content || "");

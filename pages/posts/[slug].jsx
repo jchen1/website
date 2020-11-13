@@ -2,7 +2,12 @@ import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
-import { markdownToHtml, getPostBySlug, getAllPosts } from "../../lib/blogs";
+import {
+  markdownToHtml,
+  getPostBySlug,
+  getAllPosts,
+  POST_FIELDS,
+} from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
 import { MainContainer } from "../../components/containers";
 
@@ -24,15 +29,7 @@ export default function Post({ post }) {
 }
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, [
-    "title",
-    "date",
-    "slug",
-    "author",
-    "content",
-    "heroImage",
-    "tags",
-  ]);
+  const post = getPostBySlug(params.slug, POST_FIELDS);
   const content = await markdownToHtml(post.content || "");
 
   const heroImageSize = (function () {
