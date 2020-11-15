@@ -4,7 +4,7 @@ title: Activation Energy and Productivity
 date: "2020-11-14"
 author: Jeff Chen
 tags: 2020,november,productivity
-heroImage: "/images/activation-energy-and-productivity/activation-energy.svg"
+heroImage: "/images/activation-energy-and-productivity/activation-energy.png"
 ---
 
 I have lots of life goals, both short-term and long: I’d like to work on my [side projects](https://jeffchen.dev/projects/), become a better writer, read great books, run faster, get stronger... Yet I’ve always struggled to avoid the siren call of social media, video games, and other empty calorie activities.
