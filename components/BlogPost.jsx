@@ -60,6 +60,16 @@ export const BlogContainer = styled.article`
     font-size: 22px;
     font-style: italic;
   }
+
+  /* images with captions */
+  figure {
+    padding: 0.75rem 0;
+    figcaption {
+      padding: 0.75rem 0;
+      font-size: small;
+      text-align: center;
+    }
+  }
 `;
 
 const Border = styled.div`

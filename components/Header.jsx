@@ -21,6 +21,7 @@ const HeaderContainer = styled.header`
   @media screen and (max-width: 640px) {
     text-align: center;
     flex-direction: column;
+    padding: 10px 0;
   }
 `;
 
