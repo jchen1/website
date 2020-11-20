@@ -4,7 +4,6 @@ import { getProjects } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 import styled from "styled-components";
 import Meta from "../components/Meta";
-import { H1 } from "../components/typography";
 
 const Title = styled.div`
   width: min(45rem, 100%);
@@ -26,7 +25,7 @@ export default function Projects({ projects }) {
       <Meta {...metas} />
 
       <Title>
-        <H1>Projects</H1>
+        <h1>Projects</h1>
       </Title>
       {projects.map(project => (
         <BlogPost

@@ -8,9 +8,8 @@ import { sizeImage } from "../../lib/util";
 
 import BlogPost from "../../components/BlogPost";
 import ErrorPage from "next/error";
-import { H3 } from "../../components/typography";
 
-const Title = styled(H3)`
+const Title = styled(h3)`
   text-align: left;
   width: min(45rem, 100%);
   margin: 0;

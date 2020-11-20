@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import { Colors, BASE_URL } from "../lib/constants";
 import Meta from "./Meta";
-import { Small } from "./typography";
 
 import { Twitter } from "../components/Icon";
 import Image from "next/image";
@@ -14,7 +13,7 @@ import PostCTA from "./PostCTA";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
-const ReadMoreLink = styled(Small).attrs({ as: "a" })`
+const ReadMoreLink = styled.small.attrs({ as: "a" })`
   width: fit-content;
 `;
 
@@ -157,7 +156,7 @@ function Byline({ date, slug }) {
 
   return (
     <BylineWrapper>
-      <Small>{dateStr}</Small>
+      <small>{dateStr}</small>
       <Twitter
         href={`https://www.twitter.com/share?url=${encodeURIComponent(
           `https://${BASE_URL}/posts/${slug}/`
