@@ -20,15 +20,6 @@ $inter-font-path: "/fonts";
 
 @font-face {
   font-family: "Inter";
-  font-style: italic;
-  font-weight: 400;
-  font-display: $inter-font-display;
-  src: url("#{$inter-font-path}/Inter-Italic.woff2") format("woff2"),
-    url("#{$inter-font-path}/Inter-Italic.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-display: $inter-font-display;

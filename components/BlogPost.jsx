@@ -28,7 +28,6 @@ function ReadMore({ post }) {
 
 const ScrollToTop = styled.a`
   padding-top: 2rem;
-  font-style: italic;
   font-size: 0.75em;
 `;
 
@@ -59,7 +58,6 @@ export const BlogContainer = styled.article`
     padding: 0.1em 1em;
     color: ${Colors.GRAY};
     font-size: 22px;
-    font-style: italic;
   }
 
   /* images with captions */
@@ -138,10 +136,6 @@ function formatDate(date) {
   return `${month} ${day}${suffix}, ${year}`;
 }
 
-const DateComp = styled(Small)`
-  font-style: italic;
-`;
-
 const BylineWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -163,7 +157,7 @@ function Byline({ date, slug }) {
 
   return (
     <BylineWrapper>
-      <DateComp>{dateStr}</DateComp>
+      <Small>{dateStr}</Small>
       <Twitter
         href={`https://www.twitter.com/share?url=${encodeURIComponent(
           `https://${BASE_URL}/posts/${slug}/`

@@ -120,12 +120,6 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/fonts/Inter-Italic.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
             href="/fonts/Inter-Bold.woff2"
             as="font"
             crossOrigin=""
