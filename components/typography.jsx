@@ -10,7 +10,7 @@ const HeadingDefaults = `
   font-weight: bold;
 
   line-height: 1.7;
-  margin: 1em 0 15px;
+  margin: 1em 0 1rem;
   padding: 0;
 
   @media screen and (max-width: 640px) {
@@ -68,6 +68,6 @@ export const H4 = styled.h4`
 `;
 
 export const Small = styled.small`
-  font-size: 16px;
-  letter-spacing: -0.011em;
+  font-size: 14px;
+  letter-spacing: -0.006em;
 `;

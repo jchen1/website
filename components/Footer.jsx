@@ -10,10 +10,14 @@ const Button = styled.div`
 `;
 
 const FooterContainer = styled.footer`
-  margin-top: 50px;
+  margin-top: 1rem;
   padding: 20px 0;
   text-align: center;
   border-top: 1px solid ${Colors.LIGHT_GRAY};
+
+  @media screen and (min-width: 640px) {
+    margin-top: 50px;
+  }
 
   width: 100%;
 `;
@@ -22,19 +26,19 @@ export default function Footer() {
   return (
     <FooterContainer>
       <Button>
-        <Envelope eventLabel="footer" />
+        <Envelope eventAction="footer-cta-click" />
       </Button>
       <Button>
-        <Github eventLabel="footer" />
+        <Github eventAction="footer-cta-click" />
       </Button>
       <Button>
-        <Twitter eventLabel="footer" />
+        <Twitter eventAction="footer-cta-click" />
       </Button>
       <Button>
-        <Linkedin eventLabel="footer" />
+        <Linkedin eventAction="footer-cta-click" />
       </Button>
       <Button>
-        <RSS eventLabel="footer" />
+        <RSS eventAction="footer-cta-click" />
       </Button>
     </FooterContainer>
   );

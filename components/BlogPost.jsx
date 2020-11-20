@@ -10,6 +10,7 @@ import { Small } from "./typography";
 import { Twitter } from "../components/Icon";
 import Image from "next/image";
 import Tags from "./Tags";
+import PostCTA from "./PostCTA";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
@@ -273,15 +274,18 @@ export default function BlogPost({ post, opts = {} }) {
         )}
         {readMore ? <ReadMore post={post} /> : ""}
         {showScroll ? (
-          <ScrollToTop
-            href=""
-            onClick={e => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            Scroll to top
-          </ScrollToTop>
+          <>
+            <PostCTA />
+            <ScrollToTop
+              href=""
+              onClick={e => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Scroll to top
+            </ScrollToTop>
+          </>
         ) : (
           ""
         )}

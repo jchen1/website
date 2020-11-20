@@ -27,6 +27,7 @@ function Icon({
   label,
   target,
   eventAction,
+  eventCategory,
   eventLabel,
   className,
   rel,
@@ -43,7 +44,13 @@ function Icon({
       <IconComponent
         width={size || ICON_SIZE}
         height={size || ICON_SIZE}
-        onClick={() => event({ action: eventAction, label: eventLabel })}
+        onClick={() =>
+          event({
+            action: eventAction || "click",
+            label: eventLabel,
+            category: eventCategory || "cta",
+          })
+        }
       />
     </Button>
   );
@@ -53,7 +60,7 @@ export function Envelope(props) {
   return (
     <Icon
       {...{
-        eventAction: "email",
+        eventLabel: "email",
         href: "mailto:hello@jeff.yt",
         label: "Send me an email!",
         IconComponent: EnvelopeIcon,
@@ -67,7 +74,7 @@ export function Github(props) {
   return (
     <Icon
       {...{
-        eventAction: "github",
+        eventLabel: "github",
         href: "https://github.com/jchen1",
         label: "@jchen1 on GitHub",
         rel: "noopener",
@@ -83,7 +90,7 @@ export function Twitter(props) {
   return (
     <Icon
       {...{
-        eventAction: "twitter",
+        eventLabel: "twitter",
         href: "https://www.twitter.com/iambald",
         label: "@iambald on Twitter",
         rel: "noopener",
@@ -99,7 +106,7 @@ export function Linkedin(props) {
   return (
     <Icon
       {...{
-        eventAction: "linkedin",
+        eventLabel: "linkedin",
         href: "https://www.linkedin.com/in/jchen94",
         label: "LinkedIn",
         rel: "noopener",
@@ -115,7 +122,7 @@ export function RSS(props) {
   return (
     <Icon
       {...{
-        eventAction: "rss",
+        eventLabel: "rss",
         href: "/rss-feed.xml",
         label: "Subscribe via RSS",
         IconComponent: RSSIcon,

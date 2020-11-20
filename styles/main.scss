@@ -55,6 +55,11 @@ body {
   font: 18px/1.6 $font-face;
   letter-spacing: -0.014em;
   color: $darkGray;
+
+  @include mobile {
+    font: 16px/1.6 $font-face;
+    letter-spacing: -0.011em;
+  }
 }
 
 h1,
@@ -123,7 +128,7 @@ h4 {
 }
 
 p {
-  margin: 15px 0;
+  margin: 1rem 0;
 }
 
 a {
@@ -138,7 +143,7 @@ a {
 
 ul,
 ol {
-  margin: 15px 0;
+  margin: 1rem 0;
   padding-left: 30px;
 }
 
@@ -180,6 +185,11 @@ img {
 small {
   font-size: 16px;
   letter-spacing: -0.011em;
+
+  @include mobile {
+    font-size: 14px;
+    letter-spacing: -0.006em;
+  }
 }
 
 // Specify the color of the selection

@@ -146,7 +146,13 @@ export default function Header() {
           </Link>
           <a
             href="/resume/index.html"
-            onClick={() => event({ action: "resume", label: "header" })}
+            onClick={() =>
+              event({
+                action: "header-cta-click",
+                label: "resume",
+                category: "cta",
+              })
+            }
           >
             Résumé
           </a>
