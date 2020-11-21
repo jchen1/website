@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import {
-  MainContainer,
-  TabContainer,
-  TitleContainer,
-} from "../components/containers";
+import MainContainer from "../components/containers/MainContainer";
+
+import TabContainer from "../components/containers/TabContainer";
+import TitleContainer from "../components/containers/TitleContainer";
 
 import { Colors, Plots, FrequentMetrics, metricType } from "../lib/constants";
 import { useGlobalState, addMetrics } from "../lib/state";

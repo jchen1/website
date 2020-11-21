@@ -4,7 +4,7 @@ import Router, { useRouter } from "next/router";
 import "../styles/main.scss";
 import "uplot/dist/uPlot.min.css";
 
-import { RootContainer } from "../components/containers";
+import RootContainer from "../components/containers/RootContainer";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 

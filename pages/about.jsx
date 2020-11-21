@@ -1,5 +1,5 @@
 import React from "react";
-import { MainContainer } from "../components/containers";
+import MainContainer from "../components/containers/MainContainer";
 import { getPageBySlug, markdownToHtml } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 
