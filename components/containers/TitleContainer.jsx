@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default TitleContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   margin: 0 0 1rem 0;
   align-items: center;
@@ -11,3 +11,5 @@ export default TitleContainer = styled.div`
     margin: 0;
   }
 `;
+
+export default TitleContainer;

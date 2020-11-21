@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default RootContainer = styled.div`
+const RootContainer = styled.div`
   min-height: 100vh;
   padding: 0 2rem;
   display: flex;
@@ -15,3 +15,4 @@ export default RootContainer = styled.div`
     padding: 0 1rem;
   }
 `;
+export default RootContainer;

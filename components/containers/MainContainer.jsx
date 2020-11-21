@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default MainContainer = styled.main`
+const MainContainer = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -8,3 +8,5 @@ export default MainContainer = styled.main`
   align-items: center;
   width: 100%;
 `;
+
+export default MainContainer;

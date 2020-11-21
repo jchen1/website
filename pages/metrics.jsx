@@ -7,7 +7,8 @@ import MainContainer from "../components/containers/MainContainer";
 import TabContainer from "../components/containers/TabContainer";
 import TitleContainer from "../components/containers/TitleContainer";
 
-import { Colors, Plots, FrequentMetrics, metricType } from "../lib/constants";
+import { Plots, FrequentMetrics, metricType } from "../lib/metrics";
+import { Colors } from "../lib/constants";
 import { useGlobalState, addMetrics } from "../lib/state";
 import { Plot } from "../components/charts";
 import { transformEvents } from "../lib/util";
