@@ -9,7 +9,7 @@ import {
   POST_FIELDS,
 } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
-import { MainContainer } from "../../components/containers";
+import MainContainer from "../../components/containers/MainContainer";
 
 import BlogPost from "../../components/BlogPost";
 

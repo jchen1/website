@@ -1,5 +1,5 @@
 import React from "react";
-import { MainContainer } from "../components/containers";
+import MainContainer from "../components/containers/MainContainer";
 import { getProjects } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 import styled from "styled-components";

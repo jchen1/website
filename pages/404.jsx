@@ -1,4 +1,4 @@
-import { MainContainer } from "../components/containers";
+import MainContainer from "../components/containers/MainContainer";
 
 export default function Custom404() {
   return (

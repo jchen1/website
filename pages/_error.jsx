@@ -1,4 +1,4 @@
-import { MainContainer } from "../components/containers";
+import MainContainer from "../components/containers/MainContainer";
 
 const statusCodes = {
   400: "Bad Request",
