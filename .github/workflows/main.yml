@@ -32,7 +32,7 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Build & analyze
-        run: npm run build
+        run: npm run analyze
       
       - name: Upload
         uses: actions/upload-artifact@v2
