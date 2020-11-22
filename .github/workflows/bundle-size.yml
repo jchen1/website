@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Analyze
+name: Analyze Bundle Size
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   pull_request:
 
@@ -20,25 +20,25 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '15.x'
-      
+          node-version: "15.x"
+
       - name: Install
-        run: npm install && mkdir -p .next/analyze
-        
+        uses: bahmutov/npm-install@v1
+
       # Runs a set of commands using the runners shell
       - name: Build & analyze
-        run: npm run analyze | tee .next/analyze/output.txt
-      
+        run: mkdir -p .next/analyze && npm run analyze | tee .next/analyze/output.txt
+
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: client.html
           path: .next/analyze/client.html
-          
+
       - name: Find Current Pull Request
         uses: jwalton/gh-find-current-pr@v1.0.2
         id: find-pr
@@ -49,14 +49,16 @@ jobs:
         id: get-comment-body
         env:
           PR: ${{ steps.find-pr.outputs.number }}
+          PR2: ${{ github.event.number }}
         run: |
-          echo "PR IS $(PR)"
+          echo "PR IS $PR"
+          echo "PR2 IS $PR2"
           body=$(echo "\`\`\`\n`sed '1,/Page/d' yo.txt`\n\`\`\`")
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}" 
           echo ::set-output name=body::$body
-          
+
       - name: Create Comment
         uses: peter-evans/create-or-update-comment@v1.4.4
         if: success() && steps.find-pr.outputs.number
