@@ -10,7 +10,7 @@ import {
 } from "../lib/blogs";
 import { sizeImage } from "../lib/util";
 
-import BlogPost from "../components/BlogPost";
+import BlogSnippet from "../components/BlogSnippet";
 import ErrorPage from "next/error";
 import Pagination from "../components/Pagination";
 
@@ -22,10 +22,10 @@ export default function IndexPage(props) {
   }
 
   const postMarkup = posts.map((post, idx) => (
-    <BlogPost
+    <BlogSnippet
       key={post.title}
       post={post}
-      opts={{ readMore: true, setTitle: false, preloadHero: idx === 0 }}
+      opts={{ preloadHero: idx === 0 }}
     />
   ));
 
@@ -45,8 +45,8 @@ export async function getStaticProps({ params }) {
 
   const posts = await Promise.all(
     allPosts.slice(start, start + POSTS_PER_PAGE).map(async post => {
-      const content = await markdownToHtml(post.content || "");
-      delete content.contentHTML;
+      const excerptHTML = (await markdownToHtml(post.content || ""))
+        .excerptHTML;
       delete post.content;
 
       const heroImageSize = (function () {
@@ -58,7 +58,7 @@ export async function getStaticProps({ params }) {
 
       return {
         ...post,
-        ...content,
+        excerptHTML,
         heroImageSize,
       };
     })
