@@ -8,10 +8,13 @@ import { Colors, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 import { useRouter } from "next/router";
 
 const PROFILE_SIZE = 80;
+const HEADER_COLOR = Colors.DARKER_GRAY;
+const HEADER_TEXT_COLOR = Colors.WHITE;
+const DESCRIPTION_TEXT_COLOR = Colors.WHITE;
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.div`
   padding: 20px 0;
-  max-width: 740px;
+  max-width: min(100%, 45rem);
 
   display: flex;
   justify-content: space-between;
@@ -21,15 +24,15 @@ const HeaderContainer = styled.header`
   @media screen and (max-width: 640px) {
     text-align: center;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 10px 0 20px;
   }
 `;
 
-const Masthead = styled.div`
-  margin-bottom: 50px;
+const Masthead = styled.header`
   width: 100%;
-  max-width: 1400px;
-  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
+  margin: 0 auto 50px;
+
+  background-color: ${HEADER_COLOR};
 
   @media screen and (max-width: 640px) {
     margin-bottom: 25px;
@@ -44,7 +47,7 @@ const Nav = styled.nav`
 
   a {
     margin-left: 20px;
-    color: ${Colors.DARK_GRAY};
+    color: ${HEADER_TEXT_COLOR};
     text-align: right;
     font-weight: 700;
     text-decoration: none;
@@ -62,7 +65,7 @@ const Nav = styled.nav`
 
 const Description = styled.p`
   margin: -5px 0 0 0;
-  color: ${Colors.GRAY};
+  color: ${DESCRIPTION_TEXT_COLOR};
   font-size: 16px;
 
   @media screen and (max-width: 640px) {
@@ -76,7 +79,7 @@ const SiteInfo = styled.div`
 `;
 
 const SiteName = styled.h1`
-  color: ${Colors.DARK_GRAY};
+  color: ${HEADER_TEXT_COLOR};
   margin: 0;
 
   @media screen and (max-width: 640px) {
@@ -117,7 +120,7 @@ export default function Header() {
           <Link href="/" prefetch={prefetch}>
             <SiteAvatar aria-label="Home">
               <Image
-                src="/images/profile.jpg"
+                src="/images/headshot-80.jpg"
                 alt="Profile Picture"
                 height={PROFILE_SIZE}
                 width={PROFILE_SIZE}
