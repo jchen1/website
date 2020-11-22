@@ -44,8 +44,8 @@ export async function getStaticProps({ params }) {
     getAllPosts(POST_FIELDS)
       .filter(post => post.tags.split(",").includes(tag))
       .map(async post => {
-        const content = await markdownToHtml(post.content || "");
-        delete content.contentHTML;
+        const excerptHTML = (await markdownToHtml(post.content || ""))
+          .excerptHTML;
         delete post.content;
 
         const heroImageSize = (function () {
@@ -54,9 +54,10 @@ export async function getStaticProps({ params }) {
           }
           return {};
         })();
+
         return {
           ...post,
-          ...content,
+          excerptHTML,
           heroImageSize,
         };
       })

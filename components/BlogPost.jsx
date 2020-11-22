@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
-import { Colors, BASE_URL } from "../lib/constants";
+import { BASE_URL } from "../lib/constants";
 
 import Meta from "./Meta";
-import formatDate from "../lib/util/formatDate";
-
-import { Twitter } from "./Icon";
 import { BlogContainer, Border } from "../components/containers/BlogContainer";
+import Byline from "./Byline";
+
 import Title from "./Title";
 import Tags from "./Tags";
 import PostCTA from "./PostCTA";
@@ -21,41 +18,6 @@ const ScrollToTop = styled.a`
   padding-top: 2rem;
   font-size: 0.75em;
 `;
-
-const BylineWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: ${Colors.GRAY};
-
-  svg {
-    fill: ${Colors.GRAY};
-  }
-
-  > * {
-    padding-right: 0.5em;
-  }
-`;
-
-function Byline({ date, slug }) {
-  const dateStr = formatDate(new Date(date));
-
-  return (
-    <BylineWrapper>
-      <small>{dateStr}</small>
-      <Twitter
-        href={`https://www.twitter.com/share?url=${encodeURIComponent(
-          `https://${BASE_URL}/posts/${slug}/`
-        )}`}
-        label="Tweet this post"
-        eventLabel="post"
-        circle={true}
-        size={25}
-      />
-    </BylineWrapper>
-  );
-}
 
 // https://github.com/christo-pr/dangerously-set-html-content/blob/master/src/index.js
 function InnerHTML(props) {
