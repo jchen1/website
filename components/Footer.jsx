@@ -5,21 +5,25 @@ import { Envelope, Github, Twitter, Linkedin, RSS } from "../components/Icon";
 import { Colors } from "../lib/constants";
 
 const Button = styled.div`
-  display: inline-block;
+  display: inline-flex;
   padding: 5px 7px;
 `;
 
 const FooterContainer = styled.footer`
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 20px 0;
   text-align: center;
-  border-top: 1px solid ${Colors.LIGHT_GRAY};
 
   @media screen and (min-width: 640px) {
     margin-top: 50px;
   }
 
   width: 100%;
+  background-color: ${Colors.DARKER_GRAY};
+
+  svg {
+    fill: ${Colors.WHITE};
+  }
 `;
 
 export default function Footer() {

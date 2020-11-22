@@ -14,7 +14,7 @@ const TagItem = styled.li`
   display: inline;
   padding: 2px 8px;
   margin: 0 5px 5px 0;
-  background-color: ${Colors.DARK_GRAY};
+  background-color: ${Colors.DARKER_GRAY};
   border-radius: 5px;
 
   &:hover {

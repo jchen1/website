@@ -7,7 +7,6 @@ const RootContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
 
