@@ -13,7 +13,7 @@ const HEADER_TEXT_COLOR = Colors.WHITE;
 const DESCRIPTION_TEXT_COLOR = Colors.WHITE;
 
 const HeaderContainer = styled.div`
-  padding: 20px 0;
+  padding: 30px 0;
   max-width: min(100%, 45rem);
 
   display: flex;
@@ -24,7 +24,7 @@ const HeaderContainer = styled.div`
   @media screen and (max-width: 640px) {
     text-align: center;
     flex-direction: column;
-    padding: 10px 0 20px;
+    padding: 15px 0 30px;
   }
 `;
 
