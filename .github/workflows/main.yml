@@ -4,7 +4,7 @@ name: Analyze
 
 # Controls when the action will run. 
 on:
-  push:
+  pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,4 +37,28 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: client.html
-          path: .next/analyze/
+          path: .next/analyze/client.html
+          
+      - name: Find Current Pull Request
+        uses: jwalton/gh-find-current-pr@v1.0.2
+        id: find-pr
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get comment body
+        id: get-comment-body
+        if: success() && steps.find-pr.outputs.number
+        run: |
+          body=$(echo "\`\`\`\n`sed '1,/Page/d' yo.txt`\n\`\`\`")
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}" 
+          echo ::set-output name=body::$body
+          
+      - name: Create Comment
+        uses: peter-evans/create-or-update-comment@v1.4.4
+        if: success() && steps.find-pr.outputs.number
+        with:
+          issue-number: ${{ steps.find-pr.outputs.number }}
+          body: ${{ steps.get-comment-body.outputs.body }}
+
