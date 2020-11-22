@@ -6,7 +6,7 @@ import MainContainer from "../../components/containers/MainContainer";
 import { getAllPosts, markdownToHtml, POST_FIELDS } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
 
-import BlogPost from "../../components/BlogPost";
+import BlogSnippet from "../../components/BlogSnippet";
 import ErrorPage from "next/error";
 
 const Title = styled.h3`
@@ -22,11 +22,11 @@ export default function IndexPage(props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const postMarkup = posts.map(post => (
-    <BlogPost
+  const postMarkup = posts.map((post, idx) => (
+    <BlogSnippet
       key={post.title}
       post={post}
-      opts={{ readMore: true, setTitle: false }}
+      opts={{ preloadHero: idx === 0 }}
     />
   ));
 

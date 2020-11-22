@@ -1,26 +1,29 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 import { Colors, BASE_URL } from "../lib/constants";
-
-import Meta from "./Meta";
 import formatDate from "../lib/util/formatDate";
 
 import { Twitter } from "./Icon";
-import { BlogContainer, Border } from "../components/containers/BlogContainer";
 import Title from "./Title";
+import { BlogContainer, Border } from "./containers/BlogContainer";
 import Tags from "./Tags";
-import PostCTA from "./PostCTA";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
-const ScrollToTop = styled.a`
-  padding-top: 2rem;
-  font-size: 0.75em;
+const ReadMoreLink = styled.small.attrs({ as: "a" })`
+  width: fit-content;
 `;
+
+function ReadMore({ post }) {
+  return (
+    <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
+      <ReadMoreLink>Read More →</ReadMoreLink>
+    </Link>
+  );
+}
 
 const BylineWrapper = styled.div`
   display: flex;
@@ -57,35 +60,19 @@ function Byline({ date, slug }) {
   );
 }
 
-// https://github.com/christo-pr/dangerously-set-html-content/blob/master/src/index.js
-function InnerHTML(props) {
-  const { html, ...rest } = props;
-  const divRef = useRef(null);
-
-  useEffect(() => {
-    if (!html) return;
-
-    const slotHtml = document.createRange().createContextualFragment(html); // Create a 'tiny' document and parse the html string
-    divRef.current.innerHTML = ""; // Clear the container
-    divRef.current.appendChild(slotHtml); // Append the new content
-  }, [html]);
-
-  return <div {...rest} ref={divRef}></div>;
-}
-
 const HeroImageContainer = styled.div`
   padding: 15px 0;
 `;
 
-export default function BlogPost({ post, opts = {} }) {
+// Just a snippet!
+export default function BlogSnippet({ post, opts = {} }) {
   const {
     title,
     homepage,
     date,
     slug,
-    author,
     heroImage,
-    contentHTML,
+    excerptHTML,
     excerpt,
     heroImageSize,
     tags,
@@ -93,10 +80,7 @@ export default function BlogPost({ post, opts = {} }) {
 
   const {
     noLink,
-    showDate,
     headingLevel,
-    setTitle,
-    showScroll,
     preloadHero,
   } = opts;
 
@@ -105,21 +89,11 @@ export default function BlogPost({ post, opts = {} }) {
       ? excerpt.substring(0, DESCRIPTION_MAX_LENGTH - 3) + "..."
       : excerpt;
 
-  const meta = {
-    title: title,
-    "og:title": title,
-    description: description,
-    "og:image": `https://${BASE_URL}${heroImage || "/images/profile.jpg"}`,
-    "twitter:card": heroImage ? "summary_large_image" : "summary",
-    "og:type": "article",
-  };
-
   const tagArray = (tags || "").split(",");
 
   return (
     <>
       <BlogContainer>
-        {setTitle !== false && <Meta {...meta} />}
         <Title
           headingLevel={headingLevel}
           title={title}
@@ -127,7 +101,7 @@ export default function BlogPost({ post, opts = {} }) {
           homepage={homepage}
           noLink={noLink}
         />
-        {showDate !== false && <Byline date={date} slug={slug} />}
+        <Byline date={date} slug={slug} />
         <Tags tags={tagArray} />
         {heroImage && (
           <HeroImageContainer>
@@ -142,25 +116,8 @@ export default function BlogPost({ post, opts = {} }) {
             />
           </HeroImageContainer>
         )}
-        {/\<script\>/.test(contentHTML) ? (
-          <InnerHTML html={contentHTML} />
-        ) : (
-          <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
-        )}
-        {showScroll && (
-          <>
-            <PostCTA />
-            <ScrollToTop
-              href=""
-              onClick={e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-            >
-              Scroll to top
-            </ScrollToTop>
-          </>
-        )}
+        <div dangerouslySetInnerHTML={{ __html: excerptHTML }} />
+        <ReadMore post={post} />
       </BlogContainer>
       <Border />
     </>

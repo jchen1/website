@@ -10,7 +10,7 @@ import {
 } from "../lib/blogs";
 import { sizeImage } from "../lib/util";
 
-import BlogPost from "../components/BlogPost";
+import BlogSnippet from "../components/BlogSnippet";
 import ErrorPage from "next/error";
 import Pagination from "../components/Pagination";
 
@@ -22,10 +22,10 @@ export default function IndexPage(props) {
   }
 
   const postMarkup = posts.map((post, idx) => (
-    <BlogPost
+    <BlogSnippet
       key={post.title}
       post={post}
-      opts={{ readMore: true, setTitle: false, preloadHero: idx === 0 }}
+      opts={{ preloadHero: idx === 0 }}
     />
   ));
 
