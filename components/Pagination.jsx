@@ -6,7 +6,7 @@ import Link from "next/link";
 // TODO - have "..." when pages.length > MAX_PAGES_TO_DISPLAY
 const MAX_PAGES_TO_DISPLAY = 5;
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
   padding: 2rem 0 0;
 `;
