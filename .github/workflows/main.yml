@@ -27,14 +27,14 @@ jobs:
           node-version: '15.x'
       
       - name: Install
-        run: npm install
+        run: npm install && mkdir -p .next/analyze
         
       # Runs a set of commands using the runners shell
       - name: Build & analyze
-        run: npm run analyze
+        run: npm run analyze | tee .next/analyze/output.txt
       
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: client.html
-          path: .next/analyze/client.html
+          path: .next/analyze/
