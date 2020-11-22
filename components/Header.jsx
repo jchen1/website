@@ -41,8 +41,7 @@ const Masthead = styled.header`
 
 const Nav = styled.nav`
   @media screen and (max-width: 640px) {
-    margin-top: 9px;
-    font-size: 16px;
+    margin-top: 10px;
   }
 
   a {
@@ -120,7 +119,7 @@ export default function Header() {
           <Link href="/" prefetch={prefetch}>
             <SiteAvatar aria-label="Home">
               <Image
-                src="/images/headshot-80.jpg"
+                src="/images/headshot-160.jpg"
                 alt="Profile Picture"
                 height={PROFILE_SIZE}
                 width={PROFILE_SIZE}
