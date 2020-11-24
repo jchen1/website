@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Colors } from "../../lib/constants";
 
-export const BlogContainer = styled.article`
+const BlogArticle = styled.article`
   width: 100%;
 
   display: grid;
@@ -42,7 +42,7 @@ export const BlogContainer = styled.article`
   }
 `;
 
-export const Border = styled.div`
+const Border = styled.div`
   padding-bottom: 2em;
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};
   width: min(45rem, 100%);
@@ -53,3 +53,12 @@ export const Border = styled.div`
     border-bottom: none;
   }
 `;
+
+export default function BlogContainer({ children }) {
+  return (
+    <>
+      <BlogArticle>{children}</BlogArticle>
+      <Border />
+    </>
+  );
+}

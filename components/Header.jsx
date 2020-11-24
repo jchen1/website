@@ -140,6 +140,9 @@ export default function Header() {
           </SiteInfo>
         </HeaderLeft>
         <Nav>
+          <Link href="/archive">
+            <a>Archive</a>
+          </Link>
           <Link href="/about">
             <a>About</a>
           </Link>
@@ -158,9 +161,6 @@ export default function Header() {
           >
             Résumé
           </a>
-          <Link href="/metrics">
-            <a>Metrics</a>
-          </Link>
         </Nav>
       </HeaderContainer>
     </Masthead>

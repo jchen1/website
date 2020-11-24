@@ -5,13 +5,11 @@ import BlogPost from "../components/BlogPost";
 import styled from "styled-components";
 import Meta from "../components/Meta";
 
-const Title = styled.div`
+const Title = styled.h1`
   width: min(45rem, 100%);
   text-align: left;
 
-  > h1 {
-    margin-top: 0;
-  }
+  margin-top: 0;
 `;
 
 export default function Projects({ projects }) {
@@ -23,10 +21,7 @@ export default function Projects({ projects }) {
   return (
     <MainContainer>
       <Meta {...metas} />
-
-      <Title>
-        <h1>Projects</h1>
-      </Title>
+      <Title>Projects</Title>
       {projects.map(project => (
         <BlogPost
           key={project.title}

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { BASE_URL } from "../lib/constants";
 
 import Meta from "./Meta";
-import { BlogContainer, Border } from "../components/containers/BlogContainer";
+import BlogContainer from "../components/containers/BlogContainer";
 import Byline from "./Byline";
 
 import Title from "./Title";
@@ -79,52 +79,49 @@ export default function BlogPost({ post, opts = {} }) {
   const tagArray = (tags || "").split(",");
 
   return (
-    <>
-      <BlogContainer>
-        {setTitle !== false && <Meta {...meta} />}
-        <Title
-          headingLevel={headingLevel}
-          title={title}
-          slug={slug}
-          homepage={homepage}
-          noLink={noLink}
-        />
-        {showDate !== false && <Byline date={date} slug={slug} />}
-        <Tags tags={tagArray} />
-        {heroImage && (
-          <HeroImageContainer>
-            <Image
-              src={heroImage}
-              alt={title}
-              width={heroImageSize.width}
-              height={heroImageSize.height}
-              layout="responsive"
-              priority={preloadHero === true}
-              loading={preloadHero === true ? "eager" : "lazy"}
-            />
-          </HeroImageContainer>
-        )}
-        {/\<script\>/.test(contentHTML) ? (
-          <InnerHTML html={contentHTML} />
-        ) : (
-          <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
-        )}
-        {showScroll && (
-          <>
-            <PostCTA />
-            <ScrollToTop
-              href=""
-              onClick={e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-            >
-              Scroll to top
-            </ScrollToTop>
-          </>
-        )}
-      </BlogContainer>
-      <Border />
-    </>
+    <BlogContainer>
+      {setTitle !== false && <Meta {...meta} />}
+      <Title
+        headingLevel={headingLevel}
+        title={title}
+        slug={slug}
+        homepage={homepage}
+        noLink={noLink}
+      />
+      {showDate !== false && <Byline date={date} slug={slug} />}
+      <Tags tags={tagArray} />
+      {heroImage && (
+        <HeroImageContainer>
+          <Image
+            src={heroImage}
+            alt={title}
+            width={heroImageSize.width}
+            height={heroImageSize.height}
+            layout="responsive"
+            priority={preloadHero === true}
+            loading={preloadHero === true ? "eager" : "lazy"}
+          />
+        </HeroImageContainer>
+      )}
+      {/\<script\>/.test(contentHTML) ? (
+        <InnerHTML html={contentHTML} />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
+      )}
+      {showScroll && (
+        <>
+          <PostCTA />
+          <ScrollToTop
+            href=""
+            onClick={e => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Scroll to top
+          </ScrollToTop>
+        </>
+      )}
+    </BlogContainer>
   );
 }

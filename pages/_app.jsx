@@ -1,5 +1,6 @@
 import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
+import styled from "styled-components";
 
 import "../styles/main.scss";
 import "uplot/dist/uPlot.min.css";
@@ -19,6 +20,13 @@ Router.events.on("routeChangeComplete", url => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
+const RealRoot = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
@@ -33,14 +41,14 @@ function MyApp({ Component, pageProps }) {
     "og:type": "website",
   };
   return (
-    <>
+    <RealRoot>
       <Meta {...metas} />
       <Header />
       <RootContainer>
         <Component {...pageProps} />
       </RootContainer>
       <Footer />
-    </>
+    </RealRoot>
   );
 }
 
