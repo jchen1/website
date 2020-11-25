@@ -9,11 +9,11 @@ import styles from "styles/pages/archive.module.scss";
 export function ArchiveItem({ title, date, slug }) {
   return (
     <div className={styles.wrapper}>
-      <h3 className={styles.item}>
+      <h4 className={styles.item}>
         <Link href={`/posts/${slug}`} passHref prefetch={false}>
-          {title}
+          <a>{title}</a>
         </Link>
-      </h3>
+      </h4>
       <p className={styles.date}>{date}</p>
     </div>
   );
