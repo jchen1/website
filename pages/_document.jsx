@@ -147,6 +147,9 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <style type="text/css">* {
+  transition: color 0.25s ease, background-color 0.25s ease, fill 0.25s ease;
+}</style>
       </Html>
     );
   }
