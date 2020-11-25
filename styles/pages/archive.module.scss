@@ -9,7 +9,7 @@
   margin: 0.5rem 0;
 
   @include mobile {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: flex-start;
   }
 }
