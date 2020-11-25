@@ -1,28 +1,21 @@
 import React from "react";
-import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+
+import styles from "styles/components/Blog.module.scss";
 
 import Byline from "./Byline";
 import Title from "./Title";
 import BlogContainer from "./containers/BlogContainer";
 import Tags from "./Tags";
 
-const ReadMoreLink = styled.small.attrs({ as: "a" })`
-  width: fit-content;
-`;
-
 function ReadMore({ post }) {
   return (
     <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
-      <ReadMoreLink>Read More →</ReadMoreLink>
+      <a className={styles.readMore}>Read More →</a>
     </Link>
   );
 }
-
-const HeroImageContainer = styled.div`
-  padding: 15px 0;
-`;
 
 // Just a snippet!
 export default function BlogSnippet({ post, opts = {} }) {
@@ -53,7 +46,7 @@ export default function BlogSnippet({ post, opts = {} }) {
       <Byline date={date} slug={slug} />
       <Tags tags={tagArray} />
       {heroImage && (
-        <HeroImageContainer>
+        <div className={styles.imgContainer}>
           <Image
             src={heroImage}
             alt={title}
@@ -63,7 +56,7 @@ export default function BlogSnippet({ post, opts = {} }) {
             priority={preloadHero === true}
             loading={preloadHero === true ? "eager" : "lazy"}
           />
-        </HeroImageContainer>
+        </div>
       )}
       <div dangerouslySetInnerHTML={{ __html: excerptHTML }} />
       <ReadMore post={post} />

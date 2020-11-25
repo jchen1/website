@@ -1,30 +1,14 @@
-import styled from "styled-components";
-
-import { Colors, BASE_URL } from "../lib/constants";
+import { BASE_URL } from "../lib/constants";
 import formatDate from "../lib/util/formatDate";
 import { Twitter } from "./Icon";
 
-const BylineWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: ${Colors.GRAY};
-
-  svg {
-    fill: ${Colors.GRAY};
-  }
-
-  > * {
-    padding-right: 0.5em;
-  }
-`;
+import styles from "styles/components/Byline.module.scss";
 
 export default function Byline({ date, slug }) {
   const dateStr = formatDate(new Date(date));
 
   return (
-    <BylineWrapper>
+    <div className={styles.byline}>
       <small>{dateStr}</small>
       <Twitter
         href={`https://www.twitter.com/share?url=${encodeURIComponent(
@@ -35,6 +19,6 @@ export default function Byline({ date, slug }) {
         circle={true}
         size={25}
       />
-    </BylineWrapper>
+    </div>
   );
 }

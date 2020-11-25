@@ -1,0 +1,23 @@
+@import "../variables";
+
+.button {
+  display: inline-flex;
+  padding: 5px 7px;
+}
+
+.container {
+  margin-top: 2rem;
+  padding: 20px 0;
+  text-align: center;
+
+  width: 100%;
+  background-color: $darkerGray;
+
+  svg {
+    fill: $white;
+  }
+
+  @include mobile {
+    margin-top: 50px;
+  }
+}

@@ -2,15 +2,7 @@ import React from "react";
 import MainContainer from "../components/containers/MainContainer";
 import { getProjects } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
-import styled from "styled-components";
 import Meta from "../components/Meta";
-
-const Title = styled.h1`
-  width: min(45rem, 100%);
-  text-align: left;
-
-  margin-top: 0;
-`;
 
 export default function Projects({ projects }) {
   const metas = {
@@ -21,7 +13,7 @@ export default function Projects({ projects }) {
   return (
     <MainContainer>
       <Meta {...metas} />
-      <Title>Projects</Title>
+      <h1 className="title">Projects</h1>
       {projects.map(project => (
         <BlogPost
           key={project.title}

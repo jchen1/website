@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: min(100%, 45rem);
+  margin: 0.5rem 0;
+}
+
+.date {
+  margin: 0;
+}
+
+.item {
+  margin: 0;
+}

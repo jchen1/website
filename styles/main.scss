@@ -33,7 +33,6 @@ $inter-font-path: "/fonts";
 
 * {
   font-family: $font-face;
-  transition: color 0.25s ease, background-color 0.25s ease, fill 0.25s ease;
 }
 
 html {
@@ -189,6 +188,17 @@ small {
   background: $black;
 }
 
+/****************/
+/* APP SPECIFIC */
+/****************/
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .placement-overlay {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
@@ -198,6 +208,13 @@ small {
   z-index: 10;
   pointer-events: none;
   font-size: 14px;
+}
+
+h1.title {
+  width: min(45rem, 100%);
+  text-align: left;
+
+  margin-top: 0;
 }
 
 @import "highlights";

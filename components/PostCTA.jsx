@@ -1,22 +1,15 @@
 import React from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 
 import { event } from "../lib/gtag";
 
-const Wrapper = styled.strong`
-  padding-top: 2rem;
-
-  @media screen and (min-width: 640px) {
-    padding-top: 4rem;
-  }
-`;
+import styles from "styles/components/PostCTA.module.scss";
 
 export default function PostCTA() {
   const router = useRouter();
 
   return (
-    <Wrapper>
+    <strong className={styles.wrapper}>
       Enjoyed this post?{" "}
       <a
         href="https://www.twitter.com/iambald"
@@ -32,6 +25,6 @@ export default function PostCTA() {
         Follow me on Twitter
       </a>{" "}
       for more content like this!
-    </Wrapper>
+    </strong>
   );
 }

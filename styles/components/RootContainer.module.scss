@@ -1,0 +1,12 @@
+@import "../variables";
+
+.container {
+  padding: 0 2rem;
+  flex-grow: 1;
+  width: 100%;
+  margin: 0 auto;
+
+  @include mobile {
+    padding: 0 1rem;
+  }
+}

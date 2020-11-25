@@ -1,8 +1,7 @@
 import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
-import styled from "styled-components";
 
-import "../styles/main.scss";
+import "styles/main.scss";
 import "uplot/dist/uPlot.min.css";
 
 import RootContainer from "../components/containers/RootContainer";
@@ -12,6 +11,7 @@ import Footer from "../components/Footer";
 import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 import { pageview } from "../lib/gtag";
 import Meta from "../components/Meta";
+import { useEffect, useState } from "react";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
@@ -20,15 +20,17 @@ Router.events.on("routeChangeComplete", url => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const RealRoot = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
+// to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
+const transitionStyle =
+  "*{-webkit-transition:color .25s ease,background-color .25s ease,fill .25s ease;transition:color .25s ease,background-color .25s ease,fill .25s ease}";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const metas = {
     title: SITE_TITLE,
@@ -41,14 +43,15 @@ function MyApp({ Component, pageProps }) {
     "og:type": "website",
   };
   return (
-    <RealRoot>
+    <div className="root">
       <Meta {...metas} />
       <Header />
       <RootContainer>
         <Component {...pageProps} />
       </RootContainer>
       <Footer />
-    </RealRoot>
+      {loaded && <style>{transitionStyle}</style>}
+    </div>
   );
 }
 

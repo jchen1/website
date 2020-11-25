@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
 import Image from "next/image";
 
 import { BASE_URL } from "../lib/constants";
+
+import styles from "styles/components/Blog.module.scss";
 
 import Meta from "./Meta";
 import BlogContainer from "../components/containers/BlogContainer";
@@ -13,11 +14,6 @@ import Tags from "./Tags";
 import PostCTA from "./PostCTA";
 
 const DESCRIPTION_MAX_LENGTH = 200;
-
-const ScrollToTop = styled.a`
-  padding-top: 2rem;
-  font-size: 0.75em;
-`;
 
 // https://github.com/christo-pr/dangerously-set-html-content/blob/master/src/index.js
 function InnerHTML(props) {
@@ -34,10 +30,6 @@ function InnerHTML(props) {
 
   return <div {...rest} ref={divRef}></div>;
 }
-
-const HeroImageContainer = styled.div`
-  padding: 15px 0;
-`;
 
 export default function BlogPost({ post, opts = {} }) {
   const {
@@ -91,7 +83,7 @@ export default function BlogPost({ post, opts = {} }) {
       {showDate !== false && <Byline date={date} slug={slug} />}
       <Tags tags={tagArray} />
       {heroImage && (
-        <HeroImageContainer>
+        <div className={styles.imgContainer}>
           <Image
             src={heroImage}
             alt={title}
@@ -101,7 +93,7 @@ export default function BlogPost({ post, opts = {} }) {
             priority={preloadHero === true}
             loading={preloadHero === true ? "eager" : "lazy"}
           />
-        </HeroImageContainer>
+        </div>
       )}
       {/\<script\>/.test(contentHTML) ? (
         <InnerHTML html={contentHTML} />
@@ -111,7 +103,8 @@ export default function BlogPost({ post, opts = {} }) {
       {showScroll && (
         <>
           <PostCTA />
-          <ScrollToTop
+          <a
+            className={styles.scrollToTop}
             href=""
             onClick={e => {
               e.preventDefault();
@@ -119,7 +112,7 @@ export default function BlogPost({ post, opts = {} }) {
             }}
           >
             Scroll to top
-          </ScrollToTop>
+          </a>
         </>
       )}
     </BlogContainer>
