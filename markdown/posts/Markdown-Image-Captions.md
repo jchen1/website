@@ -10,7 +10,11 @@ Although HTML lets developers define `<figure>` elements with images and caption
 
 <!-- excerpt -->
 
-Specifically, let's use this syntax for captions: `![alt text{caption=some caption}](path/to/img.jpg)`. If an image has a caption, instead of producing just an `<img>` HTML element, we'll output a `<figure>` element wrapping an `<img>` and `<figcaption>`. For example:
+Specifically, let's use this syntax for captions: `![alt text{caption=some caption}](path/to/img.jpg)`. If an image has a caption, instead of producing just an `<img>` HTML element, we'll output a `<figure>` element wrapping an `<img>` and `<figcaption>`. For example,
+
+`![example 1{caption=Example caption - here's a picture from my recent trip to Wyoming.}](/images/markdown-image-captions/example-1.jpg)`
+
+produces:
 
 ![example 1{caption=Example caption - here's a picture from my recent trip to Wyoming.}](/images/markdown-image-captions/example-1.jpg)
 
