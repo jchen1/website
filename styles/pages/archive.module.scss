@@ -1,3 +1,5 @@
+@import "../variables";
+
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -5,6 +7,11 @@
   align-items: baseline;
   width: min(100%, 45rem);
   margin: 0.5rem 0;
+
+  @include mobile {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 }
 
 .date {
@@ -13,4 +20,8 @@
 
 .item {
   margin: 0;
+
+  @include mobile {
+    margin-bottom: 0.5rem;
+  }
 }
