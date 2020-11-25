@@ -1,44 +1,21 @@
 import React from "react";
-import styled from "styled-components";
 import Link from "next/link";
 
 import MainContainer from "../components/containers/MainContainer";
 import { ARCHIVE_FIELDS, getAllPosts } from "../lib/blogs";
 
-const ItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  width: min(100%, 45rem);
-  margin: 0.5rem 0;
-`;
-
-const Title = styled.h1`
-  width: min(45rem, 100%);
-  text-align: left;
-
-  margin-top: 0;
-`;
-
-const Date = styled.p`
-  margin: 0;
-`;
-
-const Item = styled.h3`
-  margin: 0;
-`;
+import styles from "styles/pages/archive.module.scss";
 
 export function ArchiveItem({ title, date, slug }) {
   return (
-    <ItemWrapper>
-      <Item>
+    <div className={styles.wrapper}>
+      <h3 className={styles.item}>
         <Link href={`/posts/${slug}`} passHref prefetch={false}>
           {title}
         </Link>
-      </Item>
-      <Date>{date}</Date>
-    </ItemWrapper>
+      </h3>
+      <p className={styles.date}>{date}</p>
+    </div>
   );
 }
 
@@ -49,7 +26,7 @@ export default function Archive(props) {
 
   return (
     <MainContainer>
-      <Title>Post Archive</Title>
+      <h1 className="title">Post Archive</h1>
       {postMarkup}
     </MainContainer>
   );

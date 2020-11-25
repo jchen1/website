@@ -1,0 +1,9 @@
+@import "../variables";
+
+.button {
+  display: inline-flex;
+
+  > svg:hover {
+    fill: $red;
+  }
+}

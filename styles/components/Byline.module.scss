@@ -1,0 +1,17 @@
+@import "../variables";
+
+.byline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: $gray;
+
+  svg {
+    fill: $gray;
+  }
+
+  > * {
+    padding-right: 0.5em;
+  }
+}

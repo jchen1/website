@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
@@ -7,12 +6,6 @@ import MainContainer from "../../components/containers/MainContainer";
 import { ARCHIVE_FIELDS, getAllPosts } from "../../lib/blogs";
 
 import { ArchiveItem } from "../archive";
-
-const Title = styled.h1`
-  text-align: left;
-  width: min(45rem, 100%);
-  margin-top: 0;
-`;
 
 export default function IndexPage(props) {
   const { posts, tag } = props;
@@ -25,7 +18,7 @@ export default function IndexPage(props) {
 
   return (
     <MainContainer>
-      <Title>Posts tagged "{tag}"</Title>
+      <h1 className="title">Posts tagged "{tag}"</h1>
       {postMarkup}
     </MainContainer>
   );

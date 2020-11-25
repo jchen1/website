@@ -1,7 +1,4 @@
-import styled from "styled-components";
-
 import { event } from "../lib/gtag";
-import { Colors } from "../lib/constants";
 
 // https://jam-icons.com/
 import EnvelopeIcon from "../assets/envelope-f.svg";
@@ -11,15 +8,9 @@ import TwitterCircleIcon from "../assets/twitter-circle.svg";
 import LinkedinIcon from "../assets/linkedin.svg";
 import RSSIcon from "../assets/rss-feed.svg";
 
+import styles from "styles/components/Icon.module.scss";
+
 const ICON_SIZE = 30;
-
-const Button = styled.a`
-  display: inline-flex;
-
-  > svg:hover {
-    fill: ${Colors.RED};
-  }
-`;
 
 function Icon({
   IconComponent,
@@ -34,12 +25,12 @@ function Icon({
   size,
 }) {
   return (
-    <Button
+    <a
       href={href}
       aria-label={label}
       rel={rel || ""}
       target={target || "_self"}
-      className={className}
+      className={`${className} ${styles.button}`}
     >
       <IconComponent
         width={size || ICON_SIZE}
@@ -52,7 +43,7 @@ function Icon({
           })
         }
       />
-    </Button>
+    </a>
   );
 }
 

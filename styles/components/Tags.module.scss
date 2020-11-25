@@ -1,0 +1,26 @@
+@import "../variables";
+
+.container {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0 -5px;
+}
+
+.tagItem {
+  display: inline;
+  padding: 2px 8px;
+  margin: 0 5px 5px 0;
+  background-color: $darkerGray;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $red;
+    cursor: pointer;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
