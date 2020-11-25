@@ -20,6 +20,7 @@ Router.events.on("routeChangeComplete", url => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
+// to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
 const transitionStyle =
   "*{-webkit-transition:color .25s ease,background-color .25s ease,fill .25s ease;transition:color .25s ease,background-color .25s ease,fill .25s ease}";
 
