@@ -148,6 +148,13 @@ pre {
 .hljs .hljs-function {
   color: #268bd2;
   // font-weight: bold;
+  .hljs-keyword {
+    color: #cb4b16;
+  }
+
+  .hljs-params {
+    color: #859900;
+  }
 } /* Name.Function */
 .hljs .hljs-nl {
   color: #93a1a1;
