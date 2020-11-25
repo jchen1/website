@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 import { pageview } from "../lib/gtag";
 import Meta from "../components/Meta";
+import { useEffect, useState } from "react";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
@@ -19,8 +20,16 @@ Router.events.on("routeChangeComplete", url => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
+const transitionStyle =
+  "*{-webkit-transition:color .25s ease,background-color .25s ease,fill .25s ease;transition:color .25s ease,background-color .25s ease,fill .25s ease}";
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const metas = {
     title: SITE_TITLE,
@@ -40,6 +49,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </RootContainer>
       <Footer />
+      {loaded && <style>{transitionStyle}</style>}
     </div>
   );
 }
