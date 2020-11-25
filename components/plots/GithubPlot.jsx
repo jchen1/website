@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
 
-import { Colors } from "../../lib/constants";
+import { Colors } from "../../lib/metrics";
 
 const COL_SIZE = 7;
 

@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ResizableContainer from "../containers/ResizableContainer";
-import { Colors } from "../../lib/constants";
+import { Colors } from "../../lib/metrics";
 import { tooltipsPlugin } from "../../lib/chartPlugins";
 
 const defaultSeriesOpts = {

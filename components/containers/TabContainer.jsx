@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Colors } from "../../lib/constants";
+import { Colors } from "../../lib/metrics";
 
 const TabContainerRoot = styled.div`
   flex-basis: 100%;
