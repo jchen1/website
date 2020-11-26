@@ -30,7 +30,7 @@ const indexSize = bundle.pages["/"]
     .reduce((s, b) => s + b, 0);
 
 const output =
-`*Bundle Size*
+`# Bundle Size
 
 | Route | Size (gzipped) |
 | --- | --- |
