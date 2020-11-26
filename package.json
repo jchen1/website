@@ -6,7 +6,7 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "export": "next build && next export",
-    "analyze": "ANALYZE=true next build",
+    "analyze": "ANALYZE=true next build && node scripts/analyze-bundles.js",
     "start": "next start"
   },
   "dependencies": {
