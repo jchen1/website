@@ -38,7 +38,7 @@ const output =
 
 | Route | Size (gzipped) |
 | --- | --- |
-${pageSizes.map(({ path, size }) => `| ${path} | ${formatBytes(size)} |`).join("\n")}
+${pageSizes.map(({ path, size }) => `| \`${path}\` | ${formatBytes(size)} |`).join("\n")}
 
 <!-- GH BOT -->`;
 
