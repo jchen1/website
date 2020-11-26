@@ -34,5 +34,9 @@ const output =
 | --- | --- |
 | / | ${formatBytes(indexSize)} |`;
 
-fs.mkdirSync(outdir);
+try {
+    fs.mkdirSync(outdir);
+} catch (e) {
+    // may already exist
+}
 fs.writeFileSync(outfile, output);
