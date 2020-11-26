@@ -43,7 +43,7 @@ jobs:
         id: get-comment-body
         if: success() && github.event.number
         run: |
-          body=$(echo -e "\`\`\`\n`sed '1,/info  - Finalizing page optimization/d' .next/analyze/output.txt`\n\`\`\`")
+          body=$(cat .next/analyze/bundle.txt)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}" 
