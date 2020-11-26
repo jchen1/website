@@ -20,8 +20,9 @@ function formatBytes(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-const indexSize = bundle.pages["/"]
-    .map(filename => {
+const pageSizes = Object.keys(bundle.pages).map(p => {
+    const files = bundle.pages[p];
+    const size = files.map(filename => {
         const fn = path.join(process.cwd(), prefix, filename);
         const bytes = fs.readFileSync(fn);
         const gzipped = zlib.gzipSync(bytes);
@@ -29,12 +30,15 @@ const indexSize = bundle.pages["/"]
     })
     .reduce((s, b) => s + b, 0);
 
+    return { path: p, size };
+});
+
 const output =
 `# Bundle Size
 
 | Route | Size (gzipped) |
 | --- | --- |
-| / | ${formatBytes(indexSize)} |
+${pageSizes.map(({ path, size }) => `| ${path} | ${formatBytes(size)} |`).join("\n")}
 
 <!-- GH BOT -->`;
 
