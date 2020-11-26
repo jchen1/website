@@ -30,9 +30,13 @@ const indexSize = bundle.pages["/"]
     .reduce((s, b) => s + b, 0);
 
 const output =
-`| Route | Size (gzipped) |
+`*Bundle Size*
+
+| Route | Size (gzipped) |
 | --- | --- |
-| / | ${formatBytes(indexSize)} |`;
+| / | ${formatBytes(indexSize)} |
+
+<!-- GH BOT -->`;
 
 try {
     fs.mkdirSync(outdir);
