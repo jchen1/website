@@ -10,8 +10,9 @@ import BlogContainer from "./containers/BlogContainer";
 import Tags from "./Tags";
 
 function ReadMore({ post }) {
+  const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
   return (
-    <Link href={`/posts/${post.slug}`} passHref prefetch={false}>
+    <Link href={href} passHref prefetch={false}>
       <a className={styles.readMore}>Read More →</a>
     </Link>
   );
