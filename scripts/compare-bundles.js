@@ -27,7 +27,7 @@ const output = `# Bundle Size
 ${currentBundle
   .map(({ path, size }) => {
     const masterSize = masterBundle.find(x => x.path === path);
-    const diffStr = masterSize ? formatBytes(size - masterSize) : "added";
+    const diffStr = masterSize ? formatBytes(size - masterSize.size) : "added";
     return `| \`${path}\` | ${formatBytes(size)} (${diffStr}) |`;
   })
   .join("\n")}
