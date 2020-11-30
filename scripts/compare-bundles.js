@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const currentBundle = require("../.next/analyze/bundle.json");
-const masterBundle = require("../.next/analyze/master/bundle.json");
+const masterBundle = require("../.next/analyze/master/bundle/bundle.json");
 
 const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
