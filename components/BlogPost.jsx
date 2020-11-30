@@ -39,6 +39,7 @@ export default function BlogPost({ post, opts = {} }) {
     slug,
     author,
     heroImage,
+    ogImage,
     contentHTML,
     excerpt,
     heroImageSize,
@@ -63,7 +64,9 @@ export default function BlogPost({ post, opts = {} }) {
     title: title,
     "og:title": title,
     description: description,
-    "og:image": `https://${BASE_URL}${heroImage || "/images/profile.jpg"}`,
+    "og:image": `https://${BASE_URL}${
+      ogImage || heroImage || "/images/headshot-1200.jpg"
+    }`,
     "twitter:card": heroImage ? "summary_large_image" : "summary",
     "og:type": "article",
   };
