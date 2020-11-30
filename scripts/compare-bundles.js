@@ -41,4 +41,3 @@ try {
 }
 
 fs.writeFileSync(outfile, output);
-fs.writeFileSync(outfileJSON, JSON.stringify(pageSizes, null, 2));
