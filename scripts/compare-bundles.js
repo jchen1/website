@@ -8,29 +8,39 @@ const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
 const outfile = path.join(outdir, "bundle-comparison.txt");
 
-function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return "0 Bytes";
+function formatBytes(bytes, decimals = 2, signed = false) {
+  const sign = signed ? (bytes < 0 ? "-" : "+") : "";
+  if (bytes === 0) return `+0B`;
 
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  return `${sign}${parseFloat(Math.abs(bytes / Math.pow(k, i)).toFixed(dm))}${
+    sizes[i]
+  }`;
 }
 
-const output = `# Bundle Size
-
-| Route | Size (gzipped) |
-| --- | --- |
-${currentBundle
+const sizes = currentBundle
   .map(({ path, size }) => {
     const masterSize = masterBundle.find(x => x.path === path);
     const diffStr = masterSize ? formatBytes(size - masterSize.size) : "added";
     return `| \`${path}\` | ${formatBytes(size)} (${diffStr}) |`;
   })
-  .join("\n")}
+  .concat(
+    masterBundle
+      .filter(x => currentBundle.indexOf(z => x.path === z.path) === -1)
+      .map(({ path, size }) => `| \`${path}\` | removed |`)
+  )
+  .join("\n");
+
+const output = `# Bundle Size
+
+| Route | Size (gzipped) |
+| --- | --- |
+${sizes}
 
 <!-- GH BOT -->`;
 
