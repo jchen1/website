@@ -5,6 +5,9 @@ name: Analyze Bundle Size
 # Controls when the action will run.
 on:
   pull_request:
+  push:
+    branches:
+      - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,7 +40,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: client.html
-          path: .next/analyze/client.html
+          path: |
+            .next/analyze/client.html
+            .next/analyze/bundle.json
 
       - name: Get comment body
         id: get-comment-body
@@ -51,6 +56,7 @@ jobs:
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
+        if: success() && github.event.number
         id: fc
         with:
           issue-number: ${{ github.event.number }}
@@ -62,7 +68,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: ${{ steps.get-comment-body.outputs.body }}
-      
+
       - name: Update Comment
         uses: peter-evans/create-or-update-comment@v1.4.4
         if: success() && github.event.number && steps.fc.outputs.comment-id != 0
