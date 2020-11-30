@@ -31,8 +31,8 @@ const sizes = currentBundle
   })
   .concat(
     masterBundle
-      .filter(x => currentBundle.indexOf(z => x.path === z.path) === -1)
-      .map(({ path, size }) => `| \`${path}\` | removed |`)
+      .filter(({ path }) => !currentBundle.find(x => x.path === path))
+      .map(({ path }) => `| \`${path}\` | removed |`)
   )
   .join("\n");
 
