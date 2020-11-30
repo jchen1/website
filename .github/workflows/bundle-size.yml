@@ -32,23 +32,34 @@ jobs:
       - name: Install
         uses: bahmutov/npm-install@v1
 
-      # Runs a set of commands using the runners shell
       - name: Build & analyze
-        run: mkdir -p .next/analyze && npm run analyze | tee .next/analyze/output.txt
+        run: mkdir -p .next/analyze/master && npm run analyze | tee .next/analyze/output.txt
 
-      - name: Upload
+      - name: Upload bundle
         uses: actions/upload-artifact@v2
         with:
-          name: client.html
+          name: analyze.zip
           path: |
             .next/analyze/client.html
             .next/analyze/bundle.json
+
+      - name: Download master JSON
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: bundle-size.yml
+          workflow_conclusion: success
+          branch: master
+          name: analyze.zip
+          path: .next/analyze/master
+
+      - name: Compare bundle size
+        run: node scripts/compare-bundles.js
 
       - name: Get comment body
         id: get-comment-body
         if: success() && github.event.number
         run: |
-          body=$(cat .next/analyze/bundle.txt)
+          body=$(cat .next/analyze/bundle-comparison.txt)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}" 
