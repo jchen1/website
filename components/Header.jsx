@@ -1,7 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "components/Image";
 
 import { event } from "../lib/gtag";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";

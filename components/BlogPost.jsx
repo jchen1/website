@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "components/Image";
 
 import { BASE_URL } from "../lib/constants";
 

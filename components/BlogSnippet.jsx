@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "components/Image";
 
 import styles from "styles/components/Blog.module.scss";
 
