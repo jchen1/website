@@ -8,12 +8,12 @@ const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
 const outfile = path.join(outdir, "bundle-comparison.txt");
 
-function formatBytes(bytes, decimals = 2, signed = false) {
+function formatBytes(bytes, signed = false) {
   const sign = signed ? (bytes < 0 ? "-" : "+") : "";
-  if (bytes === 0) return `+0B`;
+  if (bytes === 0) return `${sign}0B`;
 
   const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
+  const dm = 2;
   const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -26,7 +26,9 @@ function formatBytes(bytes, decimals = 2, signed = false) {
 const sizes = currentBundle
   .map(({ path, size }) => {
     const masterSize = masterBundle.find(x => x.path === path);
-    const diffStr = masterSize ? formatBytes(size - masterSize.size) : "added";
+    const diffStr = masterSize
+      ? formatBytes(size - masterSize.size, true)
+      : "added";
     return `| \`${path}\` | ${formatBytes(size)} (${diffStr}) |`;
   })
   .concat(

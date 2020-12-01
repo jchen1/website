@@ -3,7 +3,7 @@ import React from "react";
 import { useIntersection } from "./useIntersection";
 
 const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS || {
-  deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+  deviceSizes: [640, 720, 1440, 2160],
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   path: "/_next/image",
 };
