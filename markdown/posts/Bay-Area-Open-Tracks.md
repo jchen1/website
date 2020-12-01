@@ -7,7 +7,7 @@ tags: 2020,november,track,covid
 heroImage: "/images/bay-area-open-tracks/kezar-720.jpg"
 ---
 
-**Last updated 11/13/2020**
+**Last updated 12/1/2020**
 
 It's getting harder to find tracks to run on in the Bay Area. Here's a list of what's open (and what's not):
 
@@ -21,6 +21,8 @@ It's getting harder to find tracks to run on in the Bay Area. Here's a list of w
   - This track has lanes but no distance markings, which makes precise workouts hard.
 - **[Acalanes High School](https://www.google.com/maps/place/Acalanes+High+School/@37.8736881,-122.2030123,12z/data=!4m8!1m2!2m1!1sacalanes+high+school!3m4!1s0x808562323022a44b:0xe18739f25e4608b3!8m2!3d37.9043022!4d-122.0977377)** - Lafayette
   - Open on weekends and on weekdays until 7:30AM and after 3:30PM
+- **[Las Lomas High School](https://www.google.com/maps/place/Las+Lomas+High+School/@37.8908607,-122.0560453,15z/data=!4m2!3m1!1s0x0:0x40c39d1e10036c38?sa=X&ved=2ahUKEwjj9Zjllq3tAhWvzVkKHXPAADIQ_BIwC3oECBcQBQ)** - Walnut Creek
+  - Open on weekends and on weekdays until 7:30AM and after 3:30PM
 
 ## Maybe Open
 
@@ -28,6 +30,7 @@ These are tracks that I've heard may be open, but haven't checked myself.
 
 - Someone at Acalanes told me that all of the high schools in the school district are open: **Campolindo High**, **Las Lomas**, and **Miramonte High**
 - **[Ruth Asawa School of the Arts](https://www.google.com/maps/place/Ruth+Asawa+San+Francisco+School+of+The+Arts/@37.7453141,-122.4485649,15z/data=!4m2!3m1!1s0x0:0xa53cbc532c06f5c2?sa=X&ved=2ahUKEwjqlMbisIDtAhXNjp4KHSj6B0MQ_BIwCnoECBIQBQ)** - San Francisco
+- **San Ramon Valley High** in Danville had people on the track this past weekend, but the school appears to be closed and locked down most of the time.
 
 ## Closed
 
