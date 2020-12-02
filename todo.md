@@ -7,3 +7,5 @@
     - modify css import in `index.html` so it works
 - [ ] widget tooltips
 - [ ] better widget aspect ratio
+- [ ] auto-format Roam exports
+  - currently use this regex to remove "#saved #link" `".*(\[[0-9A-Za-z].*\]\(.*\))"`
