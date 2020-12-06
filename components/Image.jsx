@@ -2,8 +2,6 @@
 import React from "react";
 import Head from "next/head";
 
-import { useIntersection } from "./useIntersection";
-
 const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS;
 
 // sort smallest to largest
@@ -130,24 +128,13 @@ export default function Image({
   const unoptimized = src.startsWith("data:");
   const isLazy = !priority && !unoptimized;
 
-  const [setRef, isIntersected] = useIntersection({
-    rootMargin: "200px",
-    disabled: !isLazy,
+  const imgAttributes = generateImgAttrs({
+    src,
+    unoptimized,
+    layout,
+    width,
+    quality,
   });
-  const isVisible = !isLazy || isIntersected;
-
-  const imgStyle = {
-    visibility: isVisible ? "visible" : "hidden",
-    width: "100%",
-  };
-
-  const imgAttributes = isVisible
-    ? generateImgAttrs({ src, unoptimized, layout, width, quality })
-    : {
-        // 1x1 transparent gif
-        src:
-          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
-      };
 
   return (
     <>
@@ -161,8 +148,7 @@ export default function Image({
         {...imgAttributes}
         loading={isLazy ? "lazy" : "eager"}
         className={className}
-        ref={setRef}
-        style={imgStyle}
+        style={{ width: "100%" }}
         width={width}
         height={height}
       />
