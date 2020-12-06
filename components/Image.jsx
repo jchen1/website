@@ -138,11 +138,12 @@ export default function Image({
 
   return (
     <>
-      {!isLazy && (
+      {/* todo - should preload the optimized src, not the original */}
+      {/* {!isLazy && (
         <Head>
           <link rel="preload" href={src} crossOrigin="" key={src} />
         </Head>
-      )}
+      )} */}
       <img
         {...rest}
         {...imgAttributes}
