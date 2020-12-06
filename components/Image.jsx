@@ -120,6 +120,11 @@ export default function Image({
         ).join(",")}.`
       );
     }
+    if (!height || !width) {
+      throw new Error(
+        `Image with src ${src} is missing height (${height}) or width (${width}).`
+      );
+    }
   }
 
   const unoptimized = src.startsWith("data:");
@@ -158,6 +163,8 @@ export default function Image({
         className={className}
         ref={setRef}
         style={imgStyle}
+        width={width}
+        height={height}
       />
     </>
   );
