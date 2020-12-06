@@ -81,16 +81,9 @@ function generateImgAttrs({ src, layout, width, quality }) {
       `${loader({ src, quality, width: w })} ${kind === "w" ? w : i + 1}${kind}`
   );
 
-  let sizes;
-  if (kind === "w") {
-    sizes = widths
-      .map((w, i) => (i === last ? `${w}px` : `(max-width: ${w}px) ${w}px`))
-      .join(", ");
-  }
-
   src = loader({ src, quality, width: widths[last] });
 
-  return { src, srcSet, sizes, decoding: "async" };
+  return { src, srcSet, decoding: "async" };
 }
 
 export default function Image({
@@ -158,7 +151,6 @@ export default function Image({
             href={imgAttributes.src}
             key={src}
             imageSrcSet={imgAttributes.srcSet}
-            imageSizes={imgAttributes.sizes}
           />
         </Head>
       )}
