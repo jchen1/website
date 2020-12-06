@@ -149,8 +149,8 @@ export default function Image({
         loading={isLazy ? "lazy" : "eager"}
         className={className}
         style={{ width: "100%" }}
-        width={width}
-        height={height}
+        width={width / 10}
+        height={height / 10}
       />
     </>
   );
