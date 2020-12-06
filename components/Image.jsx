@@ -74,21 +74,15 @@ function loader({ src, unoptimized, width, quality }) {
 }
 
 function generateImgAttrs({ src, layout, width, quality }) {
-  let sizes;
   const { widths, kind } = getWidths(width, layout);
   const last = widths.length - 1;
   const srcSet = widths.map(
     (w, i) =>
       `${loader({ src, quality, width: w })} ${kind === "w" ? w : i + 1}${kind}`
   );
-  if (kind === "w") {
-    sizes = widths
-      .map((w, i) => (i === last ? `${w}px` : `(max-width: ${w}px) ${w}px`))
-      .join(", ");
-  }
 
   src = loader({ src, quality, width: widths[last] });
-  return { src, sizes, srcSet, decoding: "async" };
+  return { src, srcSet, decoding: "async" };
 }
 
 export default function Image({
