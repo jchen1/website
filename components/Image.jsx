@@ -81,8 +81,16 @@ function generateImgAttrs({ src, layout, width, quality }) {
       `${loader({ src, quality, width: w })} ${kind === "w" ? w : i + 1}${kind}`
   );
 
+  let sizes;
+  if (kind === "w") {
+    sizes = widths
+      .map((w, i) => (i === last ? `${w}px` : `(max-width: ${w}px) ${w}px`))
+      .join(", ");
+  }
+
   src = loader({ src, quality, width: widths[last] });
-  return { src, srcSet, decoding: "async" };
+
+  return { src, srcSet, sizes, decoding: "async" };
 }
 
 export default function Image({
@@ -130,8 +138,18 @@ export default function Image({
     quality,
   });
 
+  const wrapperStyle = {
+    overflow: "hidden",
+    position: "relative",
+  };
+
+  const quotient = parseInt(height, 10) / parseInt(width, 10);
+  const sizerStyle = {
+    paddingTop: isNaN(quotient) ? "100%" : `${quotient * 100}%`,
+  };
+
   return (
-    <>
+    <div style={wrapperStyle}>
       {!isLazy && (
         <Head>
           <link
@@ -140,18 +158,30 @@ export default function Image({
             href={imgAttributes.src}
             key={src}
             imageSrcSet={imgAttributes.srcSet}
+            imageSizes={imgAttributes.sizes}
           />
         </Head>
       )}
+      {sizerStyle && <div style={sizerStyle} />}
       <img
         {...rest}
         {...imgAttributes}
         loading={isLazy ? "lazy" : "eager"}
         className={className}
-        style={{ width: "100%" }}
-        width={width / 10}
-        height={height / 10}
+        style={{
+          position: "absolute",
+          height: 0,
+          width: 0,
+          minWidth: "100%",
+          maxWidth: "100%",
+          minHeight: "100%",
+          maxHeight: "100%",
+          left: 0,
+          top: 0,
+        }}
+        // width={width / 10}
+        // height={height / 10}
       />
-    </>
+    </div>
   );
 }
