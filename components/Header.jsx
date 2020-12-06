@@ -26,6 +26,7 @@ export default function Header() {
                 height={PROFILE_SIZE}
                 width={PROFILE_SIZE}
                 priority={true}
+                loading="eager"
                 layout="fixed"
               />
             </a>
