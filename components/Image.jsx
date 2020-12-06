@@ -82,6 +82,7 @@ function generateImgAttrs({ src, layout, width, quality }) {
   );
 
   src = loader({ src, quality, width: widths[last] });
+
   return { src, srcSet, decoding: "async" };
 }
 
@@ -130,23 +131,49 @@ export default function Image({
     quality,
   });
 
+  const wrapperStyle = {
+    overflow: "hidden",
+    position: "relative",
+  };
+
+  const quotient = parseInt(height, 10) / parseInt(width, 10);
+  const sizerStyle = {
+    paddingTop: isNaN(quotient) ? "100%" : `${quotient * 100}%`,
+  };
+
   return (
-    <>
-      {/* todo - should preload the optimized src, not the original */}
-      {/* {!isLazy && (
+    <div style={wrapperStyle}>
+      {!isLazy && (
         <Head>
-          <link rel="preload" href={src} crossOrigin="" key={src} />
+          <link
+            rel="preload"
+            as="image"
+            href={imgAttributes.src}
+            key={src}
+            imageSrcSet={imgAttributes.srcSet}
+          />
         </Head>
-      )} */}
+      )}
+      {sizerStyle && <div style={sizerStyle} />}
       <img
         {...rest}
         {...imgAttributes}
         loading={isLazy ? "lazy" : "eager"}
         className={className}
-        style={{ width: "100%" }}
-        width={width}
-        height={height}
+        style={{
+          position: "absolute",
+          height: 0,
+          width: 0,
+          minWidth: "100%",
+          maxWidth: "100%",
+          minHeight: "100%",
+          maxHeight: "100%",
+          left: 0,
+          top: 0,
+        }}
+        // width={width / 10}
+        // height={height / 10}
       />
-    </>
+    </div>
   );
 }
