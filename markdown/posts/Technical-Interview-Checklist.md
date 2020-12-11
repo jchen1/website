@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Technical Interview Checklist
+title: Technical Interviewer's Checklist
 date: "2020-12-11"
 author: Jeff Chen
 tags: 2020,december,hiring
