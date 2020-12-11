@@ -19,7 +19,9 @@ I've interviewed hundreds of engineering candidates across multiple companies. W
 ## Intros
 
 - Introduce yourself and smile when you do!
-- Ease the candidate in by having them talk about an interesting project they've worked on. - It'll help candidates calm their nerves by thinking about something they're already comfortable with. - Always respond positively to what they say!
+- Ease the candidate in by having them talk about an interesting project they've worked on.
+  - It'll help candidates calm their nerves by thinking about something they're already comfortable with.
+  - Always respond positively to what they say!
 - Set ground rules before diving into the question: Do you need working code? Can they Google things? What languages can they use? What are you looking to get out of the question?
 - Your interview question should have a clear CTA. After posing your question, candidates should know exactly what their next steps are.
 
