@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }) {
     description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/headshot-1200.jpg`,
     "og:type": "website",
+    viewport: "width=device-width",
   };
   return (
     <div className="root">

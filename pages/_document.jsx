@@ -33,7 +33,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="viewport" content="width=device-width" />
           <link
             rel="alternate"
             type="application/rss+xml"
