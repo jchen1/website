@@ -36,11 +36,13 @@ Here's how to use a custom font in your Garmin watch face:
    - Make sure to set `antialias="true"` or your font will look silly
    - If you know which glyphs you need for your watch face, you can use the `filter` attribute: `<font id="demo" filter="0123456789:" ... />`
 
-1. Reference your font from your watch face:
+1. Load your resource in `onLayout()`:
 
-   - Set a variable `font = Toybox.WatchUi.loadResource(Rez.Fonts.id_my_font)` in `onLayout()`
-   - in `onUpdate`, call `dc.drawText(x, y, font, ...)`
+```
+font = Toybox.WatchUi.loadResource(Rez.Fonts.id_my_font)
+```
 
+1. Use your font in `onUpdate()` by calling `dc.drawText(x, y, font, ...)`:
 1. Rebuild your project for the simulator
 1. If all goes well, you should see your custom font appear in the simulator!
 
