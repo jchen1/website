@@ -60,6 +60,8 @@ export default function BlogPost({ post, opts = {} }) {
       ? excerpt.substring(0, DESCRIPTION_MAX_LENGTH - 3) + "..."
       : excerpt;
 
+  const hasOGImage = ogImage || heroImage;
+
   const meta = {
     title: title,
     "og:title": title,
@@ -67,7 +69,7 @@ export default function BlogPost({ post, opts = {} }) {
     "og:image": `https://${BASE_URL}${
       ogImage || heroImage || "/images/headshot-1200.jpg"
     }`,
-    "twitter:card": heroImage ? "summary_large_image" : "summary",
+    "twitter:card": hasOGImage ? "summary_large_image" : "summary",
     "og:type": "article",
   };
 
