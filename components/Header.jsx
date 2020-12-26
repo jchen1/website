@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "components/Image";
 
-import { event } from "../lib/gtag";
+import { Twitter } from "components/Icon";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
@@ -41,27 +41,20 @@ export default function Header() {
           </div>
         </div>
         <nav className={styles.nav}>
-          <Link href="/archive">
-            <a>Archive</a>
-          </Link>
           <Link href="/about">
             <a>About</a>
           </Link>
           <Link href="/projects">
             <a>Projects</a>
           </Link>
-          <a
-            href="/resume/index.html"
-            onClick={() =>
-              event({
-                action: "header-cta-click",
-                label: "resume",
-                category: "cta",
-              })
-            }
-          >
-            Résumé
-          </a>
+          <Link href="/archive">
+            <a>Archive</a>
+          </Link>
+          <Twitter
+            eventAction="header-cta-click"
+            size={20}
+            className={styles.twitter}
+          />
         </nav>
       </div>
     </header>
