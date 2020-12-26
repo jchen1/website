@@ -6,14 +6,16 @@ import {
   markdownToHtml,
   getPostBySlug,
   getAllPosts,
+  getRelatedPosts,
   POST_FIELDS,
+  ARCHIVE_FIELDS,
 } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
 import MainContainer from "../../components/containers/MainContainer";
 
 import BlogPost from "../../components/BlogPost";
 
-export default function Post({ post }) {
+export default function Post({ post, relatedPosts }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -23,7 +25,8 @@ export default function Post({ post }) {
       <BlogPost
         post={post}
         opts={{ showScroll: true, preloadHero: true }}
-      ></BlogPost>
+        relatedPosts={relatedPosts}
+      />
     </MainContainer>
   );
 }
@@ -39,6 +42,8 @@ export async function getStaticProps({ params }) {
     return {};
   })();
 
+  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS).slice(0, 3);
+
   return {
     props: {
       post: {
@@ -46,6 +51,7 @@ export async function getStaticProps({ params }) {
         ...content,
         heroImageSize,
       },
+      relatedPosts,
     },
   };
 }
