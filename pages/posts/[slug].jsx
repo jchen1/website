@@ -42,10 +42,7 @@ export async function getStaticProps({ params }) {
     return {};
   })();
 
-  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS)
-    // sort in date order descending
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS).slice(0, 3);
 
   return {
     props: {
