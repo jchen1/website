@@ -1,11 +1,11 @@
 ---
 layout: page
-title: About Me
+title: About
 ---
 
-Hey, I'm Jeff! I'm a software engineer and ameteur sprinter living in the Bay Area.
+Hey, I'm Jeff! I'm a software engineer and amateur sprinter living in the Bay Area.
 
-I studied **computer science** with a minor in human-computer interaction at [Carnegie Mellon University](https://cmu.edu/), and graduated in May 2016. I'm currently an engineering manager and also lead the infrastructure and security teams at [Ladder Life](https://ladderlife.com/).
+I studied **computer science** with a minor in human-computer interaction at [Carnegie Mellon University](https://cmu.edu/), and graduated in May 2016. I'm currently an engineering manager and also lead the infrastructure and security teams at [Ladder Life](https://ladderlife.com/). For more details about my work life, check out my [résumé](/resume/index.html).
 
 I've been a runner for 15 years now, with a couple hiatuses in between. I competed for CMU; I was the captain of the track team and held the 60 meter school record. Since graduating, I've continued to train and compete. Here are my current personal bests:
 
