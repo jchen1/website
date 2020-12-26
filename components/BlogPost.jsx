@@ -12,6 +12,7 @@ import Byline from "./Byline";
 import Title from "./Title";
 import Tags from "./Tags";
 import PostCTA from "./PostCTA";
+import RelatedPosts from "./RelatedPosts";
 
 const DESCRIPTION_MAX_LENGTH = 200;
 
@@ -31,7 +32,7 @@ function InnerHTML(props) {
   return <div {...rest} ref={divRef}></div>;
 }
 
-export default function BlogPost({ post, opts = {} }) {
+export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
   const {
     title,
     homepage,
@@ -107,6 +108,8 @@ export default function BlogPost({ post, opts = {} }) {
       {showScroll && (
         <>
           <PostCTA />
+          <RelatedPosts posts={relatedPosts} />
+
           <a
             className={styles.scrollToTop}
             href=""
