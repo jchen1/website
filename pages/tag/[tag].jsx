@@ -26,7 +26,7 @@ export default function IndexPage(props) {
 
 export async function getStaticProps({ params }) {
   const tag = params.tag;
-  const posts = getPostsByTag(tag);
+  const posts = getPostsByTag(tag, ARCHIVE_FIELDS);
 
   return {
     props: {
