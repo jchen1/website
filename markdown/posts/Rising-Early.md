@@ -8,7 +8,6 @@ ogImage: "/images/rising-early/sunrise.jpg"
 ---
 
 ![{caption=An early morning in Jackson, Wyoming}An early morning in Jackson, Wyoming](/images/rising-early/hero.jpg)
-
 As a baby I never wanted to go to sleep: I stayed alert until I was completely exhausted (and my parents were too)! In high school and college, I regularly stayed up past 2AM. But for most of my professional life, I've been an early riser. I started out of convenience: gyms are less crowded early. Even after those circumstances changed, I found enough benefits to waking up early that I kept the habit. These days, I'm awake well before 6AM (and in bed by 9PM) almost every day. Here's why I still do it:
 
 <!-- excerpt -->
