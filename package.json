@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.2",
-    "highlight.js": "^10.4.1",
+    "highlight.js": "^10.5.0",
     "image-size": "^0.9.3",
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^3.14.1",
     "mdast-util-definitions": "^4.0.0",
     "moment": "^2.29.1",
-    "next": "^10.0.0",
+    "next": "^10.0.4",
     "next-plugin-preact": "^3.0.3",
     "nprogress": "^0.2.0",
-    "polished": "^4.0.3",
+    "polished": "^4.0.5",
     "preact": "^10.5.7",
     "preact-render-to-string": "^5.1.12",
     "react": "npm:@preact/compat@^0.0.3",
@@ -33,20 +33,20 @@
     "remark-highlight.js": "^6.0.0",
     "remark-html": "^13.0.1",
     "remark-slug": "^6.0.0",
-    "sass": "^1.28.0",
+    "sass": "^1.30.0",
     "strip-markdown": "^4.0.0",
     "styled-components": "^5.2.1",
     "unist-util-visit": "^2.0.3",
-    "uplot": "^1.2.2"
+    "uplot": "^1.5.2"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^10.0.2",
+    "@next/bundle-analyzer": "^10.0.4",
     "babel-plugin-inline-react-svg": "^1.1.2",
-    "babel-plugin-styled-components": "^1.11.1",
+    "babel-plugin-styled-components": "^1.12.0",
     "globby": "^11.0.1",
     "rss": "^1.2.2"
   }
