@@ -18,11 +18,11 @@
 
 .masthead {
   width: 100%;
-  margin: 0 auto 50px;
+  margin: 0 auto 2rem;
   background-color: $darkerGray;
 
   @include mobile {
-    margin-bottom: 25px;
+    margin-bottom: 1.5rem;
   }
 }
 
