@@ -18,7 +18,7 @@ Rules: unless otherwise specified, these predictions are for what will be true o
 - Democrats win just one Georgia seat: **10%**
 - At least one new Supreme Court justice: **20%**
 - The US re-enters the Paris climate agreement: **80%**
-- No armed conflict between major powers: ** >99%**
+- No armed conflict between major powers: **>99%**
 
 ## Coronavirus
 
