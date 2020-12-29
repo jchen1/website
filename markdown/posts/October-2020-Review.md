@@ -3,7 +3,7 @@ layout: post
 title: Monthly Review - October 2020
 date: "2020-11-01"
 author: Jeff Chen
-tags: review,october,2020
+tags: review
 ---
 
 I've been in Boise all month! I'm enjoying my team here - I'll make sure to write about my time here after I return home to California. This month, I've been really motivated to write - I've published 5 blogposts! Hopefully the habit sticks.

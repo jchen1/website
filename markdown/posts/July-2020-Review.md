@@ -3,7 +3,7 @@ layout: post
 title: Monthly Review - July 2020
 date: "2020-08-01"
 author: Jeff Chen
-tags: review,july,2020
+tags: review
 ---
 
 - The biggest piece of news for the month: I moved out of SF into my parent's house in Dublin! With coronavirus & related precautions, urban areas no longer have network advantages over suburbs. While Emily and I think about where we want to move long-term (perhaps Denver or New York after coronavirus fades away), we're saving a bundle.

@@ -3,7 +3,7 @@ layout: post
 title: Monthly Review - August 2020
 date: "2020-08-31"
 author: Jeff Chen
-tags: review,august,2020
+tags: review
 ---
 
 - This month, I've been really focused on work - we have a big launch coming very soon, so I've spent more hours than normal coordinating & building things for that.

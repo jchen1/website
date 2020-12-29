@@ -3,7 +3,7 @@ layout: post
 title: Warmups For Sprints
 date: "2020-11-22"
 author: Jeff Chen
-tags: 2020,november,track,warmup
+tags: track,warmup
 heroImage: "/images/warmups-for-sprints/hero.jpg"
 ---
 

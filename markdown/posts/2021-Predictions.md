@@ -3,7 +3,7 @@ layout: post
 title: 2021 Predictions
 date: "2020-12-27"
 author: Jeff Chen
-tags: 2020,december,predictions,2021
+tags: predictions
 ---
 
 Rules: unless otherwise specified, these predictions are for what will be true on 1/1/2022. I've redacted some predictions about my personal life and friends. Next year, I'll publish and score my results.

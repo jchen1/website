@@ -7,7 +7,6 @@ import styles from "styles/components/Blog.module.scss";
 import Byline from "./Byline";
 import Title from "./Title";
 import BlogContainer from "./containers/BlogContainer";
-import Tags from "./Tags";
 
 function ReadMore({ post }) {
   const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
@@ -33,8 +32,6 @@ export default function BlogSnippet({ post, opts = {} }) {
 
   const { noLink, headingLevel, preloadHero } = opts;
 
-  const tagArray = (tags || "").split(",");
-
   return (
     <BlogContainer>
       <Title
@@ -45,7 +42,6 @@ export default function BlogSnippet({ post, opts = {} }) {
         noLink={noLink}
       />
       <Byline date={date} slug={slug} />
-      <Tags tags={tagArray} />
       {heroImage && (
         <div className={styles.imgContainer}>
           <Image

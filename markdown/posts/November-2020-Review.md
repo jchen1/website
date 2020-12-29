@@ -3,7 +3,7 @@ layout: post
 title: Monthly Review - November 2020
 date: "2020-11-30"
 author: Jeff Chen
-tags: review,november,2020
+tags: review
 ogImage: "/images/november-2020-review/hero.jpg"
 ---
 

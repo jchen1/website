@@ -3,7 +3,7 @@ layout: post
 title: Markdown Image Captions
 date: "2020-11-25"
 author: Jeff Chen
-tags: code,2020,november
+tags: code
 ---
 
 Although HTML lets developers define `<figure>` elements with images and captions, Markdown doesn't provide a built-in syntax for it. Instead, authors need to insert raw `<figure>` HTML elements into their Markdown files. This is pretty painful - it breaks up the flow of Markdown files and is a non-starter for non-developers. This post details an alternative: by writing a [remark](https://github.com/remarkjs/remark) plugin, we can extend Markdown's syntax to support image captions!

@@ -3,7 +3,7 @@ layout: post
 title: Recovering Lost Roam Notes
 date: "2020-10-30"
 author: Jeff Chen
-tags: 2020,clojure,code,october,roam,readwise
+tags: clojure,code,roam,readwise
 ---
 
 This post dives deep into a scary data loss scenario - we'll cover identifying the data loss, investigating the root cause, and finally recovering the data.

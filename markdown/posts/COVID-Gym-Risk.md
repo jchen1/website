@@ -3,7 +3,7 @@ layout: post
 title: Estimating Gym COVID Risk
 date: "2020-10-22"
 author: Jeff Chen
-tags: 2020,october,gym,covid
+tags: gym,covid
 ---
 
 In Boise, gyms are open! I visited [Axiom Fitness](https://www.axiomfitness.com/parkcenter) the other morning. The facility was great, but I was pretty uncomfortable with the maskless environment. Below, I estimate my risk of catching COVID from a single gym session, and find that **my risk of catching COVID from a single gym session is ~0.03%**. With ~10 gym sessions remaining in my time in Idaho, my total risk of catching COVID specifically from the gym is `1 - (1 - risk_per_session)^10` = `0.003037839182`, or about **0.3%**. This is well within my personal risk tolerance, so I decided to buy a single-month pass!

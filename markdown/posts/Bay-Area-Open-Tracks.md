@@ -3,7 +3,7 @@ layout: post
 title: Bay Area Open Tracks
 date: "2020-11-13"
 author: Jeff Chen
-tags: 2020,november,track,covid
+tags: track,covid
 heroImage: "/images/bay-area-open-tracks/kezar-720.jpg"
 ---
 

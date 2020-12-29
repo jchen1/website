@@ -10,7 +10,6 @@ import BlogContainer from "../components/containers/BlogContainer";
 import Byline from "./Byline";
 
 import Title from "./Title";
-import Tags from "./Tags";
 import PostCTA from "./PostCTA";
 import RelatedPosts from "./RelatedPosts";
 
@@ -74,8 +73,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
     "og:type": "article",
   };
 
-  const tagArray = (tags || "").split(",");
-
   return (
     <BlogContainer>
       {setTitle !== false && <Meta {...meta} />}
@@ -87,7 +84,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         noLink={noLink}
       />
       {showDate !== false && <Byline date={date} slug={slug} />}
-      <Tags tags={tagArray} />
       {heroImage && (
         <div className={styles.imgContainer}>
           <Image

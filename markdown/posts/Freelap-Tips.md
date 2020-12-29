@@ -3,7 +3,7 @@ layout: post
 title: Freelap Tips
 date: "2020-10-14"
 author: Jeff Chen
-tags: 2020,october,track,freelap
+tags: track,freelap
 ---
 
 I bought a [Freelap BT112 kit](https://store.simplifaster.com/product/freelap-pro-bt112/) earlier this year. Now, I use it for almost every track workout - it's great for getting instant feedback on every single rep. That said, I had some trouble getting my Freelap to consistently record times. Some of my initial workouts recorded less than 50% of my reps! Here are some tricks I've picked up to get all of my times recorded accurately:

@@ -3,7 +3,7 @@ layout: post
 title: Body Composition For Sprinters
 date: "2020-12-05"
 author: Jeff Chen
-tags: 2020,december,track
+tags: track
 heroImage: "/images/body-composition-for-sprinters/hero.jpg"
 ---
 

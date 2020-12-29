@@ -3,7 +3,7 @@ layout: post
 title: Monthly Review - September 2020
 date: "2020-10-01"
 author: Jeff Chen
-tags: review,september,2020
+tags: review
 ---
 
 I'm going to Idaho for the month of October! The Bay Area feels disconnected in its COVID response from the rest of the country - I'm excited to find out if that's true.

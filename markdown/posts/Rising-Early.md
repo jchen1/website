@@ -3,7 +3,7 @@ layout: post
 title: Rising Early
 date: "2020-12-25"
 author: Jeff Chen
-tags: 2020,december,productivity
+tags: productivity
 ogImage: "/images/rising-early/sunrise.jpg"
 ---
 

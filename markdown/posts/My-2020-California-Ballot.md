@@ -3,7 +3,7 @@ layout: post
 title: My 2020 California Ballot
 date: "2020-10-23"
 author: Jeff Chen
-tags: 2020,october,politics
+tags: politics
 ---
 
 It's election time! I like to ~~argue~~talk about politics, and friends have told me that they don't always know what I actually believe. I thought I'd share my ballot to put my money where my mouth is! While I'm in Boise this month, I'm registered to vote in Dublin, California.

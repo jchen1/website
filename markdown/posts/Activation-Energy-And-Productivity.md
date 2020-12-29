@@ -3,7 +3,7 @@ layout: post
 title: Activation Energy and Productivity
 date: "2020-11-14"
 author: Jeff Chen
-tags: 2020,november,productivity
+tags: productivity
 heroImage: "/images/activation-energy-and-productivity/activation-energy.png"
 ---
 

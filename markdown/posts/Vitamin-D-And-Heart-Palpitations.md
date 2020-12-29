@@ -3,7 +3,7 @@ layout: post
 title: "Vitamin D and Heart Palpitations"
 date: "2020-12-19"
 author: Jeff Chen
-tags: 2020,december,personal,whoop,health
+tags: personal,whoop,health
 ogImage: /images/vitamin-d-and-heart-palpitations/hero.jpg
 ---
 

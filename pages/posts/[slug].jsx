@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
     return {};
   })();
 
-  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS).slice(0, 3);
+  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS);
 
   return {
     props: {
