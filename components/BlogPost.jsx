@@ -52,6 +52,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
     setTitle,
     showScroll,
     preloadHero,
+    titleClass,
   } = opts;
 
   const description =
@@ -81,6 +82,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         slug={slug}
         homepage={homepage}
         noLink={noLink}
+        className={titleClass}
       />
       {showDate !== false && <Byline date={date} slug={slug} />}
       {heroImage && (

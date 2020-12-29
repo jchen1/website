@@ -10,14 +10,11 @@ function RelatedPost({ post }) {
 
 export default function RelatedPosts({ posts }) {
   return (
-    <>
-      <div className={styles.border} />
-      <section className={styles.container}>
-        <h2>Related Posts</h2>
-        {posts.map(p => (
-          <RelatedPost post={p} />
-        ))}
-      </section>
-    </>
+    <section className={styles.container}>
+      <h2>Related Posts</h2>
+      {posts.map(p => (
+        <RelatedPost post={p} />
+      ))}
+    </section>
   );
 }

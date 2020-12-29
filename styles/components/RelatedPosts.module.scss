@@ -1,8 +1,9 @@
 @import "../variables";
 
-.border {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-  width: min(45rem, 100%);
-  margin: 0 auto;
+.container {
+  margin: 3rem 0;
+
+  @include mobile {
+    margin: 1rem 0;
+  }
 }

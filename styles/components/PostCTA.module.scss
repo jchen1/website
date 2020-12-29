@@ -1,9 +1,13 @@
 @import "../variables";
 
 .wrapper {
-  padding-top: 2rem;
+  display: block;
+  margin-top: 2rem;
 
   @include mobile {
-    padding-top: 4rem;
+    grid-column: 1 / 4;
+    margin: 2rem -1rem 0;
+    padding: 1.5rem 1rem;
+    background-color: $primary;
   }
 }

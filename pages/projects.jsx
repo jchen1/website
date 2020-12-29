@@ -17,7 +17,12 @@ export default function Projects({ projects }) {
         <BlogPost
           key={project.title}
           post={project}
-          opts={{ showDate: false, setTitle: false, headingLevel: 2 }}
+          opts={{
+            showDate: false,
+            setTitle: false,
+            headingLevel: 2,
+            titleClass: "highlight",
+          }}
         />
       ))}
     </>

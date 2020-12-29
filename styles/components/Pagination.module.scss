@@ -33,13 +33,3 @@
 
   font-weight: bold;
 }
-
-.disabled {
-  &:hover {
-    // color: $gray;
-    color: initial;
-    cursor: not-allowed;
-  }
-  font-weight: normal;
-  // color: $gray;
-}

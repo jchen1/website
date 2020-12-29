@@ -26,7 +26,7 @@ export default function Pagination({ pages }) {
   return (
     <section className={styles.container}>
       <div className={styles.inner}>
-        <MaybeLink page={prev}>← Previous</MaybeLink>
+        {prev ? <MaybeLink page={prev}>← Previous</MaybeLink> : <span />}
         <MaybeLink page={next}>Next →</MaybeLink>
       </div>
     </section>
