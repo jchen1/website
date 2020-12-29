@@ -4,11 +4,15 @@
   width: 100%;
 
   display: grid;
-  margin-top: 2rem;
+  margin-top: 3rem;
   grid-template-columns: 1fr min(45rem, 100%) 1fr;
 
   & > * {
     grid-column: 2;
+  }
+
+  &:first-of-type {
+    margin-top: 2rem;
   }
 
   .full-bleed {

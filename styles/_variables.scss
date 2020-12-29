@@ -18,6 +18,9 @@ $white: #ffffff;
 // Font stacks
 $font-face: "Inter", sans-serif;
 
+// spacing
+$footer-top-margin: 2rem;
+
 // Mobile breakpoints
 @mixin mobile {
   @media screen and (max-width: 640px) {

@@ -1,17 +1,22 @@
 @import "../variables";
 
 .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 (-$footer-top-margin);
+  padding: 1rem 0;
+  background-color: $primary;
+
+  @include mobile {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.inner {
   width: min(45rem, 100%);
   display: flex;
   justify-content: space-between;
-  margin: 2rem 0 0;
-  padding: 1rem 0;
-
-  @include mobile {
-    width: 100vw;
-    padding: 0.5rem 1rem;
-    background-color: $primary;
-  }
 }
 
 .pageLink {
