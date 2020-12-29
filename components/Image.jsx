@@ -132,7 +132,7 @@ export default function Image({
   });
 
   const wrapperStyle = {
-    overflow: "hidden",
+    // overflow: "hidden",
     position: "relative",
   };
 
