@@ -5,6 +5,13 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem 0 0;
+  padding: 1rem 0;
+
+  @include mobile {
+    width: 100vw;
+    padding: 0.5rem 1rem;
+    background-color: $primary;
+  }
 }
 
 .pageLink {
@@ -21,9 +28,9 @@
 
 .disabled {
   &:hover {
-    color: $gray;
+    // color: $gray;
     cursor: not-allowed;
   }
   font-weight: normal;
-  color: $gray;
+  // color: $gray;
 }
