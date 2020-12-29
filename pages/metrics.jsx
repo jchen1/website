@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import MainContainer from "../components/containers/MainContainer";
-
 import TabContainer from "../components/containers/TabContainer";
 import TitleContainer from "../components/containers/TitleContainer";
 
@@ -58,6 +56,13 @@ const InnerContainer = styled.div`
   @media screen and (max-width: 640px) {
     flex-wrap: wrap;
   }
+`;
+
+const Title = styled.h1`
+  border: 0;
+  box-shadow: unset;
+  padding: 0;
+  background-color: unset;
 `;
 
 function getSocketColor(ws) {
@@ -145,10 +150,10 @@ export default function Metrics() {
   };
 
   return (
-    <MainContainer>
+    <>
       <Meta {...metas} />
       <TitleContainer>
-        <h1>Metrics</h1>
+        <Title>Metrics</Title>
         <WSIndicator color={socketColor} />
       </TitleContainer>
       <InnerContainer>
@@ -161,6 +166,6 @@ export default function Metrics() {
           <PlotContainer>{plots}</PlotContainer>
         </WidgetTabContainer>
       </InnerContainer>
-    </MainContainer>
+    </>
   );
 }

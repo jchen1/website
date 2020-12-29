@@ -1,19 +1,22 @@
 @import "../variables";
 
 .container {
-  width: 100%;
   display: flex;
   justify-content: center;
-  margin: 2rem 0 (-$footer-top-margin);
+  margin: 2rem -2rem (-$footer-top-margin);
   padding: 1rem 0;
   background-color: $primary;
 
+  grid-column: 1 / 4;
+
   @include mobile {
     padding: 0.5rem 1rem;
+    margin: 2rem -1rem (-$footer-top-margin);
   }
 }
 
 .inner {
+  grid-column: 2;
   width: min(45rem, 100%);
   display: flex;
   justify-content: space-between;
@@ -21,7 +24,7 @@
 
 .pageLink {
   &:hover {
-    color: $primary;
+    color: $secondary;
     cursor: pointer;
   }
 
@@ -34,6 +37,7 @@
 .disabled {
   &:hover {
     // color: $gray;
+    color: initial;
     cursor: not-allowed;
   }
   font-weight: normal;

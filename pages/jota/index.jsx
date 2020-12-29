@@ -1,14 +1,9 @@
 import React from "react";
-import MainContainer from "../../components/containers/MainContainer";
 import { getProjects } from "../../lib/blogs";
 import BlogPost from "../../components/BlogPost";
 
 export default function JOTA({ data }) {
-  return (
-    <MainContainer>
-      <BlogPost post={data} opts={{ showDate: false, noLink: true }} />
-    </MainContainer>
-  );
+  return <BlogPost post={data} opts={{ showDate: false, noLink: true }} />;
 }
 
 export async function getStaticProps() {

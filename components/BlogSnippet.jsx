@@ -6,7 +6,6 @@ import styles from "styles/components/Blog.module.scss";
 
 import Byline from "./Byline";
 import Title from "./Title";
-import BlogContainer from "./containers/BlogContainer";
 
 function ReadMore({ post }) {
   const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
@@ -33,7 +32,7 @@ export default function BlogSnippet({ post, opts = {} }) {
   const { noLink, headingLevel, preloadHero } = opts;
 
   return (
-    <BlogContainer>
+    <article className={styles.article}>
       <Title
         headingLevel={headingLevel}
         title={title}
@@ -57,6 +56,6 @@ export default function BlogSnippet({ post, opts = {} }) {
       )}
       <div dangerouslySetInnerHTML={{ __html: excerptHTML }} />
       <ReadMore post={post} />
-    </BlogContainer>
+    </article>
   );
 }

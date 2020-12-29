@@ -40,7 +40,7 @@
 
     &:hover,
     &:active {
-      color: $primary;
+      color: $secondary;
     }
   }
 
@@ -66,6 +66,10 @@
 .siteName {
   color: $white;
   margin: 0;
+  border: 0;
+  box-shadow: unset;
+  padding: 0;
+  background-color: unset;
 
   @include mobile {
     margin-top: 6px;

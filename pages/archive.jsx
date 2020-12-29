@@ -1,11 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import MainContainer from "../components/containers/MainContainer";
 import { ARCHIVE_FIELDS, getAllPosts } from "../lib/blogs";
 
 import styles from "styles/pages/archive.module.scss";
-import BlogContainer from "components/containers/BlogContainer";
 
 export function ArchiveItem({ title, date, slug }) {
   return (
@@ -26,12 +24,10 @@ export default function Archive(props) {
   const postMarkup = posts.map(post => <ArchiveItem {...post} />);
 
   return (
-    <MainContainer>
-      <BlogContainer>
-        <h1 className={`${styles.title} title highlight`}>Post Archive</h1>
-        {postMarkup}
-      </BlogContainer>
-    </MainContainer>
+    <>
+      <h1 className={`${styles.title} title`}>Post Archive</h1>
+      {postMarkup}
+    </>
   );
 }
 

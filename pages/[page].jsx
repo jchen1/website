@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import MainContainer from "../components/containers/MainContainer";
 import {
   getAllPosts,
   markdownToHtml,
@@ -31,7 +30,7 @@ export default function IndexPage(props) {
 
   return (
     <>
-      <MainContainer>{postMarkup}</MainContainer>
+      {postMarkup}
       <Pagination pages={pages} />
     </>
   );

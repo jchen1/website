@@ -1,18 +1,15 @@
 @import "../variables";
 
-.article {
+$figure-padding: 2rem;
+
+.container {
   width: 100%;
 
   display: grid;
-  margin-top: 3rem;
   grid-template-columns: 1fr min(45rem, 100%) 1fr;
 
   & > * {
     grid-column: 2;
-  }
-
-  &:first-of-type {
-    margin-top: 2rem;
   }
 
   .full-bleed {
@@ -25,16 +22,22 @@
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    // font-size: 22px;
   }
 
   /* images with captions */
   figure {
-    padding: 0.75rem 0;
+    padding: 0.25rem 0 $figure-padding;
     figcaption {
-      padding: 0.75rem 0;
+      padding: 0.75rem 0 0;
+      // captions already have padding
+      margin-bottom: (-$figure-padding);
       font-size: small;
       text-align: center;
+
+      @include mobile {
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
     }
   }
 }

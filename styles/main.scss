@@ -77,29 +77,29 @@ h1 {
   margin: 1em 0 0.25em;
   font-weight: bold;
   letter-spacing: -0.021em;
+  border-top: 0.5rem solid $primary;
+  margin: 0 0 0.25rem;
+
   a {
     color: inherit;
     text-decoration: none;
   }
 
+  &.title {
+    margin-top: 2rem;
+  }
+
   @include mobile {
     font-size: 26px;
     letter-spacing: -0.019em;
-  }
 
-  &.highlight {
-    border-top: 0.5rem solid $primary;
-    margin: 0 0 0.25rem;
+    border: 0;
+    background-color: $primary;
+    margin-left: -1.5rem;
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    margin-bottom: 0.75rem;
 
-    @include mobile {
-      border: 0;
-      background-color: $primary;
-      margin-left: -1.5rem;
-      padding: 0.5rem 1rem 0.5rem 1.5rem;
-      margin-bottom: 0.75rem;
-
-      box-shadow: 0.25rem 0.25rem 0 0 $darkerGray;
-    }
+    box-shadow: 0.25rem 0.25rem 0 0 $darkerGray;
   }
 }
 
@@ -152,6 +152,10 @@ p {
   &:last-child {
     margin-bottom: 0;
   }
+
+  &:empty {
+    margin: 0;
+  }
 }
 
 a {
@@ -160,7 +164,7 @@ a {
   cursor: pointer;
   &:hover,
   &:active {
-    color: $primary;
+    color: $secondary;
   }
 }
 
@@ -243,13 +247,8 @@ small {
   font-size: 14px;
 }
 
-h1.title {
-  margin-top: 0;
-}
-
 figure {
   width: calc(100% - 0.5rem);
-  margin-bottom: 0.5rem;
 
   img.background {
     box-shadow: 0.5rem 0.5rem 0 0 $primary;
@@ -258,7 +257,6 @@ figure {
   @include mobile {
     width: 100vw;
     margin-left: -1rem;
-    margin-bottom: 0.25rem;
 
     img.background {
       box-shadow: 0 0.25rem 0 0 $primary;

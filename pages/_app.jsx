@@ -11,6 +11,8 @@ import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 import { pageview } from "../lib/gtag";
 import Meta from "../components/Meta";
 import { useEffect, useState } from "react";
+import BlogContainer from "components/containers/BlogContainer";
+import MainContainer from "components/containers/MainContainer";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
@@ -23,6 +25,8 @@ Router.events.on("routeChangeError", () => NProgress.done());
 const transitionStyle =
   "*{-webkit-transition:color .25s ease,background-color .25s ease,fill .25s ease;transition:color .25s ease,background-color .25s ease,fill .25s ease}";
 
+const fullWidthRoutes = ["/metrics"];
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +34,8 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  const useFullWidth = fullWidthRoutes.includes(router.pathname);
 
   const metas = {
     title: SITE_TITLE,
@@ -46,7 +52,14 @@ function MyApp({ Component, pageProps }) {
     <div className="root">
       <Meta {...metas} />
       <Header />
-      <Component {...pageProps} />
+      <MainContainer>
+        {useFullWidth && <Component {...pageProps} />}
+        {!useFullWidth && (
+          <BlogContainer>
+            <Component {...pageProps} />
+          </BlogContainer>
+        )}
+      </MainContainer>
       <Footer />
       {loaded && <style>{transitionStyle}</style>}
     </div>

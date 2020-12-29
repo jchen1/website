@@ -6,7 +6,6 @@ import { BASE_URL } from "../lib/constants";
 import styles from "styles/components/Blog.module.scss";
 
 import Meta from "./Meta";
-import BlogContainer from "../components/containers/BlogContainer";
 import Byline from "./Byline";
 
 import Title from "./Title";
@@ -74,7 +73,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
   };
 
   return (
-    <BlogContainer>
+    <article className={styles.article}>
       {setTitle !== false && <Meta {...meta} />}
       <Title
         headingLevel={headingLevel}
@@ -119,6 +118,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
           </a>
         </>
       )}
-    </BlogContainer>
+    </article>
   );
 }

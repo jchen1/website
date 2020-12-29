@@ -1,14 +1,9 @@
 import React from "react";
-import MainContainer from "../../components/containers/MainContainer";
 import { getPageBySlug, markdownToHtml } from "../../lib/blogs";
 import BlogPost from "../../components/BlogPost";
 
 export default function jotaPrivacy({ page }) {
-  return (
-    <MainContainer>
-      <BlogPost post={page} opts={{ showDate: false, noLink: true }}></BlogPost>
-    </MainContainer>
-  );
+  return <BlogPost post={page} opts={{ showDate: false, noLink: true }} />;
 }
 
 export async function getStaticProps() {

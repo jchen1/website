@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
-import MainContainer from "../../components/containers/MainContainer";
 import { ARCHIVE_FIELDS, getAllPosts, getPostsByTag } from "../../lib/blogs";
 
 import { ArchiveItem } from "../archive";
@@ -17,10 +16,10 @@ export default function IndexPage(props) {
   const postMarkup = posts.map((post, idx) => <ArchiveItem {...post} />);
 
   return (
-    <MainContainer>
+    <>
       <h1 className="title">Posts tagged "{tag}"</h1>
       {postMarkup}
-    </MainContainer>
+    </>
   );
 }
 
