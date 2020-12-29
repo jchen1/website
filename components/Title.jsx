@@ -7,12 +7,12 @@ export default function Title({ headingLevel, title, slug, homepage, noLink }) {
   const Heading = `h${headingLevel || 1}`;
 
   if (noLink) {
-    return <Heading>{title}</Heading>;
+    return <Heading className="highlight">{title}</Heading>;
   }
 
   if (homepage) {
     return (
-      <Heading>
+      <Heading className="highlight">
         <a href={homepage} target="_blank">
           {title}
         </a>
@@ -25,7 +25,7 @@ export default function Title({ headingLevel, title, slug, homepage, noLink }) {
   }, []);
 
   return (
-    <Heading>
+    <Heading className="highlight">
       <Link href={`/posts/${encodeURIComponent(slug)}/`} prefetch={false}>
         <a>{title}</a>
       </Link>

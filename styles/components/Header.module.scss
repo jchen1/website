@@ -18,12 +18,8 @@
 
 .masthead {
   width: 100%;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   background-color: $darkerGray;
-
-  @include mobile {
-    margin-bottom: 1.5rem;
-  }
 }
 
 .nav {
@@ -44,7 +40,7 @@
 
     &:hover,
     &:active {
-      color: $red;
+      color: $primary;
     }
   }
 

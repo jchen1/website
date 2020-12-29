@@ -43,17 +43,18 @@ export default function BlogSnippet({ post, opts = {} }) {
       />
       <Byline date={date} slug={slug} />
       {heroImage && (
-        <div className={styles.imgContainer}>
-          <Image
-            src={heroImage}
-            alt={title}
-            width={heroImageSize.width}
-            height={heroImageSize.height}
-            layout="responsive"
-            priority={preloadHero === true}
-            loading={preloadHero === true ? "eager" : "lazy"}
-          />
-        </div>
+        <figure className={styles.imgContainer}>
+          <div className="background">
+            <Image
+              src={heroImage}
+              alt={title}
+              width={heroImageSize.width}
+              height={heroImageSize.height}
+              layout="responsive"
+              priority={preloadHero === true}
+            />
+          </div>
+        </figure>
       )}
       <div dangerouslySetInnerHTML={{ __html: excerptHTML }} />
       <ReadMore post={post} />

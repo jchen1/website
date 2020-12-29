@@ -12,9 +12,10 @@ export default function Pagination({ pages }) {
     return (
       <Link key={page.link} href={page.link}>
         <a
-          className={[page.isCurrent ? "current" : "", styles.pageLink].join(
-            " "
-          )}
+          className={[
+            page.isCurrent ? styles.current : "",
+            styles.pageLink,
+          ].join(" ")}
         >
           {page.title}
         </a>

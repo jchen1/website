@@ -85,16 +85,18 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
       />
       {showDate !== false && <Byline date={date} slug={slug} />}
       {heroImage && (
-        <div className={styles.imgContainer}>
-          <Image
-            src={heroImage}
-            alt={title}
-            width={heroImageSize.width}
-            height={heroImageSize.height}
-            layout="responsive"
-            priority={preloadHero === true}
-          />
-        </div>
+        <figure className={styles.imgContainer}>
+          <div className="background">
+            <Image
+              src={heroImage}
+              alt={title}
+              width={heroImageSize.width}
+              height={heroImageSize.height}
+              layout="responsive"
+              priority={preloadHero === true}
+            />
+          </div>
+        </figure>
       )}
       {/\<script\>/.test(contentHTML) ? (
         <InnerHTML html={contentHTML} />
