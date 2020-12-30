@@ -58,47 +58,32 @@
   }
 }
 
-.siteInfo {
-  display: flex;
-  flex-direction: column;
+.siteName {
+  color: $white;
+  margin: 0;
+  border: 0;
+  box-shadow: unset;
+  padding: 0;
+  background-color: unset;
 
-  .description {
-    margin: -5px 0 0 0;
-    color: $white;
-    font-size: 16px;
-
-    @include mobile {
-      display: none;
-    }
+  a:hover,
+  a:active {
+    color: $primary;
   }
 
-  .siteName {
-    color: $white;
-    margin: 0;
-    border: 0;
-    box-shadow: unset;
-    padding: 0;
-    background-color: unset;
+  @include mobile {
+    background-color: $primary;
+    margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
+    padding: 0.5rem 1rem;
 
-    a:hover,
-    a:active {
-      color: $primary;
-    }
+    box-shadow: 0.25rem 0.25rem 0 0 $white;
 
-    @include mobile {
-      background-color: $primary;
-      margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
-      padding: 0.5rem 1rem;
+    a {
+      color: $darkerGray;
 
-      box-shadow: 0.25rem 0.25rem 0 0 $white;
-
-      a {
-        color: $darkerGray;
-
-        &:hover,
-        &:active {
-          color: $secondary;
-        }
+      &:hover,
+      &:active {
+        color: $secondary;
       }
     }
   }

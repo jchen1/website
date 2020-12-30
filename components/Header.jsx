@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Image from "components/Image";
 
 import { Twitter } from "components/Icon";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
+import { SITE_TITLE } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
 
@@ -30,14 +30,11 @@ export default function Header() {
           </a>
         </Link>
         <div className={styles.links}>
-          <div className={styles.siteInfo}>
-            <h1 className={styles.siteName}>
-              <Link href="/" prefetch={prefetch}>
-                <a>{SITE_TITLE}</a>
-              </Link>
-            </h1>
-            <p className={styles.description}>{SITE_DESCRIPTION}</p>
-          </div>
+          <h1 className={styles.siteName}>
+            <Link href="/" prefetch={prefetch}>
+              <a>{SITE_TITLE}</a>
+            </Link>
+          </h1>
           <div className={styles.spacer} />
           <Link href="/about">
             <a className={styles.link}>About</a>
@@ -55,57 +52,6 @@ export default function Header() {
           />
         </div>
       </nav>
-    </header>
-  );
-
-  return (
-    <header className={styles.masthead}>
-      <div className={styles.container}>
-        <div className={styles.headerLeft}>
-          <Link href="/" prefetch={prefetch}>
-            <a className={styles.siteAvatar} aria-label="Home">
-              <Image
-                src="/images/headshot-1200.jpg"
-                alt="Profile Picture"
-                height={PROFILE_SIZE}
-                width={PROFILE_SIZE}
-                priority={true}
-                layout="responsive"
-              />
-            </a>
-          </Link>
-
-          <div className={styles.siteInfo}>
-            <h1 className={[styles.siteName, styles.desktopSiteName].join(" ")}>
-              <Link href="/" prefetch={prefetch}>
-                <a>{SITE_TITLE}</a>
-              </Link>
-            </h1>
-            <p className={styles.description}>{SITE_DESCRIPTION}</p>
-          </div>
-        </div>
-        <nav className={styles.nav}>
-          <h1 className={[styles.siteName, styles.mobileSiteName].join(" ")}>
-            <Link href="/" prefetch={prefetch}>
-              <a>{SITE_TITLE}</a>
-            </Link>
-          </h1>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-          <Link href="/projects">
-            <a>Projects</a>
-          </Link>
-          <Link href="/archive">
-            <a>Archive</a>
-          </Link>
-          <Twitter
-            eventAction="header-cta-click"
-            size={25}
-            className={styles.twitter}
-          />
-        </nav>
-      </div>
     </header>
   );
 }
