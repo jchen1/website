@@ -1,6 +1,6 @@
 @import "../variables";
 
-.masthead {
+.header {
   width: 100%;
   margin: 0 auto;
   background-color: $darkerGray;
@@ -9,7 +9,7 @@
 
 .container {
   padding: 2rem 0;
-  max-width: var(--container-width);
+  width: var(--container-width);
 
   display: flex;
   justify-content: space-between;
@@ -17,19 +17,33 @@
   margin: 0 auto;
 
   @include mobile {
-    padding: 0.5rem var(--horizontal-margin) 1.5rem;
-    align-items: stretch;
+    padding: 0.5rem 1rem 1rem;
   }
 }
 
-.nav {
+.links {
+  flex: 1;
   display: flex;
   align-items: center;
 
-  a {
-    margin-left: 20px;
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .spacer {
+    flex: 1;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .link {
     color: $white;
-    text-align: right;
+    fill: $white;
+    margin-left: 20px;
     font-weight: 700;
     text-decoration: none;
 
@@ -37,78 +51,55 @@
     &:active {
       color: $primary;
     }
-  }
 
-  .twitter {
-    fill: $white;
-    color: $white;
-  }
-
-  @include mobile {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    a {
-      margin-left: 0;
-      margin-bottom: 5px;
-      color: $white;
+    @include mobile {
+      margin: 0 0 5px 0;
     }
-  }
-}
-
-.description {
-  margin: -5px 0 0 0;
-  color: $white;
-  font-size: 16px;
-
-  @include mobile {
-    display: none;
   }
 }
 
 .siteInfo {
   display: flex;
   flex-direction: column;
-}
 
-.siteName {
-  color: $white;
-  margin: 0;
-  border: 0;
-  box-shadow: unset;
-  padding: 0;
-  background-color: unset;
+  .description {
+    margin: -5px 0 0 0;
+    color: $white;
+    font-size: 16px;
 
-  a:hover,
-  a:active {
-    color: $primary;
-  }
-
-  &.mobileSiteName {
-    display: none;
-    background-color: $primary;
-    margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
-    padding: 0.5rem 1rem;
-
-    box-shadow: 0.25rem 0.25rem 0 0 $white;
-
-    a {
-      color: $darkerGray;
-
-      &:hover,
-      &:active {
-        color: $secondary;
-      }
-    }
-  }
-
-  @include mobile {
-    &.mobileSiteName {
-      display: block;
-    }
-    &.desktopSiteName {
+    @include mobile {
       display: none;
+    }
+  }
+
+  .siteName {
+    color: $white;
+    margin: 0;
+    border: 0;
+    box-shadow: unset;
+    padding: 0;
+    background-color: unset;
+
+    a:hover,
+    a:active {
+      color: $primary;
+    }
+
+    @include mobile {
+      background-color: $primary;
+      margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
+      padding: 0.5rem 1rem;
+
+      box-shadow: 0.25rem 0.25rem 0 0 $white;
+
+      a {
+        color: $darkerGray;
+
+        &:hover,
+        &:active {
+          color: $secondary;
+        }
+      }
     }
   }
 }
@@ -123,16 +114,9 @@
   }
 
   @include mobile {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.headerLeft {
-  display: flex;
-  flex: 1;
-
-  @include mobile {
-    align-self: center;
+    height: unset;
+    width: unset;
+    flex: 1;
+    margin: 0;
   }
 }
