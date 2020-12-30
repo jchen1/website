@@ -1,5 +1,11 @@
 @import "../variables";
 
+.masthead {
+  width: 100%;
+  margin: 0 auto;
+  background-color: $darkerGray;
+}
+
 .container {
   padding: 2rem 0;
   max-width: min(100%, 45rem);
@@ -10,22 +16,13 @@
   margin: 0 auto;
 
   @include mobile {
-    text-align: center;
-    flex-direction: column;
-    padding: 1rem 0 1.5rem;
+    padding: 1rem var(--horizontal-margin) 1.5rem;
   }
-}
-
-.masthead {
-  width: 100%;
-  margin: 0 auto;
-  background-color: $darkerGray;
 }
 
 .nav {
-  @include mobile {
-    margin-top: 10px;
-  }
+  display: flex;
+  align-items: center;
 
   a {
     margin-left: 20px;
@@ -34,18 +31,21 @@
     font-weight: 700;
     text-decoration: none;
 
-    @include mobile {
-      margin: 0 10px;
-    }
-
     &:hover,
     &:active {
       color: $primary;
     }
   }
 
-  display: flex;
-  align-items: center;
+  @include mobile {
+    flex-direction: column;
+    text-align: right;
+    align-items: flex-end;
+
+    a {
+      font-weight: unset;
+    }
+  }
 }
 
 .description {
@@ -71,13 +71,23 @@
   padding: 0;
   background-color: unset;
 
-  @include mobile {
-    margin-top: 6px;
-  }
-
   a:hover,
   a:active {
     color: $primary;
+  }
+
+  &.mobileSiteName {
+    margin-bottom: 0.5rem;
+    display: none;
+  }
+
+  @include mobile {
+    &.mobileSiteName {
+      display: block;
+    }
+    &.desktopSiteName {
+      display: none;
+    }
   }
 }
 
@@ -96,14 +106,12 @@
   }
 
   @include mobile {
+    height: 160px;
+    width: 160px;
     margin: 0 auto;
   }
 }
 
 .headerLeft {
   display: flex;
-
-  @include mobile {
-    flex-direction: column;
-  }
 }

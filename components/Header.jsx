@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
 
-const PROFILE_SIZE = 80;
+const PROFILE_SIZE = 160;
 
 export default function Header() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function Header() {
           </Link>
 
           <div className={styles.siteInfo}>
-            <h1 className={styles.siteName}>
+            <h1 className={[styles.siteName, styles.desktopSiteName].join(" ")}>
               <Link href="/" prefetch={prefetch}>
                 <a>{SITE_TITLE}</a>
               </Link>
@@ -41,6 +41,11 @@ export default function Header() {
           </div>
         </div>
         <nav className={styles.nav}>
+          <h1 className={[styles.siteName, styles.mobileSiteName].join(" ")}>
+            <Link href="/" prefetch={prefetch}>
+              <a>{SITE_TITLE}</a>
+            </Link>
+          </h1>
           <Link href="/about">
             <a>About</a>
           </Link>

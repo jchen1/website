@@ -10,7 +10,7 @@
   grid-column: 1 / 4;
 
   @include mobile {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem var(--horizontal-margin);
     margin: 2rem -1rem (-$footer-top-margin);
   }
 }

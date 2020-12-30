@@ -35,8 +35,8 @@ $figure-padding: 2rem;
       text-align: center;
 
       @include mobile {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin-left: var(--horizontal-margin);
+        margin-right: var(--horizontal-margin);
       }
     }
   }

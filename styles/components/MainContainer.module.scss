@@ -8,8 +8,5 @@
   align-items: center;
   width: 100%;
 
-  padding: 0 2rem;
-  @include mobile {
-    padding: 0 1rem;
-  }
+  padding: 0 var(--horizontal-margin);
 }

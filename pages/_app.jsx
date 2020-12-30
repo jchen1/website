@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }) {
     "twitter:creator": "@iambald",
     "twitter:site": "@iambald",
     "twitter:card": "summary",
-    "og:url": `https://${BASE_URL}${router.asPath}`,
+    "og:url": `https://${BASE_URL}${router.pathname}`,
     description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/headshot-1200.jpg`,
     "og:type": "website",
