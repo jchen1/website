@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
 
-const PROFILE_SIZE = 160;
+const PROFILE_SIZE = 1200;
 
 export default function Header() {
   const router = useRouter();
@@ -21,12 +21,12 @@ export default function Header() {
           <Link href="/" prefetch={prefetch}>
             <a className={styles.siteAvatar} aria-label="Home">
               <Image
-                src="/images/headshot-160.jpg"
+                src="/images/headshot-1200.jpg"
                 alt="Profile Picture"
                 height={PROFILE_SIZE}
                 width={PROFILE_SIZE}
                 priority={true}
-                layout="fixed"
+                layout="responsive"
               />
             </a>
           </Link>

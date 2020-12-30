@@ -45,7 +45,7 @@ $figure-padding: 2rem;
 .border {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
-  width: min(45rem, 100%);
+  width: var(--container-width);
   margin: 0 auto;
 
   &:last-of-type {
