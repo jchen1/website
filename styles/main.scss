@@ -119,11 +119,11 @@ h2 {
   }
 
   &.highlight {
-    border-top: 6px solid $primary;
+    border-top: 4px solid $primary;
     margin: 0 0 0.25rem;
 
     @include mobile {
-      border-top: 5px solid $primary;
+      border-top: 4px solid $primary;
     }
   }
 }
@@ -224,7 +224,7 @@ small {
 // Specify the color of the selection
 ::selection {
   color: $white;
-  background: $black;
+  background: $secondary;
 }
 
 /****************/
