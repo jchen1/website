@@ -3,7 +3,7 @@ import { getPageBySlug, markdownToHtml } from "../lib/blogs";
 import BlogPost from "../components/BlogPost";
 
 export default function About({ page }) {
-  return <BlogPost post={page} opts={{ showDate: false, noLink: true }} />;
+  return <BlogPost post={page} opts={{ noLink: true }} />;
 }
 
 export async function getStaticProps() {

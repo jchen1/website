@@ -107,7 +107,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         <>
           <PostCTA />
           <RelatedPosts posts={relatedPosts} />
-
           <a
             className={styles.scrollToTop}
             href=""

@@ -1,9 +1,23 @@
 @import "../variables";
 
 .container {
-  margin: 3rem 0;
+  border-top: 0.25rem solid $primary;
+  margin: 2rem 0 0;
 
   @include mobile {
-    margin: 1rem 0;
+    border: 0;
+    margin: 1rem 0 0;
+  }
+
+  .heading {
+    margin: 2rem 0 1rem;
+    @include mobile {
+      margin-top: 1rem;
+    }
+  }
+
+  .post {
+    font-weight: normal;
+    margin: 0.5em 0 0.25em;
   }
 }
