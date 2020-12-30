@@ -94,6 +94,7 @@ export default function Image({
   quality,
   width,
   height,
+  viewportSize,
   ...rest
 }) {
   if (process.env.NODE_ENV !== "production") {
@@ -171,8 +172,6 @@ export default function Image({
           left: 0,
           top: 0,
         }}
-        // width={width / 10}
-        // height={height / 10}
       />
     </div>
   );

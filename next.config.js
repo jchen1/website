@@ -13,7 +13,7 @@ module.exports = withPreact(
     trailingSlash: true,
     crossOrigin: "anonymous",
     images: {
-      deviceSizes: [640, 720, 1440, 2160],
+      deviceSizes: [320, 640, 720, 1440, 2160],
     },
     webpack: (config, options) => {
       if (options.isServer) {
