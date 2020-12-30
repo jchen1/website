@@ -53,7 +53,13 @@
     }
 
     @include mobile {
-      margin: 0 0 5px 0;
+      width: 100%;
+      text-align: right;
+      display: inline-flex;
+      font-size: 18px;
+      height: 34px;
+      align-items: center;
+      justify-content: flex-end;
     }
   }
 }

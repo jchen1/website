@@ -8,7 +8,7 @@ import { SITE_TITLE } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
 
-const PROFILE_SIZE = 1200;
+const PROFILE_SIZE = 320;
 
 export default function Header() {
   const router = useRouter();
