@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
+import "uplot/dist/uPlot.min.css";
 
 import TabContainer from "../components/containers/TabContainer";
 import TitleContainer from "../components/containers/TitleContainer";

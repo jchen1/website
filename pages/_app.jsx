@@ -2,7 +2,6 @@ import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
 
 import "styles/main.scss";
-import "uplot/dist/uPlot.min.css";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
