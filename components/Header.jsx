@@ -57,7 +57,7 @@ export default function Header() {
           </Link>
           <Twitter
             eventAction="header-cta-click"
-            size={20}
+            size={25}
             className={styles.twitter}
           />
         </nav>

@@ -16,7 +16,8 @@
   margin: 0 auto;
 
   @include mobile {
-    padding: 1rem var(--horizontal-margin) 1.5rem;
+    padding: 0.5rem var(--horizontal-margin) 1.5rem;
+    align-items: stretch;
   }
 }
 
@@ -37,13 +38,20 @@
     }
   }
 
+  .twitter {
+    fill: $white;
+    color: $white;
+  }
+
   @include mobile {
     flex-direction: column;
-    text-align: right;
     align-items: flex-end;
+    justify-content: space-between;
 
     a {
-      font-weight: unset;
+      margin-left: 0;
+      margin-bottom: 5px;
+      color: $white;
     }
   }
 }
@@ -77,8 +85,21 @@
   }
 
   &.mobileSiteName {
-    margin-bottom: 0.5rem;
     display: none;
+    background-color: $primary;
+    margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
+    padding: 0.5rem 1rem;
+
+    box-shadow: 0.25rem 0.25rem 0 0 $white;
+
+    a {
+      color: $darkerGray;
+
+      &:hover,
+      &:active {
+        color: $secondary;
+      }
+    }
   }
 
   @include mobile {
@@ -91,11 +112,6 @@
   }
 }
 
-.twitter {
-  fill: $white;
-  color: $white;
-}
-
 .siteAvatar {
   height: 80px;
   width: 80px;
@@ -106,12 +122,15 @@
   }
 
   @include mobile {
-    height: 160px;
-    width: 160px;
-    margin: 0 auto;
+    height: 140px;
+    width: 140px;
   }
 }
 
 .headerLeft {
   display: flex;
+
+  @include mobile {
+    align-self: center;
+  }
 }
