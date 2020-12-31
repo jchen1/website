@@ -79,7 +79,7 @@
 
   @include mobile {
     background-color: $primary;
-    margin: 0 calc(-1 * var(--horizontal-margin)) 1.5rem 0;
+    margin: 0 calc(-1 * var(--horizontal-margin)) 1rem 0;
     padding: 0.5rem 1rem;
 
     box-shadow: 0.25rem 0.25rem 0 0 $white;
