@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "components/Image";
 
+import { SITE_TITLE } from "lib/constants";
+
+import Image from "components/Image";
 import { Twitter } from "components/Icon";
-import { SITE_TITLE } from "../lib/constants";
 
 import styles from "styles/components/Header.module.scss";
 
@@ -35,7 +36,7 @@ export default function Header() {
               <a>{SITE_TITLE}</a>
             </Link>
           </h1>
-          <div className={styles.spacer} />
+          <div className={styles.spacer} aria-hidden />
           <Link href="/about">
             <a className={styles.link}>About</a>
           </Link>

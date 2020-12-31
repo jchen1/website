@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
 
 import "styles/main.scss";
+import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "lib/constants";
+import { pageview } from "lib/gtag";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import Meta from "components/Meta";
 
-import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
-import { pageview } from "../lib/gtag";
-import Meta from "../components/Meta";
-import { useEffect, useState } from "react";
 import BlogContainer from "components/containers/BlogContainer";
 import MainContainer from "components/containers/MainContainer";
 

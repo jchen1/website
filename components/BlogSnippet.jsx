@@ -18,28 +18,13 @@ function ReadMore({ post }) {
 
 // Just a snippet!
 export default function BlogSnippet({ post, opts = {} }) {
-  const {
-    title,
-    homepage,
-    date,
-    slug,
-    heroImage,
-    excerptHTML,
-    heroImageSize,
-    tags,
-  } = post;
+  const { title, date, slug, heroImage, excerptHTML, heroImageSize } = post;
 
-  const { noLink, headingLevel, preloadHero } = opts;
+  const { headingLevel, preloadHero } = opts;
 
   return (
     <article className={styles.article}>
-      <Title
-        headingLevel={headingLevel}
-        title={title}
-        slug={slug}
-        homepage={homepage}
-        noLink={noLink}
-      />
+      <Title headingLevel={headingLevel} title={title} slug={slug} />
       <Byline date={date} slug={slug} />
       {heroImage && (
         <figure className={styles.imgContainer}>

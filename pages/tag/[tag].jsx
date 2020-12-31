@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
-import { ARCHIVE_FIELDS, getAllPosts, getPostsByTag } from "../../lib/blogs";
+import { ARCHIVE_FIELDS, getAllPosts, getPostsByTag } from "lib/blogs";
 
 import { ArchiveItem } from "../archive";
 
