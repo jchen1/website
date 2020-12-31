@@ -36,6 +36,7 @@ And, coming soon: my 2020 annual review and 2021 goals!
 
 - I added a new layer of paint to my website for the new year. I hope you like it!
 - I [wrote some code](https://github.com/jchen1/spotify) to scrape [Spotify's API](https://developer.spotify.com/documentation/web-api/) and fill a SQLite database. I'd like to analyze this dataset in the new year.
+- [Updated [roam/css]](https://github.com/jchen1/roam-util/commit/f23d6e6750e08275a8628c75f74567dfb4e13729) for new Roam updates.
 
 ## Reading
 
@@ -50,7 +51,7 @@ And, coming soon: my 2020 annual review and 2021 goals!
 - [Chronic Hamstring Problems in Sprinters: Management and Recovery](https://simplifaster.com/articles/chronic-hamstring-problems-sprinters-management-recovery/)
 - [To Drag the Toes (or Not) at the Start of a Sprint](https://simplifaster.com/articles/toe-drag-starting-sprint/)
 - [Benign PVCs: A Heart Rhythm Doctor’s Approach.](https://www.drjohnm.org/2013/06/benign-pvcs-a-heart-rhythm-doctors-approach/)
-  - "PVCs might indicate training excess. I see this often in athletes. It might happen during a big training block or immediately afterwards "
+  - "PVCs might indicate training excess. I see this often in athletes. It might happen during a big training block or immediately afterwards"
 
 ### Career & Self-improvement
 
