@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-import MainContainer from "../components/containers/MainContainer";
 import { ARCHIVE_FIELDS, getAllPosts } from "../lib/blogs";
 
 import styles from "styles/pages/archive.module.scss";
@@ -25,10 +24,10 @@ export default function Archive(props) {
   const postMarkup = posts.map(post => <ArchiveItem {...post} />);
 
   return (
-    <MainContainer>
-      <h1 className="title">Post Archive</h1>
+    <>
+      <h1 className={`${styles.title} title`}>Post Archive</h1>
       {postMarkup}
-    </MainContainer>
+    </>
   );
 }
 

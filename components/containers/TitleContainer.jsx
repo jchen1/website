@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const TitleContainer = styled.div`
   display: flex;
-  margin: 0 0 1rem 0;
+  margin: 2rem 0 1rem 0;
   align-items: center;
   justify-content: space-evenly;
 

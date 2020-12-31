@@ -11,7 +11,6 @@ import {
   ARCHIVE_FIELDS,
 } from "../../lib/blogs";
 import { sizeImage } from "../../lib/util";
-import MainContainer from "../../components/containers/MainContainer";
 
 import BlogPost from "../../components/BlogPost";
 
@@ -21,13 +20,11 @@ export default function Post({ post, relatedPosts }) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <MainContainer>
-      <BlogPost
-        post={post}
-        opts={{ showScroll: true, preloadHero: true }}
-        relatedPosts={relatedPosts}
-      />
-    </MainContainer>
+    <BlogPost
+      post={post}
+      opts={{ showScroll: true, preloadHero: true }}
+      relatedPosts={relatedPosts}
+    />
   );
 }
 

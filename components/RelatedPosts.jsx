@@ -4,20 +4,18 @@ import Title from "./Title";
 
 import styles from "styles/components/RelatedPosts.module.scss";
 
-function RelatedPost({ post }) {
-  return <Title headingLevel={4} title={post.title} slug={post.slug} />;
-}
-
 export default function RelatedPosts({ posts }) {
   return (
-    <>
-      <div className={styles.border} />
-      <section className={styles.container}>
-        <h2>Related Posts</h2>
-        {posts.map(p => (
-          <RelatedPost post={p} />
-        ))}
-      </section>
-    </>
+    <section className={styles.container}>
+      <h2 className={styles.heading}>Related Posts</h2>
+      {posts.map(p => (
+        <Title
+          headingLevel={5}
+          title={p.title}
+          slug={p.slug}
+          className={styles.post}
+        />
+      ))}
+    </section>
   );
 }

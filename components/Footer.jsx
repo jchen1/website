@@ -7,21 +7,21 @@ import styles from "styles/components/Footer.module.scss";
 export default function Footer() {
   return (
     <footer className={styles.container}>
-      <div className={styles.button}>
+      <button className={styles.button}>
         <Envelope eventAction="footer-cta-click" />
-      </div>
-      <div className={styles.button}>
+      </button>
+      <button className={styles.button}>
         <Github eventAction="footer-cta-click" />
-      </div>
-      <div className={styles.button}>
+      </button>
+      <button className={styles.button}>
         <Twitter eventAction="footer-cta-click" />
-      </div>
-      <div className={styles.button}>
+      </button>
+      <button className={styles.button}>
         <Linkedin eventAction="footer-cta-click" />
-      </div>
-      <div className={styles.button}>
+      </button>
+      <button className={styles.button}>
         <RSS eventAction="footer-cta-click" />
-      </div>
+      </button>
     </footer>
   );
 }

@@ -8,8 +8,7 @@ import { tooltipsPlugin } from "../../lib/chartPlugins";
 
 const defaultSeriesOpts = {
   show: true,
-  stroke: Colors.RED,
-  // fill: Colors.RED,
+  stroke: Colors.YELLOW,
 };
 
 const Container = styled(ResizableContainer)`

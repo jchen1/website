@@ -4,6 +4,8 @@
 
 // Colors
 $red: #f03009;
+$primary: #ffb132;
+$secondary: #509db3;
 
 // Grays
 $black: #1a1a1a;
@@ -13,8 +15,14 @@ $gray: #666;
 $lightGray: #eee;
 $white: #ffffff;
 
+$primaryGray: #2e281f;
+$secondaryLightGray: #e6f0f2;
+
 // Font stacks
 $font-face: "Inter", sans-serif;
+
+// spacing
+$footer-top-margin: 2rem;
 
 // Mobile breakpoints
 @mixin mobile {

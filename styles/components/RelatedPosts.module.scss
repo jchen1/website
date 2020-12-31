@@ -1,8 +1,23 @@
 @import "../variables";
 
-.border {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-  width: min(45rem, 100%);
-  margin: 0 auto;
+.container {
+  border-top: 0.25rem solid $primary;
+  margin: 2rem 0 0;
+
+  @include mobile {
+    border: 0;
+    margin: 1rem 0 0;
+  }
+
+  .heading {
+    margin: 2rem 0 1rem;
+    @include mobile {
+      margin-top: 1rem;
+    }
+  }
+
+  .post {
+    font-weight: normal;
+    margin: 0.5em 0 0.25em;
+  }
 }

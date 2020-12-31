@@ -18,7 +18,7 @@ export default function PostCTA() {
           event({
             action: "post-cta-click",
             category: "cta",
-            label: router.asPath,
+            label: router.pathname,
           })
         }
       >

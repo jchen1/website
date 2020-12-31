@@ -1,17 +1,17 @@
+import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import Router, { useRouter } from "next/router";
 
 import "styles/main.scss";
-import "uplot/dist/uPlot.min.css";
+import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "lib/constants";
+import { pageview } from "lib/gtag";
 
-import RootContainer from "../components/containers/RootContainer";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import Meta from "components/Meta";
 
-import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
-import { pageview } from "../lib/gtag";
-import Meta from "../components/Meta";
-import { useEffect, useState } from "react";
+import BlogContainer from "components/containers/BlogContainer";
+import MainContainer from "components/containers/MainContainer";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
@@ -24,6 +24,8 @@ Router.events.on("routeChangeError", () => NProgress.done());
 const transitionStyle =
   "*{-webkit-transition:color .25s ease,background-color .25s ease,fill .25s ease;transition:color .25s ease,background-color .25s ease,fill .25s ease}";
 
+const fullWidthRoutes = ["/metrics"];
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
@@ -32,12 +34,14 @@ function MyApp({ Component, pageProps }) {
     setLoaded(true);
   }, []);
 
+  const useFullWidth = fullWidthRoutes.includes(router.pathname);
+
   const metas = {
     title: SITE_TITLE,
     "twitter:creator": "@iambald",
     "twitter:site": "@iambald",
     "twitter:card": "summary",
-    "og:url": `https://${BASE_URL}${router.asPath}`,
+    "og:url": `https://${BASE_URL}${router.pathname}`,
     description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/headshot-1200.jpg`,
     "og:type": "website",
@@ -47,9 +51,14 @@ function MyApp({ Component, pageProps }) {
     <div className="root">
       <Meta {...metas} />
       <Header />
-      <RootContainer>
-        <Component {...pageProps} />
-      </RootContainer>
+      <MainContainer>
+        {useFullWidth && <Component {...pageProps} />}
+        {!useFullWidth && (
+          <BlogContainer>
+            <Component {...pageProps} />
+          </BlogContainer>
+        )}
+      </MainContainer>
       <Footer />
       {loaded && <style>{transitionStyle}</style>}
     </div>

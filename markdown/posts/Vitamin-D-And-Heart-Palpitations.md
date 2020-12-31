@@ -10,6 +10,7 @@ ogImage: /images/vitamin-d-and-heart-palpitations/hero.jpg
 **This isn’t medical advice. Talk to your doctor if you notice any health problems.**
 
 ![HRV over time{caption=My HRV over time. Outliers are days I had heart palpitations.}](/images/vitamin-d-and-heart-palpitations/hero.jpg)
+
 In mid-2019, I experienced my first heart palpitations. "Palpitation" doesn't do the feeling justice: your heart literally skips a beat. For me, each skipped beat comes with a surge of panic and the sense that something is **wrong**. I was suddenly aware of a part of my body I'd never thought about before.
 
 At first, I only noticed them at night, especially after big, greasy meals. But over the next couple months, the palpitations grew in frequency. Throughout most of 2020, I experienced palpitations regularly -- multiple times a week. There wasn't a link between heavy meals and palpitations anymore; they'd strike without any apparent pattern. At just 25, I was legitimately worried about dying early.

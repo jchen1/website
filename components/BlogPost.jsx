@@ -6,7 +6,6 @@ import { BASE_URL } from "../lib/constants";
 import styles from "styles/components/Blog.module.scss";
 
 import Meta from "./Meta";
-import BlogContainer from "../components/containers/BlogContainer";
 import Byline from "./Byline";
 
 import Title from "./Title";
@@ -53,6 +52,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
     setTitle,
     showScroll,
     preloadHero,
+    titleClass,
   } = opts;
 
   const description =
@@ -74,7 +74,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
   };
 
   return (
-    <BlogContainer>
+    <article className={styles.article}>
       {setTitle !== false && <Meta {...meta} />}
       <Title
         headingLevel={headingLevel}
@@ -82,10 +82,11 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         slug={slug}
         homepage={homepage}
         noLink={noLink}
+        className={titleClass}
       />
       {showDate !== false && <Byline date={date} slug={slug} />}
       {heroImage && (
-        <div className={styles.imgContainer}>
+        <figure className={styles.imgContainer}>
           <Image
             src={heroImage}
             alt={title}
@@ -93,8 +94,9 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
             height={heroImageSize.height}
             layout="responsive"
             priority={preloadHero === true}
+            className="background"
           />
-        </div>
+        </figure>
       )}
       {/\<script\>/.test(contentHTML) ? (
         <InnerHTML html={contentHTML} />
@@ -105,7 +107,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         <>
           <PostCTA />
           <RelatedPosts posts={relatedPosts} />
-
           <a
             className={styles.scrollToTop}
             href=""
@@ -118,6 +119,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
           </a>
         </>
       )}
-    </BlogContainer>
+    </article>
   );
 }

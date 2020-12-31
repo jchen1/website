@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Square = styled.div`
   flex-basis: ${100 / COL_SIZE}%;
-  background-color: ${props => lighten(props.score, Colors.RED)};
+  background-color: ${props => lighten(props.score, Colors.YELLOW)};
 
   &:after {
     content: "";

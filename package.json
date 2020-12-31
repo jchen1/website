@@ -36,6 +36,7 @@
     "sass": "^1.30.0",
     "strip-markdown": "^4.0.0",
     "styled-components": "^5.2.1",
+    "unist-util-remove": "^2.0.1",
     "unist-util-visit": "^2.0.3",
     "uplot": "^1.5.2"
   },

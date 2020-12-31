@@ -1,12 +1,20 @@
 .readMore {
   width: fit-content;
+  font-weight: bold;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 .imgContainer {
-  padding: 15px 0;
+  padding: 1rem 0;
 }
 
 .scrollToTop {
-  padding-top: 2rem;
+  display: block;
+  margin-top: 2rem;
   font-size: 0.75em;
+}
+
+.article {
+  margin-top: 2rem;
 }

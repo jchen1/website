@@ -6,7 +6,6 @@ import styles from "styles/components/Blog.module.scss";
 
 import Byline from "./Byline";
 import Title from "./Title";
-import BlogContainer from "./containers/BlogContainer";
 
 function ReadMore({ post }) {
   const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
@@ -19,31 +18,16 @@ function ReadMore({ post }) {
 
 // Just a snippet!
 export default function BlogSnippet({ post, opts = {} }) {
-  const {
-    title,
-    homepage,
-    date,
-    slug,
-    heroImage,
-    excerptHTML,
-    heroImageSize,
-    tags,
-  } = post;
+  const { title, date, slug, heroImage, excerptHTML, heroImageSize } = post;
 
-  const { noLink, headingLevel, preloadHero } = opts;
+  const { headingLevel, preloadHero } = opts;
 
   return (
-    <BlogContainer>
-      <Title
-        headingLevel={headingLevel}
-        title={title}
-        slug={slug}
-        homepage={homepage}
-        noLink={noLink}
-      />
+    <article className={styles.article}>
+      <Title headingLevel={headingLevel} title={title} slug={slug} />
       <Byline date={date} slug={slug} />
       {heroImage && (
-        <div className={styles.imgContainer}>
+        <figure className={styles.imgContainer}>
           <Image
             src={heroImage}
             alt={title}
@@ -51,12 +35,12 @@ export default function BlogSnippet({ post, opts = {} }) {
             height={heroImageSize.height}
             layout="responsive"
             priority={preloadHero === true}
-            loading={preloadHero === true ? "eager" : "lazy"}
+            className="background"
           />
-        </div>
+        </figure>
       )}
       <div dangerouslySetInnerHTML={{ __html: excerptHTML }} />
       <ReadMore post={post} />
-    </BlogContainer>
+    </article>
   );
 }

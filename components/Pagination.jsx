@@ -3,24 +3,32 @@ import Link from "next/link";
 
 import styles from "styles/components/Pagination.module.scss";
 
-// TODO - have "..." when pages.length > MAX_PAGES_TO_DISPLAY
-const MAX_PAGES_TO_DISPLAY = 5;
+function MaybeLink({ page, children }) {
+  if (page) {
+    return (
+      <Link key={page.link} href={page.link}>
+        <a className={styles.pageLink}>{children}</a>
+      </Link>
+    );
+  }
+
+  return (
+    <a className={[styles.pageLink, styles.disabled].join(" ")}>{children}</a>
+  );
+}
 
 // pages is an array of { link, title, isCurrent }
 export default function Pagination({ pages }) {
-  const pageMarkup = pages?.map(page => {
-    return (
-      <Link key={page.link} href={page.link}>
-        <a
-          className={[page.isCurrent ? "current" : "", styles.pageLink].join(
-            " "
-          )}
-        >
-          {page.title}
-        </a>
-      </Link>
-    );
-  });
+  const indexOfCurrent = pages.findIndex(p => p.isCurrent);
+  const next = pages[indexOfCurrent + 1];
+  const prev = pages[indexOfCurrent - 1];
 
-  return <section className={styles.container}>{pageMarkup}</section>;
+  return (
+    <section className={styles.container}>
+      <div className={styles.inner}>
+        {prev ? <MaybeLink page={prev}>← Previous</MaybeLink> : <span />}
+        <MaybeLink page={next}>Next →</MaybeLink>
+      </div>
+    </section>
+  );
 }

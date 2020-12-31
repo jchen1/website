@@ -7,6 +7,7 @@ $inter-font-path: "/fonts";
 
 @import "reset";
 @import "variables";
+@import "cssvariables";
 // Syntax highlighting @import is at the bottom of this file
 
 @font-face {
@@ -14,7 +15,8 @@ $inter-font-path: "/fonts";
   font-style: normal;
   font-weight: 400;
   font-display: $inter-font-display;
-  src: url("#{$inter-font-path}/Inter-Regular.woff2") format("woff2"),
+  src: local("Inter"),
+    url("#{$inter-font-path}/Inter-Regular.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Regular.woff") format("woff");
 }
 
@@ -23,7 +25,8 @@ $inter-font-path: "/fonts";
   font-style: normal;
   font-weight: 700;
   font-display: $inter-font-display;
-  src: url("#{$inter-font-path}/Inter-Bold.woff2") format("woff2"),
+  src: local("Inter Bold"),
+    url("#{$inter-font-path}/Inter-Bold.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Bold.woff") format("woff");
 }
 
@@ -42,12 +45,11 @@ html {
 
 body {
   background: $white;
-  font: 18px/1.7 $font-face;
+  font: var(--font-size) / var(--line-height) $font-face;
   letter-spacing: -0.014em;
   color: $darkGray;
 
   @include mobile {
-    font: 16px/1.6 $font-face;
     letter-spacing: -0.011em;
   }
 }
@@ -62,12 +64,13 @@ h6 {
   color: $darkerGray;
   font-weight: bold;
 
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 1em 0 0.25em;
   padding: 0;
+  width: fit-content;
 
   @include mobile {
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }
 
@@ -76,14 +79,29 @@ h1 {
   margin: 1em 0 0.25em;
   font-weight: bold;
   letter-spacing: -0.021em;
+  border-top: 0.5rem solid $primary;
+  margin: 0 0 0.25rem;
+
   a {
     color: inherit;
     text-decoration: none;
   }
 
+  &.title {
+    margin-top: 2rem;
+  }
+
   @include mobile {
     font-size: 26px;
     letter-spacing: -0.019em;
+
+    border: 0;
+    background-color: $primary;
+    margin-left: -1.5rem;
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    margin-bottom: 0.75rem;
+
+    box-shadow: 0.25rem 0.25rem 0 0 $darkerGray;
   }
 }
 
@@ -98,6 +116,15 @@ h2 {
   @include mobile {
     font-size: 23px;
     letter-spacing: -0.019em;
+  }
+
+  &.highlight {
+    border-top: 4px solid $primary;
+    margin: 0 0 0.25rem;
+
+    @include mobile {
+      border-top: 4px solid $primary;
+    }
   }
 }
 
@@ -119,6 +146,18 @@ h4 {
 
 p {
   margin: 1rem 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:empty {
+    margin: 0;
+  }
 }
 
 a {
@@ -127,7 +166,7 @@ a {
   cursor: pointer;
   &:hover,
   &:active {
-    color: $red;
+    color: $secondary;
   }
 }
 
@@ -185,7 +224,7 @@ small {
 // Specify the color of the selection
 ::selection {
   color: $white;
-  background: $black;
+  background: $secondary;
 }
 
 /****************/
@@ -210,11 +249,21 @@ small {
   font-size: 14px;
 }
 
-h1.title {
-  width: min(45rem, 100%);
-  text-align: left;
+figure {
+  width: calc(100% - var(--img-shadow-size));
 
-  margin-top: 0;
+  img.background {
+    box-shadow: var(--img-shadow-size) var(--img-shadow-size) 0 0 $primary;
+  }
+
+  @include mobile {
+    width: 100vw;
+    margin-left: -1rem;
+
+    img.background {
+      box-shadow: 0 var(--img-shadow-size) 0 0 $primary;
+    }
+  }
 }
 
 @import "highlights";

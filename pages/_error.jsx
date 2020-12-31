@@ -1,5 +1,3 @@
-import MainContainer from "../components/containers/MainContainer";
-
 const statusCodes = {
   400: "Bad Request",
   404: "Page not found",
@@ -10,13 +8,11 @@ const statusCodes = {
 function CustomError({ statusCode }) {
   const msg = `${statusCode}: ${statusCodes[statusCode] || ""}.`;
   return (
-    <MainContainer>
-      <h1>
-        {statusCode
-          ? msg
-          : "An unexpected error occurred. Please refresh and try again."}
-      </h1>
-    </MainContainer>
+    <h1 className="title">
+      {statusCode
+        ? msg
+        : "An unexpected error occurred. Please refresh and try again."}
+    </h1>
   );
 }
 

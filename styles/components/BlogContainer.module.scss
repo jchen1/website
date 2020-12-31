@@ -1,6 +1,8 @@
 @import "../variables";
 
-.article {
+$figure-padding: 2rem;
+
+.container {
   width: 100%;
 
   display: grid;
@@ -15,31 +17,27 @@
     grid-column: 1 / -1;
   }
 
-  &:first-child {
-    h1 {
-      margin-top: 0;
-    }
-  }
-
-  > h1 {
-    margin-bottom: 0;
-  }
-
   blockquote {
     margin: 1.8em 0.8em;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    // font-size: 22px;
   }
 
   /* images with captions */
   figure {
-    padding: 0.75rem 0;
+    padding: 0.25rem 0 $figure-padding;
     figcaption {
-      padding: 0.75rem 0;
+      padding: 0.75rem 0 0;
+      // captions already have padding
+      margin-bottom: (-$figure-padding);
       font-size: small;
       text-align: center;
+
+      @include mobile {
+        margin-left: var(--horizontal-margin);
+        margin-right: var(--horizontal-margin);
+      }
     }
   }
 }
@@ -47,7 +45,7 @@
 .border {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
-  width: min(45rem, 100%);
+  width: var(--container-width);
   margin: 0 auto;
 
   &:last-of-type {
