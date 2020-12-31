@@ -27,6 +27,7 @@ export default function Header() {
               width={PROFILE_SIZE}
               priority={true}
               layout="responsive"
+              viewportWidthMultiplier={0.5}
             />
           </a>
         </Link>

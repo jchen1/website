@@ -7,19 +7,17 @@ const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS;
 // sort smallest to largest
 const allSizes = [...deviceSizes, ...imageSizes].sort((a, b) => a - b);
 
+function closestSize(w) {
+  return allSizes.find(p => p >= w) || allSizes[allSizes.length - 1];
+}
+
 function getWidths(width, layout) {
   if (layout === "responsive") {
     return { widths: deviceSizes, kind: "w" };
   }
 
   width = parseInt(width, 10);
-  const widths = [
-    ...new Set(
-      [width, width * 2, width * 3].map(
-        w => allSizes.find(p => p >= w) || allSizes[allSizes.length - 1]
-      )
-    ),
-  ];
+  const widths = [...new Set([width, width * 2, width * 3].map(closestSize))];
   return { widths, kind: "x" };
 }
 
@@ -73,12 +71,22 @@ function loader({ src, unoptimized, width, quality }) {
   return `${path}?url=${encodeURIComponent(src)}&w=${width}&q=${quality || 75}`;
 }
 
-function generateImgAttrs({ src, layout, width, quality }) {
+function generateImgAttrs({
+  src,
+  layout,
+  width,
+  quality,
+  viewportWidthMultiplier,
+}) {
   const { widths, kind } = getWidths(width, layout);
   const last = widths.length - 1;
   const srcSet = widths.map(
     (w, i) =>
-      `${loader({ src, quality, width: w })} ${kind === "w" ? w : i + 1}${kind}`
+      `${loader({
+        src,
+        quality,
+        width: closestSize(w * viewportWidthMultiplier),
+      })} ${kind === "w" ? w : i + 1}${kind}`
   );
 
   src = loader({ src, quality, width: widths[last] });
@@ -94,7 +102,7 @@ export default function Image({
   quality,
   width,
   height,
-  viewportSize,
+  viewportWidthMultiplier = 1,
   ...rest
 }) {
   if (process.env.NODE_ENV !== "production") {
@@ -130,6 +138,7 @@ export default function Image({
     layout,
     width,
     quality,
+    viewportWidthMultiplier,
   });
 
   const wrapperStyle = {
