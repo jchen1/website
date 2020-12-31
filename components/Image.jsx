@@ -23,7 +23,7 @@ function getWidths(width, layout) {
 
 function loader({ src, unoptimized, width, quality }) {
   if (unoptimized) {
-    return { src };
+    return src;
   }
   if (process.env.NODE_ENV !== "production") {
     const missingValues = [];
