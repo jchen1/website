@@ -20,12 +20,12 @@ function ReadMore({ post }) {
 export default function BlogSnippet({ post, opts = {} }) {
   const { title, date, slug, heroImage, excerptHTML, heroImageSize } = post;
 
-  const { headingLevel, preloadHero } = opts;
+  const { preloadHero } = opts;
 
   return (
     <article className={styles.article}>
-      <Title headingLevel={headingLevel} title={title} slug={slug} />
-      <Byline date={date} slug={slug} />
+      <Title title={title} slug={slug} />
+      <Byline date={date} />
       {heroImage && (
         <figure className={styles.imgContainer}>
           <Image
