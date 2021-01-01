@@ -1,23 +1,18 @@
 @import "mixins";
 
-.header {
+.container {
   width: 100%;
-  margin: 0 auto;
   background-color: var(--primary-gray);
   border-bottom: 0.25rem solid var(--primary);
-}
 
-.container {
-  padding: 2rem 0;
-  width: calc(var(--container-width) + var(--horizontal-margin));
+  padding: 2rem calc(0.5 * (100% - var(--container-width)));
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
 
   @include mobile {
-    padding: 0.5rem 1rem 1rem;
+    padding: 0.5rem var(--horizontal-margin) 1rem;
   }
 }
 

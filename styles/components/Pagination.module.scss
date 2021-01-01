@@ -2,10 +2,12 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   grid-column: 1 / -1;
-  margin: 3rem 0 calc(-1 * var(--vertical-margin));
-  padding: 1rem 0;
+  margin: 3rem calc(-1 * var(--horizontal-margin))
+    calc(-1 * var(--vertical-margin));
+  padding: 1rem
+    calc(var(--horizontal-margin) + (0.5 * (100% - var(--container-width))));
   background-color: var(--primary);
   border-top: 0.25rem solid var(--primary);
 
@@ -14,17 +16,9 @@
   }
 }
 
-.inner {
-  grid-column: 2;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
 .pageLink {
   &:hover {
     color: var(--secondary-light-gray);
-    cursor: pointer;
   }
 
   line-height: 2rem;

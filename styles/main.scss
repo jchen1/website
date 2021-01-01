@@ -258,7 +258,7 @@ figure {
 
   @include mobile {
     width: 100vw;
-    margin-left: -1rem;
+    margin-left: calc(-1 * var(--horizontal-margin));
 
     img.background {
       box-shadow: 0 var(--shadow-size) 0 0 var(--primary);

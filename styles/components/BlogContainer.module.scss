@@ -4,6 +4,7 @@
   width: 100%;
   display: grid;
 
+  padding: 0 var(--horizontal-margin);
   grid-template-columns: 1fr var(--container-width) 1fr;
 
   & > * {

@@ -10,7 +10,7 @@
   --line-height: 1.65;
   --shadow-size: 0.5rem;
 
-  --container-width: min(45rem, calc(100% - (2 * (var(--horizontal-margin)))));
+  --container-width: min(45rem, 100%);
 
   --black: #1a1a1a;
   --darker-gray: #222;

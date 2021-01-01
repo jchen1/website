@@ -12,9 +12,7 @@ function MaybeLink({ page, children }) {
     );
   }
 
-  return (
-    <a className={[styles.pageLink, styles.disabled].join(" ")}>{children}</a>
-  );
+  return <span />;
 }
 
 // pages is an array of { link, title, isCurrent }
@@ -25,10 +23,8 @@ export default function Pagination({ pages }) {
 
   return (
     <section className={styles.container}>
-      <div className={styles.inner}>
-        {prev ? <MaybeLink page={prev}>← Previous</MaybeLink> : <span />}
-        <MaybeLink page={next}>Next →</MaybeLink>
-      </div>
+      <MaybeLink page={prev}>← Previous</MaybeLink>
+      <MaybeLink page={next}>Next →</MaybeLink>
     </section>
   );
 }
