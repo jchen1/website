@@ -47,18 +47,14 @@ function MyApp({ Component, pageProps }) {
     "og:type": "website",
     viewport: "width=device-width",
   };
+  const Container = useFullWidth ? MainContainer : BlogContainer;
   return (
     <div className="root">
       <Meta {...metas} />
       <Header />
-      <MainContainer>
-        {useFullWidth && <Component {...pageProps} />}
-        {!useFullWidth && (
-          <BlogContainer>
-            <Component {...pageProps} />
-          </BlogContainer>
-        )}
-      </MainContainer>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
       <Footer />
       {loaded && <style>{transitionStyle}</style>}
     </div>

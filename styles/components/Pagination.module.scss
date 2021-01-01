@@ -3,13 +3,11 @@
 .container {
   display: flex;
   justify-content: center;
-  margin: 3rem calc(-1 * var(--horizontal-margin))
-    calc(-1 * var(--vertical-margin));
+  grid-column: 1 / -1;
+  margin: 3rem 0 calc(-1 * var(--vertical-margin));
   padding: 1rem 0;
   background-color: var(--primary);
   border-top: 0.25rem solid var(--primary);
-
-  grid-column: 1 / 4;
 
   @include mobile {
     padding: 0.5rem var(--horizontal-margin);
@@ -18,7 +16,7 @@
 
 .inner {
   grid-column: 2;
-  width: var(--container-width);
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

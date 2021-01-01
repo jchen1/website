@@ -2,8 +2,8 @@
 
 .container {
   width: 100%;
-
   display: grid;
+
   grid-template-columns: 1fr var(--container-width) 1fr;
 
   & > * {
@@ -33,21 +33,8 @@
       text-align: center;
 
       @include mobile {
-        margin-left: var(--horizontal-margin);
-        margin-right: var(--horizontal-margin);
+        grid-column: 1 / -1;
       }
     }
-  }
-}
-
-.border {
-  padding-bottom: 2em;
-  border-bottom: 1px solid var(--light-gray);
-  width: var(--container-width);
-  margin: 0 auto;
-
-  &:last-of-type {
-    padding-bottom: 1em;
-    border-bottom: none;
   }
 }

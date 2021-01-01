@@ -9,7 +9,7 @@
 
 .container {
   padding: 2rem 0;
-  width: var(--container-width);
+  width: calc(var(--container-width) + var(--horizontal-margin));
 
   display: flex;
   justify-content: space-between;
@@ -82,7 +82,7 @@
     margin: 0 calc(-1 * var(--horizontal-margin)) 0.75rem 0;
     padding: 0.5rem 1rem;
 
-    box-shadow: 0.25rem 0.25rem 0 0 var(--white);
+    box-shadow: var(--shadow-size) var(--shadow-size) 0 0 var(--white);
 
     a {
       color: var(--darker-gray);
