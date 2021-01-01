@@ -13,7 +13,7 @@ $inter-font-path: "/fonts";
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-display: $inter-font-display;
   src: local("Inter"),
     url("#{$inter-font-path}/Inter-Regular.woff2") format("woff2"),
@@ -23,7 +23,7 @@ $inter-font-path: "/fonts";
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 700;
+  font-weight: bold;
   font-display: $inter-font-display;
   src: local("Inter Bold"),
     url("#{$inter-font-path}/Inter-Bold.woff2") format("woff2"),
@@ -88,7 +88,7 @@ h1 {
   }
 
   &.title {
-    margin-top: 2rem;
+    margin-top: var(--vertical-margin);
   }
 
   @include mobile {
@@ -121,10 +121,6 @@ h2 {
   &.highlight {
     border-top: 4px solid var(--primary);
     margin: 0 0 0.25rem;
-
-    @include mobile {
-      border-top: 4px solid var(--primary);
-    }
   }
 }
 

@@ -5,9 +5,5 @@ import styles from "styles/components/Byline.module.scss";
 export default function Byline({ date }) {
   const dateStr = date ? formatDate(new Date(date)) : " ";
 
-  return (
-    <div className={styles.byline}>
-      <small>{dateStr}</small>
-    </div>
-  );
+  return <small className={styles.byline}>{dateStr}</small>;
 }

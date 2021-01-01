@@ -36,17 +36,14 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
     homepage,
     date,
     slug,
-    author,
     heroImage,
     ogImage,
     contentHTML,
     excerpt,
     heroImageSize,
-    tags,
   } = post;
 
   const {
-    noLink,
     showDate,
     headingLevel,
     setTitle,
@@ -81,7 +78,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         title={title}
         slug={slug}
         homepage={homepage}
-        noLink={noLink}
         className={titleClass}
       />
       {showDate !== false && <Byline date={date} slug={slug} />}

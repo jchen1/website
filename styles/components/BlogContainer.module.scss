@@ -1,6 +1,7 @@
 @import "mixins";
 
 .container {
+  flex: 1;
   width: 100%;
   display: grid;
 
@@ -34,7 +35,7 @@
       text-align: center;
 
       @include mobile {
-        grid-column: 1 / -1;
+        padding: 0.75rem var(--horizontal-margin) 0;
       }
     }
   }

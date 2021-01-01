@@ -3,7 +3,7 @@ import { getPageBySlug, markdownToHtml } from "../../lib/blogs";
 import BlogPost from "../../components/BlogPost";
 
 export default function jotaPrivacy({ page }) {
-  return <BlogPost post={page} opts={{ showDate: false, noLink: true }} />;
+  return <BlogPost post={page} opts={{ showDate: false }} />;
 }
 
 export async function getStaticProps() {

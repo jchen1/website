@@ -3,7 +3,7 @@ import { getProjects } from "../../lib/blogs";
 import BlogPost from "../../components/BlogPost";
 
 export default function JOTA({ data }) {
-  return <BlogPost post={data} opts={{ showDate: false, noLink: true }} />;
+  return <BlogPost post={data} opts={{ showDate: false }} />;
 }
 
 export async function getStaticProps() {
