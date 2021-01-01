@@ -1,4 +1,4 @@
-@import "../variables";
+@import "mixins";
 
 .wrapper {
   display: block;
@@ -8,6 +8,6 @@
     grid-column: 1 / 4;
     margin: 2rem calc(-1 * var(--horizontal-margin)) 0;
     padding: 1.5rem 1rem;
-    background-color: $primary;
+    background-color: var(--primary);
   }
 }

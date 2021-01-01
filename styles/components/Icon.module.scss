@@ -1,9 +1,7 @@
-@import "../variables";
-
 .button {
   display: inline-flex;
 
   > svg:hover {
-    fill: $primary;
+    fill: var(--primary);
   }
 }

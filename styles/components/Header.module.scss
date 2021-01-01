@@ -1,10 +1,10 @@
-@import "../variables";
+@import "mixins";
 
 .header {
   width: 100%;
   margin: 0 auto;
-  background-color: $primaryGray;
-  border-bottom: 0.25rem solid $primary;
+  background-color: var(--primary-gray);
+  border-bottom: 0.25rem solid var(--primary);
 }
 
 .container {
@@ -41,15 +41,15 @@
   }
 
   .link {
-    color: $white;
-    fill: $white;
+    color: var(--white);
+    fill: var(--white);
     margin-left: 20px;
     font-weight: 700;
     text-decoration: none;
 
     &:hover,
     &:active {
-      color: $primary;
+      color: var(--primary);
     }
 
     @include mobile {
@@ -65,7 +65,7 @@
 }
 
 .siteName {
-  color: $white;
+  color: var(--white);
   margin: 0;
   border: 0;
   box-shadow: unset;
@@ -74,22 +74,22 @@
 
   a:hover,
   a:active {
-    color: $primary;
+    color: var(--primary);
   }
 
   @include mobile {
-    background-color: $primary;
+    background-color: var(--primary);
     margin: 0 calc(-1 * var(--horizontal-margin)) 0.75rem 0;
     padding: 0.5rem 1rem;
 
-    box-shadow: 0.25rem 0.25rem 0 0 $white;
+    box-shadow: 0.25rem 0.25rem 0 0 var(--white);
 
     a {
-      color: $darkerGray;
+      color: var(--darker-gray);
 
       &:hover,
       &:active {
-        color: $secondary;
+        color: var(--secondary);
       }
     }
   }

@@ -1,18 +1,18 @@
-@import "../variables";
+@import "mixins";
 
 .container {
   display: flex;
   justify-content: center;
-  margin: 3rem -2rem (-$footer-top-margin);
+  margin: 3rem calc(-1 * var(--horizontal-margin))
+    calc(-1 * var(--vertical-margin));
   padding: 1rem 0;
-  background-color: $primary;
-  border-top: 0.25rem solid $primary;
+  background-color: var(--primary);
+  border-top: 0.25rem solid var(--primary);
 
   grid-column: 1 / 4;
 
   @include mobile {
     padding: 0.5rem var(--horizontal-margin);
-    margin: 3rem -1rem (-$footer-top-margin);
   }
 }
 
@@ -25,7 +25,7 @@
 
 .pageLink {
   &:hover {
-    color: $secondaryLightGray;
+    color: var(--secondary-light-gray);
     cursor: pointer;
   }
 

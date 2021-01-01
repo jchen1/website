@@ -2,31 +2,37 @@
 // VARIABLES
 //
 
-// Colors
-$red: #f03009;
-$primary: #ffb132;
-$secondary: #509db3;
+:root {
+  --horizontal-margin: 2rem;
+  --vertical-margin: 2rem;
 
-// Grays
-$black: #1a1a1a;
-$darkerGray: #222;
-$darkGray: #333;
-$gray: #666;
-$lightGray: #eee;
-$white: #ffffff;
+  --font-size: 18px;
+  --line-height: 1.65;
+  --img-shadow-size: 0.5rem;
+  --container-width: min(45rem, 100%);
 
-$primaryGray: #2e281f;
-$secondaryLightGray: #e6f0f2;
+  --black: #1a1a1a;
+  --darker-gray: #222;
+  --dark-gray: #333;
+  --gray: #666;
+  --light-gray: #eee;
+  --white: #fff;
 
-// Font stacks
-$font-face: "Inter", sans-serif;
+  --primary-gray: #2e281f;
+  --secondary-light-gray: #e6f0f2;
 
-// spacing
-$footer-top-margin: 2rem;
+  --red: #f03009;
+  --primary: #ffb132;
+  --secondary: #509db3;
 
-// Mobile breakpoints
-@mixin mobile {
-  @media screen and (max-width: 640px) {
-    @content;
+  --font-face: "Inter", sans-serif;
+}
+
+@include mobile {
+  :root {
+    --horizontal-margin: 1rem;
+    --font-size: 16px;
+    --line-height: 1.6;
+    --img-shadow-size: 0.25rem;
   }
 }

@@ -6,8 +6,8 @@ $inter-font-path: "/fonts";
 //
 
 @import "reset";
+@import "mixins";
 @import "variables";
-@import "cssvariables";
 // Syntax highlighting @import is at the bottom of this file
 
 @font-face {
@@ -35,7 +35,7 @@ $inter-font-path: "/fonts";
 /**************/
 
 * {
-  font-family: $font-face;
+  font-family: var(--font-face);
 }
 
 html {
@@ -44,10 +44,10 @@ html {
 }
 
 body {
-  background: $white;
-  font: var(--font-size) / var(--line-height) $font-face;
+  background: var(--white);
+  font: var(--font-size) / var(--line-height) var(--font-face);
   letter-spacing: -0.014em;
-  color: $darkGray;
+  color: var(--dark-gray);
 
   @include mobile {
     letter-spacing: -0.011em;
@@ -60,8 +60,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-face;
-  color: $darkerGray;
+  font-family: var(--font-face);
+  color: var(--darker-gray);
   font-weight: bold;
 
   line-height: 1.6;
@@ -79,7 +79,7 @@ h1 {
   margin: 1em 0 0.25em;
   font-weight: bold;
   letter-spacing: -0.021em;
-  border-top: 0.5rem solid $primary;
+  border-top: 0.5rem solid var(--primary);
   margin: 0 0 0.25rem;
 
   a {
@@ -96,12 +96,12 @@ h1 {
     letter-spacing: -0.019em;
 
     border: 0;
-    background-color: $primary;
+    background-color: var(--primary);
     margin-left: -1.5rem;
     padding: 0.5rem 1rem 0.5rem 1.5rem;
     margin-bottom: 0.75rem;
 
-    box-shadow: 0.25rem 0.25rem 0 0 $darkerGray;
+    box-shadow: 0.25rem 0.25rem 0 0 var(--darker-gray);
   }
 }
 
@@ -119,11 +119,11 @@ h2 {
   }
 
   &.highlight {
-    border-top: 4px solid $primary;
+    border-top: 4px solid var(--primary);
     margin: 0 0 0.25rem;
 
     @include mobile {
-      border-top: 4px solid $primary;
+      border-top: 4px solid var(--primary);
     }
   }
 }
@@ -139,7 +139,7 @@ h3 {
 }
 
 h4 {
-  color: $gray;
+  color: var(--gray);
   font-size: 18px;
   letter-spacing: -0.014em;
 }
@@ -161,12 +161,12 @@ p {
 }
 
 a {
-  color: $black;
+  color: var(--black);
   text-decoration: underline;
   cursor: pointer;
   &:hover,
   &:active {
-    color: $secondary;
+    color: var(--secondary);
   }
 }
 
@@ -223,8 +223,8 @@ small {
 
 // Specify the color of the selection
 ::selection {
-  color: $white;
-  background: $secondary;
+  color: var(--white);
+  background: var(--secondary);
 }
 
 /****************/
@@ -243,7 +243,7 @@ small {
   background: rgba(0, 0, 0, 0.8);
   padding: 0.5rem;
   margin: 0.75rem;
-  color: $white;
+  color: var(--white);
   z-index: 10;
   pointer-events: none;
   font-size: 14px;
@@ -253,7 +253,7 @@ figure {
   width: calc(100% - var(--img-shadow-size));
 
   img.background {
-    box-shadow: var(--img-shadow-size) var(--img-shadow-size) 0 0 $primary;
+    box-shadow: var(--img-shadow-size) var(--img-shadow-size) 0 0 var(--primary);
   }
 
   @include mobile {
@@ -261,7 +261,7 @@ figure {
     margin-left: -1rem;
 
     img.background {
-      box-shadow: 0 var(--img-shadow-size) 0 0 $primary;
+      box-shadow: 0 var(--img-shadow-size) 0 0 var(--primary);
     }
   }
 }
