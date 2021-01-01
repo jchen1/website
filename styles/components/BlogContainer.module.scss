@@ -1,12 +1,12 @@
-@import "../variables";
-
-$figure-padding: 2rem;
+@import "mixins";
 
 .container {
+  flex: 1;
   width: 100%;
-
   display: grid;
-  grid-template-columns: 1fr min(45rem, 100%) 1fr;
+
+  padding: 0 var(--horizontal-margin);
+  grid-template-columns: 1fr var(--container-width) 1fr;
 
   & > * {
     grid-column: 2;
@@ -19,37 +19,24 @@ $figure-padding: 2rem;
 
   blockquote {
     margin: 1.8em 0.8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid var(--gray);
     padding: 0.1em 1em;
-    color: $gray;
+    color: var(--gray);
   }
 
   /* images with captions */
   figure {
-    padding: 0.25rem 0 $figure-padding;
+    padding: 0.25rem 0 var(--vertical-margin);
     figcaption {
       padding: 0.75rem 0 0;
       // captions already have padding
-      margin-bottom: (-$figure-padding);
+      margin-bottom: calc(-1 * var(--vertical-margin));
       font-size: small;
       text-align: center;
 
       @include mobile {
-        margin-left: var(--horizontal-margin);
-        margin-right: var(--horizontal-margin);
+        padding: 0.75rem var(--horizontal-margin) 0;
       }
     }
-  }
-}
-
-.border {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-  width: var(--container-width);
-  margin: 0 auto;
-
-  &:last-of-type {
-    padding-bottom: 1em;
-    border-bottom: none;
   }
 }

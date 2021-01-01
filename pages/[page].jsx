@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 import {
   getAllPosts,
@@ -10,15 +9,10 @@ import {
 import { sizeImage } from "../lib/util";
 
 import BlogSnippet from "../components/BlogSnippet";
-import ErrorPage from "next/error";
 import Pagination from "../components/Pagination";
 
 export default function IndexPage(props) {
-  const { posts, pages } = props;
-  const router = useRouter();
-  if (!router.isFallback && !posts) {
-    return <ErrorPage statusCode={404} />;
-  }
+  const { posts, next, prev } = props;
 
   const postMarkup = posts.map((post, idx) => (
     <BlogSnippet
@@ -31,7 +25,7 @@ export default function IndexPage(props) {
   return (
     <>
       {postMarkup}
-      <Pagination pages={pages} />
+      <Pagination next={next} prev={prev} />
     </>
   );
 }
@@ -66,25 +60,24 @@ export async function getStaticProps({ params }) {
     })
   );
 
-  const numPages = 1 + Math.floor(allPosts.length / POSTS_PER_PAGE);
-  const pages = [...Array(numPages).keys()].map(p => ({
-    link: p === 0 ? "/" : `/${p + 1}`, // special-case page 0 to homepage
-    isCurrent: page === p,
-    title: `${p + 1}`,
-  }));
+  const numPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  // const prev = page >= 0 && `/${page}`;
+  const prev = page === -1 ? null : page === 0 ? "/" : `/${page}`;
+  const next = page < numPages - 1 && `/${page + 2}`;
 
   return {
     props: {
       posts,
-      pages,
-      numPages,
+      next,
+      prev,
     },
   };
 }
 
 export async function getStaticPaths() {
   const posts = getAllPosts(["slug"]);
-  const numPages = 1 + Math.floor(posts.length / POSTS_PER_PAGE);
+  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
   return {
     paths: [...Array(numPages).keys()].map(page => {
       return {

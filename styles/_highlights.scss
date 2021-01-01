@@ -1,13 +1,13 @@
 code {
   font-family: "Bitstream Vera Sans Mono", "Courier", monospace;
-  background-color: $lightGray;
+  background-color: var(--light-gray);
   padding: 1px 4px;
 }
 
 pre {
   padding: 10px;
   margin: 20px 0;
-  border: 1px solid $gray;
+  border: 1px solid var(--gray);
 
   overflow: auto;
 

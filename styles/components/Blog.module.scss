@@ -11,10 +11,10 @@
 
 .scrollToTop {
   display: block;
-  margin-top: 2rem;
+  margin-top: var(--vertical-margin);
   font-size: 0.75em;
 }
 
 .article {
-  margin-top: 2rem;
+  margin-top: var(--vertical-margin);
 }

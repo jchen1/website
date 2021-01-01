@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function Title({
   headingLevel,
   title,
   slug,
   homepage,
-  noLink,
   className,
 }) {
-  const router = useRouter();
   const Heading = `h${headingLevel || 1}`;
 
-  if (noLink) {
+  if (!slug && !homepage) {
     return <Heading className={className}>{title}</Heading>;
   }
 
@@ -27,13 +24,9 @@ export default function Title({
     );
   }
 
-  useEffect(() => {
-    router.prefetch(`/posts/${encodeURIComponent(slug)}`);
-  }, []);
-
   return (
     <Heading className={className}>
-      <Link href={`/posts/${encodeURIComponent(slug)}/`} prefetch={false}>
+      <Link href={`/posts/${encodeURIComponent(slug)}/`}>
         <a>{title}</a>
       </Link>
     </Heading>

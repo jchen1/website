@@ -1,19 +1,15 @@
-@import "../variables";
+@import "mixins";
 
 .container {
-  border-top: 0.25rem solid $primary;
-  margin: 2rem 0 0;
+  border-top: 0.25rem solid var(--primary);
+  margin: var(--horizontal-margin) 0 0;
 
   @include mobile {
     border: 0;
-    margin: 1rem 0 0;
   }
 
   .heading {
-    margin: 2rem 0 1rem;
-    @include mobile {
-      margin-top: 1rem;
-    }
+    margin: var(--horizontal-margin) 0 1rem;
   }
 
   .post {

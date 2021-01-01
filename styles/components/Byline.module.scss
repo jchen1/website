@@ -1,7 +1,6 @@
-@import "../variables";
-
 .byline {
-  color: $gray;
+  display: block;
+  color: var(--gray);
   margin-bottom: 0.25rem;
   white-space: pre-wrap;
 }

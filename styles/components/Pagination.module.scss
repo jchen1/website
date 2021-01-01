@@ -1,32 +1,24 @@
-@import "../variables";
+@import "mixins";
 
 .container {
   display: flex;
-  justify-content: center;
-  margin: 3rem -2rem (-$footer-top-margin);
-  padding: 1rem 0;
-  background-color: $primary;
-  border-top: 0.25rem solid $primary;
-
-  grid-column: 1 / 4;
+  justify-content: space-between;
+  grid-column: 1 / -1;
+  margin: 3rem calc(-1 * var(--horizontal-margin))
+    calc(-1 * var(--vertical-margin));
+  padding: 1rem
+    calc(var(--horizontal-margin) + (0.5 * (100% - var(--container-width))));
+  background-color: var(--primary);
+  border-top: 0.25rem solid var(--primary);
 
   @include mobile {
     padding: 0.5rem var(--horizontal-margin);
-    margin: 3rem -1rem (-$footer-top-margin);
   }
-}
-
-.inner {
-  grid-column: 2;
-  width: var(--container-width);
-  display: flex;
-  justify-content: space-between;
 }
 
 .pageLink {
   &:hover {
-    color: $secondaryLightGray;
-    cursor: pointer;
+    color: var(--secondary-light-gray);
   }
 
   line-height: 2rem;

@@ -1,23 +1,18 @@
-@import "../variables";
-
-.header {
-  width: 100%;
-  margin: 0 auto;
-  background-color: $primaryGray;
-  border-bottom: 0.25rem solid $primary;
-}
+@import "mixins";
 
 .container {
-  padding: 2rem 0;
-  width: var(--container-width);
+  width: 100%;
+  background-color: var(--primary-gray);
+  border-bottom: 0.25rem solid var(--primary);
+
+  padding: 2rem calc(0.5 * (100% - var(--container-width)));
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
 
   @include mobile {
-    padding: 0.5rem 1rem 1rem;
+    padding: 0.5rem var(--horizontal-margin) 1rem;
   }
 }
 
@@ -41,15 +36,15 @@
   }
 
   .link {
-    color: $white;
-    fill: $white;
+    color: var(--white);
+    fill: var(--white);
     margin-left: 20px;
-    font-weight: 700;
+    font-weight: bold;
     text-decoration: none;
 
     &:hover,
     &:active {
-      color: $primary;
+      color: var(--primary);
     }
 
     @include mobile {
@@ -65,7 +60,7 @@
 }
 
 .siteName {
-  color: $white;
+  color: var(--white);
   margin: 0;
   border: 0;
   box-shadow: unset;
@@ -74,22 +69,22 @@
 
   a:hover,
   a:active {
-    color: $primary;
+    color: var(--primary);
   }
 
   @include mobile {
-    background-color: $primary;
+    background-color: var(--primary);
     margin: 0 calc(-1 * var(--horizontal-margin)) 0.75rem 0;
     padding: 0.5rem 1rem;
 
-    box-shadow: 0.25rem 0.25rem 0 0 $white;
+    box-shadow: var(--shadow-size) var(--shadow-size) 0 0 var(--white);
 
     a {
-      color: $darkerGray;
+      color: var(--darker-gray);
 
       &:hover,
       &:active {
-        color: $secondary;
+        color: var(--secondary);
       }
     }
   }
