@@ -1,18 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Title({ headingLevel, title, slug, className }) {
-  const Heading = `h${headingLevel || 1}`;
-
+export default function Title({ title, slug, className }) {
   if (!slug) {
-    return <Heading className={className}>{title}</Heading>;
+    return <h1 className={className}>{title}</h1>;
   }
 
   return (
-    <Heading className={className}>
+    <h1 className={className}>
       <Link href={`/posts/${encodeURIComponent(slug)}/`}>
         <a>{title}</a>
       </Link>
-    </Heading>
+    </h1>
   );
 }

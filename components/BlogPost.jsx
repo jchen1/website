@@ -42,14 +42,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
     heroImageSize,
   } = post;
 
-  const {
-    showDate,
-    headingLevel,
-    setTitle,
-    showScroll,
-    preloadHero,
-    titleClass,
-  } = opts;
+  const { showDate, setTitle, showScroll, preloadHero, titleClass } = opts;
 
   const description =
     excerpt.length > DESCRIPTION_MAX_LENGTH
@@ -72,12 +65,7 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
   return (
     <article className={styles.article}>
       {setTitle !== false && <Meta {...meta} />}
-      <Title
-        headingLevel={headingLevel}
-        title={title}
-        slug={slug}
-        className={titleClass}
-      />
+      <Title title={title} slug={slug} className={titleClass} />
       {showDate !== false && <Byline date={date} slug={slug} />}
       {heroImage && (
         <figure className={styles.imgContainer}>
