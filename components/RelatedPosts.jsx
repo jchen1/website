@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import styles from "styles/components/RelatedPosts.module.scss";
+import { slugToHref } from "lib/util";
 
 export default function RelatedPosts({ posts }) {
   return (
@@ -9,7 +10,7 @@ export default function RelatedPosts({ posts }) {
       <h2 className={styles.heading}>Related Posts</h2>
       {posts.map(p => (
         <h5 className={styles.post}>
-          <Link href={`/posts/${encodeURIComponent(p.slug)}/`}>
+          <Link href={slugToHref(p.slug)}>
             <a>{p.title}</a>
           </Link>
         </h5>
