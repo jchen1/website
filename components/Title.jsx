@@ -1,27 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Title({
-  headingLevel,
-  title,
-  slug,
-  homepage,
-  className,
-}) {
+export default function Title({ headingLevel, title, slug, className }) {
   const Heading = `h${headingLevel || 1}`;
 
-  if (!slug && !homepage) {
+  if (!slug) {
     return <Heading className={className}>{title}</Heading>;
-  }
-
-  if (homepage) {
-    return (
-      <Heading className={className}>
-        <a href={homepage} target="_blank">
-          {title}
-        </a>
-      </Heading>
-    );
   }
 
   return (

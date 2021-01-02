@@ -33,7 +33,6 @@ function InnerHTML(props) {
 export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
   const {
     title,
-    homepage,
     date,
     slug,
     heroImage,
@@ -77,7 +76,6 @@ export default function BlogPost({ post, opts = {}, relatedPosts = [] }) {
         headingLevel={headingLevel}
         title={title}
         slug={slug}
-        homepage={homepage}
         className={titleClass}
       />
       {showDate !== false && <Byline date={date} slug={slug} />}
