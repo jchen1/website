@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@silvenon/remark-smartypants": "^1.0.0",
     "gray-matter": "^4.0.2",
     "highlight.js": "^10.5.0",
     "image-size": "^0.9.3",
