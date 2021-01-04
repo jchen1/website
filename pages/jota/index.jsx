@@ -1,17 +1,22 @@
 import React from "react";
-import { getProjects } from "../../lib/blogs";
-import BlogPost from "../../components/BlogPost";
 
-export default function JOTA({ data }) {
-  return <BlogPost post={data} opts={{ showDate: false }} />;
+import { getPageBySlug, markdownToHtml } from "lib/blogs";
+import BlogPost from "components/BlogPost";
+
+export default function JOTA({ page }) {
+  return <BlogPost post={page} />;
 }
 
 export async function getStaticProps() {
-  const projects = await getProjects();
+  const page = getPageBySlug("jota-index", ["title", "content"]);
+  const content = await markdownToHtml(page.content || "");
 
   return {
     props: {
-      data: projects.filter(p => p.title === "JOTA")[0],
+      page: {
+        ...page,
+        ...content,
+      },
     },
   };
 }

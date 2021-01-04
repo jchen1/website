@@ -6,10 +6,10 @@ import {
   POSTS_PER_PAGE,
   POST_FIELDS,
 } from "../lib/blogs";
-import { sizeImage } from "../lib/util";
+import { sizeImage } from "lib/util";
 
-import BlogSnippet from "../components/BlogSnippet";
-import Pagination from "../components/Pagination";
+import BlogSnippet from "components/BlogSnippet";
+import Pagination from "components/Pagination";
 
 export default function IndexPage(props) {
   const { posts, next, prev } = props;
