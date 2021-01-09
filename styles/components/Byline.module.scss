@@ -1,6 +1,12 @@
+@import "mixins";
+
 .byline {
   display: block;
   color: var(--gray);
-  margin-bottom: 0.25rem;
+  margin: 0.25rem 0 0.5rem;
   white-space: pre-wrap;
+
+  @include mobile {
+    margin-top: 1rem;
+  }
 }
