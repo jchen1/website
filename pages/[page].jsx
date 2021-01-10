@@ -62,8 +62,16 @@ export async function getStaticProps({ params }) {
 
   const numPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
-  // const prev = page >= 0 && `/${page}`;
-  const prev = page === -1 ? null : page === 0 ? "/" : `/${page}`;
+  const prev = (function () {
+    switch (page) {
+      case 0:
+        return null;
+      case 1:
+        return "/";
+      default:
+        return `/${page}`;
+    }
+  })();
   const next = page < numPages - 1 && `/${page + 2}`;
 
   return {
