@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
     "twitter:creator": "@iambald",
     "twitter:site": "@iambald",
     "twitter:card": "summary",
-    "og:url": `https://${BASE_URL}${router.pathname}`,
+    "og:url": `https://${BASE_URL}${router.asPath.split(/[?#]/)[0]}`,
     description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/headshot-1200.jpg`,
     "og:type": "website",
