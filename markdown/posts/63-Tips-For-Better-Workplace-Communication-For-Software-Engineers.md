@@ -4,7 +4,7 @@ title: 63 Tips for Better Workplace Communication for Software Engineers
 date: "2021-01-15"
 author: Jeff Chen
 tags: communication,work
-ogImage: /images/63-tips-for-better-workplace-communication-for-software-engineers/hero.png
+ogImage: /images/63-tips-for-better-workplace-communication-for-software-engineers/hero.jpg
 ---
 
 In college, I assumed that success in software engineering came from technical skills—that superstar programmers were those that could write the fastest/best/most code. But after entering the industry, I realized that smart software engineers are a dime a dozen. What sets engineers apart isn't technical ability but communication skills.
