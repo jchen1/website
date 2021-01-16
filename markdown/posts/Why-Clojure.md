@@ -3,7 +3,7 @@ layout: post
 title: Why Clojure?
 date: "2020-10-29"
 author: Jeff Chen
-tags: code,clojure
+tags: code,clojure,engineering
 ---
 
 One piece of unattributed wisdom that's stuck with me is "don't take more than one technology bet". At [Ladder](https://www.ladderlife.com), our big bet is using [Clojure](https://clojure.org/) for fullstack app development. Ladder's used Clojure since day 1 in 2015, and we wouldn't want it any different! In particular, Clojure's Lisp heritage, focus on pure functions and immutable data structures, unified client-server support, and superior developer experience have helped us write higher quality code faster.

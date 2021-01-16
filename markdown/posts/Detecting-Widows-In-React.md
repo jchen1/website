@@ -3,7 +3,7 @@ layout: post
 title: Detecting Widows in React
 date: "2019-08-08"
 author: Jeff Chen
-tags: resume,react,widow,typography,javascript,js
+tags: resume,react,widow,typography,javascript,js,engineering
 ---
 
 ![widows](/images/widows.png)

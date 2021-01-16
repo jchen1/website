@@ -3,7 +3,7 @@ layout: post
 title: 63 Tips for Better Workplace Communication for Software Engineers
 date: "2021-01-15"
 author: Jeff Chen
-tags: communication,work
+tags: communication,work,engineering
 ogImage: /images/63-tips-for-better-workplace-communication-for-software-engineers/hero.jpg
 ---
 
@@ -17,7 +17,7 @@ First up, some general communication tips:
 
 <!--excerpt-->
 
-### General tips
+## General tips
 
 1. Assume positive intent. With non-in-person communication in particular, it's all too easy to negatively misread someone's tone or intent. Instead, you should assume the best of your communication partner—you'll find that your work relationships meaningfully improve!
 2. Be empathetic. Your coworkers, just like you, are trying their best! Answer their questions patiently and promptly.
@@ -37,7 +37,7 @@ First up, some general communication tips:
 13. Use simple words when you can. The goal of communication is to share your ideas, not to show off your SAT vocabulary score.
 14. Avoid long, complex sentences. If your sentences have multiple commas or dashes, break it up!
 
-### Meetings & Calendar
+## Meetings & Calendar
 
 1. Meetings need a leader to be effective. Usually, this is the person who called the meeting.
 2. Meeting also need a well-defined purpose. Some example purposes: "decide which security vendor to go with", "brainstorm ways to reduce latency", "share context about a project".
@@ -51,7 +51,7 @@ First up, some general communication tips:
 10. Use [Calendly](http://calendly.com/) instead of playing availability tag with partners.
 11. If you must schedule a meeting over email, always include your timezone when sending availability.
 
-### Zoom
+## Zoom
 
 1. [Body language is important](https://www.psychologytoday.com/us/blog/beyond-words/201109/is-nonverbal-communication-numbers-game), so make sure your webcam shows at least your torso (and make sure your webcam is on during video meetings).
 2. Turn video on by default in your host settings.
@@ -63,9 +63,10 @@ First up, some general communication tips:
 8. Keep yourself muted unless you have something to say. Nobody wants to hear your neighbor's dog barking in the background.
 9. [Unclack](https://unclack.app/#/) mutes your microphone when you're typing. This is especially helpful if you have a mechanical keyboard and like to take notes during meetings.
 
-### Email
+## Email
 
 1. Respond promptly to emails that don't take thought (a decent benchmark is "Can I send this email in two minutes or less?").
+   ![{caption=True bliss is inbox zero}](/images/63-tips-for-better-workplace-communication-for-software-engineers/inbox-zero.jpeg)
 2. Each email in your inbox should represent a todo item.
 3. Corollary: if an email sits in your inbox more than a few days, reply to the sender saying that you'll get back to them in X more days. Leave it in your inbox until it is done.
 4. Never delete emails. You never know when you'll need to dig back into your history!
@@ -74,7 +75,7 @@ First up, some general communication tips:
 7. When emailing external partners, be professional and polite. Use complete sentences and proper grammar.
 8. Set up shared inboxes via Google Groups for shared responsibilities. For example, set up `engineering@company.com` for inbound engineering issues like bug reports.
 
-### Slack
+## Slack
 
 1. Prefer to communicate in public channels over DMs, especially when asking or answering questions. Chances are somebody else is interested too!
 2. Use emoji reactions instead of littering the channel with "+1" or "I think this too"
@@ -82,6 +83,7 @@ First up, some general communication tips:
 4. In noisy channels, prefer to have a single top-level message per topic with discussion in a thread. This helps avoid the problem of concurrent conversations happening in the same channel.
 5. Human-generated and bot-generated messages belong in separate channels. For example, a devops team may have `#alerts` for automatic alerts and `#dev-ops-chat` for discussing those alerts.
 6. When you have DMs or channels you want to follow up on later, start any message (I like a single period) so Slack keeps track of a draft. Now, you have a list of channels to respond to that you can groom when you are free.
+   ![{caption=Drafts help keep DMs you haven't responded to yet top of mind}](/images/63-tips-for-better-workplace-communication-for-software-engineers/slack-drafts.png)
 7. Mute channels liberally, especially big channels like `#general`.
 8. If you're a Slack admin, [consider disabling](https://slack.com/help/articles/115004855143-Manage-who-can-notify-a-channel-or-workspace#enterprise-grid-plan-1) `@channel` and `@here` globally.
 9. Regularly declare Slack bankruptcy and mark all your messages as read with `Shift-Esc`.
@@ -92,7 +94,7 @@ First up, some general communication tips:
 14. Slack [usergroups](https://slack.com/help/articles/212906697-Create-a-user-group) are great for rotating and group responsibilities. At Ladder, we have a cronjob that sets `@oncall` to the current oncall engineer.
 15. Don't draft long messages, especially those that mention many people, in the channel you're posting in. Instead, write it to yourself or to Slackbot first.
 
-### Programming
+## Programming
 
 1. Pair programming is a great way to share context. Although Slack and Zoom screen sharing are often sufficient, [Screen](https://screen.so/) is another promising tool that lets viewers take control of the shared screen.
 2. I'll occasionally spend an hour watching a newer engineer program in silence—I've found this especially effective for sharing potential workflow improvements.

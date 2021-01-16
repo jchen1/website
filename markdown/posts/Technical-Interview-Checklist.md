@@ -3,7 +3,7 @@ layout: post
 title: Technical Interviewer's Checklist
 date: "2020-12-11"
 author: Jeff Chen
-tags: hiring
+tags: hiring,work,engineering
 ---
 
 I've interviewed hundreds of engineering candidates across multiple companies. With that experience, I've created a checklist to help ensure my technical interviews are effective and empathetic. Read on for the list!

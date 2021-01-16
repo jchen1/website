@@ -3,7 +3,7 @@ layout: post
 title: "Garmin Watch Faces: Custom Fonts"
 date: "2020-12-18"
 author: Jeff Chen
-tags: code,garmin
+tags: code,garmin,engineering
 heroImage: "/images/garmin.jpg"
 ---
 
