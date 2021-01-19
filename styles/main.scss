@@ -245,6 +245,9 @@ small {
 
 figure {
   width: calc(100% - var(--shadow-size));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img.background {
     box-shadow: var(--shadow-size) var(--shadow-size) 0 0 var(--primary);
@@ -257,6 +260,12 @@ figure {
     img.background {
       box-shadow: 0 var(--shadow-size) 0 0 var(--primary);
     }
+  }
+}
+
+@include mobile {
+  li > figure {
+    margin-left: calc(-30px + (-1 * var(--horizontal-margin)));
   }
 }
 
