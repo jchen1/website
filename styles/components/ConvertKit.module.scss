@@ -1,0 +1,39 @@
+@import "mixins";
+
+.form {
+  margin: 2rem auto 0;
+  width: 100%;
+  display: flex;
+
+  > * {
+    font-size: 1rem;
+
+    @include mobile {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.email {
+  margin: 0;
+  border: 1px solid var(--secondary);
+  border-radius: 5px 0 0 5px;
+  padding: 1rem 0.75rem;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.submit {
+  padding: calc(1rem + 1px) 1.5rem;
+  background: var(--secondary);
+  border: 0;
+  border-radius: 0 5px 5px 0;
+  font-weight: bold;
+  flex-grow: 0;
+  color: var(--white);
+
+  &:hover {
+    background: var(--primary-gray);
+    cursor: pointer;
+  }
+}

@@ -16,4 +16,4 @@ I've been a runner for 15 years now, with a couple hiatuses in between. I compet
 
 Note: Freelap times don't include reaction time; the FAT equivalent would likely be 0.15s slower.
 
-I mostly write about engineering, sprinting, quantified self, and productivity. Interested in some of those things? **[Follow me on Twitter](https://www.twitter.com/iambald)**!
+I mostly write about engineering, sprinting, quantified self, and productivity. Interested in some of those things? **[Follow me on Twitter](https://www.twitter.com/iambald) or subscribe to my email newsletter!**
