@@ -4,6 +4,7 @@
   margin: 2rem auto 0;
   width: 100%;
   display: flex;
+  align-items: center;
 
   > * {
     font-size: 1rem;
@@ -30,6 +31,7 @@
   border-radius: 0 5px 5px 0;
   font-weight: bold;
   flex-grow: 0;
+  margin: 0;
   color: var(--white);
 
   &:hover {
