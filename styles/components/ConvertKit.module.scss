@@ -31,4 +31,9 @@
   font-weight: bold;
   flex-grow: 0;
   color: var(--white);
+
+  &:hover {
+    background: var(--primary-gray);
+    cursor: pointer;
+  }
 }
