@@ -41,7 +41,7 @@
     }
   }
 
-  // empty <p> are generally at the top of articles... bring those images up
+  // empty <p> are generally at the top of articles... bring those images
   p:empty ~ figure {
     margin-top: 0.25rem;
   }

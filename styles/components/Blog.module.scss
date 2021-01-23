@@ -6,7 +6,10 @@
   color: var(--dark-gray);
 }
 
-.imgContainer {
+figure.imgContainer {
+  & {
+    margin-top: 0;
+  }
   padding: 1rem 0;
   display: block;
 }
