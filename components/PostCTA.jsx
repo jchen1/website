@@ -26,8 +26,8 @@ export default function PostCTA() {
         >
           Follow me on Twitter
         </a>{" "}
-        for more content like this. Or, subscribe to my email newsletter to be
-        notified about new articles!
+        for more content like this. Or, subscribe to my email newsletter to get
+        new articles delivered straight to your inbox!
       </strong>
       <ConvertKit />
     </div>
