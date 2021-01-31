@@ -12,6 +12,7 @@ import Meta from "components/Meta";
 
 import BlogContainer from "components/containers/BlogContainer";
 import MainContainer from "components/containers/MainContainer";
+import { canonicalize } from "lib/util";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", url => {
@@ -41,7 +42,7 @@ function MyApp({ Component, pageProps }) {
     "twitter:creator": "@iambald",
     "twitter:site": "@iambald",
     "twitter:card": "summary",
-    "og:url": `https://${BASE_URL}${router.asPath.split(/[?#]/)[0]}`,
+    "og:url": `https://${BASE_URL}${canonicalize(router)}`,
     description: SITE_DESCRIPTION,
     "og:image": `https://${BASE_URL}/images/headshot-1200.jpg`,
     "og:type": "website",
@@ -60,17 +61,5 @@ function MyApp({ Component, pageProps }) {
     </div>
   );
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
 
 export default MyApp;

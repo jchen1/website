@@ -5,6 +5,7 @@ import { event } from "../lib/gtag";
 
 import styles from "styles/components/PostCTA.module.scss";
 import ConvertKit from "./ConvertKit";
+import { canonicalize } from "lib/util";
 
 export default function PostCTA() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function PostCTA() {
             event({
               action: "post-cta-click",
               category: "cta",
-              label: router.pathname,
+              label: canonicalize(router),
             })
           }
         >
