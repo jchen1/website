@@ -22,7 +22,7 @@ After a relaxing holidays, I'm back and at it in 2021! Since I formalized my [go
 
 Training continues to go well despite the cold and rainy weather. I took the last week of January off because I've had some hamstring tendonitis. I still managed to hit a couple PRs:
 
-- **Freelap-timed 10.65 100m** (video)! Assuming a normal reaction time, that's about 10.80 FAT. Hopefully I can compete soon—I'm planning to be in Atlanta for most of the outdoor season, and it seems like the universities there are holding meets.
+- **Freelap-timed 10.65 100m** [(video)](https://twitter.com/iambald/status/1345152329083850752?s=21)! Assuming a normal reaction time, that's about 10.80 FAT. Hopefully I can compete soon—I'm planning to be in Atlanta for most of the outdoor season, and it seems like the universities there are holding meets.
 - **2.93 30 meter fly**! My fly times continue to trend down. For comparison, in warm weather in August my best fly times couldn't crack 3 seconds.
 - **24 pullups**! This is a small 2-rep PR from my previous best of 22 from last September.
 - **200 pound OHP**! A 10 pound PR over my best from last September.
