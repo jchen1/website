@@ -14,7 +14,6 @@ Emily and I spent last October in Boise, Idaho. Our first few nights were downto
 ## City
 
 - The [Boise River Greenbelt](https://www.cityofboise.org/departments/parks-and-recreation/parks/boise-greenbelt/) is amazing - 25 miles of walking/biking paths by the Boise River, running straight through the middle of Boise. You can even fish in the river!
-- https://photos.google.com/photo/AF1QipPBSR4JlsRQ8t4xGXSy9v-A3dL4glRJlG5peHxR
 - We were surprised by just how green Boise is. There are a couple big parks right by downtown, and of course, the Greenbelt.
   ![](/images/boise/greenery.png)
 
