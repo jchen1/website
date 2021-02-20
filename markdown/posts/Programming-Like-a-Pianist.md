@@ -3,7 +3,7 @@ layout: post
 title: Programming Like a Pianist
 date: "2021-02-19"
 author: Jeff Chen
-tags: review
+tags: productivity,code
 heroImage: "/images/programming-like-a-pianist/hero.jpeg"
 ---
 
