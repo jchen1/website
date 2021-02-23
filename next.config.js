@@ -37,7 +37,7 @@ module.exports = withPreact(
       return [
         {
           // matching all static files
-          source: "/static/.*",
+          source: "/static/(.*)",
           headers: [
             { key: "Access-Control-Allow-Credentials", value: "true" },
             { key: "Access-Control-Allow-Origin", value: "*" },
