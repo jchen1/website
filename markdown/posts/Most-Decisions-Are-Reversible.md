@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Most Decisions are Irreversible
+title: Most Decisions are Reversible
 date: "2021-03-05"
 author: Jeff Chen
 tags: speculation
