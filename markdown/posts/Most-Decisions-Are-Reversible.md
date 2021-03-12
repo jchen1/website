@@ -9,6 +9,8 @@ tags: speculation
 Making decisions can be nerve-wracking! The scariest decisions are those that are **impactful** and **final**. Impact is obvious—choosing a career path is a lot more impactful that picking out your clothes for the day and obviously contributes to a decision's importance. But reversibility matters too—it's a lot easier to dip your toes in the water than to dive in head-first.
 I think many people (including me) mistakenly assume that decisions are less reversible than they actually are. For example, switching careers or moving to a new city are both choices that seem final at first glance.
 
+<!-- excerpt -->
+
 Let's take Alice for example, a hypothetical product manager considering moving to Miami from San Francisco. At first glance, this seems like a pretty irreversible choice! Once Alice moves, she's locked in for at least a year with a new lease. She'll have to move or sell her possessions and maybe even find a new job.
 But on closer inspection, that reasoning falls apart. If Alice can't stand the Florida heat or decide that yearly hurricane watches are worse than the threat of catastrophic earthquakes, she'll have plenty of recourse to move back to the Bay. Leases typically have clauses allowing you to break them (with a penalty). Possessions can be bought & sold fairly easily on Craigslist, and jobs are often not all that hard to find, especially for white-collar workers like Alice. All in all, Alice's choice isn't as final as she might think at first glance—there's a cost, but her decision is **reversible**.
 
