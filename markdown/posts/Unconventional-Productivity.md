@@ -8,6 +8,8 @@ tags: productivity
 
 I think I'm a fairly productive person—I thought it'd be interesting to categorize some of my work-style habits as following the conventional wisdom around productivity or not.
 
+<!-- excerpt -->
+
 ## Conventional
 
 - I'm generally at or around inbox-zero.
