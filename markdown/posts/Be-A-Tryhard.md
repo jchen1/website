@@ -1,10 +1,10 @@
 ---
- layout: post
- title: Be a Tryhard
- date: "2021-04-03"
- author: Jeff Chen
- tags: ramblings,productivity
- ---
+layout: post
+title: Be a Tryhard
+date: "2021-04-03"
+author: Jeff Chen
+tags: ramblings,productivity
+---
 
 Popular culture doesn’t seem to value hard work and grit: what’s glamorized is either effortless excellence (really, just the image of effortless excellence—ask these paragons and you’ll find all of them put in the work) and intentional ineptitude. Favoring effortless excellence isn’t necessarily too bad, though if you ask and get a straight answer out of these paragons, you’ll find that all of them have put in the work. 
 
