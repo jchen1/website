@@ -21,4 +21,4 @@ Here are some of the specific things I’ve done to use addictive media for good
 - I only subscribe to Reddit subreddits that have consistently high-quality content related to my interests. That means “empty calories” like r/nba or r/memes are out, while r/science and r/philosophy are in.
 - Similarly, I heavily curate my Twitter feed. I only follow users who consistently post high-quality tweets and never get into Twitter fights.
 - Many media apps aren’t amenable to this kind of curation, so I’ve blocked them entirely. In this mold are Facebook, Instagram, and TikTok.
-- Finally, I subscribe to YouTube channels I find interesting, and use a Chrome extension (link) that blocks everything except new videos from my subscriptions.
+- Finally, I subscribe to YouTube channels I find interesting, and use a Chrome extension that blocks everything except new videos from my subscriptions.
