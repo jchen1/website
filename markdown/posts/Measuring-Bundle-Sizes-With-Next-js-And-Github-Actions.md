@@ -8,6 +8,8 @@ tags: code
 
 Measuring your Javascript bundle size is an important way to keep client load times low. These days, load times matter for more than just user experience: [load times can affect SEO](https://moz.com/learn/seo/page-speed). In this article, I'll share my workflow for measuring this website's bundle size with every change that I make!
 
+**Update 5/21**: I wrote a [Part 2](https://jeffchen.dev/posts/Measuring-Bundle-Sizes-With-Next-js-And-Github-Actions-Part-2/) that details how to diff your bundle sizes against `master`. Check it out!
+
 <!-- excerpt -->
 
 ![](/images/measuring-bundle-sizes-with-next-js-and-github-actions/screenshot.png)

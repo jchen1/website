@@ -15,7 +15,7 @@ That changed last year when I bought a [Freelap](https://www.freelapusa.com/).
 
 <!-- excerpt -->
 
-I originally bought my Freelap because I wanted to run automatically-timed time trials without track meets to attend. However, I quickly incorporated it into my workouts as well: timed thirty-meter flies have become my bread-and-butter workout. 2-3 times a week, I'll run between 4 and 7 flies with full recovery with a 30-40 meter acceleration zone. I put each rep along with some workout metadaata into a Google sheet afterwards for analysis.
+I originally bought my Freelap because I wanted to run automatically-timed time trials without track meets to attend. However, I quickly incorporated it into my workouts as well: timed thirty-meter flies have become my bread-and-butter workout. 2-3 times a week, I'll run between 4 and 7 flies with full recovery with a 30-40 meter acceleration zone. I put each rep along with some workout metadata into a Google sheet afterwards for analysis.
 
 As temperatures decreased going into the winter, I noticed that my fly times were slowing down, despite [breaking a sweat with each warmup](https://jeffchen.dev/posts/Warmups-For-Sprints/). But my times weren't always slower. I noticed that when the days were unseasonably warm (thanks California) or when I had a chance to run later in the day, I was consistently running faster and even setting PRs. This reminded me of my old March woes. Since I had all of my fly times over several months, I graphed my average fly time per workout against temperature and found a fairly strong correlation (`r^2=0.21`):
 
