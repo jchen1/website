@@ -126,7 +126,7 @@ const pageSizes = Object.keys(bundle.pages).map(p => {
 });
 
 // Produce a Markdown table with each page & its size
-const sizes = currentBundle
+const sizes = pageSizes
   .map(({ path, size }) => `| \`${path}\` | ${formatBytes(size)} |`)
   .join("\n");
 
@@ -158,12 +158,14 @@ We'll also add this to the `scripts` key of our `package.json`:
 }
 ```
 
-## Part 2: GitHub Actions
+## Step 2: GitHub Actions
 
 Now that we can get our bundle sizes for each page, we need to show it on each pull request. For that, we can write a [GitHub Action](https://github.com/features/actions)! Actions let you run arbitrary Docker containers on your code—most often for CI/CD. It has a fairly generous free tier (unlimited for public repos and 2,000 minutes per month for private repos) that will more than suffice for our purposes.
+
 It's probably best to just share my entire Action workflow here, annotated with comments:
 
 ```yml
+# .github/workflows/bundle-size.yml
 name: Analyze Bundle Size
 
 # Run this workflow on every Pull Request action as well as all pushes to master
