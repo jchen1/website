@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Meet Report: TFCUSA Club National Championships
+title: "Meet Report: TFCUSA Club National Championships"
 date: "2021-05-13"
 author: Jeff Chen
 tags: track
