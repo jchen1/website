@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Meet Report: 2nd Annual Sunset Summer Classic
+title: "Meet Report: 2nd Annual Sunset Summer Classic"
 date: "2021-06-06"
 author: Jeff Chen
 tags: meet report, track
