@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Atlanta: First Impressions"
-date: "2021-06-07"
+date: "2021-06-27"
 author: Jeff Chen
 tags: atlanta
 ---
