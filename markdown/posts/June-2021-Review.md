@@ -24,6 +24,10 @@ Just as I've settled into a pretty good groove in Atlanta, I spent the past few 
   - [Ins-and-outs](https://simplifaster.com/articles/ins-outs-sprint-tempo-training/) help me build speed endurance and help me feel what the second 50m of the 200 should feel like.
   - Heavy hang and power cleans in the weight room for more powerful block starts
 
+## Projects
+
+- [NFL Combine Stats](https://www.nflcombinestats.com/) lets you find the NFL player whose athletic profile is most similar to yours! Mine are [Stacy Coley, Darius Hanks, and DaVaris Daniels](https://www.nflcombinestats.com/WR_Jeff%20Chen_74_198_4.45_36_12_124_0_0).
+
 ## Writing
 
 - [Meet Report: 2nd Annual Sunset Summer Classic](https://jeffchen.dev/posts/Meet-Report-2nd-Annual-Sunset-Summer-Classic/)
