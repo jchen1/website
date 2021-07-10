@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next dev -p 5000",
     "build": "next build",
     "export": "next build && next export",
     "analyze": "ANALYZE=true NODE_ENV=production next build && node scripts/analyze-bundles.js",
