@@ -32,20 +32,20 @@ These workouts came in the middle of my last training block—I was pretty beat 
 Each fly had a ~35 meter run-in. I had full recovery between reps, and there was no wind to speak of. Times were measured by a [Freelap](https://www.freelapusa.com/).
 
 | **Rep** | **Shoe**            | **Time** |
-| ------- | ------------------- | -------- |
-| 1       | Nike Superfly Elite | 2.98     |
-| 2       | New Balance SD-X    | 2.96     |
-| 3       | New Balance SD-X    | 2.97     |
-| 4       | Nike Superfly Elite | 3.05     |
-| 5       | Nike Superfly Elite | 3.01     |
-| 6       | New Balance SD-X    | 2.96     |
+| :-----: | :------------------ | -------: |
+|    1    | Nike Superfly Elite |     2.98 |
+|    2    | New Balance SD-X    |     2.96 |
+|    3    | New Balance SD-X    |     2.97 |
+|    4    | Nike Superfly Elite |     3.05 |
+|    5    | Nike Superfly Elite |     3.01 |
+|    6    | New Balance SD-X    |     2.96 |
 
 And the times by shoe:
 
 | **Shoe**                | **Rep 1** | **Rep 2** | **Rep 3** | **Average** |
-| ----------------------- | --------- | --------- | --------- | ----------- |
-| **Nike Superfly Elite** | 2.98      | 3.05      | 3.01      | 3.01        |
-| **New Balance SD-X**    | 2.96      | 2.97      | 2.96      | 2.96        |
+| :---------------------- | --------: | --------: | --------: | ----------: |
+| **Nike Superfly Elite** |      2.98 |      3.05 |      3.01 |        3.01 |
+| **New Balance SD-X**    |      2.96 |      2.97 |      2.96 |        2.96 |
 
 My slowest SD-X rep was faster than my fastest Superfly Elite rep—and my average fly time was 0.05s, or ~1.5%, faster in the SD-X. If you were to extrapolate that across the ~50-60 meters of non-acceleration in a 100m, you're looking at an advantage of a full tenth of a second.
 
@@ -56,20 +56,20 @@ Block starts felt weird in the SD-X at first. I still had some problems with hee
 I had Freelap gates at 10 and 30 meters, with another cone at 40 meters to signal the end of my transition phase. Again, I had full recovery between reps, and there was no wind.
 
 | **Rep** | **Shoe**            | **0-10m** | **10-30m** | **0-30m** |
-| ------- | ------------------- | --------- | ---------- | --------- |
-| 1       | Nike Superfly Elite | 1.80      | 2.22       | 4.02      |
-| 2       | New Balance SD-X    | ?         | ?          | 4.04      |
-| 3       | New Balance SD-X    | 1.85      | 2.19       | 4.03      |
-| 4       | Nike Superfly Elite | 1.90      | 2.21       | 4.11      |
-| 5       | Nike Superfly Elite | 1.82      | 2.19       | 4.01      |
-| 6       | New Balance SD-X    | 1.81      | 2.18       | 3.98      |
+| :-----: | :------------------ | --------: | ---------: | --------: |
+|    1    | Nike Superfly Elite |      1.80 |       2.22 |      4.02 |
+|    2    | New Balance SD-X    |         ? |          ? |      4.04 |
+|    3    | New Balance SD-X    |      1.85 |       2.19 |      4.03 |
+|    4    | Nike Superfly Elite |      1.90 |       2.21 |      4.11 |
+|    5    | Nike Superfly Elite |      1.82 |       2.19 |      4.01 |
+|    6    | New Balance SD-X    |      1.81 |       2.18 |      3.98 |
 
 And by shoe:
 
 | **Shoe**                | **0-10m Average** | **10-30m Average** | **0-30m Average** |
-| ----------------------- | ----------------- | ------------------ | ----------------- |
-| **Nike Superfly Elite** | 1.84              | 2.21               | 4.05              |
-| **New Balance SD-X**    | 1.83\*            | 2.19\*             | 4.02              |
+| :---------------------- | ----------------: | -----------------: | ----------------: |
+| **Nike Superfly Elite** |              1.84 |               2.21 |              4.05 |
+| **New Balance SD-X**    |            1.83\* |             2.19\* |              4.02 |
 
 \*: My Freelap failed to record the 10m split for my first, slowest, SD-X rep, so the 0-10m and 10-30m splits are skewed downwards for that shoe.
 

@@ -41,6 +41,27 @@
     }
   }
 
+  table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    width: 100%;
+
+    border: 1px solid var(--gray);
+
+    thead {
+      background-color: var(--primary);
+    }
+
+    th,
+    td {
+      padding: 0.25rem 0.5rem;
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: var(--secondary-light-gray);
+    }
+  }
+
   // empty <p> are generally at the top of articles... bring those images
   p:empty ~ figure {
     margin-top: 0.25rem;
