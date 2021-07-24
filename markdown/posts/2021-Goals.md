@@ -6,7 +6,7 @@ author: Jeff Chen
 tags: goals
 ---
 
-New years are a time for both reflection and looking forward. I've never been good about resolutions—I'd inevitably forget or de-prioritize my resolutions as the year progressed. This was becaause I'd set my resolutions based on whatever whim I was pursuing at the time.
+New years are a time for both reflection and looking forward. I've never been good about resolutions—I'd inevitably forget or de-prioritize my resolutions as the year progressed. This was because I'd set my resolutions based on whatever whim I was pursuing at the time.
 
 This year, for the first time, I followed a structured goal-setting process: I started with a set of 25 goals and whittled them down to a single goal across each of four axes of my life. Those domains are fitness, finance, mental, and social.
 
