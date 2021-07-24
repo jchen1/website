@@ -13,7 +13,7 @@ I flew into Des Moines with just one more chance to achieve my season goal: to b
 
 More than any other meet I've raced in recent memory, this meet felt **legit**. The organizers flawlessly handled more than two thousand entrants across more than a thousand different age-group-event pairings—anyone who's ever been to a track meet before can attest to that level of difficulty. Huge props to USATF and Iowa State for putting together such a well-run meet on short notice!
 
-I was surprised by how many people I recognized at the meet—compatriots I'd shared a track with in both California and Atlanta. But I was more surprised by a couple people recognizing me from this blog! (Hey there, Allesandro and Chris!) The track community is one of the biggest reasons I love and stay with the sport—I had a great time meeting both fellow post-collegiate athletes and "true" masters competitors.
+I was surprised by how many people I recognized at the meet—compatriots I'd shared a track with in both California and Atlanta. But I was more surprised by a couple people recognizing me from this blog! (Hey there, Allesandro and Lemar!) The track community is one of the biggest reasons I love and stay with the sport—I had a great time meeting both fellow post-collegiate athletes and "true" masters competitors.
 
 Since this was my last meet of the season, I ran a 10-day taper—my last day in the weight room was a week before the race, and I gradually dropped my track volume to about 40-50% of normal. Despite sleeping in a hotel room for consecutive nights, I felt remarkably fresh and loose on Saturday morning.
 
