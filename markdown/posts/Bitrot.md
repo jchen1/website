@@ -8,7 +8,7 @@ tags: code
 
 I've spent the last couple hours trying to rebuild my [mood tracker](https://github.com/jchen1/mood)—although notifications still work, opening the app throws the error "'mood' Is No Longer Available". I think this is because I last built the app a year ago, and apps installed with a paid developer account only last for a year. (Sidenote—it's ridiculously hard to find definitive information about this. Instead, I had to trawl through the Apple Developer Forums and Reddit to try to figure out what's going on.)
 
-<!-- excerpt ->
+<!-- excerpt -->
 
 Even though I hadn't touched the code in that year or even my local project folder with installed dependencies, it's taken several hours to successfully rebuild my app. Apparently, the new Xcode version (automatically updated) broke compatibility with the React Native version I was on. Upgrading was even more of a mess than usual—after the normal song and dance of updating my developer certificates and profiles, manually reconciling version differences, deleting and reinstalling Node and CocoaPod dependencies many times over, and cleaning the Xcode build folder, Xcode builds still hung without any visible errors. In the end, it was because of a misbehaving `find` command looking for `firebase.json` outside of my project directory—and into my overall Projects directory, which happened to have a subdirectory with 11.8 million files (don't ask).
 
