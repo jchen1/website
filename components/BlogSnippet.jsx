@@ -22,8 +22,6 @@ export default function BlogSnippet({ post, opts = {} }) {
 
   const { preloadHero } = opts;
 
-  console.log(title);
-
   return (
     <article className={styles.article}>
       <Title title={title} slug={slug} />
