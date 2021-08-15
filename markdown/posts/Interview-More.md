@@ -8,6 +8,8 @@ tags: career, code
 
 When's the last time you looked around for a new job? If the answer is "more than a year ago", you're doing yourself a disservice. Even if you're happy in your current role, simply looking around offers many benefits. 
 
+<!-- excerpt -->
+
 You'll have a better sense of the job market, especially around role and pay. In particular, software engineering salaries seem to have risen dramatically in the last 24 months. Companies know this—but you might not. Interviewing and getting offers can help reduce that information asymmetry. Even if you don't jump ship, knowing what you're worth to other companies might give you leverage during your next performance cycle.
 
 Frequent interviews are also a forcing function to keep your résumé up to date and interview skills sharp. My day job has very little to do with what's tested in typical engineering interviews—I don't often find myself inverting binary trees or solving recurrences. And I never update my résumé until it's absolutely necessary. Even at a yearly cadence, it's hard for me to remember bullet-worthy achievements. Any longer and they're gone forever.
