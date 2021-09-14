@@ -26,8 +26,12 @@ module.exports = withPreact(
 
         require("./scripts/generate-feeds");
       } else {
-        config.node = {
-          fs: "empty",
+        config.resolve = {
+          ...config.resolve,
+          fallback: {
+            fs: false,
+            path: false,
+          },
         };
       }
 
