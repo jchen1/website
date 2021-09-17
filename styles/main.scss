@@ -30,6 +30,16 @@ $inter-font-path: "/fonts";
     url("#{$inter-font-path}/Inter-Bold.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-display: $inter-font-display;
+  src: local("Inter Black"),
+    url("#{$inter-font-path}/Inter-Black.woff2") format("woff2"),
+    url("#{$inter-font-path}/Inter-Black.woff") format("woff");
+}
+
 /**************/
 /* BASE RULES */
 /**************/
@@ -70,8 +80,8 @@ h6 {
 
 h1 {
   font-size: 35px;
-  font-weight: bold;
-  letter-spacing: -0.021em;
+  font-weight: 900;
+  letter-spacing: -0.03em;
   border-top: 0.5rem solid var(--primary);
   padding-top: 0.25rem;
   margin: 0.25rem 0 0.5rem;
@@ -88,7 +98,6 @@ h1 {
 
   @include mobile {
     font-size: 26px;
-    letter-spacing: -0.019em;
 
     border: 0;
     background-color: var(--primary);
