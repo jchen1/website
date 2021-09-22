@@ -1,7 +1,8 @@
-const fs = require("fs");
-const globby = require("globby");
-const matter = require("gray-matter");
-const rss = require("rss");
+import fs from "fs";
+import globby from "globby";
+import matter from "gray-matter";
+import rss from "rss";
+import { markdownToHtml } from "../lib/blogs";
 
 // copied from lib/constants
 const BASE_URL = "https://jeffchen.dev";
@@ -38,6 +39,7 @@ function generateRssFeed(posts) {
       author: post.author,
       url: `${BASE_URL}/posts/${post.slug}`,
       guid: `/posts/${post.slug}`,
+      description: post.excerpt,
     });
   });
 
@@ -45,16 +47,25 @@ function generateRssFeed(posts) {
 }
 
 (async function () {
-  const posts = (await globby(["markdown/posts/*.md"])).map(page => {
-    const slug = page.replace(/\.md$/, "").replace(/^markdown\/posts\//, "");
-    const contents = fs.readFileSync(page);
-    const { data } = matter(contents);
+  const posts = await Promise.all(
+    (
+      await globby(["markdown/posts/*.md"])
+    ).map(async page => {
+      const slug = page.replace(/\.md$/, "").replace(/^markdown\/posts\//, "");
+      const contents = fs.readFileSync(page);
 
-    return {
-      slug,
-      ...data,
-    };
-  });
+      const { data, content } = matter(contents);
+      const { excerpt } = await markdownToHtml(content);
+
+      // console.log(content, excerpt);
+
+      return {
+        slug,
+        excerpt,
+        ...data,
+      };
+    })
+  );
 
   // ignore prefixed & dynamic pages
   const pages = (await globby(["pages/*.jsx"]))
