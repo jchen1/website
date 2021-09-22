@@ -23,8 +23,6 @@ module.exports = withPreact(
           "styled-components",
           ...config.externals,
         ];
-
-        require("./scripts/generate-feeds");
       } else {
         config.resolve = {
           ...config.resolve,
