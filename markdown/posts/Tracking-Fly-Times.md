@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tracking Fly Times
+title: "Am I Getting Faster Over Time?"
 date: "2021-09-26"
 author: Jeff Chen
 tags: track, code
