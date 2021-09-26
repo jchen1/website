@@ -17,6 +17,7 @@ export default function PostCTA() {
         <a
           href="https://www.twitter.com/iambald"
           target="_blank"
+          rel="noreferrer"
           onClick={() =>
             event({
               action: "post-cta-click",

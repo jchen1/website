@@ -21,7 +21,7 @@ export function ArchiveItem({ title, date, slug }) {
 export default function Archive(props) {
   const { posts } = props;
 
-  const postMarkup = posts.map(post => <ArchiveItem {...post} />);
+  const postMarkup = posts.map(post => <ArchiveItem {...post} key={post.slug} />);
 
   return (
     <>

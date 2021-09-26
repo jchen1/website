@@ -13,11 +13,11 @@ export default function IndexPage(props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const postMarkup = posts.map((post, idx) => <ArchiveItem {...post} />);
+  const postMarkup = posts.map((post, idx) => <ArchiveItem {...post} key={post.slug} />);
 
   return (
     <>
-      <h1 className="title">Posts tagged "{tag}"</h1>
+      <h1 className="title">Posts tagged &quot;{tag}&quot;</h1>
       {postMarkup}
     </>
   );
