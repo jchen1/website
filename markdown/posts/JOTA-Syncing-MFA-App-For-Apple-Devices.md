@@ -9,6 +9,8 @@ heroImage: /images/jota-syncing-mfa-app-for-apple-devices/macos.png
 
 Multi-factor authentication is becoming increasingly prevalent. Many companies' information security policies require employees to use MFA when available—and it's just good practice.
 
+<!-- excerpt -->
+
 The mostly commonly used MFA tool, Google Authenticator, is basically unmaintained at this point. I developed JOTA (a backronym for Jeff's One-Time Authenticator) to address some of the pain points I felt with Google Authenticator:
 
 - JOTA supports syncing to all your (Apple) devices with iCloud Keychain. When used in conjunction with a MFA-protected Apple ID, this still fits the factor of "something you have"—you need a device with a valid Apple ID cookie on it, which is itself protected by Apple's separately implemented MFA.
