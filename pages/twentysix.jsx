@@ -130,7 +130,7 @@ function Code({ clue, numDigits, answerHash, reward, hint }) {
           <button onClick={checkAnswer} disabled={answeredCorrectly}>Guess!</button>
       </ClueContainer>
 
-      {answeredCorrectly && <p>That's right! Your reward is: <br /><strong>{reward}</strong>!</p>}
+      {answeredCorrectly && <p>That&apos;s right! Your reward is: <br /><strong>{reward}</strong>!</p>}
       {answeredCorrectly === false && <p style={{ color: "red" }}>Sorry, try again! {hint && <><br />Hint: {hint}</>}</p>}
     </CodeContainer>
   )
