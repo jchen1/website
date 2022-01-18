@@ -12,6 +12,8 @@ The Crossplex in Birmingham is an excellent facility, and UAB did a great job ru
 
 Since this meet was just an opener for me, I treated it more like a workout than competition, and trained through it. I didn't have a ton of expectations going in to the meet.
 
+<!-- excerpt -->
+
 ## 60m: 6.97 ([slow-motion video](https://youtu.be/vRucm7ak7tg))
 
 This beat my previous FAT best of 7.03 from Feb. 2020. I won my heat and was tied for third overall in the meet.
