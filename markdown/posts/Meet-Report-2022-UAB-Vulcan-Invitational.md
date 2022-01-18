@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Meet Report: 2022 UAB Vulcan Invitational
+title: "Meet Report: 2022 UAB Vulcan Invitational"
 date: "2022-01-18"
 author: Jeff Chen
 tags: track
