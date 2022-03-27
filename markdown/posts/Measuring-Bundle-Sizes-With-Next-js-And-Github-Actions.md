@@ -94,7 +94,7 @@ const bundle = require("../.next/build-manifest.json");
 
 const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
-const outfile = path.join(outdir, "bundle-comparison.txt");
+const outfile = path.join(outdir, "bundle-sizes.txt");
 
 function formatBytes(bytes, signed = false) {
   const sign = signed ? (bytes < 0 ? "-" : "+") : "";
