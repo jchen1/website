@@ -60,6 +60,7 @@ export default function IAAFCalculator() {
         <a
           href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
           target="_blank"
+          rel="noreferrer"
         >
           2022 scoring tables
         </a>
