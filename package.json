@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4000",
-    "build": "npx babel-node --presets @babel/preset-env scripts/generate-feeds.js && next build",
+    "build": "node -r @swc-node/register scripts/generate-feeds.js && next build",
     "export": "next build && next export",
-    "analyze": "ANALYZE=true NODE_ENV=production next build && node scripts/analyze-bundles.js",
+    "analyze": "ANALYZE=true NODE_ENV=production next build && node -r @swc-node/register scripts/analyze-bundles.js",
     "start": "next start"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.5",
     "@svgr/webpack": "^6.2.1",
+    "@swc-node/register": "^1.4.2",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.5",
     "globby": "^11.0.1",
