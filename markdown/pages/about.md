@@ -9,9 +9,9 @@ I studied **computer science** with a minor in human-computer interaction at [Ca
 
 I've been a runner for 15 years now, with a couple hiatuses in between. I competed for CMU; I was the captain of the track team and held the 60 meter school record. Since graduating, I've continued to train and compete. Here are my current personal bests:
 
-- 60m: [6.73 (Freelap timed)](https://twitter.com/iambald/status/1335349551767535617?s=20)
-- 100m: [10.65 Freelap](https://twitter.com/iambald/status/1345152329083850752?s=20), 10.96 FAT
-- 200m: [21.80 (Freelap timed)](https://twitter.com/iambald/status/1310025350995345409?s=20)
+- 60m: 6.88 (+1.3)
+- 100m: 10.71 (-1.3)
+- 200m: 21.65 (NWI)
 - 400m: 49.50 (Freelap timed)
 
 Note: Freelap times don't include reaction time; the FAT equivalent would likely be 0.15s slower.

@@ -1,0 +1,40 @@
+@import "mixins";
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.selectWrapper {
+  margin-top: 0.2rem;
+  position: relative;
+  &::after {
+    content: "";
+    top: 0.875rem;
+    right: 0.75rem;
+    width: 0.8rem;
+    height: 0.5rem;
+    position: absolute;
+    pointer-events: none;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    background-color: var(--gray);
+  }
+
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid var(--dark-gray);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}
+
+.input {
+  margin-top: 0.2rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--dark-gray);
+  border-radius: 0.25rem;
+}
