@@ -9,7 +9,7 @@ import {
   coefficients,
   markTypes,
   order,
-} from "pages/projects/track/points-calculator/constants";
+} from "lib/track/points-calculator/constants";
 
 function score(coefficients, x) {
   return Math.floor(
