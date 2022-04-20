@@ -9,32 +9,40 @@
 .selectWrapper {
   margin-top: 0.2rem;
   position: relative;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
   &::after {
     content: "";
-    top: 0.875rem;
-    right: 0.75rem;
+    display: flex;
+    justify-self: end;
     width: 0.8rem;
     height: 0.5rem;
-    position: absolute;
+    margin-right: 0.75rem;
     pointer-events: none;
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
     background-color: var(--gray);
+    grid-area: select;
   }
 
   select {
     -webkit-appearance: none;
     appearance: none;
     border: 1px solid var(--dark-gray);
+    background-color: white;
+    color: var(--dark-gray);
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
     width: 100%;
+    grid-area: select;
   }
 }
 
 .input {
   margin-top: 0.2rem;
   padding: 0.5rem 0.75rem;
+  color: var(--dark-gray);
   border: 1px solid var(--dark-gray);
   border-radius: 0.25rem;
 }
