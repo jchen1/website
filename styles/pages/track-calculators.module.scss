@@ -17,7 +17,6 @@
 
 .selectWrapper {
   margin-top: 0.2rem;
-  position: relative;
   display: grid;
   grid-template-areas: "select";
   align-items: center;
@@ -51,4 +50,9 @@
 
 .input {
   margin-top: 0.2rem;
+
+  input:disabled {
+    -webkit-text-fill-color: var(--dark-gray);
+    opacity: 1; /* required on iOS */
+  }
 }
