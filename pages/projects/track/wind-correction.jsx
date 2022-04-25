@@ -29,12 +29,6 @@ const units = {
   "Triple Jump": "m",
 };
 
-function round(mark) {
-  const strMark = typeof mark === "string" ? mark : `${mark}`;
-
-  return parseFloat(strMark).toFixed(2);
-}
-
 function correctForWind(event, mark, wind) {
   const markNum = parseFloat(mark);
   const windNum = parseFloat(wind || "0");
@@ -44,7 +38,12 @@ function correctForWind(event, mark, wind) {
   }
 
   const [a, b, c] = coefficients[event];
-  return mark + a * wind + b * wind * mark + c * wind * wind;
+  return (
+    markNum +
+    a * windNum +
+    b * windNum * markNum +
+    c * windNum * windNum
+  ).toFixed(2);
 }
 
 export const metas = {
@@ -58,7 +57,7 @@ export default function WindCorrection({ pages }) {
   const [wind, setWind] = useState(0);
   const [mark, setMark] = useState(9.58);
 
-  const correctedMark = round(correctForWind(event, mark, wind));
+  const correctedMark = correctForWind(event, mark, wind);
   const unit = units[event];
 
   return (
