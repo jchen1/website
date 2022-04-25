@@ -11,7 +11,7 @@ I've been a runner for 15 years now, with a couple hiatuses in between. I compet
 
 - 60m: 6.88 (+1.3)
 - 100m: 10.71 (-1.3)
-- 200m: 21.65 (NWI)
+- 200m: 21.55 (-2.3)
 - 400m: 49.50 (Freelap timed)
 
 Note: Freelap times don't include reaction time; the FAT equivalent would likely be 0.15s slower.
