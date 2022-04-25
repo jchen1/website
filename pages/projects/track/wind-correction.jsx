@@ -38,12 +38,7 @@ function correctForWind(event, mark, wind) {
   }
 
   const [a, b, c] = coefficients[event];
-  return (
-    markNum +
-    a * windNum +
-    b * windNum * markNum +
-    c * windNum * windNum
-  ).toFixed(2);
+  return markNum + a * windNum + b * windNum * markNum + c * windNum * windNum;
 }
 
 export const metas = {
@@ -58,6 +53,9 @@ export default function WindCorrection({ pages }) {
   const [mark, setMark] = useState(9.58);
 
   const correctedMark = correctForWind(event, mark, wind);
+  const maxLegalMark =
+    2 * correctedMark - correctForWind(event, correctedMark, 2.0);
+
   const unit = units[event];
 
   return (
@@ -116,12 +114,22 @@ export default function WindCorrection({ pages }) {
         />
       </label>
       <label className={styles.formContainer}>
-        <strong>Corrected Mark</strong>
+        <strong>Predicted Mark (+0.0 m/s)</strong>
         <UnitInput
           className={styles.input}
           disabled={true}
           type="number"
-          value={correctedMark}
+          value={correctedMark?.toFixed(2)}
+          unit={unit}
+        />
+      </label>
+      <label className={styles.formContainer}>
+        <strong>Predicted Mark (+2.0 m/s)</strong>
+        <UnitInput
+          className={styles.input}
+          disabled={true}
+          type="number"
+          value={maxLegalMark?.toFixed(2)}
           unit={unit}
         />
       </label>
