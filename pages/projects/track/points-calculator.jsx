@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Title from "components/Title";
 
 import blogStyles from "styles/components/Blog.module.scss";
-import styles from "styles/pages/iaaf-calculator.module.scss";
+import styles from "styles/pages/track-calculators.module.scss";
 
 import {
   coefficients,

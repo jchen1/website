@@ -12,6 +12,11 @@ export default function Index() {
             <a>World Athletics Points Calculator</a>
           </Link>
         </li>
+        <li>
+          <Link href="/projects/track/wind-correction" passHref>
+            <a>Wind Correction Calculator</a>
+          </Link>
+        </li>
       </ul>
     </article>
   );
