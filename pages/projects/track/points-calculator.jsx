@@ -140,7 +140,7 @@ export default function PointsCalculator({ pages }) {
       <Title title={metas.title} />
       <p>
         Converts athletics marks to World Athletics points and vice versa using
-        equations derived from World Athletic's{" "}
+        equations derived from World Athletic&apos;s{" "}
         <a
           href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
           target="_blank"

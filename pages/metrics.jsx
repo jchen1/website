@@ -120,7 +120,7 @@ export default function Metrics() {
     setWs(ws);
 
     return () => ws.close();
-  }, []);
+  }, [setWs]);
 
   const nextSocketColor = getSocketColor(ws);
   if (nextSocketColor !== socketColor) {
