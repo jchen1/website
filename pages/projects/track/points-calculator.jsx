@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import Title from "components/Title";
-
-import blogStyles from "styles/components/Blog.module.scss";
-import styles from "styles/pages/track-calculators.module.scss";
-
 import {
   coefficients,
   markTypes,
   order,
   units,
 } from "lib/track/points-calculator/constants";
+import { getAllPages } from "lib/track/pages";
 
 import Meta from "components/Meta";
+import RelatedPosts from "components/RelatedPosts";
+import Title from "components/Title";
 import UnitInput from "components/UnitInput";
+
+import blogStyles from "styles/components/Blog.module.scss";
+import styles from "styles/pages/track-calculators.module.scss";
 
 function score(coefficients, x) {
   return Math.floor(
@@ -73,13 +74,13 @@ function markToUserMark(mark, markType) {
   }
 }
 
-const metas = {
+export const metas = {
   title: "World Athletics Points Calculator",
   description:
     "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletic's 2022 scoring tables",
 };
 
-export default function PointsCalculator() {
+export default function PointsCalculator({ pages }) {
   const [category, setCategory] = useState("outdoor");
   const [gender, setGender] = useState("men");
   const [event, setEvent] = useState("100m");
@@ -127,7 +128,7 @@ export default function PointsCalculator() {
 
   useEffect(() => {
     setMark("");
-    setPoints(null);
+    setPoints("");
   }, [category, gender, event]);
 
   const unit = units[markTypes[event]];
@@ -222,6 +223,24 @@ export default function PointsCalculator() {
           unit="pts"
         />
       </label>
+      <RelatedPosts
+        title="Other Utilities"
+        posts={pages
+          .filter(({ title }) => title !== metas.title)
+          .map(({ title, page }) => ({
+            fullSlug: `/projects/track/${page}`,
+            title,
+          }))}
+      />
     </article>
   );
+}
+
+export async function getStaticProps() {
+  const pages = getAllPages();
+  return {
+    props: {
+      pages,
+    },
+  };
 }

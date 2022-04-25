@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
+import { getAllPages } from "lib/track/pages";
 
 import Meta from "components/Meta";
+import RelatedPosts from "components/RelatedPosts";
 import Title from "components/Title";
 import UnitInput from "components/UnitInput";
 
@@ -44,13 +47,13 @@ function correctForWind(event, mark, wind) {
   return mark + a * wind + b * wind * mark + c * wind * wind;
 }
 
-const metas = {
+export const metas = {
   title: "Wind Correction Calculator",
   description:
     "Corrects sprint and jump marks for wind based on Moniat, Fabius, and Emanuel (2018).",
 };
 
-export default function WindCorrection() {
+export default function WindCorrection({ pages }) {
   const [event, setEvent] = useState("100m");
   const [wind, setWind] = useState(0);
   const [mark, setMark] = useState(9.58);
@@ -123,6 +126,24 @@ export default function WindCorrection() {
           unit={unit}
         />
       </label>
+      <RelatedPosts
+        title="Other Utilities"
+        posts={pages
+          .filter(({ title }) => title !== metas.title)
+          .map(({ title, page }) => ({
+            fullSlug: `/projects/track/${page}`,
+            title,
+          }))}
+      />
     </article>
   );
+}
+
+export async function getStaticProps() {
+  const pages = getAllPages();
+  return {
+    props: {
+      pages,
+    },
+  };
 }
