@@ -4,9 +4,14 @@
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+  font-size: 16px;
 
   small {
     font-size: 0.75em;
+  }
+
+  strong {
+    font-size: 1.2em;
   }
 }
 
@@ -38,9 +43,9 @@
     color: var(--dark-gray);
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
     width: 100%;
     grid-area: select;
+    font-size: 16px;
   }
 }
 
@@ -50,4 +55,5 @@
   color: var(--dark-gray);
   border: 1px solid var(--dark-gray);
   border-radius: 0.25rem;
+  font-size: 16px;
 }
