@@ -52,19 +52,26 @@ function userMarkToMark(userMark, markType) {
   }
 }
 
+function zeroPad(num, places) {
+  return String(num).padStart(places, "0");
+}
+
 function markToUserMark(mark, markType) {
   switch (markType) {
     case "time":
       const hours = Math.floor(mark / 60 / 60);
       const minutes = Math.floor(mark / 60) % 60;
-      const seconds = (mark % 60).toFixed(2);
+      const seconds = Math.floor(mark % 60);
+      const ms = (mark % 1).toFixed(2).split(".")[1];
+
       if (hours > 0) {
-        return `${hours}:${minutes}:${seconds}`;
+        return `${hours}:${zeroPad(minutes, 2)}:${zeroPad(seconds, 2)}.${ms}`;
       }
       if (minutes > 0) {
-        return `${minutes}:${seconds}`;
+        return `${minutes}:${zeroPad(seconds, 2)}.${ms}`;
       }
-      return `${seconds}`;
+
+      return `${seconds}.${ms}`;
     case "distance":
       return `${mark}`;
     case "points":
@@ -127,8 +134,7 @@ export default function PointsCalculator({ pages }) {
   };
 
   useEffect(() => {
-    setMark("");
-    setPoints("");
+    onPointsChanged(points);
   }, [category, gender, event]);
 
   const unit = units[markTypes[event]];
