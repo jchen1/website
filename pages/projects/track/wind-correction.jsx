@@ -114,7 +114,7 @@ export default function WindCorrection({ pages }) {
         />
       </label>
       <label className={styles.formContainer}>
-        <strong>Predicted Mark (+0.0 m/s)</strong>
+        <strong>Predicted Mark at +0.0 m/s</strong>
         <UnitInput
           className={styles.input}
           disabled={true}
@@ -124,7 +124,7 @@ export default function WindCorrection({ pages }) {
         />
       </label>
       <label className={styles.formContainer}>
-        <strong>Predicted Mark (+2.0 m/s)</strong>
+        <strong>Predicted Mark at +2.0 m/s</strong>
         <UnitInput
           className={styles.input}
           disabled={true}
