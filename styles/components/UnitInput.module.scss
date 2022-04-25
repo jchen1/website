@@ -1,0 +1,30 @@
+@import "mixins";
+
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--dark-gray);
+  border-radius: 0.25rem;
+}
+
+.input {
+  color: var(--dark-gray);
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  font-size: 16px;
+  flex-grow: 1;
+  background-color: transparent;
+}
+
+.unit {
+  flex-grow: 0;
+  border-left: 1px solid var(--dark-gray);
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding: 0 0.5rem;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  background-color: var(--light-gray);
+}

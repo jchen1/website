@@ -1,30 +1,54 @@
 import React, { useState, useEffect } from "react";
 
+import Meta from "components/Meta";
 import Title from "components/Title";
+import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
-// c = a*w + b*w^2
+// P_new = P + a*w + b*P*w + c*w^2
 const coefficients = {
-  "100m": [0.071, -0.0042],
-  "200m": [0.09, -0.01],
-  "100mH": [0.093, -0.01],
-  "110mH": [0.093, -0.01],
-  "Long Jump": [0, 0.029],
-  "Triple Jump": [0.069, -0.009],
+  "100m": [-0.0449, 0.009459, -0.0042],
+  "200m": [0.09, 0, -0.01],
+  "100mH": [0.093, 0, -0.01],
+  "110mH": [0.093, 0, -0.01],
+  "Long Jump": [0, 0, 0.029],
+  "Triple Jump": [0.069, 0, -0.009],
+};
+
+const units = {
+  "100m": "s",
+  "200m": "s",
+  "100mH": "s",
+  "110mH": "s",
+  "Long Jump": "m",
+  "Triple Jump": "m",
 };
 
 function round(mark) {
   const strMark = typeof mark === "string" ? mark : `${mark}`;
 
-  return parseFloat(parseFloat(strMark).toFixed(2));
+  return parseFloat(strMark).toFixed(2);
 }
 
 function correctForWind(event, mark, wind) {
-  const [a, b] = coefficients[event];
-  return mark + a * wind + b * wind * wind;
+  const markNum = parseFloat(mark);
+  const windNum = parseFloat(wind || "0");
+
+  if (isNaN(markNum) || isNaN(windNum)) {
+    return null;
+  }
+
+  const [a, b, c] = coefficients[event];
+  return mark + a * wind + b * wind * mark + c * wind * wind;
 }
+
+const metas = {
+  title: "Wind Correction Calculator",
+  description:
+    "Corrects sprint and jump marks for wind based on Moniat, Fabius, and Emanuel (2018).",
+};
 
 export default function WindCorrection() {
   const [event, setEvent] = useState("100m");
@@ -32,10 +56,12 @@ export default function WindCorrection() {
   const [mark, setMark] = useState(9.58);
 
   const correctedMark = round(correctForWind(event, mark, wind));
+  const unit = units[event];
 
   return (
     <article className={blogStyles.article}>
-      <Title title="Wind Correction Calculator" />
+      <Meta {...metas} />
+      <Title title={metas.title} />
       <p>
         Corrects sprint and jump marks for wind, based on{" "}
         <a
@@ -67,31 +93,34 @@ export default function WindCorrection() {
       </label>
       <label className={styles.formContainer}>
         <strong>Mark</strong>
-        <input
+        <UnitInput
           className={styles.input}
           type="number"
           step="0.01"
           value={mark}
-          onChange={e => setMark(round(e.target.value))}
+          onChange={e => setMark(e.target.value)}
+          unit={unit}
         />
       </label>
       <label className={styles.formContainer}>
         <strong>Wind</strong>
-        <input
+        <UnitInput
           className={styles.input}
           type="number"
           step="0.01"
           value={wind}
-          onChange={e => setWind(round(e.target.value))}
+          onChange={e => setWind(e.target.value)}
+          unit="m/s"
         />
       </label>
       <label className={styles.formContainer}>
         <strong>Corrected Mark</strong>
-        <input
+        <UnitInput
           className={styles.input}
           disabled={true}
           type="number"
           value={correctedMark}
+          unit={unit}
         />
       </label>
     </article>

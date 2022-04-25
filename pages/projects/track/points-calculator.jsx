@@ -9,7 +9,11 @@ import {
   coefficients,
   markTypes,
   order,
+  units,
 } from "lib/track/points-calculator/constants";
+
+import Meta from "components/Meta";
+import UnitInput from "components/UnitInput";
 
 function score(coefficients, x) {
   return Math.floor(
@@ -69,6 +73,12 @@ function markToUserMark(mark, markType) {
   }
 }
 
+const metas = {
+  title: "World Athletics Points Calculator",
+  description:
+    "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletic's 2022 scoring tables",
+};
+
 export default function PointsCalculator() {
   const [category, setCategory] = useState("outdoor");
   const [gender, setGender] = useState("men");
@@ -120,13 +130,16 @@ export default function PointsCalculator() {
     setPoints(null);
   }, [category, gender, event]);
 
+  const unit = units[markTypes[event]];
+
   const events = order[category][gender];
   return (
     <article className={blogStyles.article}>
-      <Title title="World Athletics Points Calculator" />
+      <Meta {...metas} />
+      <Title title={metas.title} />
       <p>
         Converts athletics marks to World Athletics points and vice versa using
-        the{" "}
+        equations derived from World Athletic's{" "}
         <a
           href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
           target="_blank"
@@ -180,16 +193,17 @@ export default function PointsCalculator() {
       </label>
       <label className={styles.formContainer}>
         <strong>Mark</strong>
-        <input
+        <UnitInput
           className={styles.input}
           type="text"
           value={mark}
           onChange={e => onMarkChanged(e.target.value)}
+          unit={unit}
         />
       </label>
       <label className={styles.formContainer}>
         <strong>Points</strong>
-        <input
+        <UnitInput
           className={styles.input}
           type="number"
           step="1"
@@ -205,6 +219,7 @@ export default function PointsCalculator() {
           }
           onChange={e => onPointsChanged(e.target.value)}
           placeholder="0-1400"
+          unit="pts"
         />
       </label>
     </article>
