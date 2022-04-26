@@ -17,7 +17,7 @@ import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
 function score(coefficients, x) {
-  return Math.floor(
+  return Math.round(
     coefficients[0] * x * x + coefficients[1] * x + coefficients[2]
   );
 }
