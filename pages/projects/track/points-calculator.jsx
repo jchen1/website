@@ -92,12 +92,11 @@ export default function PointsCalculator({ pages }) {
   const [gender, setGender] = useState("men");
   const [event, setEvent] = useState("100m");
 
-  const [mark, setMark] = useState(null);
-  const [points, setPoints] = useState(null);
+  const [mark, setMark] = useState("");
+  const [points, setPoints] = useState("");
 
   const [changed, setChanged] = useState(null);
 
-  // todo: input masks/types for marks
   const onMarkChanged = newMark => {
     setMark(newMark);
     if (changed === "points") {
