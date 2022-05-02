@@ -11,7 +11,7 @@ pre {
 
   overflow: auto;
 
-  code {
+  code.hljs {
     background-color: unset;
     line-height: 1.1;
 
@@ -19,20 +19,6 @@ pre {
       line-height: 1.1;
     }
     padding: 0;
-
-    &.hljs {
-      &::before {
-        // content: attr(data-language);
-        display: block;
-        width: fit-content;
-        padding: 0.1rem 0.5rem;
-        float: right;
-        border: 1px solid var(--gray);
-        background-color: var(--primary);
-        color: var(--dark-gray);
-        z-index: 1;
-      }
-    }
   }
 }
 
