@@ -1,5 +1,5 @@
 import fs from "fs";
-import globby from "globby";
+import { globby } from "globby";
 import matter from "gray-matter";
 import rss from "rss";
 import { markdownToHtml } from "../lib/blogs";
