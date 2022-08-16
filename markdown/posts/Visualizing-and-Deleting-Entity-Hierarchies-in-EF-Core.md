@@ -229,3 +229,6 @@ public static async Task DeleteTenant(DbContext context, string tenant)
 
 If all goes well, you'll see a bunch of `UPDATE` then `DELETE` transactions. I'd recommend that you build dry-run functionality before running anything like this in production.
 
+## Future work
+
+This code doesn't account for non-foreign-key constraints or any other checks that might prevent a deletion from succeeding.
