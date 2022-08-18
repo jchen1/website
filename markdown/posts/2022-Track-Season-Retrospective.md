@@ -4,6 +4,7 @@ title: "2022 Track Season Retrospective"
 date: "2022-08-17"
 author: Jeff Chen
 tags: track
+heroImage: /images/2022-track-season-retrospective/hero.jpg
 ---
 
 Track has been the most constant part of my life these past few years—through job changes, moves, and a global pandemic, I've hit the track and competed. This year, my preseason started all the way back in September of last year, and I didn't run my last race until the last day of July.
@@ -33,6 +34,8 @@ Two days of tempo was much more than I've done while self-coaching—I think the
 
 In the weight room, I mostly tried to maintain strength after the season started. Like in prior seasons, I focused mainly on powerlifting-style movements for strength (though I swapped from back squats to reverse lunges during the season on Evan's advice), and Olympic lifting for explosiveness.
 
+I started the preseason at 195lbs, peaked at 199lbs in December, and slowly cut down to 191lbs by the end of the year to improve my [strength-to-weight ratio](https://jeffchen.dev/posts/Body-Composition-For-Sprinters/). I think this was generally positive, although I may have cut too aggressively in the back half of the season, as my PRs were set in April when I was hovering at 193lbs.
+
 ## Racing
 
 I competed in 10 meets this year between January and July (new PRs in bold):
@@ -53,6 +56,8 @@ I competed in 10 meets this year between January and July (new PRs in bold):
 Besides the anomaly in Pittsburgh (~30 degree weather, snow flurries, and calf cramps), every single race this year was faster than my wind-legal PRs from previous years. That's amazingly special.
 
 I noticed that I tend to tense and push when I have competition next to me. More race experience (or even just a workout buddy) should help. Next year, I'm going to try to compete a bit more often.
+
+Competition at these meets was mixed. I'd love to get into some faster meets and heats next year—my best race experience of the year was getting dusted by a bunch of Olympians and elite athletes at the Atlanta Track Club meet.
 
 ## Next year
 
