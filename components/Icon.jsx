@@ -4,7 +4,6 @@ import { event } from "../lib/gtag";
 import EnvelopeIcon from "../assets/envelope-f.svg";
 import GithubIcon from "../assets/github.svg";
 import TwitterIcon from "../assets/twitter.svg";
-import TwitterCircleIcon from "../assets/twitter-circle.svg";
 import LinkedinIcon from "../assets/linkedin.svg";
 import RSSIcon from "../assets/rss-feed.svg";
 
@@ -85,7 +84,7 @@ export function Twitter(props) {
         href: "https://www.twitter.com/iambald",
         label: "@iambald on Twitter",
         rel: "noopener",
-        IconComponent: props.circle ? TwitterCircleIcon : TwitterIcon,
+        IconComponent: TwitterIcon,
         target: "_blank",
         ...props,
       }}
