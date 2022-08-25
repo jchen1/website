@@ -10,6 +10,8 @@ I drove down to Oxford, Alabama for the TFCUSA Club National Championships. It's
 
 The meet wasn't tracking wind information, but there was a medium-strength headwind all day. And it was hot! I brought 5 Gatorades, whcih I thought would be more than enough, but I had to supplement that with lots of water through the day.
 
+<!-- excerpt -->
+
 ## [100m: 10.93](https://live.xpresstiming.com/meets/9788/events/325967/results)
 
 I finished first in my heat and overall! To save time, the starter didn't let us take any practice starts. I still came out OK, and overall, despite missing my PR by 0.01, this felt like my best race of the year so far!

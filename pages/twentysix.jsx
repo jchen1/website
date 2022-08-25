@@ -88,14 +88,12 @@ const ClueContainer = styled.div`
 `;
 
 function Code({ clue, numDigits, answerHash, reward, hint }) {
-  console.log({ clue, answerHash });
   const [answeredCorrectly, setAnsweredCorrectly] = useState(null);
   const [answer, setAnswer] = useState(0);
 
   const wrappedSetAnswer = e => setAnswer(e.target.value);
 
   const checkAnswer = () => {
-    console.log({ answer, hash: hashAnswer(answer), answerHash });
     setAnsweredCorrectly(hashAnswer(answer) === answerHash);
   };
 

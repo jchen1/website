@@ -9,7 +9,7 @@ import TitleContainer from "../components/containers/TitleContainer";
 import { Colors, Plots, FrequentMetrics, metricType } from "../lib/metrics";
 import { useGlobalState, addMetrics } from "../lib/state";
 import { Plot } from "../components/charts";
-import { transformEvents } from "../lib/util";
+import { transformEvents } from "../lib/metricsUtils";
 import { getEvents, connect } from "../lib/api";
 import Meta from "../components/Meta";
 

@@ -134,7 +134,7 @@ export default function PointsCalculator({ pages }) {
 
   useEffect(() => {
     onPointsChanged(points);
-  }, [category, gender, event]);
+  }, [category, gender, event, onPointsChanged, points]);
 
   const unit = units[markTypes[event]];
 
