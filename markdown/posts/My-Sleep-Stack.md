@@ -10,6 +10,8 @@ Sleep is a competitive advantage: good sleep is associated with [improved short 
 
 Because sleep is so important, I've assembled a stack of habits and tools for measuring and improving my sleep quality:
 
+<!-- excerpt -->
+
 ## Habits
 
 - **No caffeine after noon.** Caffeine’s half life is [5 hours](https://www.ncbi.nlm.nih.gov/books/NBK223808/) long. The average espresso shot has [63mg](https://www.consumerreports.org/coffee/is-there-more-caffeine-in-espresso-than-in-coffee/) of caffeine, while doses [as low as 9mg are psychoactive](https://clinicaltrials.gov/ct2/show/NCT00487227). That means it takes your body more than 10 hours to clear a single shot from your system! Given that I tend to sleep around 9-10 every night, I stop all caffiene intake after noon.

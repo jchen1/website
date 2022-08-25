@@ -10,9 +10,9 @@ import {
   POST_FIELDS,
   ARCHIVE_FIELDS,
 } from "lib/blogs";
-import { sizeImage } from "lib/util";
 
 import BlogPost from "components/BlogPost";
+import {sizeImage} from "../../lib/util/server";
 
 export default function Post({ post, relatedPosts }) {
   const router = useRouter();

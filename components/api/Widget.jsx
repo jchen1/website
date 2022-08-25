@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { last, prettifyData } from "../../lib/util";
+import { last, prettifyData } from "../../lib/metricsUtils";
 
 const WidgetText = styled.h1`
   text-align: center;
