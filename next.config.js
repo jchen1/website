@@ -15,6 +15,7 @@ module.exports = withPreact(
     images: {
       deviceSizes: [320, 640, 720, 1440, 2160],
     },
+    swcMinify: true,
     experimental: {
       esmExternals: false,
     },
