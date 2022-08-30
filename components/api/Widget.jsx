@@ -51,10 +51,10 @@ function dateToHours(date) {
 function dateToTime(date) {
   const d = new Date(date);
 
-  return `${d
-    .getHours()
+  return `${d.getHours().toString().padStart(2, "0")}:${d
+    .getMinutes()
     .toString()
-    .padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}`;
+    .padStart(2, "0")}`;
 }
 
 function LineWidget({ events, opts }) {

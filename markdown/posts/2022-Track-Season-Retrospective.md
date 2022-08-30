@@ -40,18 +40,18 @@ I started the preseason at 195lbs, peaked at 199lbs in December, and slowly cut 
 
 I competed in 10 meets this year between January and July (new PRs in bold):
 
-| **Date** | **Meet**                                                     | **Events**                             |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| 1/18     | [2022 UAB Vulcan Invitational](https://jeffchen.dev/posts/Meet-Report-2022-UAB-Vulcan-Invitational/) | 60 (6.97), 200 (22.56)                 |
-| 1/22     | [2022 Vanderbilt Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Vanderbilt-Invitational/) | 60 (6.96)                              |
-| 2/19     | [2022 Berkeley All-Comers 2](https://jeffchen.dev/posts/Meet-Report-2022-Berkeley-All-Comers-2/) | **60 (6.88 +1.3)**, 200 (21.85 -0.9)   |
+| **Date** | **Meet**                                                                                                       | **Events**                             |
+| -------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 1/18     | [2022 UAB Vulcan Invitational](https://jeffchen.dev/posts/Meet-Report-2022-UAB-Vulcan-Invitational/)           | 60 (6.97), 200 (22.56)                 |
+| 1/22     | [2022 Vanderbilt Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Vanderbilt-Invitational/)           | 60 (6.96)                              |
+| 2/19     | [2022 Berkeley All-Comers 2](https://jeffchen.dev/posts/Meet-Report-2022-Berkeley-All-Comers-2/)               | **60 (6.88 +1.3)**, 200 (21.85 -0.9)   |
 | 3/26     | [2022 Carnegie Mellon Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Carnegie-Mellon-Invitational/) | 100 (11.24 -2.9), 200 (22.24 -4.3)     |
-| 4/9      | [2022 Atlanta Track Club Meet #1](https://jeffchen.dev/posts/Meet-Report-2022-Atlanta-Track-Club-Meet-1/) | 100 (10.82 NWI), **100 (10.71 -1.3)**  |
+| 4/9      | [2022 Atlanta Track Club Meet #1](https://jeffchen.dev/posts/Meet-Report-2022-Atlanta-Track-Club-Meet-1/)      | 100 (10.82 NWI), **100 (10.71 -1.3)**  |
 | 4/23     | [2022 Mountain Laurel Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Mountain-Laurel-Invitational/) | 100 (10.88 -1.2), **200 (21.55 -2.3)** |
-| 5/7      | [2022 Tennessee Challenge](https://jeffchen.dev/posts/Meet-Report-2022-Tennessee-Challenge/) | 100 (10.82 +1.6), 200 (21.58 +1.3)     |
-| 5/14     | [2022 Lee Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Lee-Invitational/) | 100 (10.87 +0.0), 200 (21.75 +1.2)     |
-| 6/6      | [2022 Sunset Summer Classic](https://jeffchen.dev/posts/Meet-Report-2022-Sunset-Summer-Classic/) | 100 (10.81 NWI)                        |
-| 7/30     | [2022 USATF Masters Championships](https://jeffchen.dev/posts/Meet-Report-2022-USATF-Masters-Championships/) | 100 (10.76 +0.6), 200 (21.96 -0.6)     |
+| 5/7      | [2022 Tennessee Challenge](https://jeffchen.dev/posts/Meet-Report-2022-Tennessee-Challenge/)                   | 100 (10.82 +1.6), 200 (21.58 +1.3)     |
+| 5/14     | [2022 Lee Invitational](https://jeffchen.dev/posts/Meet-Report-2022-Lee-Invitational/)                         | 100 (10.87 +0.0), 200 (21.75 +1.2)     |
+| 6/6      | [2022 Sunset Summer Classic](https://jeffchen.dev/posts/Meet-Report-2022-Sunset-Summer-Classic/)               | 100 (10.81 NWI)                        |
+| 7/30     | [2022 USATF Masters Championships](https://jeffchen.dev/posts/Meet-Report-2022-USATF-Masters-Championships/)   | 100 (10.76 +0.6), 200 (21.96 -0.6)     |
 
 Besides the anomaly in Pittsburgh (~30 degree weather, snow flurries, and calf cramps), every single race this year was faster than my wind-legal PRs from previous years. That's amazingly special.
 
@@ -63,7 +63,6 @@ Competition at these meets was mixed. I'd love to get into some faster meets and
 
 I've had a couple of weeks off the track now, and I'm already chomping at the bit to start running again! There are a few things I'd like to do differently for the upcoming season:
 
-- **Focus more on dedicated core work**. I've had a persistent low-back issue that my physical therapist thinks is my [QL](https://www.physio-pedia.com/Quadratus_Lumborum#:~:text=The%20Quadratus%20Lumborum%20(QL)%20is,and%20has%20a%20quadrangular%20shape.) spasming from overload. Getting a stronger core, especially resisting rotation, should help there.
+- **Focus more on dedicated core work**. I've had a persistent low-back issue that my physical therapist thinks is my [QL](<https://www.physio-pedia.com/Quadratus_Lumborum#:~:text=The%20Quadratus%20Lumborum%20(QL)%20is,and%20has%20a%20quadrangular%20shape.>) spasming from overload. Getting a stronger core, especially resisting rotation, should help there.
 - **More technique work, sooner**. My hamstring pull in October killed a lot of momentum I had had with max velocity mechanics. With healthier legs, I should be able to stack my training better and come into the season more prepared to compete.
 - **Compete more**. I had two month-long gaps in my season. Next year, I'm hoping to fill in those gaps so I that I don't lose my competitive edge.
-

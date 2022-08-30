@@ -11,7 +11,7 @@ July was busy: we hosted my parents and some friends in Montana for the first tw
 ## Goal Tracking
 
 - 🟢 **Get 1% faster.** I ran a personal best of [10.79](https://jeffchen.dev/posts/Meet-Report-2021-USATF-Masters-Championships/) in the 100m, achieving my goal of being 1% faster on the year!
-- 🔴 **50% less discretionary spending.** I spent 12% more on discretionary things than my 2020 average. A big chunk of that is two flights and hotel stays in Des Moines and Chicago, but then again, my 2020 average includes travel too. 
+- 🔴 **50% less discretionary spending.** I spent 12% more on discretionary things than my 2020 average. A big chunk of that is two flights and hotel stays in Des Moines and Chicago, but then again, my 2020 average includes travel too.
 - 🟡 **One hour of solitary free time a day.** My work-life balance continues to be fairly good, and I've been spending more of my free time enjoying the outdoors and reading.
 - 🟢 **Twice-weekly live conversations with friends.** This was mostly facilitated by friends and family visiting us in Montana, and myself traveling to Iowa and Illinois. I suspect next month will be somewhat harder.
 
@@ -21,7 +21,7 @@ July was busy: we hosted my parents and some friends in Montana for the first tw
 
 - My track season's over after a PR of 10.79 in the 100m. I'm taking about a month off of the track to recuperate.
 - I strained my hamstring in that 100m effort, so I'm currently religiously rehabbing it so that it doesn't scar.
-- Without track work, I'm focusing more on the weight room. 
+- Without track work, I'm focusing more on the weight room.
 
 ## Writing
 

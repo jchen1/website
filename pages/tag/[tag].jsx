@@ -13,7 +13,9 @@ export default function IndexPage(props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const postMarkup = posts.map((post, idx) => <ArchiveItem {...post} key={post.slug} />);
+  const postMarkup = posts.map((post, idx) => (
+    <ArchiveItem {...post} key={post.slug} />
+  ));
 
   return (
     <>

@@ -4,7 +4,6 @@ title: "Legibility in Software Engineering"
 date: "2021-08-28"
 author: Jeff Chen
 tags: management,code
-
 ---
 
 The central concept in James C. Scott's [Seeing Like a State](https://www.goodreads.com/book/show/20186.Seeing_Like_a_State) is **legibility**, and how states' desire to make their societies more legible often leads to disaster. [Others](https://www.ribbonfarm.com/2010/07/26/a-big-little-idea-called-legibility/) [have](https://www.nateliason.com/notes/seeing-like-a-state-james-c-scott) [detailed](https://slatestarcodex.com/2017/03/16/book-review-seeing-like-a-state/) the main points of Seeing Like a State far better than I could—please start with those three if you're not familiar (or just read the book, which is excellent!)
@@ -17,7 +16,7 @@ If you didn't read any of those, here's a brief overview of legibility:
 - To improve their hold on society, states imposed measures like standardizing weights and measures, censuses, permanent last names, and many more—all of these convert complicated and local social practices into unified and legibile ones that can be centrally monitored.
 - When taken too far, states' attempts to create legibility can cause disaster—like [19th century scientific forestry](https://www.tandfonline.com/doi/abs/10.1080/09505431.2010.519866?journalCode=csac20), the [exceptionally beautiful city of Brasilia](https://slatestarcodex.com/blog_images/state_brasilia1.png), and [the reorganization and collectivization of farms in the USSR which created devastating famine](https://en.wikipedia.org/wiki/Collectivization_in_the_Soviet_Union).
 
-There are clear parallels between legibility in states and legibility in software companies. First and perhaps most obvious are the tools of the program manager, like Gantt charts, sprint points, and code velocity metrics. The program manager creates legibility for themselves and leaders by imposing structure on the development process of individual engineers. Engineers are often treated as interchangeable, chess pieces  that can be swapped between tickets depending on priority.
+There are clear parallels between legibility in states and legibility in software companies. First and perhaps most obvious are the tools of the program manager, like Gantt charts, sprint points, and code velocity metrics. The program manager creates legibility for themselves and leaders by imposing structure on the development process of individual engineers. Engineers are often treated as interchangeable, chess pieces that can be swapped between tickets depending on priority.
 
 Like all abstractions, this one is [leaky](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/). Software engineering is fundamentally complex and opaque: no engineer can perfectly predict how long a project will take. It's so bad, in fact, that common advice to engineers is to [double your true estimate](https://fibery.io/blog/software-development-time-estimation/), and Agile best practice is to abstract estimations into time-unitless "points" or "T-shirt sizes". Taken to an extreme, organizational tools like the above can create strange incentives, busy work, and a poor engineering culture.
 

@@ -6,7 +6,7 @@ author: Jeff Chen
 tags: career, code
 ---
 
-When's the last time you looked around for a new job? If the answer is "more than a year ago", you're doing yourself a disservice. Even if you're happy in your current role, simply looking around offers many benefits. 
+When's the last time you looked around for a new job? If the answer is "more than a year ago", you're doing yourself a disservice. Even if you're happy in your current role, simply looking around offers many benefits.
 
 <!-- excerpt -->
 
@@ -18,7 +18,7 @@ Of course, there's one other benefit to regularly interviewing: you might find a
 
 Once upon a time, white-collar workers spent their careers with just one or two companies. They were intensely loyal to their workplace, and for good reason: companies rewarded that loyalty with stable employment, strong benefits, and, crucially, pensions, to long-tenured employees.
 
-These days, tenure doesn't provide as much of an economic advantage. Benefits barely scale with tenure, pensions are non-existent, and age discrimination means that tenure doesn't actually help you keep a job. Tours of duty in tech have shrunk to match the new reality—from decades to just a few years. But even as we've settled into a new employment cadence, most think of interviewing as taking place after deciding to quit. That's backwards: how can you decide to quit without knowing what your options are? Interview first—then, after seeing your options, decide whether you want to quit. Just interviewing is a [reversible decision](https://jeffchen.dev/posts/Most-Decisions-Are-Reversible/)—no matter how far you get in the process, you can always decide to stay where you are. 
+These days, tenure doesn't provide as much of an economic advantage. Benefits barely scale with tenure, pensions are non-existent, and age discrimination means that tenure doesn't actually help you keep a job. Tours of duty in tech have shrunk to match the new reality—from decades to just a few years. But even as we've settled into a new employment cadence, most think of interviewing as taking place after deciding to quit. That's backwards: how can you decide to quit without knowing what your options are? Interview first—then, after seeing your options, decide whether you want to quit. Just interviewing is a [reversible decision](https://jeffchen.dev/posts/Most-Decisions-Are-Reversible/)—no matter how far you get in the process, you can always decide to stay where you are.
 
 Of course, staying in place for a while has benefits. Joining a new company is a tradeoff. On the one hand, you're likely to get a big raise, diversify your equity holdings (assuming you're getting a grant), and enjoy a massively accelerated learning curve for the first few months on the job. On the other hand, tenure brings non-linear benefits, like life-long friends and mentors, an increased ability to navigate company politics, and the years of context to build more things better and faster.
 

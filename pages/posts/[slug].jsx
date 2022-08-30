@@ -12,7 +12,7 @@ import {
 } from "lib/blogs";
 
 import BlogPost from "components/BlogPost";
-import {sizeImage} from "../../lib/util/server";
+import { sizeImage } from "../../lib/util/server";
 
 export default function Post({ post, relatedPosts }) {
   const router = useRouter();

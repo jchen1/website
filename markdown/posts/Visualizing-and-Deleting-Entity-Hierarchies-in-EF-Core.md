@@ -12,7 +12,7 @@ We use [EF Core](https://docs.microsoft.com/en-us/ef/core/) for all of our datab
 
 <!-- excerpt -->
 
-## Naive approach 
+## Naive approach
 
 Naively deleting tables might look something like this:
 
@@ -185,7 +185,7 @@ private static IEnumerable<string> TopologicalSort(
       }
     }
   }
-  
+
   if (inDegree.Where(kvp => kvp.Value > 0))
   {
     throw new InvalidOperationException("graph has circular dependencies!");

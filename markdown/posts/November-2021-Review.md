@@ -4,8 +4,6 @@ title: November 2021 Review
 date: "2021-11-30"
 author: Jeff Chen
 tags: review
-
-
 ---
 
 November was... busy. December will be too.

@@ -26,7 +26,7 @@ I didn't expect much going into this meet: with a rolling schedule, I knew it'd 
 
 - I won both my heat and the meet in this race as well.
 - This was a huge outdoor PR—my previous best was 22.10, set two years ago on this track. Corrected for wind, this was a 21.76 effort.
-- I drew lane 5—about average given [the effect I found of lane draw on 200m times](https://jeffchen.dev/posts/Effect-of-Lane-Draw-In-200m-Sprinters/). 
+- I drew lane 5—about average given [the effect I found of lane draw on 200m times](https://jeffchen.dev/posts/Effect-of-Lane-Draw-In-200m-Sprinters/).
 - I did a really good job staying relaxed on the home stretch. Obviously, this is a lot easier to do when you have a big lead, but it's something I've struggled with in the past.
 - Apparently, I stepped on the inside line at least once and probably twice—I would have been disqualified if the officials had decided I had hit the line twice, so I got off lucky. I haven't had a ton of practice starting on the curve, so that's something I'll need to tighten up as my season progresses.
 - I still need to figure out proper inter-race habits. My calves were cramping a bit during my warmup. How much faster could I have been with a locked in routine?

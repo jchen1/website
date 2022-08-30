@@ -36,3 +36,4 @@ public/rss-feed.xml
 public/sitemap.xml
 
 .idea
+.eslintcache

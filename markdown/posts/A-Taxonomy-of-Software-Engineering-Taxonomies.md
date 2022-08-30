@@ -16,7 +16,7 @@ Engineering ability can be boiled down into a single "level". Levels are often b
 
 Engineering talent can be broken into several "skills", each of which has an independent "level"--reminiscent of D&D or RPG leveling systems. Is this convergent evolution or because engineering leaders are turbo-nerds?
 
-For example, an engineer might be an excellent debugger but mediocre architect and communicator. Like laddered systems, each skill level tends to be arbitrary. On the other hand, attempting to break down engineering ability into facets is probably a net win. 
+For example, an engineer might be an excellent debugger but mediocre architect and communicator. Like laddered systems, each skill level tends to be arbitrary. On the other hand, attempting to break down engineering ability into facets is probably a net win.
 
 ## Competency-based
 
@@ -32,4 +32,4 @@ This theory of engineering ability is kindest, since it suggests that an enginee
 
 ## Holistic
 
-Engineering ability is like pornography: undefinable, but I know it when I see it. Any attempt to make it legible is doomed to arbitrariness and incompleteness. Of course, this is a self-fulfilling prophecy: companies without a philosophy of engineering skill doom themselves to arbitrary and unfair evaluations. 
+Engineering ability is like pornography: undefinable, but I know it when I see it. Any attempt to make it legible is doomed to arbitrariness and incompleteness. Of course, this is a self-fulfilling prophecy: companies without a philosophy of engineering skill doom themselves to arbitrary and unfair evaluations.
