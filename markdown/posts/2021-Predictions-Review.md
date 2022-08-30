@@ -6,7 +6,6 @@ author: Jeff Chen
 tags: predictions
 ---
 
-
 Now that it's 2022, I've scored my [2021 predictions](https://jeffchen.dev/posts/2021-Predictions). To get slightly bigger samples, I inverted the prediction and predicted probability of <50% predictions—e.g. "Democrats win both Georgia seats: 25%" became "Democrats do not win both Georgia seats: 75%" for scoring purposes.
 
 <!-- excerpt -->

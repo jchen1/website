@@ -19,6 +19,7 @@ The weather was beautiful—my first warm meet of the year—but marred by a nas
 - [Video](https://youtu.be/iviw54UBhDE)/[slow-motion](https://photos.app.goo.gl/cgPCtxe5wdr4cj9m9)
 - Two weeks ago, I ran 10.82 then 10.71 just an hour later. To try to mimic that second-race effect, I intentionally finished my warmup earlier than normal and incorporated a couple extra flies before the race. I think I didn't take it far enough, but I'll keep playing with this in the next couple meets.
 - My heat was originally scheduled for 8 people, but I ended up racing just one person on the third gun of the day:
+
   - Only 5 showed up to the line.
   - Lane 4, with the fastest seed time, false-started, and the starter didn't or couldn't call the race back, so lanes 7 and 8 finished the race.
   - After some confusion, the officials decided to let 7 and 8 keep their times and race the remaining competitors, which were just me and lane 6 at this point.

@@ -21,11 +21,11 @@ My time in Montana is coming to an end—I'll be spending the next few days camp
 
 - I'm fully recovered from my hamstring tear! I even managed to get back on the track for some acceleration work.
 - I feel really bouncy—I don't have any numbers, but I'm almost hitting my head against the ten-foot gym ceiling on double-leg veritcal jumps!
-- August was a light month for me; I'll be starting preseason training next month when I'm back in Atlanta. 
+- August was a light month for me; I'll be starting preseason training next month when I'm back in Atlanta.
 
 ## Projects
 
-- I built a MacOS version of [JOTA](https://apps.apple.com/us/app/jota-easy-2fa/id1478072187), with automatic syncing with the iOS version. I'm hoping to release it to the App Store next month, but in the meantime, you can build it from [source](https://github.com/jchen1/jota). 
+- I built a MacOS version of [JOTA](https://apps.apple.com/us/app/jota-easy-2fa/id1478072187), with automatic syncing with the iOS version. I'm hoping to release it to the App Store next month, but in the meantime, you can build it from [source](https://github.com/jchen1/jota).
 
 ## Writing
 
@@ -80,5 +80,3 @@ My time in Montana is coming to an end—I'll be spending the next few days camp
 - [Almost-Billionaires](http://lackingambition.com/?p=1464)
 
 - [This Can't Go On](https://www.cold-takes.com/this-cant-go-on/)
-
-  

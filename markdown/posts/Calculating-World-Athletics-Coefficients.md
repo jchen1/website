@@ -19,7 +19,7 @@ I built off the code I wrote when studying [the effect of lanes on the 200m](htt
 
 ## Curve Fitting
 
-Although that file compresses down from 17 to about 1.3MB, 1.3MB is still a lot to send down in a network request. I figured that the tables were likely based off some equation, and found [this StackExchange Q&A](https://sports.stackexchange.com/questions/15533/how-to-calculate-iaaf-points) with details. Which was lucky, because I'm bad at math and definitely wouldn't have been able to derive it myself. 
+Although that file compresses down from 17 to about 1.3MB, 1.3MB is still a lot to send down in a network request. I figured that the tables were likely based off some equation, and found [this StackExchange Q&A](https://sports.stackexchange.com/questions/15533/how-to-calculate-iaaf-points) with details. Which was lucky, because I'm bad at math and definitely wouldn't have been able to derive it myself.
 
 Even knowing the formula, I had no idea how to fit a bunch of points to it. Once again, Google saved me with [this implementation of a polynomial regression](https://algs4.cs.princeton.edu/14analysis/PolynomialRegression.java.html). All I had to do from here was convert that code to Clojure and fit some curves. Validation was easy because the regression also gives us an R^2 number; the R^2 for each event was >0.999. That said, one caveat of the fit curves is that it doesn't take `floor` into account—this is likely what prevents an R^2 of 1, and creates one-point discrepancies in many places.
 

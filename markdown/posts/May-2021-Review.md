@@ -8,14 +8,14 @@ tags: review
 
 My first month in Atlanta has been a blast: I drove across the country, competed in my [first](https://jeffchen.dev/posts/Two-Meet-Reports/) [races](https://jeffchen.dev/posts/Meet-Report-TFCUSA-Club-National-Championships/) in 15 months, met some friends in person for the first time in a long time, and am writing this from Charleston where I'm spending Memorial Day!
 
-I'm definitely enjoying the change of environment and pace; hopefully it's not just a honeymoon period. 
+I'm definitely enjoying the change of environment and pace; hopefully it's not just a honeymoon period.
 
 ## Goal Tracking
 
 - 🟡 **Get 1% faster.** I ran a FAT PR of 10.92 in my first race back, then 10.93 two weeks later. Unfortunately, it looks like Freelap times don't translate to FAT+0.15: the difference seems more like 0.35 seconds. That said, those PRs were set after hard training weeks: I think I have a lot of headroom with a good peaking cycle and some minor technical cleanup.
 - 🔴 **50% less discretionary spending.** I expected to go red this month, and did. We're buying lots of furniture, spending time in fancy hotels, and generally making our first month in Atlanta a month to remember. My spending this month was 215% of my average spending from last year.
 - 🟡 **One hour of solitary free time a day.** I'm still not doing a great job of tracking this, but my work-life balance has significantly improved since moving to Atlanta. I don't start my workday until around 11AM, and I've managed to keep a strict end-of-work time of 7PM. That gives me plenty of time to myself on Tuesdays an Thursdays (when I'm not doubling up at the track and gym).
-- 🟡 **Twice-weekly live conversations with friends.**  I haven't really been focusing on this goal. Even so, I managed to hit it every week but this past one. Next month, I'll pay more attention and get this back into the green!
+- 🟡 **Twice-weekly live conversations with friends.** I haven't really been focusing on this goal. Even so, I managed to hit it every week but this past one. Next month, I'll pay more attention and get this back into the green!
 
 <!-- excerpt -->
 
@@ -47,8 +47,8 @@ I'm definitely enjoying the change of environment and pace; hopefully it's not j
 
 - [Above Avalon: Apple Has a Decade-long Lead in Wearables](https://www.aboveavalon.com/notes/2021/5/27/apple-has-a-decade-long-lead-in-wearables)
 - [Common data model mistakes made by startups](https://www.metabase.com/learn/data-diet/analytics/data-model-mistakes.html)
--  [You Probably Shouldn’t Work at a Startup - Napkin Math](https://every.to/napkin-math/you-probably-shouldn-t-work-at-a-startup-9387b632-345c-4a22-bac0-3cb92f0eecf1#%23)
--  [App Store Arguments](https://stratechery.com/2021/app-store-arguments/)
+- [You Probably Shouldn’t Work at a Startup - Napkin Math](https://every.to/napkin-math/you-probably-shouldn-t-work-at-a-startup-9387b632-345c-4a22-bac0-3cb92f0eecf1#%23)
+- [App Store Arguments](https://stratechery.com/2021/app-store-arguments/)
 - [The data model behind Notion's flexibility](https://www.notion.so/blog/data-model-behind-notion)
 - [We need to talk about your Q3 roadmap](https://larahogan.me/blog/we-need-to-talk-about-your-q3-roadmap/)
 

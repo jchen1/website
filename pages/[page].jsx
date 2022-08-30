@@ -9,7 +9,7 @@ import {
 
 import BlogSnippet from "components/BlogSnippet";
 import Pagination from "components/Pagination";
-import {sizeImage} from "../lib/util/server";
+import { sizeImage } from "../lib/util/server";
 
 export default function IndexPage(props) {
   const { posts, next, prev } = props;

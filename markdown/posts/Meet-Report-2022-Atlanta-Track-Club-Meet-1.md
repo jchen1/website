@@ -35,4 +35,3 @@ This meet only contested the 100m and 400m, so I ran just the 100m. There were t
 - 10.71 is a big PR for me from my previous best of 10.79 (+2.9)... and 10.71 (-1.3) translates to 10.63 (0.0)/10.53 (+2.0) so I think I have a lot more in store this season.
 
 Next up for me is the Sewanee Mountain Laurel Twilight Invitational in Sewanee, Tennessee on April 23.
-

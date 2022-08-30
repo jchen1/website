@@ -4,7 +4,6 @@ title: October 2021 Review
 date: "2021-10-31"
 author: Jeff Chen
 tags: review
-
 ---
 
 October was my first full month in Atlanta since May—but I still found a way to get out of town for a couple of weekends. We have more travel upcoming in November and December, which is exciting but also maybe a bit too much.
@@ -81,4 +80,3 @@ October was my first full month in Atlanta since May—but I still found a way t
 - [Quick Update on Where We are on New York Costs](https://pedestrianobservations.com/2021/10/17/quick-update-on-where-we-are-on-new-york-costs/)
 - [Borderline Personality](https://lorienpsych.com/2021/01/16/borderline/amp/)
 - [The most counterintuitive facts in all of mathematics, computer science, and physics](https://axisofordinary.substack.com/p/the-most-counterintuitive-facts-in)
-

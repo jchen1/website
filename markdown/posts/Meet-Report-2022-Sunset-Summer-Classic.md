@@ -19,5 +19,4 @@ I concluded my track season at the Sunset Summer Classic in Marietta this past w
 - Although there wasn't an official wind measurement, we had a slight headwind all day, so I'm considering this race wind-legal.
 - 10.81 is my second-fastest wind-legal time ever. But it's still a bit disappointing to have run my fastest time of the year in April and not June.
 
-There's still a very slight chance that I compete next weekend, so I'll post some thoughts about my season as a whole either later this week or next. 
-
+There's still a very slight chance that I compete next weekend, so I'll post some thoughts about my season as a whole either later this week or next.

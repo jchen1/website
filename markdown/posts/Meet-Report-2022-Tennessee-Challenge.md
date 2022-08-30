@@ -16,6 +16,7 @@ My pre-meet routine was disrupted this time around: first of all, I had a poor w
 
 - 10.82 is tied for my second-fastest wind-legal mark and my third-fastest all-conditions mark.
 - That said, my race execution was somewhat disappointing:
+
   - I made the mistake of adjusting my blocks a step back after my practice start and didn't get another runout. Once I got set, I knew I was in the wrong position. In retrospect, I should have raised my hand and adjusted it back, but in the moment, I just let it go.
   - Because I was worrying about my block positions, I wasn't focused in set and had a poor reaction to the gun.
   - I got tight towards the end of the race, and my legs were too far behind me.
