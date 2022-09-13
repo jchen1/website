@@ -100,7 +100,7 @@ export default function Metrics() {
         setLoadState("error");
       }
     };
-    fetchData();
+    void fetchData();
 
     const ws = connect(
       ws => {
