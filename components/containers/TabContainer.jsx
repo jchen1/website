@@ -5,6 +5,9 @@ import { Colors } from "../../lib/metrics";
 
 const TabContainerRoot = styled.div`
   flex-basis: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  overflow-x: auto;
   display: flex;
 
   border-bottom: 1px solid ${Colors.LIGHT_GRAY};

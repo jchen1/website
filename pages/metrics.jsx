@@ -31,8 +31,9 @@ const WidgetTabContainer = styled.div`
 
   @media screen and (max-width: 640px) {
     border: 0;
-    flex: 1 1 100%;
+    flex: 1 0 100%;
     padding: 0;
+    overflow-x: auto;
   }
 `;
 
