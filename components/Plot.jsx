@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import LinePlot from "./plots/LinePlot";
 import GithubPlot from "./plots/GithubPlot";
+import LatestPlot from "./plots/LatestPlot";
 
 const PlotContainer = styled.div`
   flex-basis: 33%;
@@ -28,24 +29,30 @@ const PlotContainer = styled.div`
   }
 `;
 
-export default class Plot extends React.Component {
-  render() {
-    const Element = (() => {
-      switch (this.props.type) {
-        case "line":
-          return LinePlot;
-        case "github":
-          return GithubPlot;
-        default:
-          return LinePlot;
-      }
-    })();
+export default function Plot(props) {
+  const { type, title, opts } = props;
 
-    return (
-      <PlotContainer>
-        <h3>{this.props.title || this.props.opts?.datatypes[0]}</h3>
-        <Element {...this.props} />
-      </PlotContainer>
-    );
+  const Element = (() => {
+    switch (type) {
+      case "line":
+        return LinePlot;
+      case "github":
+        return GithubPlot;
+      case "latest":
+        return LatestPlot;
+      default:
+        return LinePlot;
+    }
+  })();
+
+  if (opts?.noContainer === true) {
+    return <Element {...props} />;
   }
+
+  return (
+    <PlotContainer>
+      <h3>{title || opts?.datatypes[0]}</h3>
+      <Element {...props} />
+    </PlotContainer>
+  );
 }

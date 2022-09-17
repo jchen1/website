@@ -47,6 +47,8 @@ const PlotContainer = styled.div`
   @media screen and (max-width: 640px) {
     max-height: initial;
     overflow: initial;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -84,7 +86,7 @@ export default function Metrics() {
   const [ws, setWs] = useGlobalState("ws");
   const [metrics] = useGlobalState("metrics");
 
-  const [activeTab, setActiveTab] = useState("Personal");
+  const [activeTab, setActiveTab] = useState("Now");
   const [socketColor, setSocketColor] = useState(Colors.RED);
 
   const [loadState, setLoadState] = useState("loading");
