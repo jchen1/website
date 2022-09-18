@@ -3,25 +3,31 @@ import styled from "styled-components";
 
 import { Colors } from "../../lib/metrics";
 
+const SQUARE_SIZE_PX = 200;
+
 const Container = styled.div`
   display: flex;
-  padding: 1rem;
+
   border: 1px solid ${Colors.DARKER_GRAY};
   align-items: center;
   justify-content: center;
 
-  flex-basis: min(250px, 33%);
-  min-width: 250px;
-  margin: 1rem;
+  flex-basis: ${SQUARE_SIZE_PX}px;
+  gap: 1rem;
+
+  @media screen and (max-width: 640px) {
+    flex-basis: calc((100% - 1rem) / 2);
+    min-width: initial;
+  }
 `;
 
 const Square = styled.div`
   height: auto;
   flex-grow: 1;
-  text-align: center;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 1rem;
 
   &:after {
     content: "";
@@ -32,20 +38,30 @@ const Square = styled.div`
 
 const InnerContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
 
-  align-items: center;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
 
-  > *:first-child {
-    margin-bottom: 1rem;
+const DataHeading = styled.p`
+  font-size: 14px;
+  margin: 0;
+`;
+
+const Data = styled.svg`
+  flex-grow: 1;
+  width: 100%;
+
+  > text {
+    font-weight: 900;
   }
 `;
 
-const Data = styled.p`
-  font-size: 32px;
-  font-weight: 900;
+const DataTime = styled.p`
+  font-size: 14px;
+  margin: 0;
+  font-style: italic;
 `;
 
 export default function LatestPlot({ data, title, opts }) {
@@ -57,16 +73,22 @@ export default function LatestPlot({ data, title, opts }) {
     <Container>
       <Square>
         <InnerContainer>
-          <h4>{title}</h4>
-          <Data>
-            {typeof currentValue === "number"
-              ? Math.round(currentValue * 100) / 100
-              : currentValue}{" "}
-            {opts?.unit}
+          <DataHeading>{title}</DataHeading>
+          <Data viewBox="0 0 500 200" preserveAspectRatio="xMinYMin">
+            <text
+              y="50%"
+              textAnchor="left"
+              fontSize="100px"
+              alignmentBaseline="central"
+              dominantBaseline="central"
+            >
+              {typeof currentValue === "number"
+                ? Math.round(currentValue * 100) / 100
+                : currentValue}{" "}
+              {opts?.unit}
+            </text>
           </Data>
-          <small>
-            <em>{moment(latestMeasurement).format("M/DD h:mm A")}</em>
-          </small>
+          <DataTime>{moment(latestMeasurement).format("M/DD h:mm A")}</DataTime>
         </InnerContainer>
       </Square>
     </Container>

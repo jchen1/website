@@ -44,6 +44,7 @@ const PlotContainer = styled.div`
   margin-bottom: 1rem;
   max-height: 60vh;
   overflow-y: auto;
+  gap: 1rem;
 
   @media screen and (max-width: 640px) {
     max-height: initial;

@@ -6,14 +6,9 @@ import GithubPlot from "./plots/GithubPlot";
 import LatestPlot from "./plots/LatestPlot";
 
 const PlotContainer = styled.div`
-  flex-basis: 33%;
-  margin: 50px 0;
-
-  &:nth-of-type(1),
-  &:nth-of-type(2),
-  &:nth-of-type(3) {
-    margin-top: 0;
-  }
+  // https://stackoverflow.com/questions/49174998/incorrect-width-flex-items-with-gap-and-fixed-flex-basis
+  // gap is 1rem
+  flex-basis: calc((100% - 2rem) / 3);
 
   h3 {
     text-align: center;
@@ -21,11 +16,6 @@ const PlotContainer = styled.div`
 
   @media screen and (max-width: 640px) {
     flex-basis: 100%;
-
-    &:nth-of-type(2),
-    &:nth-of-type(3) {
-      margin-top: 50px;
-    }
   }
 `;
 
