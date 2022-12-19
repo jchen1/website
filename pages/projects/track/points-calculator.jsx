@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import {
   coefficients,
@@ -84,7 +84,7 @@ function markToUserMark(mark, markType) {
 export const metas = {
   title: "World Athletics Points Calculator",
   description:
-    "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletic's 2022 scoring tables",
+    "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletics' 2022 scoring tables",
 };
 
 export default function PointsCalculator({ pages }) {
@@ -97,40 +97,53 @@ export default function PointsCalculator({ pages }) {
 
   const [changed, setChanged] = useState(null);
 
-  const onMarkChanged = newMark => {
-    setMark(newMark);
-    if (changed === "points") {
-      setChanged(null);
-    } else {
-      if (newMark !== "") {
-        const markValue = userMarkToMark(newMark, markTypes[event]);
-        const points = score(coefficients[category][gender][event], markValue);
-        setChanged("mark");
-        if (points >= 0 && points <= 1400) {
-          setPoints(points.toString());
-        } else {
-          setPoints("");
+  const onMarkChanged = useCallback(
+    newMark => {
+      setMark(newMark);
+      if (changed === "points") {
+        setChanged(null);
+      } else {
+        if (newMark !== "") {
+          const markValue = userMarkToMark(newMark, markTypes[event]);
+          const points = score(
+            coefficients[category][gender][event],
+            markValue
+          );
+          setChanged("mark");
+          if (points >= 0 && points <= 1400) {
+            setPoints(points.toString());
+          } else {
+            setPoints("");
+          }
         }
       }
-    }
-  };
+    },
+    // changing onPointsChanged resets it which isn't what we want
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [category, event, gender]
+  );
 
-  const onPointsChanged = newPoints => {
-    setPoints(newPoints);
+  const onPointsChanged = useCallback(
+    newPoints => {
+      setPoints(newPoints);
 
-    if (changed === "mark") {
-      setChanged(null);
-    } else {
-      if (newPoints !== "") {
-        const mark = getMarkFromScore(
-          coefficients[category][gender][event],
-          newPoints
-        );
-        setChanged("points");
-        setMark(markToUserMark(mark, markTypes[event]));
+      if (changed === "mark") {
+        setChanged(null);
+      } else {
+        if (newPoints !== "") {
+          const mark = getMarkFromScore(
+            coefficients[category][gender][event],
+            newPoints
+          );
+          setChanged("points");
+          setMark(markToUserMark(mark, markTypes[event]));
+        }
       }
-    }
-  };
+    },
+    // changing onPointsChanged resets it which isn't what we want
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [category, event, gender]
+  );
 
   useEffect(() => {
     onPointsChanged(points);
