@@ -7,7 +7,7 @@ tags: track
 heroImage: /images/cold-weather-sprinting/hero.jpg
 ---
 
-I moved to Montana this summer. Now, in the dead of winter, I'm paying the price. I thought I'd run in the cold before—I've [written](http://localhost:4000/posts/Temperature-And-Speed/) about the relationship between temperature and speed. But Montana winters hit different—I'm often outside in single-digit weather with wind chill down into the negative teens. But a man's gotta work out, no matter the temperature, so I've done what I needed to do to work out and get fit. Here's what's worked for me so far:
+I moved to Montana this summer. Now, in the dead of winter, I'm paying the price. I thought I'd run in the cold before—I've [written](https://jeffchen.dev/posts/Temperature-And-Speed/) about the relationship between temperature and speed. But Montana winters hit different—I'm often outside in single-digit weather with wind chill down into the negative teens. But a man's gotta work out, no matter the temperature, so I've done what I needed to do to work out and get fit. Here's what's worked for me so far:
 
 <!-- excerpt -->
 
