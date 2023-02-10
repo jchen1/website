@@ -216,7 +216,7 @@ export default function PointsCalculator({ pages }) {
           className={styles.input}
           type="text"
           value={mark}
-          onChange={e => onMarkChanged(e.target.value)}
+          onChange={v => onMarkChanged(v)}
           unit={unit}
         />
       </label>
@@ -229,14 +229,8 @@ export default function PointsCalculator({ pages }) {
           min="0"
           max="1400"
           value={points}
-          onKeyDown={e =>
-            (e.key === "e" ||
-              e.key === "." ||
-              e.key === "-" ||
-              e.key === "+") &&
-            e.preventDefault()
-          }
-          onChange={e => onPointsChanged(e.target.value)}
+          charBlacklist={["e", ".", "-", "+"]}
+          onChange={v => onPointsChanged(v)}
           placeholder="0-1400"
           unit="pts"
         />
