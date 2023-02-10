@@ -130,7 +130,7 @@ export default function PointsCalculator({ pages }) {
       if (changed === "mark") {
         setChanged(null);
       } else {
-        if (newPoints !== "") {
+        if (newPoints !== "" && !!coefficients[category][gender][event]) {
           const mark = getMarkFromScore(
             coefficients[category][gender][event],
             newPoints
@@ -146,6 +146,9 @@ export default function PointsCalculator({ pages }) {
   );
 
   useEffect(() => {
+    if (!coefficients[category][gender][event]) {
+      setEvent(order[category][gender][0]);
+    }
     onPointsChanged(points);
   }, [category, gender, event, onPointsChanged, points]);
 
