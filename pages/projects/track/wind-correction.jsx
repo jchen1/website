@@ -98,7 +98,7 @@ export default function WindCorrection({ pages }) {
           type="number"
           step="0.01"
           value={mark}
-          onChange={e => setMark(e.target.value)}
+          onChange={v => setMark(v)}
           unit={unit}
         />
       </label>
@@ -109,7 +109,7 @@ export default function WindCorrection({ pages }) {
           type="number"
           step="0.01"
           value={wind}
-          onChange={e => setWind(e.target.value)}
+          onChange={v => setWind(v)}
           unit="m/s"
         />
       </label>
