@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-Hey, I'm Jeff! I'm a software engineer and amateur sprinter living in the Bay Area.
+Hey, I'm Jeff! I'm a software engineer and amateur sprinter living in Montana.
 
 I studied **computer science** with a minor in human-computer interaction at [Carnegie Mellon University](https://cmu.edu/), and graduated in May 2016. I'm currently an engineering manager at [Vesta](https://usevesta.com). For more details about my work life, check out my [résumé](/resume/index.html).
 
@@ -14,6 +14,4 @@ I've been a runner for 15 years now, with a couple hiatuses in between. I compet
 - 200m: 21.81i, 21.55 (-2.3)
 - 400m: 49.50 (Freelap timed)
 
-Note: Freelap times don't include reaction time; the FAT equivalent would likely be 0.15s slower.
-
-I mostly write about engineering, sprinting, quantified self, and productivity. Interested in some of those things? **[Follow me on Twitter](https://www.twitter.com/iambald) or subscribe to my email newsletter!**
+I mostly write about engineering, sprinting, quantified self, and productivity. In my spare time, I advise both startups and athletes. Interested in some of those things? **[Follow me on Twitter](https://www.twitter.com/iambald) or subscribe to my email newsletter!**
