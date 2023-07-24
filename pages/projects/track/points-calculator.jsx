@@ -17,13 +17,16 @@ import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
 function score(coefficients, x) {
+  if (coefficients.length === 2) {
+    return coefficients[0] * x + coefficients[1];
+  }
   return Math.round(
     coefficients[0] * x * x + coefficients[1] * x + coefficients[2]
   );
 }
 
 function getMarkFromScore(coefficients, y) {
-  return Number(
+  let ret = Number(
     (
       (-1 * coefficients[1] -
         Math.sqrt(
@@ -33,6 +36,22 @@ function getMarkFromScore(coefficients, y) {
       (2 * coefficients[0])
     ).toFixed(2)
   );
+
+  // find the positive result
+  if (ret < 0) {
+    ret = Number(
+      (
+        (-1 * coefficients[1] +
+          Math.sqrt(
+            Math.pow(coefficients[1], 2) -
+              4 * coefficients[0] * (coefficients[2] - y)
+          )) /
+        (2 * coefficients[0])
+      ).toFixed(2)
+    );
+  }
+
+  return ret;
 }
 
 function userMarkToMark(userMark, markType) {
