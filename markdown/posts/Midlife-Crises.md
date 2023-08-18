@@ -4,7 +4,6 @@ title: Midlife Crises
 date: "2021-02-12"
 author: Jeff Chen
 tags: speculation
-heroImage: /images/midlife-crises/hero.jpg
 ---
 
 Why do people have midlife crises? The term itself was only coined in 1965—it appears to be a phenomenon of modern life. Here's my unfounded hypothesis: midlife crises arise when a person's self-concept of growth meets the cold water of reality.
