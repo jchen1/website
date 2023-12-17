@@ -59,5 +59,3 @@ I had the perfect opportunity to do both—and I crumbled in the moment.
 
 I can't stop thinking about my failure.
 My bitterness and regret are palpable. I'm _angry_ in a way that's new to me.
-
-How will I respond to failure?
