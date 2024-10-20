@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
 
   @include mobile {
     flex-direction: column-reverse;
@@ -28,4 +28,9 @@
 
 .title {
   margin-bottom: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
 }

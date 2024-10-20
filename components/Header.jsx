@@ -46,6 +46,9 @@ export default function Header() {
         <Link href="/archive">
           <a className={styles.link}>Archive</a>
         </Link>
+        <Link href="/meet-reports">
+          <a className={styles.link}>Meet Reports</a>
+        </Link>
         <Twitter
           eventAction="header-cta-click"
           size={25}
