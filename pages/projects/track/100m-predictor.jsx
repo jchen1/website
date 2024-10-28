@@ -63,7 +63,7 @@ export default function WindCorrection({ pages }) {
   const [wind, setWind] = useState("0.0");
   const [block30, setBlock30] = useState("4.00");
   const [fly10, setFly10] = useState("1.00");
-  const [reaction, setReaction] = useState("0.100");
+  const [reaction, setReaction] = useState("0.149");
 
   const predictedTime = predict100m(block30, fly10, wind, reaction);
 
