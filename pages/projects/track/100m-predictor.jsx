@@ -33,12 +33,13 @@ function predict100m(block30, fly10, wind = 0.0, reaction = 0.1) {
       predictorCoefficients[1] * block30 +
       predictorCoefficients[2] * (10 / fly10)
   );
+
   const windCorrection =
     windCoefficients[0] * wind +
     windCoefficients[1] * wind * predicted +
     windCoefficients[2] * wind * wind;
 
-  return predicted + windCorrection + reaction;
+  return predicted - windCorrection + reaction;
 }
 
 export const metas = {
@@ -184,7 +185,8 @@ export default function WindCorrection({ pages }) {
           data, which is available{" "}
           <a
             href="https://www.athletefirst.org/wp-content/uploads/2023/10/M100m-by-meeting-Sep-23.pdf"
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
           >
             here
           </a>
@@ -202,7 +204,7 @@ export default function WindCorrection({ pages }) {
           model as I suspected velocity would be more predictive. A log-level
           regression was chosen as the data didn&apos;t look linear, and because
           the log-level model produced a significantly better fit than a linear
-          model. The trained model has an R&sup2; value of 0.964 and a mean
+          fw model. The trained model has an R&sup2; value of 0.964 and a mean
           squared error of 0.004s.
         </p>
         <p>
