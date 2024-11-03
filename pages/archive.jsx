@@ -19,16 +19,39 @@ export function ArchiveItem({ title, date, slug }) {
 }
 
 export default function Archive(props) {
-  const { posts } = props;
+  const { posts, title } = props;
 
-  const postMarkup = posts.map(post => (
-    <ArchiveItem {...post} key={post.slug} />
-  ));
+  const postsByYear = [];
+  let currentYear = null;
+  let currentYearPosts = [];
+
+  posts.forEach(post => {
+    const year = new Date(post.date).getFullYear();
+    if (year !== currentYear) {
+      if (currentYearPosts.length > 0) {
+        postsByYear.push([currentYear, currentYearPosts]);
+      }
+      currentYear = year;
+      currentYearPosts = [];
+    }
+    currentYearPosts.push(post);
+  });
+
+  if (currentYearPosts.length > 0) {
+    postsByYear.push([currentYear, currentYearPosts]);
+  }
 
   return (
     <section className={styles.container}>
-      <h1 className={`${styles.title} title`}>Post Archive</h1>
-      {postMarkup}
+      <h1 className={`${styles.title} title`}>{title}</h1>
+      {postsByYear.map(([year, yearPosts]) => (
+        <section className={styles.yearContainer} key={year}>
+          <h3 className={styles.year}>{year}</h3>
+          {yearPosts.map(post => (
+            <ArchiveItem {...post} key={post.slug} />
+          ))}
+        </section>
+      ))}
     </section>
   );
 }
@@ -39,6 +62,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       posts,
+      title: "Archive",
     },
   };
 }
