@@ -205,7 +205,7 @@ export default function WindCorrection({ pages }) {
           regression was chosen as the data didn&apos;t look linear, and because
           the log-level model produced a significantly better fit than a linear
           fw model. The trained model has an R&sup2; value of 0.964 and a mean
-          squared error of 0.004s.
+          squared error of 0.004.
         </p>
         <p>
           Wind correction is based on{" "}
