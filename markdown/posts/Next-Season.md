@@ -9,6 +9,8 @@ tags: track
 After a [disappointing end to my season](/posts/Failure), I spent some time reflecting on what went wrong and what I can do better this year.
 The obvious acute answer is the back injury I suffered in March; the other obvious answer is the lack of racing between May and July to keep me sharp.
 
+<!-- excerpt -->
+
 Although I didn't have to miss too much time after my back injury, I wasn't able to train at full intensity for several weeks, and never really returned to full strength in the weight room.
 I also had to change my training plan significantly; I missed a couple cycles of max-velocity and speed endurance development.
 
