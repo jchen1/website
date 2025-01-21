@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
@@ -9,6 +8,8 @@ import {
   getRelatedPosts,
   POST_FIELDS,
   ARCHIVE_FIELDS,
+  getMeetReportBySlug,
+  getAllMeetReports,
 } from "lib/blogs";
 
 import BlogPost from "components/BlogPost";
@@ -29,7 +30,7 @@ export default function Post({ post, relatedPosts }) {
 }
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, POST_FIELDS);
+  const post = getMeetReportBySlug(params.slug, POST_FIELDS);
   const content = await markdownToHtml(post.content || "");
 
   const heroImageSize = (function () {
@@ -54,7 +55,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+  const posts = getAllMeetReports(["slug"]);
 
   return {
     paths: posts.map(post => {

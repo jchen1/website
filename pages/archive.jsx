@@ -5,11 +5,11 @@ import { ARCHIVE_FIELDS, getAllPosts } from "../lib/blogs";
 
 import styles from "styles/pages/archive.module.scss";
 
-export function ArchiveItem({ title, date, slug }) {
+export function ArchiveItem({ title, date, slug, prefix }) {
   return (
     <div className={styles.wrapper}>
       <h4 className={styles.item}>
-        <Link href={`/posts/${slug}`} passHref prefetch={false}>
+        <Link href={`/${prefix ?? "posts"}/${slug}`} passHref prefetch={false}>
           <a>{title}</a>
         </Link>
       </h4>
@@ -19,7 +19,7 @@ export function ArchiveItem({ title, date, slug }) {
 }
 
 export default function Archive(props) {
-  const { posts, title } = props;
+  const { posts, title, prefix } = props;
 
   const postsByYear = [];
   let currentYear = null;
@@ -48,7 +48,7 @@ export default function Archive(props) {
         <section className={styles.yearContainer} key={year}>
           <h3 className={styles.year}>{year}</h3>
           {yearPosts.map(post => (
-            <ArchiveItem {...post} key={post.slug} />
+            <ArchiveItem {...post} key={post.slug} prefix={prefix} />
           ))}
         </section>
       ))}

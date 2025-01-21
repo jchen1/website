@@ -17,6 +17,7 @@ import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
+import Link from "next/link";
 
 function score(coefficients, x) {
   if (coefficients.length === 2) {
@@ -212,85 +213,110 @@ export default function PointsCalculator({ pages }) {
     <article className={blogStyles.article}>
       <Meta {...metas} />
       <Title title={metas.title} />
-      <p>
-        Converts athletics marks to World Athletics points and vice versa using
-        equations derived from World Athletic&apos;s{" "}
-        <a
-          href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
-          target="_blank"
-          rel="noreferrer"
-        >
-          2025 scoring tables
-        </a>
-        .
-      </p>
-      <label className={styles.formContainer}>
-        <strong>Category</strong>
-        <div className={styles.selectWrapper}>
-          <select
-            className={styles.select}
-            value={category}
-            onChange={e => setCategory(e.target.value)}
+      <section>
+        <p>
+          Converts athletics marks to World Athletics points and vice versa
+          using equations derived from World Athletic&apos;s{" "}
+          <a
+            href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
+            target="_blank"
+            rel="noreferrer"
           >
-            <option value="outdoor">Outdoor</option>
-            <option value="indoor">Indoor</option>
-          </select>
-        </div>
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Gender</strong>
-        <div className={styles.selectWrapper}>
-          <select
-            className={styles.select}
-            value={gender}
-            onChange={e => setGender(e.target.value)}
+            2025 scoring tables
+          </a>
+          .
+        </p>
+        <label className={styles.formContainer}>
+          <strong>Category</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+            >
+              <option value="outdoor">Outdoor</option>
+              <option value="indoor">Indoor</option>
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Gender</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={gender}
+              onChange={e => setGender(e.target.value)}
+            >
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Event</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={event}
+              onChange={e => setEvent(e.target.value)}
+            >
+              {events.map(event => (
+                <option value={event} key={event}>
+                  {eventNames[event]}
+                </option>
+              ))}
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Mark</strong>
+          <UnitInput
+            className={styles.input}
+            type="text"
+            value={mark}
+            onChange={v => onMarkChanged(v)}
+            unit={unit}
+          />
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Points</strong>
+          <UnitInput
+            className={styles.input}
+            type="number"
+            step="1"
+            min="0"
+            max="1400"
+            value={points}
+            charBlacklist={["e", ".", "-", "+"]}
+            onChange={v => onPointsChanged(v)}
+            placeholder="0-1400"
+            unit="pts"
+          />
+        </label>
+      </section>
+      <section className={styles.methodology}>
+        <h2>Methodology</h2>
+        <p>
+          Raw point values were parsed from the official{" "}
+          <a
+            href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
+            target="_blank"
+            rel="noreferrer"
           >
-            <option value="men">Men</option>
-            <option value="women">Women</option>
-          </select>
-        </div>
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Event</strong>
-        <div className={styles.selectWrapper}>
-          <select
-            className={styles.select}
-            value={event}
-            onChange={e => setEvent(e.target.value)}
+            World Athletics 2025 scoring tables
+          </a>
+          . I then used a quadratic regression to fit equations to each (event,
+          gender) pair. See{" "}
+          <Link
+            href={"/posts/Calculating-World-Athletics-Coefficients"}
+            passHref
+            prefetch={false}
           >
-            {events.map(event => (
-              <option value={event} key={event}>
-                {eventNames[event]}
-              </option>
-            ))}
-          </select>
-        </div>
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Mark</strong>
-        <UnitInput
-          className={styles.input}
-          type="text"
-          value={mark}
-          onChange={v => onMarkChanged(v)}
-          unit={unit}
-        />
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Points</strong>
-        <UnitInput
-          className={styles.input}
-          type="number"
-          step="1"
-          min="0"
-          max="1400"
-          value={points}
-          charBlacklist={["e", ".", "-", "+"]}
-          onChange={v => onPointsChanged(v)}
-          placeholder="0-1400"
-          unit="pts"
-        />
-      </label>
+            <a>this post</a>
+          </Link>{" "}
+          for more details.
+        </p>
+      </section>
       <RelatedPosts
         title="Other Utilities"
         posts={pages

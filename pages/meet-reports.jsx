@@ -10,6 +10,7 @@ export async function getStaticProps({ params }) {
     props: {
       posts,
       title: "Meet Reports",
+      prefix: "meet-reports",
     },
   };
 }
