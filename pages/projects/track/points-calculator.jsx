@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 import {
   coefficients,
+  eventNames,
+  isEventValidForGender,
   markTypes,
   order,
   units,
@@ -110,70 +112,102 @@ export default function PointsCalculator({ pages }) {
   const [category, setCategory] = useState("outdoor");
   const [gender, setGender] = useState("men");
   const [event, setEvent] = useState("100m");
-
   const [mark, setMark] = useState("");
   const [points, setPoints] = useState("");
+  const [lastChanged, setLastChanged] = useState(null);
 
-  const [changed, setChanged] = useState(null);
+  // Calculate points from mark
+  const calculatePoints = useCallback(
+    (markValue, eventType) => {
+      if (markValue === "") return "";
+      try {
+        const markNum = userMarkToMark(markValue, markTypes[eventType]);
+        const points = score(coefficients[gender][eventType], markNum);
+        return points >= 0 && points <= 1400 ? points.toString() : "";
+      } catch {
+        return "";
+      }
+    },
+    [gender]
+  );
+
+  // Calculate mark from points
+  const calculateMark = useCallback(
+    (pointsValue, eventType) => {
+      if (pointsValue === "" || !coefficients[gender][eventType]) return "";
+      try {
+        const mark = getMarkFromScore(
+          coefficients[gender][eventType],
+          pointsValue
+        );
+        return markToUserMark(mark, markTypes[eventType]);
+      } catch {
+        return "";
+      }
+    },
+    [gender]
+  );
 
   const onMarkChanged = useCallback(
     newMark => {
-      setMark(newMark);
-      if (changed === "points") {
-        setChanged(null);
-      } else {
-        if (newMark !== "") {
-          const markValue = userMarkToMark(newMark, markTypes[event]);
-          const points = score(
-            coefficients[category][gender][event],
-            markValue
-          );
-          setChanged("mark");
-          if (points >= 0 && points <= 1400) {
-            setPoints(points.toString());
-          } else {
-            setPoints("");
-          }
-        }
+      try {
+        // First parse and format the mark
+        const markNum = userMarkToMark(newMark, markTypes[event]);
+        const formattedMark = markToUserMark(markNum, markTypes[event]);
+        setMark(formattedMark);
+
+        // Always calculate points when mark changes
+        const newPoints = calculatePoints(formattedMark, event);
+        setPoints(newPoints);
+        setLastChanged("mark");
+      } catch {
+        // If mark is invalid (e.g. partial input), just set the raw value
+        setMark(newMark);
+        setPoints("");
       }
     },
-    // changing onPointsChanged resets it which isn't what we want
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [category, event, gender]
+    [event, calculatePoints]
   );
 
   const onPointsChanged = useCallback(
     newPoints => {
       setPoints(newPoints);
-
-      if (changed === "mark") {
-        setChanged(null);
-      } else {
-        if (newPoints !== "" && !!coefficients[category][gender][event]) {
-          const mark = getMarkFromScore(
-            coefficients[category][gender][event],
-            newPoints
-          );
-          setChanged("points");
-          setMark(markToUserMark(mark, markTypes[event]));
-        }
+      // Only calculate mark if mark wasn't the last thing changed
+      if (lastChanged !== "mark") {
+        setMark(calculateMark(newPoints, event));
       }
+      setLastChanged("points");
     },
-    // changing onPointsChanged resets it which isn't what we want
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [category, event, gender]
+    [event, calculateMark, lastChanged]
   );
 
+  // Reset lastChanged when event/category/gender changes
   useEffect(() => {
-    if (!coefficients[category][gender][event]) {
-      setEvent(order[category][gender][0]);
+    setLastChanged(null);
+  }, [event, category, gender]);
+
+  useEffect(() => {
+    if (!coefficients[gender][event] || !order[category].includes(event)) {
+      // Set to the equivalent indoor/outdoor event when possible
+      if (category === "indoor" && order[category].includes(`${event} sh`)) {
+        setEvent(`${event} sh`);
+      } else if (category === "outdoor" && event.endsWith(" sh")) {
+        setEvent(event.replace(" sh", ""));
+      } else {
+        setEvent(order[category][0]);
+      }
     }
     onPointsChanged(points);
   }, [category, gender, event, onPointsChanged, points]);
 
   const unit = units[markTypes[event]];
 
-  const events = order[category][gender];
+  const events = useMemo(() => {
+    return order[category].filter(k =>
+      isEventValidForGender(k, gender === "men")
+    );
+  }, [category, gender]);
+
   return (
     <article className={blogStyles.article}>
       <Meta {...metas} />
@@ -186,7 +220,7 @@ export default function PointsCalculator({ pages }) {
           target="_blank"
           rel="noreferrer"
         >
-          2022 scoring tables
+          2025 scoring tables
         </a>
         .
       </p>
@@ -226,7 +260,7 @@ export default function PointsCalculator({ pages }) {
           >
             {events.map(event => (
               <option value={event} key={event}>
-                {event}
+                {eventNames[event]}
               </option>
             ))}
           </select>
