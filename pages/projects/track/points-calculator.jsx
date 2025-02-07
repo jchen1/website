@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   coefficients,
@@ -18,6 +18,12 @@ import UnitInput from "components/UnitInput";
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+function useSearchParams() {
+  const router = useRouter();
+  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+}
 
 function score(coefficients, x) {
   if (coefficients.length === 2) {
@@ -110,12 +116,54 @@ export const metas = {
 };
 
 export default function PointsCalculator({ pages }) {
-  const [category, setCategory] = useState("outdoor");
-  const [gender, setGender] = useState("men");
-  const [event, setEvent] = useState("100m");
-  const [mark, setMark] = useState("");
-  const [points, setPoints] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize state from URL params if they exist
+  const [category, setCategory] = useState(
+    () => searchParams.get("category") || "outdoor"
+  );
+  const [gender, setGender] = useState(
+    () => searchParams.get("gender") || "men"
+  );
+  const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
+  const [mark, setMark] = useState(() => searchParams.get("mark") || "");
+  const [points, setPoints] = useState(() => searchParams.get("points") || "");
+  const [hasShared, setHasShared] = useState(false);
   const [lastChanged, setLastChanged] = useState(null);
+
+  // Update URL when state changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (category) {
+      params.set("category", category);
+    }
+    if (gender) {
+      params.set("gender", gender);
+    }
+    if (event) {
+      params.set("event", event);
+    }
+    if (mark) {
+      params.set("mark", mark);
+    }
+    if (points) {
+      params.set("points", points);
+    }
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    if (window.location.pathname + window.location.search !== newUrl) {
+      router.replace(newUrl, undefined, { shallow: true });
+      setHasShared(false);
+    }
+  }, [category, gender, event, mark, points, router]);
+
+  // Add share button functionality
+  const handleShare = useCallback(() => {
+    navigator.clipboard.writeText(window.location.href);
+    setHasShared(true);
+    setTimeout(() => setHasShared(false), 2000);
+  }, []);
 
   // Calculate points from mark
   const calculatePoints = useCallback(
@@ -293,6 +341,14 @@ export default function PointsCalculator({ pages }) {
             unit="pts"
           />
         </label>
+        <button
+          className={styles.shareButton}
+          onClick={handleShare}
+          aria-label="Copy link to clipboard"
+          disabled={hasShared}
+        >
+          {hasShared ? "Copied link!" : "Share"}
+        </button>
       </section>
       <section className={styles.methodology}>
         <h2>Methodology</h2>

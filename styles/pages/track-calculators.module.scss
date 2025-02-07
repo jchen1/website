@@ -101,3 +101,23 @@
     opacity: 1; /* required on iOS */
   }
 }
+
+.shareButton {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background: var(--primary);
+  color: var(--white);
+  border: 0;
+  transition: background-color 0.2s;
+  font-weight: 600;
+
+  &:hover {
+    background-color: var(--primary-gray);
+    cursor: pointer;
+  }
+  
+  &:disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+  }
+}

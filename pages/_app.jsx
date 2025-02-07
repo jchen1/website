@@ -14,12 +14,17 @@ import BlogContainer from "components/containers/BlogContainer";
 import MainContainer from "components/containers/MainContainer";
 import { canonicalize } from "lib/util";
 
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", url => {
-  NProgress.done();
-  pageview(url);
+Router.events.on(
+  "routeChangeStart",
+  (_, { shallow }) => !shallow && NProgress.start()
+);
+Router.events.on("routeChangeComplete", (url, { shallow }) => {
+  if (!shallow) {
+    NProgress.done();
+    pageview(url);
+  }
 });
-Router.events.on("routeChangeError", () => NProgress.done());
+Router.events.on("routeChangeError", _ => NProgress.done());
 
 // to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
 const transitionStyle =
