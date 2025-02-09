@@ -36,7 +36,7 @@ export default function Header() {
             <a>{SITE_TITLE}</a>
           </Link>
         </h1>
-        <div className={styles.spacer} aria-hidden />
+        <div className={styles.spacer} aria-hidden="true" />
         <Link href="/about">
           <a className={styles.link}>About</a>
         </Link>

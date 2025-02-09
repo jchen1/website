@@ -1,5 +1,4 @@
 // stripped-down next/image, only supports responsive and fixed layout
-import React from "react";
 import Head from "next/head";
 
 const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS;
