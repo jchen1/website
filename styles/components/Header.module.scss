@@ -12,50 +12,55 @@
   align-items: center;
 
   @include mobile {
-    padding: 0.5rem var(--horizontal-margin) 1rem;
+    padding: 0.5rem var(--horizontal-margin);
+    flex-direction: column;
+    gap: 0.5rem 0;
   }
 }
 
-.links {
-  flex: 1;
+.row {
   display: flex;
   align-items: center;
+  gap: 1rem;
 
   @include mobile {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.spacer {
+  flex: 1;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.mobileSpacer {
+  flex: 1;
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.link {
+  color: var(--white);
+  fill: var(--white);
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: var(--primary);
   }
 
-  .spacer {
-    flex: 1;
-
-    @include mobile {
-      display: none;
-    }
-  }
-
-  .link {
-    color: var(--white);
-    fill: var(--white);
-    margin-left: 20px;
-    font-weight: bold;
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      color: var(--primary);
-    }
-
-    @include mobile {
-      width: 100%;
-      text-align: right;
-      display: inline-flex;
-      font-size: 18px;
-      height: 34px;
-      align-items: center;
-      justify-content: flex-end;
-    }
+  @include mobile {
+    font-size: 18px;
+    height: 34px;
+    margin: 0;
   }
 }
 
@@ -76,6 +81,7 @@
     background-color: var(--primary);
     margin: 0 calc(-1 * var(--horizontal-margin)) 0.75rem 0;
     padding: 0.5rem 1rem;
+    text-align: right;
 
     box-shadow: var(--shadow-size) var(--shadow-size) 0 0 var(--white);
 
@@ -93,16 +99,15 @@
 .siteAvatar {
   height: 80px;
   width: 80px;
-  margin-right: 1rem;
 
   img {
     border-radius: 100%;
   }
 
   @include mobile {
-    height: unset;
-    width: unset;
-    flex: 1;
+    height: 64px;
+    width: 64px;
     margin: 0;
+    align-self: flex-start;
   }
 }

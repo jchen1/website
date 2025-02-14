@@ -9,7 +9,7 @@ I studied **computer science** with a minor in human-computer interaction at [Ca
 
 I've been a runner for 15 years now, with a couple hiatuses in between. I competed for CMU; I was the captain of the track team and held the 60 meter school record. Since graduating, I've continued to train and compete. Here are my current personal bests:
 
-- 60m: 6.83
+- 60m: 6.78
 - 100m: 10.71 (-1.3)
 - 200m: 21.63i, 21.55 (-2.3)
 - 400m: 49.02
