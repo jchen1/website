@@ -19,8 +19,6 @@
 
 .buttonContainer {
   display: flex;
-  flex-direction: row;
-
   align-items: center;
   justify-content: flex-start;
 
@@ -30,17 +28,45 @@
     padding: 0.5rem 1rem;
     border-radius: 5px;
     background: var(--primary);
-    color: var(--white);
+    color: var(--primary-gray);
     border: 0;
     transition: background-color 0.2s;
-    font-weight: 600;
+    font-weight: bold;
 
     &:hover {
-      background-color: var(--primary-gray);
+      background-color: var(--secondary);
       cursor: pointer;
+    }
+    
+    @include mobile {
+      width: 100%;
     }
   }
 }
+
+.shareButton {
+  padding: 0.5rem 0.75rem;
+  font-size: 16px;
+  margin: 1rem 0;
+  width: 100%;
+  border-radius: 0.25rem;
+  background: var(--primary);
+  color: var(--primary-gray);
+  border: 0;
+  transition: background-color 0.2s;
+  font-weight: bold;
+
+  &:hover {
+    background-color: var(--secondary);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: var(--light-gray);
+    cursor: not-allowed;
+  }
+}
+
 
 .methodology {
   border-top: 0.25rem solid var(--primary);
@@ -99,28 +125,5 @@
   input:disabled {
     -webkit-text-fill-color: var(--dark-gray);
     opacity: 1; /* required on iOS */
-  }
-}
-
-.shareButton {
-  padding: 0.5rem 0.75rem;
-  font-size: 16px;
-  margin: 1rem 0;
-  width: 100%;
-  border-radius: 0.25rem;
-  background: var(--primary);
-  color: var(--white);
-  border: 0;
-  transition: background-color 0.2s;
-  font-weight: bold;
-
-  &:hover {
-    background-color: var(--primary-gray);
-    cursor: pointer;
-  }
-  
-  &:disabled {
-    background-color: var(--gray);
-    cursor: not-allowed;
   }
 }

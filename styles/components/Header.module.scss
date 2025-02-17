@@ -29,12 +29,6 @@
   }
 }
 
-.topRow {
-  @include mobile {
-    flex-direction: row-reverse;
-  }
-}
-
 .spacer {
   flex: 1;
 
@@ -85,7 +79,7 @@
 
   @include mobile {
     background-color: var(--primary);
-    margin: 0 0 0 calc(-1.5 * var(--horizontal-margin));
+    margin: 0 calc(-1 * var(--horizontal-margin)) 0;
     padding: 0.5rem 1rem;
     text-align: right;
 
@@ -111,9 +105,6 @@
   }
 
   @include mobile {
-    height: 64px;
-    width: 64px;
-    margin: 0;
-    align-self: flex-start;
+    display: none;
   }
 }

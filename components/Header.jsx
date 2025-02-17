@@ -17,7 +17,7 @@ export default function Header() {
   const prefetch = router.pathname === "/" ? false : undefined;
   return (
     <header className={styles.container}>
-      <div className={`${styles.row} ${styles.topRow}`}>
+      <div className={styles.row}>
         <Link href="/" prefetch={prefetch}>
           <a className={styles.siteAvatar} aria-label="Home">
             <Image
