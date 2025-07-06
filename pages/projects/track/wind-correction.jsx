@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import { getAllPages } from "lib/track/pages";
+
+import { useRouter } from "next/router";
 
 import Meta from "components/Meta";
 import RelatedPosts from "components/RelatedPosts";
@@ -9,6 +11,11 @@ import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
+
+function useSearchParams() {
+  const router = useRouter();
+  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+}
 
 // P_new = P + a*w + b*P*w + c*w^2
 const coefficients = {
@@ -48,9 +55,45 @@ export const metas = {
 };
 
 export default function WindCorrection({ pages }) {
-  const [event, setEvent] = useState("100m");
-  const [wind, setWind] = useState(0);
-  const [mark, setMark] = useState(9.58);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize state from URL params if they exist
+  const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
+  const [wind, setWind] = useState(
+    () => parseFloat(searchParams.get("wind")) || 0
+  );
+  const [mark, setMark] = useState(
+    () => parseFloat(searchParams.get("mark")) || 9.58
+  );
+  const [hasShared, setHasShared] = useState(false);
+
+  // Update URL when state changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (event) {
+      params.set("event", event);
+    }
+    if (mark) {
+      params.set("mark", mark.toString());
+    }
+    if (wind) {
+      params.set("wind", wind.toString());
+    }
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    if (window.location.pathname + window.location.search !== newUrl) {
+      router.replace(newUrl, undefined, { shallow: true });
+      setHasShared(false);
+    }
+  }, [event, mark, wind, router]);
+
+  // Add share button functionality
+  const handleShare = useCallback(() => {
+    navigator.clipboard.writeText(window.location.href);
+    setHasShared(true);
+    setTimeout(() => setHasShared(false), 2000);
+  }, []);
 
   const correctedMark = correctForWind(event, mark, wind);
   const maxLegalMark =
@@ -133,6 +176,14 @@ export default function WindCorrection({ pages }) {
           unit={unit}
         />
       </label>
+      <button
+        className={styles.shareButton}
+        onClick={handleShare}
+        aria-label="Copy link to clipboard"
+        disabled={hasShared}
+      >
+        {hasShared ? "Copied link!" : "Share"}
+      </button>
       <RelatedPosts
         title="Other Utilities"
         posts={pages
