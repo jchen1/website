@@ -29,7 +29,7 @@ function convertLaneTime(time, currentLane, targetLane) {
     return null;
   }
 
-  return timeNum + (targetNum - currentNum) * LANE_EFFECT;
+  return timeNum + (currentNum - targetNum) * LANE_EFFECT;
 }
 
 export const metas = {
