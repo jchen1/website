@@ -1,4 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+
+import { useRouter } from "next/router";
 
 import { getAllPages } from "lib/track/pages";
 
@@ -9,6 +11,11 @@ import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
+
+function useSearchParams() {
+  const router = useRouter();
+  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+}
 
 // P_new = P + a*w + b*P*w + c*w^2
 const windCoefficients = [-0.0449, 0.009459, -0.0042];
@@ -60,12 +67,40 @@ const wrappedOnChange =
   };
 
 export default function WindCorrection({ pages }) {
-  const [wind, setWind] = useState("0.0");
-  const [block30, setBlock30] = useState("4.00");
-  const [fly10, setFly10] = useState("1.00");
-  const [reaction, setReaction] = useState("0.149");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [wind, setWind] = useState(() => searchParams.get("wind") || "0.0");
+  const [block30, setBlock30] = useState(
+    () => searchParams.get("block30") || "4.00"
+  );
+  const [fly10, setFly10] = useState(() => searchParams.get("fly10") || "1.00");
+  const [reaction, setReaction] = useState(
+    () => searchParams.get("reaction") || "0.149"
+  );
+  const [hasShared, setHasShared] = useState(false);
 
   const predictedTime = predict100m(block30, fly10, wind, reaction);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (block30) params.set("block30", block30);
+    if (fly10) params.set("fly10", fly10);
+    if (wind) params.set("wind", wind);
+    if (reaction) params.set("reaction", reaction);
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    if (window.location.pathname + window.location.search !== newUrl) {
+      router.replace(newUrl, undefined, { shallow: true });
+      setHasShared(false);
+    }
+  }, [block30, fly10, wind, reaction, router]);
+
+  const handleShare = useCallback(() => {
+    navigator.clipboard.writeText(window.location.href);
+    setHasShared(true);
+    setTimeout(() => setHasShared(false), 2000);
+  }, []);
 
   const wrappedSetWind = useCallback(wrappedOnChange(setWind, 1), [setWind]);
   const wrappedSetBlock30 = useCallback(wrappedOnChange(setBlock30, 2), [
@@ -175,6 +210,14 @@ export default function WindCorrection({ pages }) {
             unit="s"
           />
         </label>
+        <button
+          className={styles.shareButton}
+          onClick={handleShare}
+          aria-label="Copy link to clipboard"
+          disabled={hasShared}
+        >
+          {hasShared ? "Copied link!" : "Share"}
+        </button>
       </section>
 
       <section className={styles.methodology}>
