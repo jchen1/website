@@ -7,6 +7,8 @@ tags: track
 heroImage: /images/effect-of-lane-draw-in-200m-sprinters/diff_by_lane.png
 ---
 
+**[Want to convert your own times? Try the 200m Lane Draw Converter →](/projects/track/200m-lane-draw/)**
+
 There's a growing consensus within the sprinting world that 200- and 400-meter sprinters have an advantange in the outer lanes. Famously, Wayde van Niekerk ran his world record 400m out of lane 8, and Karsten Warholm is known for preferring lane 7.
 
 Surprisingly for such a data-driven culture, there's almost nothing in the current literature to back this up. So, using data from Diamond League results from 2015-2021, I estimated the effect of lane assignment on elite male sprinters in the 200m, and found that the advantage per lane was about 0.018 seconds—meaning that **outdoor 200m sprinters in lane 9 have an advantage of 0.14s over those in lane 1**.
