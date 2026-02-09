@@ -16,3 +16,7 @@ Features:
 - Support for multiple accounts
 
 - Use the action extension to autofill codes in Safari
+
+## Support
+
+If you have questions, need help, or want to report a bug, please email [jota@jeff.yt](mailto:jota@jeff.yt).
