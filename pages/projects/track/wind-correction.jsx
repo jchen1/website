@@ -17,14 +17,29 @@ function useSearchParams() {
   return useMemo(() => new URLSearchParams(router.query), [router.query]);
 }
 
-// P_new = P + a*w + b*P*w + c*w^2
-const coefficients = {
-  "100m": [-0.0449, 0.009459, -0.0042],
-  "200m": [0.09, 0, -0.01],
-  "100mH": [0.093, 0, -0.01],
-  "110mH": [0.093, 0, -0.01],
-  "Long Jump": [0, 0, 0.029],
-  "Triple Jump": [0.069, 0, -0.009],
+// Wind's effect on a mark, from Moinat, Fabius & Emanuel (2018):
+// effect(w) = a*w + b*w^2, in the event's native units, expressed as a signed
+// benefit — positive means the wind improved the performance (a faster time or
+// a longer jump). The 100m linear term scales with the mark because faster
+// athletes spend less time exposed to the wind.
+const windEffect = {
+  "100m": (mark, w) => (0.009459 * mark - 0.0449) * w - 0.0042 * w * w,
+  "200m": (mark, w) => 0.09 * w - 0.01 * w * w,
+  "100mH": (mark, w) => 0.093 * w - 0.01 * w * w,
+  "110mH": (mark, w) => 0.093 * w - 0.01 * w * w,
+  "Long Jump": (mark, w) => 0.029 * w,
+  "Triple Jump": (mark, w) => 0.069 * w - 0.009 * w * w,
+};
+
+// A tailwind makes timed events faster (lower time) but jumps longer, so the
+// benefit is subtracted from a time and added to a distance.
+const eventIsTimed = {
+  "100m": true,
+  "200m": true,
+  "100mH": true,
+  "110mH": true,
+  "Long Jump": false,
+  "Triple Jump": false,
 };
 
 const units = {
@@ -36,16 +51,27 @@ const units = {
   "Triple Jump": "m",
 };
 
-function correctForWind(event, mark, wind) {
+// Convert a mark achieved in the given wind to its still-air equivalent.
+function toStillAir(event, mark, wind) {
   const markNum = parseFloat(mark);
   const windNum = parseFloat(wind || "0");
 
-  if (isNaN(markNum) || isNaN(windNum)) {
+  if (isNaN(markNum) || isNaN(windNum) || !windEffect[event]) {
     return null;
   }
 
-  const [a, b, c] = coefficients[event];
-  return markNum + a * windNum + b * windNum * markNum + c * windNum * windNum;
+  const benefit = windEffect[event](markNum, windNum);
+  return eventIsTimed[event] ? markNum + benefit : markNum - benefit;
+}
+
+// Apply a wind to a still-air mark.
+function fromStillAir(event, stillAirMark, wind) {
+  if (stillAirMark == null || !windEffect[event]) {
+    return null;
+  }
+
+  const benefit = windEffect[event](stillAirMark, wind);
+  return eventIsTimed[event] ? stillAirMark - benefit : stillAirMark + benefit;
 }
 
 export const metas = {
@@ -95,9 +121,8 @@ export default function WindCorrection({ pages }) {
     setTimeout(() => setHasShared(false), 2000);
   }, []);
 
-  const correctedMark = correctForWind(event, mark, wind);
-  const maxLegalMark =
-    2 * correctedMark - correctForWind(event, correctedMark, 2.0);
+  const correctedMark = toStillAir(event, mark, wind);
+  const maxLegalMark = fromStillAir(event, correctedMark, 2.0);
 
   const unit = units[event];
 
@@ -126,7 +151,7 @@ export default function WindCorrection({ pages }) {
             value={event}
             onChange={e => setEvent(e.target.value)}
           >
-            {Object.keys(coefficients).map(c => (
+            {Object.keys(windEffect).map(c => (
               <option value={c} key={c}>
                 {c}
               </option>
