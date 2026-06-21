@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@minimal-analytics/ga4": "^1.8.7",
     "@silvenon/remark-smartypants": "^1.0.0",
     "confetti-js": "^0.0.18",
     "crypto-js": "^4.1.1",

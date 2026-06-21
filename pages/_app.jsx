@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    pageview(window.location.pathname);
     setLoaded(true);
   }, []);
 
