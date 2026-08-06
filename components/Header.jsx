@@ -22,8 +22,8 @@ export default function Header() {
           href="/"
           prefetch={prefetch}
           className={styles.siteAvatar}
-          aria-label="Home">
-
+          aria-label="Home"
+        >
           <Image
             src="/images/headshot-1200.jpg"
             alt="Profile Picture"
@@ -33,7 +33,6 @@ export default function Header() {
             layout="responsive"
             viewportWidthMultiplier={0.5}
           />
-
         </Link>
         <div className={styles.mobileSpacer} aria-hidden="true" />
         <h1 className={styles.siteName}>

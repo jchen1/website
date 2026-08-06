@@ -18,7 +18,10 @@ const getLocalIdent = (path, _, name) => getName(getKey(path, name));
 
 const isFontLoaderChain = use =>
   use.some(
-    u => u && typeof u.loader === "string" && u.loader.includes("next-font-loader")
+    u =>
+      u &&
+      typeof u.loader === "string" &&
+      u.loader.includes("next-font-loader"),
   );
 
 const webpack = (config, { dev }) => {
@@ -53,6 +56,6 @@ module.exports = (nextConfig = {}) => ({
       typeof nextConfig.webpack === "function"
         ? nextConfig.webpack(webpackConfig, webpackOptions)
         : webpackConfig,
-      webpackOptions
+      webpackOptions,
     ),
 });

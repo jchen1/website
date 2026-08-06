@@ -25,7 +25,7 @@ export default function UnitInput({
         extraProps.onChange?.(value);
       }
     },
-    [previousValue, extraProps]
+    [previousValue, extraProps],
   );
 
   const onChange = useCallback(e => {
@@ -38,7 +38,7 @@ export default function UnitInput({
         e.preventDefault();
       }
     },
-    [charBlacklist]
+    [charBlacklist],
   );
 
   return (

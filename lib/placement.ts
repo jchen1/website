@@ -38,7 +38,7 @@ export default function Placement(
   anchor: Element | Range | Coordinates,
   side: Side = "bottom",
   align: Align = "center",
-  options: Options = {}
+  options: Options = {},
 ) {
   if (anchor instanceof Element || anchor instanceof Range) {
     anchor = normalizeRect(anchor.getBoundingClientRect());
@@ -51,7 +51,7 @@ export default function Placement(
       left: anchor.right,
       right: anchor.left,
     },
-    anchor
+    anchor,
   );
 
   const boundRect = {
@@ -130,8 +130,8 @@ export default function Placement(
       boundRect[primary.before],
       Math.min(
         pos,
-        boundRect[primary.after] - overlay[primary.offsetSize] - margin
-      )
+        boundRect[primary.after] - overlay[primary.offsetSize] - margin,
+      ),
     );
   };
 
@@ -140,7 +140,7 @@ export default function Placement(
     overlay.style[primary.before] =
       scrollOffset +
       boundPrimaryPos(
-        anchorRect[primary.before] - overlay[primary.offsetSize] - margin
+        anchorRect[primary.before] - overlay[primary.offsetSize] - margin,
       ) +
       "px";
     overlay.style[primary.after] = "auto";
@@ -163,8 +163,8 @@ export default function Placement(
         pos,
         boundRect[secondary.after] -
           overlay[secondary.offsetSize] -
-          secondaryMargin
-      )
+          secondaryMargin,
+      ),
     );
   };
 
@@ -173,7 +173,7 @@ export default function Placement(
       overlay.style[secondary.before] =
         secondaryScrollOffset +
         boundSecondaryPos(
-          anchorRect[secondary.before] - secondaryMarginBefore
+          anchorRect[secondary.before] - secondaryMarginBefore,
         ) +
         "px";
       overlay.style[secondary.after] = "auto";
@@ -186,7 +186,7 @@ export default function Placement(
         boundSecondaryPos(
           document.documentElement[secondary.clientSize] -
             anchorRect[secondary.after] -
-            secondaryMarginAfter
+            secondaryMarginAfter,
         ) +
         "px";
       break;
@@ -201,7 +201,7 @@ export default function Placement(
           anchorRect[secondary.before] +
             anchorSize / 2 -
             overlay[secondary.offsetSize] / 2 -
-            secondaryMarginBefore
+            secondaryMarginBefore,
         ) +
         "px";
       overlay.style[secondary.after] = "auto";

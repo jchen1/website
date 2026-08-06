@@ -14,45 +14,45 @@ const withNextOptimizedClassnames = require("./plugins/next-optimized-classnames
 const withPreact = (nextConfig = {}) => ({
   ...nextConfig,
   webpack(config, options) {
-      const { dev, isServer, nextRuntime } = options;
+    const { dev, isServer, nextRuntime } = options;
 
-      if (isServer && +options.webpack.version.split(".")[0] >= 5) {
-        config.resolve.exportsFields = [];
-      }
+    if (isServer && +options.webpack.version.split(".")[0] >= 5) {
+      config.resolve.exportsFields = [];
+    }
 
-      const cacheGroups =
-        config.optimization &&
-        config.optimization.splitChunks &&
-        config.optimization.splitChunks.cacheGroups;
-      if (cacheGroups && cacheGroups.framework) {
-        cacheGroups.preact = {
-          ...cacheGroups.framework,
-          test: /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/,
-        };
-      }
+    const cacheGroups =
+      config.optimization &&
+      config.optimization.splitChunks &&
+      config.optimization.splitChunks.cacheGroups;
+    if (cacheGroups && cacheGroups.framework) {
+      cacheGroups.preact = {
+        ...cacheGroups.framework,
+        test: /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/,
+      };
+    }
 
-      const aliases = config.resolve.alias || (config.resolve.alias = {});
-      aliases.react = aliases["react-dom"] = "preact/compat";
+    const aliases = config.resolve.alias || (config.resolve.alias = {});
+    aliases.react = aliases["react-dom"] = "preact/compat";
 
-      if (dev && nextRuntime !== "edge") {
-        const prependToEntry = isServer ? "pages/_document" : "main.js";
-        const entry = config.entry;
-        config.entry = () =>
-          entry().then(entries => {
-            entries[prependToEntry] = ["preact/debug"].concat(
-              entries[prependToEntry] || []
-            );
-            return entries;
-          });
-      }
+    if (dev && nextRuntime !== "edge") {
+      const prependToEntry = isServer ? "pages/_document" : "main.js";
+      const entry = config.entry;
+      config.entry = () =>
+        entry().then(entries => {
+          entries[prependToEntry] = ["preact/debug"].concat(
+            entries[prependToEntry] || [],
+          );
+          return entries;
+        });
+    }
 
-      if (typeof nextConfig.webpack === "function") {
-        config = nextConfig.webpack(config, options);
-      }
+    if (typeof nextConfig.webpack === "function") {
+      config = nextConfig.webpack(config, options);
+    }
 
-      return config;
-    },
-  });
+    return config;
+  },
+});
 
 const plugins = [withBundleAnalyzer, withPreact, withNextOptimizedClassnames];
 const baseConfig = {
@@ -96,7 +96,7 @@ const baseConfig = {
 
     // SVGs
     const fileLoaderRule = config.module.rules.find(
-      rule => rule.test instanceof RegExp && rule.test.test(".svg")
+      rule => rule.test instanceof RegExp && rule.test.test(".svg"),
     );
     if (fileLoaderRule) {
       fileLoaderRule.exclude = /\.svg$/;

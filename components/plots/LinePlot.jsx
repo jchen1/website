@@ -29,7 +29,7 @@ function mountPlot(el, props, width, height) {
         .fill(null)
         .map(a => ({
           ...defaultSeriesOpts,
-        }))
+        })),
     );
 
   if (props.opts && props.opts.unit) {

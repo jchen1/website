@@ -1,5 +1,5 @@
 import fs from "fs";
-import globby from "globby";
+import { globby } from "globby";
 import matter from "gray-matter";
 import rss from "rss";
 import { markdownToHtml } from "../lib/blogs";
@@ -13,11 +13,11 @@ function generateSitemap({ posts, pages }) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
   const blogItems = posts.map(
-    post => `  <url><loc>${BASE_URL}/posts/${post.slug}</loc></url>`
+    post => `  <url><loc>${BASE_URL}/posts/${post.slug}</loc></url>`,
   );
 
   const pageItems = pages.map(
-    page => `  <url><loc>${BASE_URL}/${page}</loc></url>`
+    page => `  <url><loc>${BASE_URL}/${page}</loc></url>`,
   );
 
   const epilogue = `</urlset>`;
@@ -48,9 +48,7 @@ function generateRssFeed(posts) {
 
 (async function () {
   const posts = await Promise.all(
-    (
-      await globby(["markdown/posts/*.md"])
-    ).map(async page => {
+    (await globby(["markdown/posts/*.md"])).map(async page => {
       const slug = page.replace(/\.md$/, "").replace(/^markdown\/posts\//, "");
       const contents = fs.readFileSync(page);
 
@@ -64,7 +62,7 @@ function generateRssFeed(posts) {
         excerpt,
         ...data,
       };
-    })
+    }),
   );
 
   // ignore prefixed & dynamic pages
