@@ -11,8 +11,10 @@ custom bundle-size machinery working. Follow-ups worth tracking:
 - **Next 16 is blocked** until the webpack-dependent customizations (preact
   aliasing, css-module class minifier, svgr rule, `__NEXT_IMAGE_OPTS`-free
   image config) get Turbopack equivalents — or get dropped.
-- Dev fast-refresh is gone (@prefresh/next only supports Next <=12); dev falls
-  back to full reloads.
+- Dev fast-refresh runs on a custom @prefresh/webpack integration in
+  next.config.js (@prefresh/next itself only supports Next <=12 and was
+  removed from the prefresh repo). If it breaks on a future Next upgrade,
+  dev degrades to full reloads rather than failing.
 - Sass `@import` is deprecated (silenced in next.config.js); migrating
   `styles/` to `@use`/`@forward` needs `sass-migrator` plus handling the
   `$inter-font-*` top-level vars in main.scss.

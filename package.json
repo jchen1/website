@@ -42,6 +42,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
     "@next/bundle-analyzer": "^15.5.22",
+    "@prefresh/webpack": "^4.0.6",
     "@rushstack/eslint-patch": "^1.16.1",
     "@svgr/webpack": "^8.1.0",
     "@swc-node/register": "^1.12.1",
@@ -55,7 +56,8 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^11.3.2",
     "prettier": "^3.9.6",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "webpack": "^5.109.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",

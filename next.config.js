@@ -36,14 +36,36 @@ const withPreact = (nextConfig = {}) => ({
 
     if (dev && nextRuntime !== "edge") {
       const prependToEntry = isServer ? "pages/_document" : "main.js";
+      // @prefresh/core must load before any component module so its preact
+      // options hooks see every render; prepending it to main.js does what
+      // the plugin's own extra entrypoint can't (Next never loads that chunk)
+      const prepend = isServer
+        ? ["preact/debug"]
+        : ["preact/debug", "@prefresh/core"];
       const entry = config.entry;
       config.entry = () =>
         entry().then(entries => {
-          entries[prependToEntry] = ["preact/debug"].concat(
+          entries[prependToEntry] = prepend.concat(
             entries[prependToEntry] || [],
           );
           return entries;
         });
+
+      if (!isServer) {
+        // Fast refresh for Preact: Next's SWC dev transform emits standard
+        // react-refresh instrumentation ($RefreshReg$/$RefreshSig$), and
+        // @prefresh/webpack provides the runtime that consumes it to
+        // hot-swap preact components. Next's own react-refresh runtime
+        // plugin is removed so the two don't fight over those globals.
+        const PrefreshPlugin = require("@prefresh/webpack");
+        const reactRefresh = config.plugins.find(
+          p => p.constructor.name === "ReactFreshWebpackPlugin",
+        );
+        if (reactRefresh) {
+          config.plugins.splice(config.plugins.indexOf(reactRefresh), 1);
+        }
+        config.plugins.unshift(new PrefreshPlugin({ runsInNextJs: true }));
+      }
     }
 
     if (typeof nextConfig.webpack === "function") {

@@ -37,6 +37,7 @@ This is a personal blog/website built with **Next.js 15 (pages router, webpack) 
 ### Configuration Notes
 
 - **Preact**: React/ReactDOM are npm-aliased to `@preact/compat` in package.json (Node-side resolution) and webpack-aliased to `preact/compat` in next.config.js (bundle-side). Packages that call hooks must not be bundled into server chunks (see the server `externals` list in next.config.js) or a second preact instance crashes SSG
+- **Fast refresh**: custom @prefresh/webpack wiring in next.config.js — Next's SWC dev transform emits the react-refresh instrumentation, prefresh's runtime consumes it for preact; Next's own react-refresh plugin is removed in dev and `@prefresh/core` is prepended to the main.js entry so its preact options hooks install before first render
 - **SVGs**: Imported as React components via `@svgr/webpack`
 - **Sass**: Global styles in `/styles`, component path available via `includePaths`
 - **Trailing slashes**: Enabled for all routes
