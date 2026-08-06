@@ -277,5 +277,19 @@ figure {
   }
 }
 
+// visually hidden, still exposed to screen readers; remark-gfm marks the
+// generated "Footnotes" heading with this class
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @import "highlights";
 @import "nprogress";
