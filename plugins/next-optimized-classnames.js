@@ -16,19 +16,32 @@ const getKey = ({ rootContext, resourcePath }, name) =>
 
 const getLocalIdent = (path, _, name) => getName(getKey(path, name));
 
+const isFontLoaderChain = use =>
+  use.some(
+    u => u && typeof u.loader === "string" && u.loader.includes("next-font-loader")
+  );
+
 const webpack = (config, { dev }) => {
   if (dev) return config;
 
+  let patched = 0;
   for (const { oneOf } of config.module.rules)
     if (Array.isArray(oneOf))
-      for (const { sideEffects, use } of oneOf)
-        if (sideEffects === false && Array.isArray(use))
-          for (const { loader, options } of use)
-            if (
-              loader.endsWith(CSS_LOADER_MATCH) &&
-              typeof options.modules === "object"
-            )
-              options.modules.getLocalIdent = getLocalIdent;
+      for (const { use } of oneOf) {
+        if (!Array.isArray(use) || isFontLoaderChain(use)) continue;
+        for (const { loader, options } of use)
+          if (
+            typeof loader === "string" &&
+            loader.endsWith(CSS_LOADER_MATCH) &&
+            options &&
+            typeof options.modules === "object"
+          ) {
+            options.modules.getLocalIdent = getLocalIdent;
+            patched++;
+          }
+      }
+  if (process.env.DEBUG_CLASSNAMES)
+    console.error(`[classnames] patched ${patched} css-loader configs`);
 
   return config;
 };

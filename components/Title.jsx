@@ -9,7 +9,7 @@ export default function Title({ title, slug, className }) {
   return (
     <h1 className={className}>
       <Link href={`/posts/${encodeURIComponent(slug)}/`}>
-        <a>{title}</a>
+        {title}
       </Link>
     </h1>
   );

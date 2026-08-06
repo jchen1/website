@@ -13,9 +13,9 @@ export default function Tags({ tags }) {
         <li key={tag} className={styles.tagItem}>
           {/* no prefetch - people don't click on tags */}
           <Link href={`/tag/${tag}`} prefetch={false}>
-            <a>
-              <small>{tag}</small>
-            </a>
+
+            <small>{tag}</small>
+
           </Link>
         </li>
       );

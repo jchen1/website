@@ -14,7 +14,7 @@ const plugins = [
   ],
 ];
 
-if (process.env.NODE_ENV === "production" || true) {
+if (process.env.NODE_ENV === "production") {
   plugins.push(["cssnano", { preset: "default" }]);
 }
 

@@ -363,12 +363,8 @@ export default function PointsCalculator({ pages }) {
           </a>
           . I then used a quadratic regression to fit equations to each (event,
           gender) pair. See{" "}
-          <Link
-            href={"/posts/Calculating-World-Athletics-Coefficients"}
-            passHref
-            prefetch={false}
-          >
-            <a>this post</a>
+          <Link href={"/posts/Calculating-World-Athletics-Coefficients"} prefetch={false}>
+            this post
           </Link>{" "}
           for more details.
         </p>

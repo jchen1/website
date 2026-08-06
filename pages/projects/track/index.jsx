@@ -14,8 +14,8 @@ export default function Index({ pages }) {
       <ul>
         {pages.map(({ page, title }) => (
           <li key={page}>
-            <Link href={`/projects/track/${page}`} passHref>
-              <a>{title}</a>
+            <Link href={`/projects/track/${page}`}>
+              {title}
             </Link>
           </li>
         ))}

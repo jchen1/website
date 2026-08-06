@@ -1,34 +1,19 @@
 const path = require("path");
-const moduleAlias = require("module-alias");
 const imageConfig = require("./lib/imageConfig");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-// react/react-dom already resolve to @preact/compat via package.json npm
-// aliases; redirecting Node-side resolution to preact's own compat entry as
-// well guarantees a single copy of the compat layer (and of preact's hook
-// state) no matter which specifier a package uses.
-moduleAlias.addAliases({
-  react: "preact/compat",
-  "react-dom": "preact/compat",
-  "react-ssr-prepass": "preact-ssr-prepass",
-  webpack: "webpack",
-});
-
-// must load after the module aliases are registered
-const withPrefresh = require("@prefresh/next");
 const withNextOptimizedClassnames = require("./plugins/next-optimized-classnames");
 
 // Runs the app on Preact: aliases React to preact/compat in the bundle, keeps
 // preact in its own framework-adjacent cache group, disables webpack's package
 // `exports` field resolution on the server so the CJS and ESM builds of preact
-// can't both be loaded (hooks rely on a singleton), and wires up @prefresh
-// fast refresh plus preact/debug in dev.
-const withPreact = (nextConfig = {}) =>
-  withPrefresh({
-    ...nextConfig,
-    webpack(config, options) {
+// can't both be loaded (hooks rely on a singleton), and injects preact/debug
+// in dev.
+const withPreact = (nextConfig = {}) => ({
+  ...nextConfig,
+  webpack(config, options) {
       const { dev, isServer, nextRuntime } = options;
 
       if (isServer && +options.webpack.version.split(".")[0] >= 5) {
@@ -48,7 +33,6 @@ const withPreact = (nextConfig = {}) =>
 
       const aliases = config.resolve.alias || (config.resolve.alias = {});
       aliases.react = aliases["react-dom"] = "preact/compat";
-      aliases["react-ssr-prepass"] = "preact-ssr-prepass";
 
       if (dev && nextRuntime !== "edge") {
         const prependToEntry = isServer ? "pages/_document" : "main.js";
@@ -72,16 +56,22 @@ const withPreact = (nextConfig = {}) =>
 
 const plugins = [withBundleAnalyzer, withPreact, withNextOptimizedClassnames];
 const baseConfig = {
+  // static export (replaces `next export`); the default server build keeps
+  // headers() and the /_next/image optimizer for Vercel
+  output: process.env.STATIC_EXPORT ? "export" : undefined,
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+    silenceDeprecations: ["import", "legacy-js-api"],
   },
   trailingSlash: true,
   crossOrigin: "anonymous",
+  eslint: {
+    // the eslint 9 / eslint-config-next migration is tracked separately;
+    // linting runs in the pre-commit hook
+    ignoreDuringBuilds: true,
+  },
   images: {
     deviceSizes: imageConfig.deviceSizes,
-  },
-  experimental: {
-    esmExternals: false,
   },
   webpack: (config, options) => {
     if (options.isServer) {
@@ -89,6 +79,9 @@ const baseConfig = {
         "react",
         "react-dom",
         "styled-components",
+        // stateful hook libraries must resolve to the same preact instance
+        // as the renderer, so they can't be bundled into server chunks
+        "react-hooks-global-state",
         ...config.externals,
       ];
     } else {
@@ -103,9 +96,11 @@ const baseConfig = {
 
     // SVGs
     const fileLoaderRule = config.module.rules.find(
-      rule => rule.test && rule.test.test(".svg")
+      rule => rule.test instanceof RegExp && rule.test.test(".svg")
     );
-    fileLoaderRule.exclude = /\.svg$/;
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/;
+    }
     config.module.rules.push({
       test: /\.svg$/,
       loader: require.resolve("@svgr/webpack"),
