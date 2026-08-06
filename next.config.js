@@ -66,8 +66,8 @@ const baseConfig = {
   trailingSlash: true,
   crossOrigin: "anonymous",
   eslint: {
-    // the eslint 9 / eslint-config-next migration is tracked separately;
-    // linting runs in the pre-commit hook
+    // linting runs in the pre-commit hook (lint-staged); the build-time
+    // lint pass is deprecated in Next 15 and removed in Next 16
     ignoreDuringBuilds: true,
   },
   images: {

@@ -2,17 +2,23 @@
 
 Backlog of larger maintenance / improvement projects.
 
-## 1. Modernize dependencies (in progress)
+## 1. Modernize dependencies (done — see jchen1/deps-modernization)
 
-Upgrade all dependencies to current versions while keeping the existing stack
-(Next.js pages router + Preact + styled-components + remark pipeline + custom
-bundle-size optimizations). Risk areas: `next-plugin-preact` (unmaintained,
-Next 12 only), internal `__NEXT_IMAGE_OPTS` usage in `lib/remarkPlugins.js`,
-css-loader monkey-patching in `plugins/next-optimized-classnames.js`, the
-ESM-only remark/unified ecosystem, deprecated remark plugins
-(`remark-slug`, `remark-external-links`, `remark-highlight.js`), and
-`next export` removal in Next 14+. Must verify dev server, prod build, and
-static export output against the pre-upgrade baseline.
+Upgraded to Next 15.5 (pages router, webpack) + preact 10.29 +
+styled-components 6 + remark 15/unified 11 + eslint 9 flat config, keeping the
+custom bundle-size machinery working. Follow-ups worth tracking:
+
+- **Next 16 is blocked** until the webpack-dependent customizations (preact
+  aliasing, css-module class minifier, svgr rule, `__NEXT_IMAGE_OPTS`-free
+  image config) get Turbopack equivalents — or get dropped.
+- Dev fast-refresh is gone (@prefresh/next only supports Next <=12); dev falls
+  back to full reloads.
+- Sass `@import` is deprecated (silenced in next.config.js); migrating
+  `styles/` to `@use`/`@forward` needs `sass-migrator` plus handling the
+  `$inter-font-*` top-level vars in main.scss.
+- Still unmaintained, pinned, and working: react-hooks-global-state 1.x,
+  confetti-js, rss, gray-matter, css-class-generator, moment (maintenance
+  mode), crypto-js (registry-deprecated).
 
 ## 2. Convert fully to TypeScript
 
