@@ -16,7 +16,7 @@ import { canonicalize } from "lib/util";
 
 Router.events.on(
   "routeChangeStart",
-  (_, { shallow }) => !shallow && NProgress.start()
+  (_, { shallow }) => !shallow && NProgress.start(),
 );
 Router.events.on("routeChangeComplete", (url, { shallow }) => {
   if (!shallow) {

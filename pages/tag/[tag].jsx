@@ -43,7 +43,7 @@ export async function getStaticPaths() {
       getAllPosts(["tags"])
         .map(p => p.tags)
         .map(taglist => taglist.split(","))
-        .flat()
+        .flat(),
     ),
   ];
   return {

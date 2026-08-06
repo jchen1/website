@@ -9,8 +9,8 @@ export function ArchiveItem({ title, date, slug, prefix }) {
   return (
     <div className={styles.wrapper}>
       <h4 className={styles.item}>
-        <Link href={`/${prefix ?? "posts"}/${slug}`} passHref prefetch={false}>
-          <a>{title}</a>
+        <Link href={`/${prefix ?? "posts"}/${slug}`} prefetch={false}>
+          {title}
         </Link>
       </h4>
       <p className={styles.date}>{date}</p>

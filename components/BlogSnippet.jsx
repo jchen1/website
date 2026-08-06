@@ -10,8 +10,8 @@ import Title from "./Title";
 function ReadMore({ post }) {
   const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
   return (
-    <Link href={href} passHref prefetch={false}>
-      <a className={styles.readMore}>Read More →</a>
+    <Link href={href} prefetch={false} className={styles.readMore}>
+      Read More →
     </Link>
   );
 }

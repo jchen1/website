@@ -13,9 +13,7 @@ export default function RelatedPosts({ posts, title = "Related Posts" }) {
           : p.fullSlug;
         return (
           <h5 className={styles.post} key={slug}>
-            <Link href={slug}>
-              <a>{p.title}</a>
-            </Link>
+            <Link href={slug}>{p.title}</Link>
           </h5>
         );
       })}

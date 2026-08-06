@@ -43,13 +43,13 @@ export default function LaneDrawConverter({ pages }) {
   const searchParams = useSearchParams();
 
   const [time, setTime] = useState(
-    () => parseFloat(searchParams.get("time")) || 19.79
+    () => parseFloat(searchParams.get("time")) || 19.79,
   );
   const [currentLane, setCurrentLane] = useState(
-    () => parseInt(searchParams.get("currentLane"), 10) || 5
+    () => parseInt(searchParams.get("currentLane"), 10) || 5,
   );
   const [targetLane, setTargetLane] = useState(
-    () => parseInt(searchParams.get("targetLane"), 10) || 5
+    () => parseInt(searchParams.get("targetLane"), 10) || 5,
   );
   const [hasShared, setHasShared] = useState(false);
 

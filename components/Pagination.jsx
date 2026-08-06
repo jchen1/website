@@ -6,8 +6,8 @@ import styles from "styles/components/Pagination.module.scss";
 function MaybeLink({ page, children }) {
   if (page) {
     return (
-      <Link key={page} href={page}>
-        <a className={styles.pageLink}>{children}</a>
+      <Link key={page} href={page} className={styles.pageLink}>
+        {children}
       </Link>
     );
   }

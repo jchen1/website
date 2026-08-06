@@ -87,10 +87,10 @@ export default function WindCorrection({ pages }) {
   // Initialize state from URL params if they exist
   const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
   const [wind, setWind] = useState(
-    () => parseFloat(searchParams.get("wind")) || 0
+    () => parseFloat(searchParams.get("wind")) || 0,
   );
   const [mark, setMark] = useState(
-    () => parseFloat(searchParams.get("mark")) || 9.58
+    () => parseFloat(searchParams.get("mark")) || 9.58,
   );
   const [hasShared, setHasShared] = useState(false);
 

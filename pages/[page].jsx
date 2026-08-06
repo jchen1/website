@@ -40,7 +40,7 @@ export async function getStaticProps({ params }) {
     allPosts.slice(start, start + POSTS_PER_PAGE).map(async (post, i) => {
       const { excerptHTML, postExcerptAnchor } = await markdownToHtml(
         post.content || "",
-        { eagerLoad: i === 0 }
+        { eagerLoad: i === 0 },
       );
       delete post.content;
 
@@ -57,7 +57,7 @@ export async function getStaticProps({ params }) {
         postExcerptAnchor,
         heroImageSize,
       };
-    })
+    }),
   );
 
   const numPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);

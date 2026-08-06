@@ -112,14 +112,14 @@ export default function Metrics() {
           JSON.stringify({
             type: "connect",
             eventFilter: FrequentMetrics,
-          })
+          }),
         );
         setWs(ws);
       },
       (ws, msg) => {
         const response = JSON.parse(event.data);
         addMetrics(response.events);
-      }
+      },
     );
     setWs(ws);
 

@@ -152,7 +152,7 @@ const types = {
     display: "text",
     formatter: ({ duration, score, needs }) =>
       `${score}: ${prettifyData(duration / 1000 / 60 / 60)} / ${prettifyData(
-        needs.total / 1000 / 60 / 60
+        needs.total / 1000 / 60 / 60,
       )}`,
   },
   recovery: {

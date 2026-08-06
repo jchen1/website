@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Square = styled.div`
   flex-basis: ${100 / COL_SIZE}%;
-  background-color: ${props => lighten(props.score, Colors.YELLOW)};
+  background-color: ${props => lighten(props.$score, Colors.YELLOW)};
 
   &:after {
     content: "";
@@ -49,7 +49,7 @@ export default function GithubPlot({ data }) {
 
       const val = dataIdx >= 0 ? data[1][dataIdx] : 0;
       // todo hover tooltips
-      return <Square key={idx} score={val / max} />;
+      return <Square key={idx} $score={val / max} />;
     });
 
   return <Container>{squares}</Container>;

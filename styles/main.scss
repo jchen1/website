@@ -15,7 +15,8 @@ $inter-font-path: "/fonts";
   font-style: normal;
   font-weight: normal;
   font-display: $inter-font-display;
-  src: local("Inter"),
+  src:
+    local("Inter"),
     url("#{$inter-font-path}/Inter-Regular.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Regular.woff") format("woff");
 }
@@ -25,7 +26,8 @@ $inter-font-path: "/fonts";
   font-style: normal;
   font-weight: bold;
   font-display: $inter-font-display;
-  src: local("Inter Bold"),
+  src:
+    local("Inter Bold"),
     url("#{$inter-font-path}/Inter-Bold.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Bold.woff") format("woff");
 }
@@ -35,7 +37,8 @@ $inter-font-path: "/fonts";
   font-style: normal;
   font-weight: 900;
   font-display: $inter-font-display;
-  src: local("Inter Black"),
+  src:
+    local("Inter Black"),
     url("#{$inter-font-path}/Inter-Black.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Black.woff") format("woff");
 }
@@ -275,6 +278,20 @@ figure {
   li > figure {
     margin-left: calc(-30px + (-1 * var(--horizontal-margin)));
   }
+}
+
+// visually hidden, still exposed to screen readers; remark-gfm marks the
+// generated "Footnotes" heading with this class
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @import "highlights";

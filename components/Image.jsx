@@ -1,7 +1,7 @@
 // stripped-down next/image, only supports responsive and fixed layout
 import Head from "next/head";
 
-const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS;
+import { deviceSizes, imageSizes, path } from "lib/imageConfig";
 
 // sort smallest to largest
 const allSizes = [...deviceSizes, ...imageSizes].sort((a, b) => a - b);
@@ -34,16 +34,16 @@ function loader({ src, unoptimized, width, quality }) {
     if (missingValues.length > 0) {
       throw new Error(
         `Next Image Optimization requires ${missingValues.join(
-          ", "
+          ", ",
         )} to be provided. Make sure you pass them as props to the \`next/image\` component. Received: ${JSON.stringify(
-          { src, width, quality }
-        )}`
+          { src, width, quality },
+        )}`,
       );
     }
 
     if (src.startsWith("//")) {
       throw new Error(
-        `Failed to parse src "${src}" on \`next/image\`, protocol-relative URL (//) must be changed to an absolute URL (http:// or https://)`
+        `Failed to parse src "${src}" on \`next/image\`, protocol-relative URL (//) must be changed to an absolute URL (http:// or https://)`,
       );
     }
 
@@ -54,14 +54,14 @@ function loader({ src, unoptimized, width, quality }) {
       } catch (err) {
         console.error(err);
         throw new Error(
-          `Failed to parse src "${src}" on \`next/image\`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)`
+          `Failed to parse src "${src}" on \`next/image\`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)`,
         );
       }
 
       if (!configDomains.includes(parsedSrc.hostname)) {
         throw new Error(
           `Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` +
-            `See more info: https://err.sh/next.js/next-image-unconfigured-host`
+            `See more info: https://err.sh/next.js/next-image-unconfigured-host`,
         );
       }
     }
@@ -85,7 +85,7 @@ function generateImgAttrs({
         src,
         quality,
         width: closestSize(w * viewportWidthMultiplier),
-      })} ${kind === "w" ? w : i + 1}${kind}`
+      })} ${kind === "w" ? w : i + 1}${kind}`,
   );
 
   src = loader({ src, quality, width: widths[last] });
@@ -110,20 +110,20 @@ export default function Image({
     if (!src) {
       throw new Error(
         `Image is missing required "src" property. Make sure you pass "src" in props to the \`next/image\` component. Received: ${JSON.stringify(
-          { width, height, quality }
-        )}`
+          { width, height, quality },
+        )}`,
       );
     }
     if (!VALID_LAYOUT_VALUES.includes(layout)) {
       throw new Error(
         `Image with src "${src}" has invalid "layout" property. Provided "${layout}" should be one of ${VALID_LAYOUT_VALUES.map(
-          String
-        ).join(",")}.`
+          String,
+        ).join(",")}.`,
       );
     }
     if (!height || !width) {
       throw new Error(
-        `Image with src ${src} is missing height (${height}) or width (${width}).`
+        `Image with src ${src} is missing height (${height}) or width (${width}).`,
       );
     }
   }

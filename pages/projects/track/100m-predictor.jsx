@@ -38,7 +38,7 @@ function predict100m(block30, fly10, wind = 0.0, reaction = 0.1) {
   const predicted = Math.exp(
     predictorCoefficients[0] +
       predictorCoefficients[1] * block30 +
-      predictorCoefficients[2] * (10 / fly10)
+      predictorCoefficients[2] * (10 / fly10),
   );
 
   const windCorrection =
@@ -72,11 +72,11 @@ export default function WindCorrection({ pages }) {
 
   const [wind, setWind] = useState(() => searchParams.get("wind") || "0.0");
   const [block30, setBlock30] = useState(
-    () => searchParams.get("block30") || "4.00"
+    () => searchParams.get("block30") || "4.00",
   );
   const [fly10, setFly10] = useState(() => searchParams.get("fly10") || "1.00");
   const [reaction, setReaction] = useState(
-    () => searchParams.get("reaction") || "0.149"
+    () => searchParams.get("reaction") || "0.149",
   );
   const [hasShared, setHasShared] = useState(false);
 

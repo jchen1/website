@@ -30,7 +30,7 @@ function score(coefficients, x) {
     return coefficients[0] * x + coefficients[1];
   }
   return Math.round(
-    coefficients[0] * x * x + coefficients[1] * x + coefficients[2]
+    coefficients[0] * x * x + coefficients[1] * x + coefficients[2],
   );
 }
 
@@ -40,10 +40,10 @@ function getMarkFromScore(coefficients, y) {
       (-1 * coefficients[1] -
         Math.sqrt(
           Math.pow(coefficients[1], 2) -
-            4 * coefficients[0] * (coefficients[2] - y)
+            4 * coefficients[0] * (coefficients[2] - y),
         )) /
       (2 * coefficients[0])
-    ).toFixed(2)
+    ).toFixed(2),
   );
 
   // find the positive result
@@ -53,10 +53,10 @@ function getMarkFromScore(coefficients, y) {
         (-1 * coefficients[1] +
           Math.sqrt(
             Math.pow(coefficients[1], 2) -
-              4 * coefficients[0] * (coefficients[2] - y)
+              4 * coefficients[0] * (coefficients[2] - y),
           )) /
         (2 * coefficients[0])
-      ).toFixed(2)
+      ).toFixed(2),
     );
   }
 
@@ -121,10 +121,10 @@ export default function PointsCalculator({ pages }) {
 
   // Initialize state from URL params if they exist
   const [category, setCategory] = useState(
-    () => searchParams.get("category") || "outdoor"
+    () => searchParams.get("category") || "outdoor",
   );
   const [gender, setGender] = useState(
-    () => searchParams.get("gender") || "men"
+    () => searchParams.get("gender") || "men",
   );
   const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
   const [mark, setMark] = useState(() => searchParams.get("mark") || "");
@@ -177,7 +177,7 @@ export default function PointsCalculator({ pages }) {
         return "";
       }
     },
-    [gender]
+    [gender],
   );
 
   // Calculate mark from points
@@ -187,14 +187,14 @@ export default function PointsCalculator({ pages }) {
       try {
         const mark = getMarkFromScore(
           coefficients[gender][eventType],
-          pointsValue
+          pointsValue,
         );
         return markToUserMark(mark, markTypes[eventType]);
       } catch {
         return "";
       }
     },
-    [gender]
+    [gender],
   );
 
   const onMarkChanged = useCallback(
@@ -215,7 +215,7 @@ export default function PointsCalculator({ pages }) {
         setPoints("");
       }
     },
-    [event, calculatePoints]
+    [event, calculatePoints],
   );
 
   const onPointsChanged = useCallback(
@@ -227,7 +227,7 @@ export default function PointsCalculator({ pages }) {
       }
       setLastChanged("points");
     },
-    [event, calculateMark, lastChanged]
+    [event, calculateMark, lastChanged],
   );
 
   // Reset lastChanged when event/category/gender changes
@@ -253,7 +253,7 @@ export default function PointsCalculator({ pages }) {
 
   const events = useMemo(() => {
     return order[category].filter(k =>
-      isEventValidForGender(k, gender === "men")
+      isEventValidForGender(k, gender === "men"),
     );
   }, [category, gender]);
 
@@ -365,10 +365,9 @@ export default function PointsCalculator({ pages }) {
           gender) pair. See{" "}
           <Link
             href={"/posts/Calculating-World-Athletics-Coefficients"}
-            passHref
             prefetch={false}
           >
-            <a>this post</a>
+            this post
           </Link>{" "}
           for more details.
         </p>
