@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@prefresh/next": "^1.7.0",
     "@silvenon/remark-smartypants": "^1.0.0",
     "confetti-js": "^0.0.18",
     "crypto-js": "^4.1.1",
@@ -18,9 +19,9 @@
     "highlight.js": "^10.5.0",
     "image-size": "^1.0.2",
     "mdast-util-definitions": "^4.0.0",
+    "module-alias": "^2.3.4",
     "moment": "^2.29.4",
     "next": "^12.3.0",
-    "next-plugin-preact": "^3.0.7",
     "polished": "^4.2.2",
     "preact": "^10.11.2",
     "preact-render-to-string": "^5.2.6",
