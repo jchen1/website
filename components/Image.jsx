@@ -1,7 +1,7 @@
 // stripped-down next/image, only supports responsive and fixed layout
 import Head from "next/head";
 
-const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS;
+import { deviceSizes, imageSizes, path } from "lib/imageConfig";
 
 // sort smallest to largest
 const allSizes = [...deviceSizes, ...imageSizes].sort((a, b) => a - b);
