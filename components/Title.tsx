@@ -1,7 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Title({ title, slug, className }) {
+interface TitleProps {
+  title?: string;
+  slug?: string;
+  className?: string;
+}
+
+export default function Title({ title, slug, className }: TitleProps) {
   if (!slug) {
     return <h1 className={className}>{title}</h1>;
   }

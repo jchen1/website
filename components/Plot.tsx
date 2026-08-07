@@ -5,6 +5,10 @@ import LinePlot from "./plots/LinePlot";
 import GithubPlot from "./plots/GithubPlot";
 import LatestPlot from "./plots/LatestPlot";
 
+import type { ComponentType } from "react";
+import type { PlotConfig } from "../lib/metrics";
+import type { SeriesData } from "../lib/metricsUtils";
+
 const PlotContainer = styled.div`
   // https://stackoverflow.com/questions/49174998/incorrect-width-flex-items-with-gap-and-fixed-flex-basis
   // gap is 1rem
@@ -19,10 +23,17 @@ const PlotContainer = styled.div`
   }
 `;
 
-export default function Plot(props) {
+export interface PlotProps {
+  type?: PlotConfig["plotType"];
+  title?: string;
+  data: SeriesData;
+  opts?: PlotConfig;
+}
+
+export default function Plot(props: PlotProps) {
   const { type, title, opts } = props;
 
-  const Element = (() => {
+  const Element: ComponentType<PlotProps> = (() => {
     switch (type) {
       case "line":
         return LinePlot;

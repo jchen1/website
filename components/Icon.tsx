@@ -9,7 +9,27 @@ import RSSIcon from "../assets/rss-feed.svg";
 
 import styles from "styles/components/Icon.module.scss";
 
+import type { FunctionComponent, SVGProps } from "react";
+
 const ICON_SIZE = 30;
+
+// Props every exported icon accepts; each icon supplies its own destination,
+// label and svg, and callers override the analytics event and presentation.
+export interface IconProps {
+  href?: string;
+  label?: string;
+  target?: string;
+  eventAction?: string;
+  eventCategory?: string;
+  eventLabel?: string;
+  className?: string;
+  rel?: string;
+  size?: number;
+}
+
+interface InternalIconProps extends IconProps {
+  IconComponent: FunctionComponent<SVGProps<SVGSVGElement>>;
+}
 
 function Icon({
   IconComponent,
@@ -22,7 +42,7 @@ function Icon({
   className,
   rel,
   size,
-}) {
+}: InternalIconProps) {
   return (
     <a
       href={href}
@@ -46,7 +66,7 @@ function Icon({
   );
 }
 
-export function Envelope(props) {
+export function Envelope(props: IconProps) {
   return (
     <Icon
       {...{
@@ -60,7 +80,7 @@ export function Envelope(props) {
   );
 }
 
-export function Github(props) {
+export function Github(props: IconProps) {
   return (
     <Icon
       {...{
@@ -76,7 +96,7 @@ export function Github(props) {
   );
 }
 
-export function Twitter(props) {
+export function Twitter(props: IconProps) {
   return (
     <Icon
       {...{
@@ -92,7 +112,7 @@ export function Twitter(props) {
   );
 }
 
-export function Linkedin(props) {
+export function Linkedin(props: IconProps) {
   return (
     <Icon
       {...{
@@ -108,7 +128,7 @@ export function Linkedin(props) {
   );
 }
 
-export function RSS(props) {
+export function RSS(props: IconProps) {
   return (
     <Icon
       {...{

@@ -3,8 +3,12 @@ import Link from "next/link";
 
 import styles from "styles/components/Tags.module.scss";
 
+interface TagsProps {
+  tags?: string[];
+}
+
 // array of string tags
-export default function Tags({ tags }) {
+export default function Tags({ tags }: TagsProps) {
   const tagMarkup = tags
     ?.filter(t => t.length > 0)
     .sort()

@@ -3,7 +3,23 @@ import Link from "next/link";
 
 import styles from "styles/components/RelatedPosts.module.scss";
 
-export default function RelatedPosts({ posts, title = "Related Posts" }) {
+// Either `slug` (a blog post, linked under /posts) or `fullSlug` (an absolute
+// path to a non-post page) identifies where the entry links to.
+export interface RelatedPost {
+  title?: string;
+  slug?: string;
+  fullSlug?: string;
+}
+
+interface RelatedPostsProps {
+  posts: RelatedPost[];
+  title?: string;
+}
+
+export default function RelatedPosts({
+  posts,
+  title = "Related Posts",
+}: RelatedPostsProps) {
   return (
     <section className={styles.container}>
       <h2 className={styles.heading}>{title}</h2>
@@ -13,7 +29,7 @@ export default function RelatedPosts({ posts, title = "Related Posts" }) {
           : p.fullSlug;
         return (
           <h5 className={styles.post} key={slug}>
-            <Link href={slug}>{p.title}</Link>
+            <Link href={slug as string}>{p.title}</Link>
           </h5>
         );
       })}

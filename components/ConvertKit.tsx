@@ -3,7 +3,13 @@ import React from "react";
 
 import styles from "styles/components/ConvertKit.module.scss";
 
-export default function ConvertKit({ formId = CONVERTKIT_FORMID }) {
+interface ConvertKitProps {
+  formId?: string;
+}
+
+export default function ConvertKit({
+  formId = CONVERTKIT_FORMID,
+}: ConvertKitProps) {
   const action = `https://app.convertkit.com/forms/${formId}/subscriptions`;
   return (
     <form action={action} target="_blank" method="post" className={styles.form}>

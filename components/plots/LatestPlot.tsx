@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import { Colors } from "../../lib/metrics";
 
+import type { PlotConfig } from "../../lib/metrics";
+import type { SeriesData } from "../../lib/metricsUtils";
+
 const SQUARE_SIZE_PX = 200;
 
 const Container = styled.div`
@@ -64,7 +67,13 @@ const DataTime = styled.p`
   font-style: italic;
 `;
 
-export default function LatestPlot({ data, title, opts }) {
+interface LatestPlotProps {
+  data: SeriesData;
+  title?: string;
+  opts?: PlotConfig;
+}
+
+export default function LatestPlot({ data, title, opts }: LatestPlotProps) {
   const maxIndex = data[0].indexOf(Math.max.apply(Math, data[0]));
   const latestMeasurement = new Date(data[0][maxIndex] * 1000);
   const currentValue = data[1][maxIndex];

@@ -1,12 +1,23 @@
 import React from "react";
 
-export default class ResizableContainer extends React.Component {
-  constructor(props) {
+import type { ReactNode, RefObject } from "react";
+
+interface ResizableContainerProps {
+  onResize: (entries: ResizeObserverEntry[] | undefined, rect: DOMRect) => void;
+  className?: string;
+  children?: ReactNode;
+}
+
+export default class ResizableContainer extends React.Component<ResizableContainerProps> {
+  el: RefObject<HTMLDivElement>;
+  ro?: ResizeObserver;
+
+  constructor(props: ResizableContainerProps) {
     super(props);
-    this.el = React.createRef();
+    this.el = React.createRef<HTMLDivElement>();
   }
 
-  onResize(evt) {
+  onResize(evt?: ResizeObserverEntry[]) {
     if (!this.el?.current) return;
 
     const rect = this.el.current.getBoundingClientRect();

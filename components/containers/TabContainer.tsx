@@ -39,7 +39,22 @@ const Tab = styled.div`
   }
 `;
 
-export default function TabContainer({ tabs, activeTab, setActiveTab }) {
+interface TabDefinition {
+  name: string;
+  value: string;
+}
+
+interface TabContainerProps {
+  tabs: TabDefinition[];
+  activeTab: string;
+  setActiveTab: (value: string) => void;
+}
+
+export default function TabContainer({
+  tabs,
+  activeTab,
+  setActiveTab,
+}: TabContainerProps) {
   const tabMarkup = tabs.map(({ name, value }, idx) => (
     <Tab
       className={activeTab === value ? "active" : "inactive"}

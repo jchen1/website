@@ -7,7 +7,16 @@ import styles from "styles/components/Blog.module.scss";
 import Byline from "./Byline";
 import Title from "./Title";
 
-function ReadMore({ post }) {
+import type { MarkdownItem } from "lib/types";
+import type { HeroImageSize } from "./BlogPost";
+
+export interface Snippet extends MarkdownItem {
+  excerptHTML: string;
+  postExcerptAnchor?: string;
+  heroImageSize?: HeroImageSize;
+}
+
+function ReadMore({ post }: { post: Snippet }) {
   const href = `/posts/${post.slug}#${post.postExcerptAnchor || ""}`;
   return (
     <Link href={href} prefetch={false} className={styles.readMore}>
@@ -16,8 +25,13 @@ function ReadMore({ post }) {
   );
 }
 
+interface BlogSnippetProps {
+  post: Snippet;
+  opts?: { preloadHero?: boolean };
+}
+
 // Just a snippet!
-export default function BlogSnippet({ post, opts = {} }) {
+export default function BlogSnippet({ post, opts = {} }: BlogSnippetProps) {
   const { title, date, slug, heroImage, excerptHTML, heroImageSize } = post;
 
   const { preloadHero } = opts;
@@ -31,8 +45,8 @@ export default function BlogSnippet({ post, opts = {} }) {
           <Image
             src={heroImage}
             alt={title}
-            width={heroImageSize.width}
-            height={heroImageSize.height}
+            width={heroImageSize!.width}
+            height={heroImageSize!.height}
             layout="responsive"
             priority={preloadHero === true}
             className="background"

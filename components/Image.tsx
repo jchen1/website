@@ -3,24 +3,41 @@ import Head from "next/head";
 
 import { deviceSizes, imageSizes, path } from "lib/imageConfig";
 
+import type { ComponentProps } from "react";
+
+// Hostnames the optimizer is allowed to fetch from; unset here, so remote
+// sources are rejected by the development-only validation in `loader`.
+declare const configDomains: string[] | undefined;
+
+export type ImageLayout = "responsive" | "fixed";
+
+type Dimension = number | string;
+
 // sort smallest to largest
 const allSizes = [...deviceSizes, ...imageSizes].sort((a, b) => a - b);
 
-function closestSize(w) {
+function closestSize(w: number) {
   return allSizes.find(p => p >= w) || allSizes[allSizes.length - 1];
 }
 
-function getWidths(width, layout) {
+function getWidths(width: Dimension | undefined, layout: ImageLayout) {
   if (layout === "responsive") {
     return { widths: deviceSizes, kind: "w" };
   }
 
-  width = parseInt(width, 10);
+  width = parseInt(width as string, 10);
   const widths = [...new Set([width, width * 2, width * 3].map(closestSize))];
   return { widths, kind: "x" };
 }
 
-function loader({ src, unoptimized, width, quality }) {
+interface LoaderOptions {
+  src: string;
+  unoptimized?: boolean;
+  width?: number;
+  quality?: number;
+}
+
+function loader({ src, unoptimized, width, quality }: LoaderOptions) {
   if (unoptimized) {
     return src;
   }
@@ -70,13 +87,22 @@ function loader({ src, unoptimized, width, quality }) {
   return `${path}?url=${encodeURIComponent(src)}&w=${width}&q=${quality || 75}`;
 }
 
+interface ImgAttrsOptions {
+  src: string;
+  unoptimized?: boolean;
+  layout: ImageLayout;
+  width?: Dimension;
+  quality?: number;
+  viewportWidthMultiplier: number;
+}
+
 function generateImgAttrs({
   src,
   layout,
   width,
   quality,
   viewportWidthMultiplier,
-}) {
+}: ImgAttrsOptions) {
   const { widths, kind } = getWidths(width, layout);
   const last = widths.length - 1;
   const srcSet = widths.map(
@@ -90,7 +116,28 @@ function generateImgAttrs({
 
   src = loader({ src, quality, width: widths[last] });
 
-  return { src, srcSet, decoding: "async" };
+  return {
+    src,
+    // an array stringifies to the comma-separated srcset attribute value
+    srcSet: srcSet as unknown as string,
+    decoding: "async" as const,
+  };
+}
+
+export interface ImageProps extends Omit<
+  ComponentProps<"img">,
+  "src" | "width" | "height" | "loading" | "srcSet" | "decoding" | "style"
+> {
+  src: string;
+  /** dev-time validation throws when width or height is missing */
+  width?: Dimension;
+  height?: Dimension;
+  layout?: ImageLayout;
+  priority?: boolean;
+  quality?: number;
+  /** fraction of the viewport the image occupies, used to pick srcset widths */
+  viewportWidthMultiplier?: number;
+  className?: string;
 }
 
 export default function Image({
@@ -103,7 +150,7 @@ export default function Image({
   height,
   viewportWidthMultiplier = 1,
   ...rest
-}) {
+}: ImageProps) {
   if (process.env.NODE_ENV !== "production") {
     const VALID_LAYOUT_VALUES = ["responsive", "fixed"];
 
@@ -142,10 +189,11 @@ export default function Image({
 
   const wrapperStyle = {
     // overflow: "hidden",
-    position: "relative",
+    position: "relative" as const,
   };
 
-  const quotient = parseInt(height, 10) / parseInt(width, 10);
+  const quotient =
+    parseInt(height as string, 10) / parseInt(width as string, 10);
   const sizerStyle = {
     paddingTop: isNaN(quotient) ? "100%" : `${quotient * 100}%`,
   };

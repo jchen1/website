@@ -1,6 +1,8 @@
 import Head from "next/head";
 
-export default function Meta(props) {
+import type { Metas } from "lib/types";
+
+export default function Meta(props: Metas) {
   const metas = Object.keys(props)
     .map(key => {
       const val = props[key];

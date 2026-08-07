@@ -6,6 +6,10 @@ import ResizableContainer from "../containers/ResizableContainer";
 import { Colors } from "../../lib/metrics";
 import { tooltipsPlugin } from "../../lib/chartPlugins";
 
+import type { ReactNode, RefObject } from "react";
+import type { PlotConfig } from "../../lib/metrics";
+import type { SeriesData } from "../../lib/metricsUtils";
+
 const defaultSeriesOpts = {
   show: true,
   stroke: Colors.YELLOW,
@@ -19,7 +23,30 @@ const Container = styled(ResizableContainer)`
   }
 `;
 
-function mountPlot(el, props, width, height) {
+interface LinePlotProps {
+  data: SeriesData;
+  title?: string;
+  opts?: PlotConfig;
+  series?: uPlot.Series[];
+  legend?: uPlot.Legend;
+  cursor?: uPlot.Cursor;
+  class?: string;
+  /** plot height as a fraction of its measured width */
+  aspectRatio?: number;
+  children?: ReactNode;
+}
+
+interface LinePlotState {
+  height: number | null;
+  width: number | null;
+}
+
+function mountPlot(
+  el: HTMLDivElement,
+  props: LinePlotProps,
+  width: number,
+  height: number,
+) {
   const { title, data } = props;
 
   const series = (props.series || [])
@@ -36,7 +63,7 @@ function mountPlot(el, props, width, height) {
     series[1].label = props.opts.unit;
   }
 
-  const opts = {
+  const opts: uPlot.Options = {
     ...props.opts,
     title: "",
     width,
@@ -51,18 +78,24 @@ function mountPlot(el, props, width, height) {
   return new uPlot(opts, data, el);
 }
 
-export default class LinePlot extends React.Component {
-  state = {
+export default class LinePlot extends React.Component<
+  LinePlotProps,
+  LinePlotState
+> {
+  state: LinePlotState = {
     height: null,
     width: null,
   };
 
-  constructor(props) {
+  el: RefObject<HTMLDivElement>;
+  plot?: uPlot;
+
+  constructor(props: LinePlotProps) {
     super(props);
-    this.el = React.createRef();
+    this.el = React.createRef<HTMLDivElement>();
   }
 
-  onResize(evt, rect) {
+  onResize(evt: ResizeObserverEntry[] | undefined, rect: DOMRect) {
     if (this.el?.current) {
       const width = rect.width;
       const height = rect.width * (this.props.aspectRatio || 0.5);
@@ -79,7 +112,7 @@ export default class LinePlot extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: LinePlotProps) {
     if (this.props.data[0].length !== prevProps.data[0].length) {
       this.plot?.setData(this.props.data);
     }
@@ -94,7 +127,10 @@ export default class LinePlot extends React.Component {
 
     return (
       <Container onResize={this.onResize.bind(this)}>
-        <div style={height > 0 ? { height: `${height}px` } : {}} ref={this.el}>
+        <div
+          style={height !== null && height > 0 ? { height: `${height}px` } : {}}
+          ref={this.el}
+        >
           {this.props.children}
         </div>
       </Container>

@@ -46,3 +46,10 @@ declare module "css-class-generator" {
   function generateName(index: number): string;
   export = generateName;
 }
+
+// Image-optimizer settings shared with next.config.js, authored as CommonJS
+declare module "lib/imageConfig" {
+  export const deviceSizes: number[];
+  export const imageSizes: number[];
+  export const path: string;
+}

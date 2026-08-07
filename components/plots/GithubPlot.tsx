@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
 
 import { Colors } from "../../lib/metrics";
+
+import type { SeriesData } from "../../lib/metricsUtils";
 
 const COL_SIZE = 7;
 
@@ -15,7 +17,7 @@ const Container = styled.div`
   border: 1px solid ${Colors.DARKER_GRAY};
 `;
 
-const Square = styled.div`
+const Square = styled.div<{ $score: number }>`
   flex-basis: ${100 / COL_SIZE}%;
   background-color: ${props => lighten(props.$score, Colors.YELLOW)};
 
@@ -26,7 +28,11 @@ const Square = styled.div`
   }
 `;
 
-export default function GithubPlot({ data }) {
+interface GithubPlotProps {
+  data: SeriesData;
+}
+
+export default function GithubPlot({ data }: GithubPlotProps) {
   data[0] = data[0].map(t => Math.floor(t / 60 / 60 / 24) * 60 * 60 * 24);
 
   const start = new Date(data[0][0] * 1000);
