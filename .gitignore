@@ -34,6 +34,7 @@ yarn-error.log*
 # generated files
 public/rss-feed.xml
 public/sitemap.xml
+public/search-index.json
 
 .idea
 .eslintcache

@@ -6,12 +6,21 @@ import { SITE_TITLE } from "lib/constants";
 
 import Image from "components/Image";
 import { Twitter } from "components/Icon";
+import SearchIcon from "assets/search.svg";
 
 import styles from "styles/components/Header.module.scss";
 
 const PROFILE_SIZE = 320;
 
-export default function Header() {
+export interface HeaderProps {
+  onOpenPalette: () => void;
+  onPreloadPalette: () => void;
+}
+
+export default function Header({
+  onOpenPalette,
+  onPreloadPalette,
+}: HeaderProps) {
   const router = useRouter();
   // prevent "auto-prefetch based on viewport... warning"
   const prefetch = router.pathname === "/" ? false : undefined;
@@ -55,6 +64,21 @@ export default function Header() {
         <Link href="/meet-reports" className={styles.link}>
           Meets
         </Link>
+        <button
+          type="button"
+          className={`${styles.link} ${styles.searchButton}`}
+          aria-label="Search"
+          aria-keyshortcuts="Meta+K Control+K"
+          title="Search (⌘K)"
+          onClick={onOpenPalette}
+          onMouseEnter={onPreloadPalette}
+          onFocus={onPreloadPalette}
+        >
+          <SearchIcon width={22} height={22} />
+          <kbd className={styles.kbd} aria-hidden="true">
+            ⌘K
+          </kbd>
+        </button>
         <Twitter
           eventAction="header-cta-click"
           size={25}
