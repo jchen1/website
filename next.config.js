@@ -1,3 +1,7 @@
+// The rest of the codebase is TypeScript, but this file and the two local
+// helpers it require()s — ./lib/imageConfig and ./plugins/next-optimized-classnames —
+// stay CommonJS .js: Next loads its config at process start, before any
+// TypeScript transpiler exists.
 const path = require("path");
 const imageConfig = require("./lib/imageConfig");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({

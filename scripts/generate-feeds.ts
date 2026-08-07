@@ -8,7 +8,26 @@ import { markdownToHtml } from "../lib/blogs";
 const BASE_URL = "https://jeffchen.dev";
 const SITE_TITLE = "Jeff Chen";
 
-function generateSitemap({ posts, pages }) {
+// The post frontmatter fields the RSS items are built from.
+interface FeedFrontmatter {
+  title: string;
+  date: string;
+  author?: string;
+}
+
+// A post as the feeds need it: frontmatter plus the slug and rendered excerpt.
+interface FeedPost extends FeedFrontmatter {
+  slug: string;
+  excerpt: string;
+}
+
+function generateSitemap({
+  posts,
+  pages,
+}: {
+  posts: FeedPost[];
+  pages: string[];
+}) {
   const prologue = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
@@ -26,11 +45,13 @@ function generateSitemap({ posts, pages }) {
   return sitemap.join("\n");
 }
 
-function generateRssFeed(posts) {
+function generateRssFeed(posts: FeedPost[]) {
+  // @types/rss marks feed_url as required; the library treats it as optional
+  // and this feed deliberately omits the atom self-link
   const rssFeed = new rss({
     title: SITE_TITLE,
     site_url: BASE_URL,
-  });
+  } as ConstructorParameters<typeof rss>[0]);
 
   posts.forEach(post => {
     rssFeed.item({
@@ -48,21 +69,25 @@ function generateRssFeed(posts) {
 
 (async function () {
   const posts = await Promise.all(
-    (await globby(["markdown/posts/*.md"])).map(async page => {
-      const slug = page.replace(/\.md$/, "").replace(/^markdown\/posts\//, "");
-      const contents = fs.readFileSync(page);
+    (await globby(["markdown/posts/*.md"])).map(
+      async (page): Promise<FeedPost> => {
+        const slug = page
+          .replace(/\.md$/, "")
+          .replace(/^markdown\/posts\//, "");
+        const contents = fs.readFileSync(page);
 
-      const { data, content } = matter(contents);
-      const { excerpt } = await markdownToHtml(content);
+        const { data, content } = matter(contents);
+        const { excerpt } = await markdownToHtml(content);
 
-      // console.log(content, excerpt);
+        // console.log(content, excerpt);
 
-      return {
-        slug,
-        excerpt,
-        ...data,
-      };
-    }),
+        return {
+          slug,
+          excerpt,
+          ...(data as FeedFrontmatter),
+        };
+      },
+    ),
   );
 
   // ignore prefixed & dynamic pages

@@ -24,6 +24,8 @@ Pre-commit hooks run automatically via Husky:
 
 This is a personal blog/website built with **Next.js 15 (pages router, webpack) using Preact** as the React replacement for smaller bundle size. Next 16 is blocked: it deprecates the webpack config path, which the Preact aliasing, the css-module class-name minifier (`plugins/next-optimized-classnames.js`), and the svgr rule all require.
 
+The codebase is **TypeScript under `strict`** — components are `.tsx`, everything else `.ts`, and build scripts run through `node -r @swc-node/register`. Shared domain types (markdown items, rendered markdown, meta tags, metric events) live in `lib/types.ts`; anything used by a single component or page is typed locally. The exception is the **CommonJS config layer** — `next.config.js`, `lib/imageConfig.js`, `plugins/next-optimized-classnames.js`, and `postcss.config.js` stay `.js` because Next loads them at process start, before any transpiler exists.
+
 ### Key Directories
 
 - `/pages` - Next.js pages (SSG)

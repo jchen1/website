@@ -1,14 +1,23 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
-const currentBundle = require("../.next/analyze/bundle.json");
-const masterBundle = require("../.next/analyze/master/bundle/bundle.json");
+// Gzipped size of one route, as written by scripts/analyze-bundles. Both
+// inputs are build artifacts outside the TS project, so they are pulled in
+// with require() and typed by assertion rather than imported.
+interface BundleEntry {
+  path: string;
+  size: number;
+}
+
+const currentBundle = require("../.next/analyze/bundle.json") as BundleEntry[];
+const masterBundle =
+  require("../.next/analyze/master/bundle/bundle.json") as BundleEntry[];
 
 const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
 const outfile = path.join(outdir, "bundle-comparison.txt");
 
-function formatBytes(bytes, signed = false) {
+function formatBytes(bytes: number, signed = false) {
   const sign = signed ? (bytes < 0 ? "-" : "+") : "";
   if (bytes === 0) return `${sign}0B`;
 
@@ -48,7 +57,7 @@ ${sizes}
 
 try {
   fs.mkdirSync(outdir);
-} catch (e) {
+} catch {
   // may already exist
 }
 

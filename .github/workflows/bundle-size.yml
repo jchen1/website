@@ -48,7 +48,7 @@ jobs:
 
       - name: Compare bundle size
         if: success() && github.event.number
-        run: ls -laR .next/analyze/master && node scripts/compare-bundles.js
+        run: ls -laR .next/analyze/master && node -r @swc-node/register scripts/compare-bundles.ts
 
       # A bit of find & replace on our output text for displaying properly. Save this to an Action variable.
       - name: Get comment body

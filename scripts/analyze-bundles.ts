@@ -1,8 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const zlib = require("zlib");
+import fs from "fs";
+import path from "path";
+import zlib from "zlib";
 
-const bundle = require("../.next/build-manifest.json");
+// The manifest is a build artifact outside the TS project, so it is pulled in
+// with require() and typed by assertion rather than imported.
+interface BuildManifest {
+  pages: Record<string, string[]>;
+}
+
+const bundle = require("../.next/build-manifest.json") as BuildManifest;
 
 const prefix = ".next";
 const outdir = path.join(process.cwd(), prefix, "analyze");
@@ -24,7 +30,7 @@ const pageSizes = Object.keys(bundle.pages).map(p => {
 
 try {
   fs.mkdirSync(outdir);
-} catch (e) {
+} catch {
   // may already exist
 }
 

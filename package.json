@@ -7,9 +7,9 @@
   },
   "scripts": {
     "dev": "next dev -p 4000",
-    "build": "node -r @swc-node/register scripts/generate-feeds.js && next build",
+    "build": "node -r @swc-node/register scripts/generate-feeds.ts && next build",
     "export": "STATIC_EXPORT=1 next build",
-    "analyze": "ANALYZE=true NODE_ENV=production next build && node -r @swc-node/register scripts/analyze-bundles.js",
+    "analyze": "ANALYZE=true NODE_ENV=production next build && node -r @swc-node/register scripts/analyze-bundles.ts",
     "start": "next start",
     "prepare": "husky"
   },

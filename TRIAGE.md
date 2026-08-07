@@ -22,11 +22,23 @@ custom bundle-size machinery working. Follow-ups worth tracking:
   confetti-js, rss, gray-matter, css-class-generator, moment (maintenance
   mode), crypto-js (registry-deprecated).
 
-## 2. Convert fully to TypeScript
+## 2. Convert fully to TypeScript (done)
 
-Migrate the codebase (components, lib, pages, scripts) from JS/JSX to
-TypeScript. `lib/placement.ts` already exists; add a `tsconfig.json`, convert
-incrementally, and type the markdown/frontmatter pipeline.
+`lib`, `components`, `pages`, and `scripts` are TypeScript under a `strict`
+tsconfig. React types resolve to Preact's via a `paths` remap of
+`react`/`react-dom`/`react/jsx-runtime` onto `preact/compat`, so imports stay
+written as `react`; ambient declarations for svgr `*.svg` imports and
+`*.module.scss` live in `types/global.d.ts`. Components and pages contain no
+`any`; `lib` has exactly one, on the metric-mapper callback in
+`lib/metricsUtils.ts`, where the payload shape genuinely varies per metric.
+Shared domain types are in `lib/types.ts`. Three dead files were left as
+`.jsx` rather than converted — `components/api/Widget.jsx`,
+`components/metrics/Event.jsx`, and `components/metrics/InputContainer.jsx`
+(nothing imports them; delete rather than convert). The CommonJS config layer
+(`next.config.js`, `lib/imageConfig.js`,
+`plugins/next-optimized-classnames.js`, `postcss.config.js`) is deliberately
+excluded: Next require()s it at process start, before any transpiler is
+loaded.
 
 ## 3. Cmd-K style navigation
 
