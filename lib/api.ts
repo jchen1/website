@@ -1,13 +1,17 @@
 import { FrequentMetrics, InfrequentMetrics } from "../lib/metrics";
 
-function constructQuery(start, period, events) {
+import type { MetricEvent } from "./types";
+
+function constructQuery(start: Date, period: string, events: string[]) {
   const query = {
     start: start.getTime(),
     period,
     include: events.join(","),
   };
 
-  return new URLSearchParams(query).toString();
+  return new URLSearchParams(
+    query as unknown as Record<string, string>,
+  ).toString();
 }
 
 export async function getEvents() {
@@ -35,12 +39,16 @@ export async function getEvents() {
   await Promise.all(Object.values(requests));
 
   return {
-    infrequent: await (await requests.infrequent).json(),
-    frequent: await (await requests.frequent).json(),
+    infrequent: (await (await requests.infrequent).json()) as MetricEvent[],
+    frequent: (await (await requests.frequent).json()) as MetricEvent[],
   };
 }
 
-export function connect(onopen, onmessage, onclose) {
+export function connect(
+  onopen?: (ws: WebSocket, ev: Event) => void,
+  onmessage?: (ws: WebSocket, ev: MessageEvent) => void,
+  onclose?: (ws: WebSocket, ev: CloseEvent) => void,
+) {
   const url = `wss://${process.env.NEXT_PUBLIC_APISERVER_BASE_URL}:444`;
   const ws = new WebSocket(url);
 

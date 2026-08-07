@@ -4,14 +4,18 @@
 // vendored from https://raw.githubusercontent.com/rstacruz/nprogress/e1a8b7fb6e059085df5f83c45d3c2308a147ca18/nprogress.js
 // to reduce the bundle size
 
-function css(element, properties) {
+function css(
+  element: HTMLElement,
+  properties: Record<string, string | number>,
+) {
   for (let prop in properties) {
-    element.style[prop] = properties[prop];
+    (element.style as unknown as Record<string, string | number>)[prop] =
+      properties[prop];
   }
 }
 
 const queue = (function () {
-  const pending = [];
+  const pending: ((next: () => void) => void)[] = [];
 
   function next() {
     const fn = pending.shift();
@@ -20,13 +24,22 @@ const queue = (function () {
     }
   }
 
-  return function (fn) {
+  return function (fn: (next: () => void) => void) {
     pending.push(fn);
     if (pending.length === 1) next();
   };
 })();
 
-const NProgress = {};
+interface NProgressStatic {
+  status: number | null;
+  set(n: number): NProgressStatic;
+  start(): NProgressStatic;
+  done(): NProgressStatic;
+  inc(amount?: number): NProgressStatic | undefined;
+  render(fromStart?: boolean): HTMLElement;
+}
+
+const NProgress = {} as NProgressStatic;
 
 const Settings = {
   speed: 200,
@@ -46,7 +59,7 @@ NProgress.status = null;
  *     NProgress.set(1.0);
  */
 
-NProgress.set = function (n) {
+NProgress.set = function (this: NProgressStatic, n: number) {
   const started = typeof NProgress.status === "number";
 
   n = clamp(n, 0.08, 1);
@@ -59,7 +72,7 @@ NProgress.set = function (n) {
 
   queue(function (next) {
     // Add transition
-    css(progress.querySelector(Settings.barSelector), {
+    css(progress.querySelector<HTMLElement>(Settings.barSelector)!, {
       transform: "translate3d(" + toBarPerc(n) + "%,0,0)",
       transition: "all " + speed + "ms linear",
     });
@@ -100,7 +113,7 @@ NProgress.set = function (n) {
  *     NProgress.start();
  *
  */
-NProgress.start = function () {
+NProgress.start = function (this: NProgressStatic) {
   if (!NProgress.status) NProgress.set(0);
 
   const work = function () {
@@ -128,17 +141,17 @@ NProgress.start = function () {
  *     NProgress.done(true);
  */
 
-NProgress.done = function () {
+NProgress.done = function (this: NProgressStatic) {
   if (!NProgress.status) return this;
 
-  return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
+  return NProgress.inc(0.3 + 0.5 * Math.random())!.set(1);
 };
 
 /**
  * Increments by a random amount.
  */
 
-NProgress.inc = function (amount) {
+NProgress.inc = function (this: NProgressStatic, amount?: number) {
   let n = NProgress.status;
 
   if (!n) {
@@ -170,7 +183,7 @@ NProgress.inc = function (amount) {
  * setting.
  */
 
-NProgress.render = function (fromStart) {
+NProgress.render = function (fromStart?: boolean) {
   const existing = document.getElementById("nprogress");
   if (!!existing) {
     return existing;
@@ -180,16 +193,18 @@ NProgress.render = function (fromStart) {
   progress.id = "nprogress";
   progress.innerHTML = '<div class="bar" role="bar" />';
 
-  let bar = progress.querySelector(Settings.barSelector),
-    perc = fromStart ? "-100" : toBarPerc(NProgress.status || 0),
+  let bar = progress.querySelector<HTMLElement>(Settings.barSelector),
+    perc: string | number = fromStart
+      ? "-100"
+      : toBarPerc(NProgress.status || 0),
     parent = document.querySelector("body");
 
-  css(bar, {
+  css(bar!, {
     transition: "all 0 linear",
     transform: "translate3d(" + perc + "%,0,0)",
   });
 
-  parent.appendChild(progress);
+  parent!.appendChild(progress);
   return progress;
 };
 
@@ -197,7 +212,7 @@ NProgress.render = function (fromStart) {
  * Helpers
  */
 
-function clamp(n, min, max) {
+function clamp(n: number, min: number, max: number) {
   return Math.min(Math.max(n, min), max);
 }
 
@@ -206,8 +221,8 @@ function clamp(n, min, max) {
  * percentage (`-100%..0%`).
  */
 
-function toBarPerc(n) {
+function toBarPerc(n: number) {
   return (-1 + n) * 100;
 }
 
-module.exports = NProgress;
+export default NProgress;

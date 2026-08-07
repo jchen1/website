@@ -3,7 +3,7 @@ import { join } from "path";
 import { readFileSync } from "fs";
 import { imageSize } from "image-size";
 
-export function isAbsoluteURL(url) {
+export function isAbsoluteURL(url: string) {
   if (typeof url !== "string") {
     throw new TypeError(`Expected a \`string\`, got \`${typeof url}\``);
   }
@@ -18,7 +18,7 @@ export function isAbsoluteURL(url) {
   return /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(url);
 }
 
-export function sizeImage(image, opts = {}) {
+export function sizeImage(image: string, opts: { basepath?: string } = {}) {
   // only supports local images with absolute paths
   if (!isAbsoluteURL(image) && image.startsWith("/")) {
     const path = join(process.cwd(), opts.basepath || "", image);
@@ -31,7 +31,7 @@ export function sizeImage(image, opts = {}) {
 }
 
 // replaces all properties of source with those of target
-export function replace(source, target) {
+export function replace<T extends object>(source: T, target: object) {
   for (const property in source) {
     delete source[property];
   }

@@ -1,3 +1,4 @@
+// property names for each axis, indexed by [vertical, horizontal]
 const NAMES = {
   size: ["height", "width"],
   clientSize: ["clientHeight", "clientWidth"],
@@ -8,7 +9,12 @@ const NAMES = {
   after: ["bottom", "right"],
   marginAfter: ["marginBottom", "marginRight"],
   scrollOffset: ["pageYOffset", "pageXOffset"],
-};
+} as const;
+
+type NameKey = keyof typeof NAMES;
+
+// the property names of a single axis (e.g. size: "height", before: "top")
+type AxisNames = { [K in NameKey]: (typeof NAMES)[K][number] };
 
 type Side = "top" | "bottom" | "left" | "right";
 type Align = "start" | "center" | "end";
@@ -52,7 +58,7 @@ export default function Placement(
       right: anchor.left,
     },
     anchor,
-  );
+  ) as Record<Side, number>;
 
   const boundRect = {
     top: 0,
@@ -69,12 +75,15 @@ export default function Placement(
   }
 
   const overlayStyle = getComputedStyle(overlay);
-  const primary = {} as any;
-  const secondary = {} as any;
+  const primary = {} as AxisNames;
+  const secondary = {} as AxisNames;
 
   for (const key in NAMES) {
-    primary[key] = NAMES[key][side === "top" || side === "bottom" ? 0 : 1];
-    secondary[key] = NAMES[key][side === "top" || side === "bottom" ? 1 : 0];
+    const k = key as NameKey;
+    (primary as Record<NameKey, string>)[k] =
+      NAMES[k][side === "top" || side === "bottom" ? 0 : 1];
+    (secondary as Record<NameKey, string>)[k] =
+      NAMES[k][side === "top" || side === "bottom" ? 1 : 0];
   }
 
   overlay.style.position = "absolute";
@@ -125,7 +134,7 @@ export default function Placement(
   // absolute, then we will need to add the window's scroll position as well.
   const scrollOffset = window[primary.scrollOffset] as unknown as number;
 
-  const boundPrimaryPos = pos => {
+  const boundPrimaryPos = (pos: number) => {
     return Math.max(
       boundRect[primary.before],
       Math.min(
@@ -156,7 +165,7 @@ export default function Placement(
     secondary.scrollOffset
   ] as unknown as number;
 
-  const boundSecondaryPos = pos => {
+  const boundSecondaryPos = (pos: number) => {
     return Math.max(
       boundRect[secondary.before],
       Math.min(

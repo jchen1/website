@@ -1,17 +1,26 @@
 import { createGlobalState } from "react-hooks-global-state";
 
-const { setGlobalState, getGlobalState, useGlobalState } = createGlobalState({
-  ws: null,
-  metrics: [],
-  activeTab: "Personal",
-});
+import type { MetricEvent } from "./types";
 
-function metricKey(metric) {
+interface GlobalState {
+  ws: WebSocket | null;
+  metrics: MetricEvent[];
+  activeTab: string;
+}
+
+const { setGlobalState, getGlobalState, useGlobalState } =
+  createGlobalState<GlobalState>({
+    ws: null,
+    metrics: [],
+    activeTab: "Personal",
+  });
+
+function metricKey(metric: MetricEvent) {
   return `${metric.source.major}.${metric.source.minor}.${metric.event}.${metric.time}`;
 }
 
-function dedupMetrics(metrics) {
-  return metrics.reduce(
+function dedupMetrics(metrics: MetricEvent[]) {
+  return metrics.reduce<[Record<string, boolean>, MetricEvent[]]>(
     (acc, metric) => {
       const [m, r] = acc;
       const k = metricKey(metric);
@@ -27,7 +36,7 @@ function dedupMetrics(metrics) {
   )[1];
 }
 
-export function addMetrics(metrics) {
+export function addMetrics(metrics: MetricEvent[]) {
   setGlobalState("metrics", m => dedupMetrics(m.concat(metrics)));
 }
 

@@ -8,7 +8,35 @@ import GithubSlugger from "github-slugger";
 import { isAbsoluteURL, replace, sizeImage } from "./util/server";
 import imageConfig from "./imageConfig";
 
-export function trackingLinks(opts) {
+import type { ElementContent } from "hast";
+import type { Code, Html, Image, Link, LinkReference, Root } from "mdast";
+// registers the hName/hProperties/hChildren fields on mdast node data
+import type {} from "mdast-util-to-hast";
+
+declare module "mdast" {
+  interface Data {
+    /** heading anchor, mirrored into hProperties.id */
+    id?: string;
+    /** marks images already wrapped in a <figure> */
+    processed?: boolean;
+  }
+}
+
+// a synthetic node rendered purely via its hName by remark-html
+interface HNamedNode {
+  type: string;
+  data: { hName: string };
+  children: unknown[];
+}
+
+export interface TrackingLinksOptions {
+  trackingObject?: string;
+  category?: string;
+  action?: string;
+  label?: string;
+}
+
+export function trackingLinks(opts?: TrackingLinksOptions) {
   const options = opts || {};
 
   const trackingObject = options.trackingObject || "window.gtag";
@@ -17,18 +45,19 @@ export function trackingLinks(opts) {
   const action = options.action || "link-click";
   const label = options.label || "markdown";
 
-  return function (tree) {
+  return function (tree: Root) {
     const definition = definitions(tree);
     visit(tree, ["link", "linkReference"], node => {
-      const ctx = node.type === "link" ? node : definition(node.identifier);
+      const link = node as Link | LinkReference;
+      const ctx = link.type === "link" ? link : definition(link.identifier);
 
       if (
         ctx &&
         isAbsoluteURL(ctx.url) &&
         ["http", "https"].includes(ctx.url.slice(0, ctx.url.indexOf(":")))
       ) {
-        node.data = node.data || {};
-        node.data.hProperties = node.data.hProperties || {};
+        link.data = link.data || {};
+        link.data.hProperties = link.data.hProperties || {};
 
         const obj = {
           event_category: category,
@@ -36,8 +65,8 @@ export function trackingLinks(opts) {
           value: ctx.url,
         };
 
-        node.data.hProperties.onclick =
-          node.data.hProperties.onclick ||
+        link.data.hProperties.onclick =
+          link.data.hProperties.onclick ||
           `${trackingObject}("event", "${action}", ${JSON.stringify(obj)})`;
       }
     });
@@ -48,7 +77,7 @@ const lowlight = createLowlight(all);
 
 // gives every heading a github-slugger id, unique per document
 export function headingIds() {
-  return function (tree) {
+  return function (tree: Root) {
     const slugger = new GithubSlugger();
     visit(tree, "heading", node => {
       node.data = node.data || {};
@@ -60,20 +89,21 @@ export function headingIds() {
 
 // opens absolute http(s) links in a new tab with safe rel attributes
 export function externalLinks() {
-  return function (tree) {
+  return function (tree: Root) {
     const definition = definitions(tree);
     visit(tree, ["link", "linkReference"], node => {
-      const ctx = node.type === "link" ? node : definition(node.identifier);
+      const link = node as Link | LinkReference;
+      const ctx = link.type === "link" ? link : definition(link.identifier);
 
       if (
         ctx &&
         isAbsoluteURL(ctx.url) &&
         ["http", "https"].includes(ctx.url.slice(0, ctx.url.indexOf(":")))
       ) {
-        node.data = node.data || {};
-        node.data.hProperties = node.data.hProperties || {};
-        node.data.hProperties.target = "_blank";
-        node.data.hProperties.rel = ["nofollow", "noopener", "noreferrer"];
+        link.data = link.data || {};
+        link.data.hProperties = link.data.hProperties || {};
+        link.data.hProperties.target = "_blank";
+        link.data.hProperties.rel = ["nofollow", "noopener", "noreferrer"];
       }
     });
   };
@@ -82,18 +112,20 @@ export function externalLinks() {
 // syntax-highlights fenced code blocks with lowlight/highlight.js, emitting
 // <code class="hljs language-*"> with highlighted hast children
 export function highlightCode() {
-  return function (tree) {
+  return function (tree: Root) {
     visit(tree, ["code"], node => {
-      if (!node.lang) return;
+      const code = node as Code;
+      if (!code.lang) return;
 
-      node.data = node.data || {};
-      node.data.hProperties = node.data.hProperties || {};
+      code.data = code.data || {};
+      code.data.hProperties = code.data.hProperties || {};
 
-      node.data.hChildren = lowlight.highlight(node.lang, node.value).children;
-      node.data.hProperties.className = [
+      code.data.hChildren = lowlight.highlight(code.lang, code.value)
+        .children as ElementContent[];
+      code.data.hProperties.className = [
         "hljs",
-        ...(node.data.hProperties.className || []),
-        `language-${node.lang}`,
+        ...((code.data.hProperties.className as string[] | undefined) || []),
+        `language-${code.lang}`,
       ];
     });
   };
@@ -105,7 +137,7 @@ export function excerpt() {
   const markers = ["excerpt", "more", "preview", "teaser"];
   const commentRegex = /<!--([\s\S]*?)-->/;
 
-  return function (tree) {
+  return function (tree: Root) {
     let index = -1;
 
     visit(tree, "html", node => {
@@ -123,31 +155,35 @@ export function excerpt() {
 }
 
 export function setHighlightLang() {
-  return function (tree) {
+  return function (tree: Root) {
     visit(tree, ["code"], node => {
-      if (node.lang) {
-        node.data.hProperties["data-language"] = node.lang;
+      const code = node as Code;
+      if (code.lang) {
+        // data.hProperties exists here: highlightCode runs earlier in the
+        // pipeline and creates it for every code block with a lang
+        code.data!.hProperties!["data-language"] = code.lang;
       }
     });
   };
 }
 
-export function addCaptionsToImages(opts) {
+export function addCaptionsToImages(opts?: unknown) {
   const options = opts || {};
   const captionRegex = /(\{caption=([^\{\}]+)\})/;
 
-  return function (tree) {
+  return function (tree: Root) {
     visit(tree, ["image"], node => {
-      if (node.data && node.data.processed === true) return;
+      const image = node as Image;
+      if (image.data && image.data.processed === true) return;
 
-      const [img, caption] = (function () {
-        if (!node.alt || !captionRegex.test(node.alt))
-          return [{ ...node }, null];
+      const [img, caption] = (function (): [Image, string | null] {
+        if (!image.alt || !captionRegex.test(image.alt))
+          return [{ ...image }, null];
 
-        const [captionWithControl, _, caption] = captionRegex.exec(node.alt);
+        const [captionWithControl, _, caption] = captionRegex.exec(image.alt)!;
 
-        const img = { ...node };
-        img.alt = img.alt.replace(captionWithControl, "");
+        const img = { ...image };
+        img.alt = img.alt!.replace(captionWithControl, "");
 
         return [img, caption];
       })();
@@ -156,10 +192,10 @@ export function addCaptionsToImages(opts) {
       img.data.processed = true;
       img.data.hProperties = img.data.hProperties || {};
       img.data.hProperties.className = (
-        img.data.hProperties.className || []
+        (img.data.hProperties.className as string[] | undefined) || []
       ).concat("background");
 
-      const captionElement = {
+      const captionElement: HNamedNode = {
         type: "element",
         data: {
           hName: "figcaption",
@@ -167,7 +203,7 @@ export function addCaptionsToImages(opts) {
         children: [{ type: "text", value: caption }],
       };
 
-      const figure = {
+      const figure: HNamedNode = {
         type: "element",
         data: {
           hName: "figure",
@@ -179,15 +215,20 @@ export function addCaptionsToImages(opts) {
         figure.children.push(captionElement);
       }
 
-      replace(node, figure);
+      replace(image, figure);
     });
   };
+}
+
+export interface OptimizeImagesOptions {
+  basepath?: string;
+  eagerLoad?: boolean;
 }
 
 // adds intrinsic size & srcset to locally served images
 // adds loading=lazy to images (doesn't support raw HTML)
 // uses vercel's built-in image optimizer
-export function optimizeImages(opts) {
+export function optimizeImages(opts?: OptimizeImagesOptions) {
   const options = opts || {};
   const basepath = options.basepath || "";
   const loading = options.eagerLoad ? "eager" : "lazy";
@@ -197,30 +238,31 @@ export function optimizeImages(opts) {
 
   const last = allSizes.length - 1;
 
-  return function (tree) {
+  return function (tree: Root) {
     visit(tree, ["image"], node => {
-      const size = sizeImage(node.url, { basepath });
+      const image = node as Image;
+      const size = sizeImage(image.url, { basepath });
       if (size && size.width && size.height) {
-        node.data = node.data || {};
-        node.data.hProperties = node.data.hProperties || {};
-        if (!node.data.hProperties.width && !node.data.hProperties.height) {
-          node.data.hProperties.width = size.width;
-          node.data.hProperties.height = size.height;
+        image.data = image.data || {};
+        image.data.hProperties = image.data.hProperties || {};
+        if (!image.data.hProperties.width && !image.data.hProperties.height) {
+          image.data.hProperties.width = size.width;
+          image.data.hProperties.height = size.height;
         }
-        node.data.hProperties = {
+        image.data.hProperties = {
           decoding: "async",
           loading,
           srcset: allSizes
             .map(
               w =>
-                `${path}?url=${encodeURIComponent(node.url)}&w=${w}&q=75 ${w}w`,
+                `${path}?url=${encodeURIComponent(image.url)}&w=${w}&q=75 ${w}w`,
             )
             .join(", "),
 
-          ...node.data.hProperties,
+          ...image.data.hProperties,
         };
 
-        node.url = `/_next/image?url=${encodeURIComponent(node.url)}&w=${
+        image.url = `/_next/image?url=${encodeURIComponent(image.url)}&w=${
           allSizes[last]
         }&q=75`;
       }
@@ -228,15 +270,16 @@ export function optimizeImages(opts) {
   };
 }
 
-export function anchorPostExcerpt(opts) {
+export function anchorPostExcerpt(opts?: { returnAnchor?: boolean }) {
   const regex = /<!--(.*?)-->/;
-  return function (tree) {
+  return function (tree: Root) {
     let index = -1;
     visit(tree, ["html"], node => {
-      if (index === -1 && regex.test(node.value)) {
-        const [_, comment] = regex.exec(node.value);
+      const html = node as Html;
+      if (index === -1 && regex.test(html.value)) {
+        const [_, comment] = regex.exec(html.value)!;
         if (comment.trim() === "excerpt") {
-          index = tree.children.indexOf(node);
+          index = tree.children.indexOf(html);
         }
       }
     });
@@ -251,14 +294,15 @@ export function anchorPostExcerpt(opts) {
       if (opts && opts.returnAnchor) {
         const anchor = postNode.data.hProperties.id;
 
-        return { type: "text", value: anchor };
+        // replaces the whole tree, so the processor's output is the anchor
+        return { type: "text", value: anchor } as unknown as Root;
       }
     }
   };
 }
 
-export function removeImages(opts) {
-  return function (tree) {
+export function removeImages(opts?: unknown) {
+  return function (tree: Root) {
     return remove(tree, { cascade: false }, node => node.type === "image");
   };
 }

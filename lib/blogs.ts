@@ -20,6 +20,9 @@ import {
   setHighlightLang,
 } from "./remarkPlugins";
 
+import type { OptimizeImagesOptions } from "./remarkPlugins";
+import type { MarkdownHtml, MarkdownItem } from "./types";
+
 export const POST_FIELDS = [
   "title",
   "date",
@@ -34,7 +37,10 @@ export const ARCHIVE_FIELDS = ["title", "date", "slug", "tags"];
 
 export const POSTS_PER_PAGE = 5;
 
-export async function markdownToHtml(markdown, opts) {
+export async function markdownToHtml(
+  markdown: string,
+  opts?: OptimizeImagesOptions,
+): Promise<MarkdownHtml> {
   markdown = markdown.replace(/\\\$/g, "$");
 
   const remarkInstance = remark();
@@ -81,7 +87,13 @@ const postsDirectory = join(process.cwd(), "markdown/posts");
 const pagesDirectory = join(process.cwd(), "markdown/pages");
 const meetReportsDirectory = join(process.cwd(), "markdown/meet-reports");
 
-function readFromSlug(type, slug, fields = []) {
+type MarkdownSourceType = "posts" | "pages" | "meet-reports";
+
+function readFromSlug(
+  type: MarkdownSourceType,
+  slug: string,
+  fields: string[] = [],
+): MarkdownItem {
   const realSlug = slug.replace(/\.md$/, "");
   const dir = (() => {
     switch (type) {
@@ -100,7 +112,7 @@ function readFromSlug(type, slug, fields = []) {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const items = {};
+  const items: Partial<MarkdownItem> & Record<string, unknown> = {};
   items.draft = data.draft === true;
 
   // Ensure only the minimal needed data is exposed
@@ -117,39 +129,42 @@ function readFromSlug(type, slug, fields = []) {
     }
   });
 
-  return items;
+  return items as MarkdownItem;
 }
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
 }
 
-export function getPostBySlug(slug, fields = []) {
+export function getPostBySlug(slug: string, fields: string[] = []) {
   return readFromSlug("posts", slug, fields);
 }
 
-export function getAllPosts(fields = []) {
+export function getAllPosts(fields: string[] = []) {
   const slugs = getPostSlugs();
   const posts = slugs
     .map(slug => getPostBySlug(slug, fields))
     .filter(post => post.draft !== true)
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? "-1" : "1"));
+    .sort(
+      (post1, post2) =>
+        (post1.date! > post2.date! ? "-1" : "1") as unknown as number,
+    );
   return posts;
 }
 
-export function getPostsByTag(tag, fields = []) {
+export function getPostsByTag(tag: string, fields: string[] = []) {
   return getAllPosts(
     fields.includes("tags") ? fields : fields.concat("tags"),
   ).filter(post =>
-    post.tags
-      .split(",")
+    post
+      .tags!.split(",")
       .map(x => x.trim())
       .includes(tag),
   );
 }
 
-function isMonthOrYear(tag) {
+function isMonthOrYear(tag: string) {
   return [
     "january",
     "february",
@@ -169,9 +184,9 @@ function isMonthOrYear(tag) {
   ].includes(tag.toLowerCase());
 }
 
-export function getRelatedPosts(post, fields = []) {
+export function getRelatedPosts(post: MarkdownItem, fields: string[] = []) {
   // non month/year tags come first!
-  const tags = post.tags.split(",").sort((a, b) => {
+  const tags = post.tags!.split(",").sort((a, b) => {
     if (isMonthOrYear(a) && !isMonthOrYear(b)) {
       return 1;
     } else if (!isMonthOrYear(a) && isMonthOrYear(b)) {
@@ -195,7 +210,7 @@ export function getPageSlugs() {
   return fs.readdirSync(pagesDirectory);
 }
 
-export function getPageBySlug(slug, fields = []) {
+export function getPageBySlug(slug: string, fields: string[] = []) {
   return readFromSlug("pages", slug, fields);
 }
 
@@ -203,18 +218,21 @@ export function getMeetReportSlugs() {
   return fs.readdirSync(meetReportsDirectory);
 }
 
-export function getMeetReportBySlug(slug, fields = []) {
+export function getMeetReportBySlug(slug: string, fields: string[] = []) {
   return readFromSlug("meet-reports", slug, fields);
 }
 
-export function getAllMeetReports(fields = []) {
+export function getAllMeetReports(fields: string[] = []) {
   const slugs = getMeetReportSlugs();
   const meetReports = slugs
     .map(slug => getMeetReportBySlug(slug, fields))
     .filter(meetReport => meetReport.draft !== true)
     // sort meetreports by date in descending order
-    .sort((meetReport1, meetReport2) =>
-      meetReport1.date > meetReport2.date ? "-1" : "1",
+    .sort(
+      (meetReport1, meetReport2) =>
+        (meetReport1.date! > meetReport2.date!
+          ? "-1"
+          : "1") as unknown as number,
     );
   return meetReports;
 }

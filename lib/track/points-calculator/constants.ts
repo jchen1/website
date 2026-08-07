@@ -1,10 +1,12 @@
-export const units = {
+export type MarkType = "time" | "distance" | "points";
+
+export const units: Record<MarkType, string> = {
   time: "s",
   distance: "m",
   points: "pts",
 };
 
-export const markTypes = {
+export const markTypes: Record<string, MarkType> = {
   "50m": "time",
   "50mH": "time",
   "55m": "time",
@@ -214,12 +216,12 @@ export const outdoorEvents = [
   "4x400mix",
 ];
 
-export const order = {
+export const order: Record<string, string[]> = {
   outdoor: outdoorEvents,
   indoor: indoorEvents,
 };
 
-export const eventNames = {
+export const eventNames: Record<string, string> = {
   TJ: "Triple jump",
   "Road 20kmW": "20km race walk (road)",
   "Road HM": "Half marathon (road)",
@@ -307,7 +309,9 @@ export const eventNames = {
   "Hept. sh": "Heptathlon (indoor)",
 };
 
-export const coefficients = {
+// quadratic [a, b, c] fit of points as a function of the mark, keyed by
+// gender then event
+export const coefficients: Record<string, Record<string, number[]>> = {
   men: {
     TJ: [0.4603666024030417, 90.96978768056579, -514.9946082626993],
     "Road 20kmW": [
@@ -565,7 +569,7 @@ export const womenOnlyEvents = [
 ];
 
 // Helper function to check if event is valid for gender
-export const isEventValidForGender = (event, isMale) => {
+export const isEventValidForGender = (event: string, isMale: boolean) => {
   if (isMale) {
     return !womenOnlyEvents.includes(event);
   }

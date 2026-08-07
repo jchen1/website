@@ -1,46 +1,56 @@
 import moment from "moment";
 
-import placement from "./placement.ts";
+import placement from "./placement";
 import { prettifyData } from "./metricsUtils";
 
-const typesToDisplay = {
+import type uPlot from "uplot";
+
+const typesToDisplay: Record<string, (d: number) => string> = {
   unixSecs: d => moment(new Date(d * 1000)).format("h:mm A"),
   unixDays: d => moment(new Date(d * 1000)).format("MM/DD"),
 };
 
-function typeToDisplay(type, data) {
-  const fn = typesToDisplay[type] || (x => x);
+function typeToDisplay(type: string, data: number) {
+  const fn = typesToDisplay[type] || ((x: number) => x);
   return fn(data);
 }
 
 function getOrCreateOverlay() {
-  const existing = document.querySelector(".placement-overlay");
+  const existing = document.querySelector<HTMLElement>(".placement-overlay");
   if (existing) return existing;
 
   const overlay = document.createElement("div");
   overlay.className = "placement-overlay";
   overlay.style.display = "none";
-  overlay.style["z-index"] = "999";
+  (overlay.style as unknown as Record<string, string>)["z-index"] = "999";
   document.body.appendChild(overlay);
 
   return overlay;
 }
 
-export function tooltipsPlugin(tooltipOpts = {}) {
+export interface TooltipOptions {
+  xFormatter?: (x: number) => string | number;
+  yFormatter?: (y: number) => string | number;
+  xType?: string;
+  yPrecision?: number;
+  unit?: string;
+}
+
+export function tooltipsPlugin(tooltipOpts: TooltipOptions = {}): uPlot.Plugin {
   const xFormatter =
     tooltipOpts.xFormatter ||
-    (x => typeToDisplay(tooltipOpts.xType || "unixSecs", x));
+    ((x: number) => typeToDisplay(tooltipOpts.xType || "unixSecs", x));
 
   const yFormatter =
     tooltipOpts.yFormatter ||
-    (x => prettifyData(x, tooltipOpts.yPrecision || 2));
+    ((x: number) => prettifyData(x, tooltipOpts.yPrecision || 2));
 
-  let bound, bLeft, bTop, overlay;
+  let bound: HTMLElement, bLeft: number, bTop: number, overlay: HTMLElement;
 
   return {
     hooks: {
       init: u => {
-        const can = u.root.querySelector(".u-over");
+        const can = u.root.querySelector<HTMLElement>(".u-over")!;
         overlay = getOrCreateOverlay();
 
         bound = can;
@@ -59,11 +69,11 @@ export function tooltipsPlugin(tooltipOpts = {}) {
       },
       setCursor: u => {
         const { idx } = u.cursor;
-        const x = u.data[0][idx];
-        const y = u.data[1][idx];
+        const x = u.data[0][idx!];
+        const y = u.data[1][idx!];
         if (x && y && overlay) {
           const left = Math.round(u.valToPos(x, "x"));
-          const top = Math.round(u.valToPos(y, u.series[1].scale));
+          const top = Math.round(u.valToPos(y, u.series[1].scale!));
           const anchor = { left: left + bLeft, top: top + bTop };
 
           overlay.innerHTML = `${xFormatter(x)}<br> ${yFormatter(y)}${

@@ -1,7 +1,20 @@
 import { frequencies } from "./metricsUtils";
 
-function timeKey(scale) {
-  return e => Math.floor(new Date(e.time).getTime() / 1000 / scale) * scale;
+import type { TransformEventsOptions } from "./metricsUtils";
+import type { MetricEvent } from "./types";
+
+export interface PlotConfig extends TransformEventsOptions {
+  datatypes: string[];
+  title?: string;
+  unit?: string;
+  plotType?: "latest" | "line" | "github";
+  noContainer?: boolean;
+  xType?: "unixSecs" | "unixDays";
+}
+
+function timeKey(scale: number) {
+  return (e: MetricEvent) =>
+    Math.floor(new Date(e.time).getTime() / 1000 / scale) * scale;
 }
 
 const GithubMetrics = [
@@ -61,7 +74,7 @@ export const DAYS = HOURS * 24;
 
 export const AllMetrics = [...InfrequentMetrics, ...FrequentMetrics];
 
-export const Plots = {
+export const Plots: Record<string, PlotConfig[]> = {
   Now: [
     {
       datatypes: ["hr"],
@@ -276,7 +289,7 @@ export const Plots = {
   ],
 };
 
-export function metricType(metric) {
+export function metricType(metric: string) {
   return InfrequentMetrics.includes(metric) ? "infrequent" : "frequent";
 }
 

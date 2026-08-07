@@ -1,4 +1,4 @@
-export default function formatDate(date) {
+export default function formatDate(date: Date) {
   const month = date.toLocaleDateString("default", {
     month: "long",
     timeZone: "UTC",
@@ -13,9 +13,11 @@ export default function formatDate(date) {
   });
 
   const suffix =
-    { 1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st" }[
-      day
-    ] || "th";
+    (
+      { 1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st" } as {
+        [day: string]: string;
+      }
+    )[day] || "th";
 
   return `${month} ${day}${suffix}, ${year}`;
 }
