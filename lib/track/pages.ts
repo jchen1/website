@@ -10,7 +10,7 @@ export type TrackPage = Metas & { page: string };
 export function getAllPages(): TrackPage[] {
   return fs
     .readdirSync(dir)
-    .filter(fn => fn !== "index.jsx")
+    .filter(fn => fn !== "index.tsx")
     .map(fn => {
       // remove extension
       const page = fn.split(".")[0];

@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 
 import { getAllPages } from "lib/track/pages";
+import type { TrackPage } from "lib/track/pages";
 
 import Meta from "components/Meta";
 import RelatedPosts from "components/RelatedPosts";
@@ -12,18 +13,28 @@ import UnitInput from "components/UnitInput";
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
+import type { GetStaticProps } from "next";
+import type { Metas } from "lib/types";
+
 function useSearchParams() {
   const router = useRouter();
-  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+  return useMemo(
+    () => new URLSearchParams(router.query as Record<string, string>),
+    [router.query],
+  );
 }
 
 const LANE_EFFECT = 0.018;
 const LANES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-function convertLaneTime(time, currentLane, targetLane) {
-  const timeNum = parseFloat(time);
-  const currentNum = parseInt(currentLane, 10);
-  const targetNum = parseInt(targetLane, 10);
+function convertLaneTime(
+  time: string | number,
+  currentLane: string | number,
+  targetLane: string | number,
+) {
+  const timeNum = parseFloat(time as string);
+  const currentNum = parseInt(currentLane as string, 10);
+  const targetNum = parseInt(targetLane as string, 10);
 
   if (isNaN(timeNum) || isNaN(currentNum) || isNaN(targetNum)) {
     return null;
@@ -32,24 +43,28 @@ function convertLaneTime(time, currentLane, targetLane) {
   return timeNum + (currentNum - targetNum) * LANE_EFFECT;
 }
 
-export const metas = {
+export const metas: Metas = {
   title: "200m Lane Draw Converter",
   description:
     "Converts 200m times between lanes based on lane draw advantage.",
 };
 
-export default function LaneDrawConverter({ pages }) {
+interface LaneDrawConverterProps {
+  pages: TrackPage[];
+}
+
+export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [time, setTime] = useState(
-    () => parseFloat(searchParams.get("time")) || 19.79,
+  const [time, setTime] = useState<string | number>(
+    () => parseFloat(searchParams.get("time") ?? "") || 19.79,
   );
   const [currentLane, setCurrentLane] = useState(
-    () => parseInt(searchParams.get("currentLane"), 10) || 5,
+    () => parseInt(searchParams.get("currentLane") ?? "", 10) || 5,
   );
   const [targetLane, setTargetLane] = useState(
-    () => parseInt(searchParams.get("targetLane"), 10) || 5,
+    () => parseInt(searchParams.get("targetLane") ?? "", 10) || 5,
   );
   const [hasShared, setHasShared] = useState(false);
 
@@ -107,7 +122,11 @@ export default function LaneDrawConverter({ pages }) {
           <select
             className={styles.select}
             value={currentLane}
-            onChange={e => setCurrentLane(parseInt(e.target.value, 10))}
+            onChange={e =>
+              setCurrentLane(
+                parseInt((e.target as HTMLSelectElement).value, 10),
+              )
+            }
           >
             {LANES.map(lane => (
               <option value={lane} key={lane}>
@@ -124,7 +143,9 @@ export default function LaneDrawConverter({ pages }) {
           <select
             className={styles.select}
             value={targetLane}
-            onChange={e => setTargetLane(parseInt(e.target.value, 10))}
+            onChange={e =>
+              setTargetLane(parseInt((e.target as HTMLSelectElement).value, 10))
+            }
           >
             {LANES.map(lane => (
               <option value={lane} key={lane}>
@@ -166,11 +187,13 @@ export default function LaneDrawConverter({ pages }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<
+  LaneDrawConverterProps
+> = async () => {
   const pages = getAllPages();
   return {
     props: {
       pages,
     },
   };
-}
+};

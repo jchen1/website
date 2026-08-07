@@ -1,4 +1,5 @@
 import React from "react";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 import {
   getAllPosts,
@@ -11,7 +12,26 @@ import BlogSnippet from "components/BlogSnippet";
 import Pagination from "components/Pagination";
 import { sizeImage } from "../lib/util/server";
 
-export default function IndexPage(props) {
+import type { MarkdownItem } from "../lib/types";
+
+// Dimensions of a post's hero image, or `{}` when the post has no hero image
+// or its dimensions could not be read.
+export type HeroImageSize = Partial<NonNullable<ReturnType<typeof sizeImage>>>;
+
+// A post with its excerpt rendered, as listed on an index page.
+export interface SnippetPost extends MarkdownItem {
+  excerptHTML: string;
+  postExcerptAnchor: string;
+  heroImageSize: HeroImageSize;
+}
+
+export interface IndexPageProps {
+  posts: SnippetPost[];
+  next: string | false;
+  prev: string | null;
+}
+
+export default function IndexPage(props: IndexPageProps) {
   const { posts, next, prev } = props;
 
   const postMarkup = posts.map((post, idx) => (
@@ -30,8 +50,11 @@ export default function IndexPage(props) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  const page = parseInt(params.page) - 1;
+export const getStaticProps: GetStaticProps<
+  IndexPageProps,
+  { page: string }
+> = async ({ params }) => {
+  const page = parseInt(params!.page) - 1;
   const start = POSTS_PER_PAGE * page;
 
   const allPosts = getAllPosts(POST_FIELDS);
@@ -44,7 +67,7 @@ export async function getStaticProps({ params }) {
       );
       delete post.content;
 
-      const heroImageSize = (function () {
+      const heroImageSize = (function (): HeroImageSize {
         if (post.heroImage) {
           return sizeImage(post.heroImage, { basepath: "public" }) || {};
         }
@@ -81,9 +104,9 @@ export async function getStaticProps({ params }) {
       prev,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts(["slug"]);
   const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
   return {
@@ -94,4 +117,4 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   };
-}
+};

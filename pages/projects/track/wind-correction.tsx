@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import { getAllPages } from "lib/track/pages";
+import type { TrackPage } from "lib/track/pages";
 
 import { useRouter } from "next/router";
 
@@ -12,9 +13,15 @@ import UnitInput from "components/UnitInput";
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
+import type { GetStaticProps } from "next";
+import type { Metas } from "lib/types";
+
 function useSearchParams() {
   const router = useRouter();
-  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+  return useMemo(
+    () => new URLSearchParams(router.query as Record<string, string>),
+    [router.query],
+  );
 }
 
 // Wind's effect on a mark, from Moinat, Fabius & Emanuel (2018):
@@ -22,7 +29,7 @@ function useSearchParams() {
 // benefit — positive means the wind improved the performance (a faster time or
 // a longer jump). The 100m linear term scales with the mark because faster
 // athletes spend less time exposed to the wind.
-const windEffect = {
+const windEffect: Record<string, (mark: number, w: number) => number> = {
   "100m": (mark, w) => (0.009459 * mark - 0.0449) * w - 0.0042 * w * w,
   "200m": (mark, w) => 0.09 * w - 0.01 * w * w,
   "100mH": (mark, w) => 0.093 * w - 0.01 * w * w,
@@ -33,7 +40,7 @@ const windEffect = {
 
 // A tailwind makes timed events faster (lower time) but jumps longer, so the
 // benefit is subtracted from a time and added to a distance.
-const eventIsTimed = {
+const eventIsTimed: Record<string, boolean> = {
   "100m": true,
   "200m": true,
   "100mH": true,
@@ -42,7 +49,7 @@ const eventIsTimed = {
   "Triple Jump": false,
 };
 
-const units = {
+const units: Record<string, string> = {
   "100m": "s",
   "200m": "s",
   "100mH": "s",
@@ -52,9 +59,13 @@ const units = {
 };
 
 // Convert a mark achieved in the given wind to its still-air equivalent.
-function toStillAir(event, mark, wind) {
-  const markNum = parseFloat(mark);
-  const windNum = parseFloat(wind || "0");
+function toStillAir(
+  event: string,
+  mark: string | number,
+  wind: string | number,
+) {
+  const markNum = parseFloat(mark as string);
+  const windNum = parseFloat((wind || "0") as string);
 
   if (isNaN(markNum) || isNaN(windNum) || !windEffect[event]) {
     return null;
@@ -65,7 +76,11 @@ function toStillAir(event, mark, wind) {
 }
 
 // Apply a wind to a still-air mark.
-function fromStillAir(event, stillAirMark, wind) {
+function fromStillAir(
+  event: string,
+  stillAirMark: number | null,
+  wind: number,
+) {
   if (stillAirMark == null || !windEffect[event]) {
     return null;
   }
@@ -74,23 +89,27 @@ function fromStillAir(event, stillAirMark, wind) {
   return eventIsTimed[event] ? stillAirMark - benefit : stillAirMark + benefit;
 }
 
-export const metas = {
+export const metas: Metas = {
   title: "Wind Correction Calculator",
   description:
     "Corrects sprint and jump marks for wind based on Moniat, Fabius, and Emanuel (2018).",
 };
 
-export default function WindCorrection({ pages }) {
+interface WindCorrectionProps {
+  pages: TrackPage[];
+}
+
+export default function WindCorrection({ pages }: WindCorrectionProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   // Initialize state from URL params if they exist
   const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
-  const [wind, setWind] = useState(
-    () => parseFloat(searchParams.get("wind")) || 0,
+  const [wind, setWind] = useState<string | number>(
+    () => parseFloat(searchParams.get("wind") ?? "") || 0,
   );
-  const [mark, setMark] = useState(
-    () => parseFloat(searchParams.get("mark")) || 9.58,
+  const [mark, setMark] = useState<string | number>(
+    () => parseFloat(searchParams.get("mark") ?? "") || 9.58,
   );
   const [hasShared, setHasShared] = useState(false);
 
@@ -149,7 +168,7 @@ export default function WindCorrection({ pages }) {
           <select
             className={styles.select}
             value={event}
-            onChange={e => setEvent(e.target.value)}
+            onChange={e => setEvent((e.target as HTMLSelectElement).value)}
           >
             {Object.keys(windEffect).map(c => (
               <option value={c} key={c}>
@@ -222,11 +241,11 @@ export default function WindCorrection({ pages }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<WindCorrectionProps> = async () => {
   const pages = getAllPages();
   return {
     props: {
       pages,
     },
   };
-}
+};

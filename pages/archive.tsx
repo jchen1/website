@@ -1,11 +1,27 @@
 import React from "react";
 import Link from "next/link";
+import type { GetStaticProps } from "next";
 
 import { ARCHIVE_FIELDS, getAllPosts } from "../lib/blogs";
 
 import styles from "styles/pages/archive.module.scss";
 
-export function ArchiveItem({ title, date, slug, prefix }) {
+import type { MarkdownItem } from "../lib/types";
+
+export type ArchiveItemProps = Pick<
+  MarkdownItem,
+  "title" | "date" | "slug" | "tags" | "content" | "heroImage" | "ogImage"
+> & {
+  prefix?: string;
+};
+
+export interface ArchiveProps {
+  posts: MarkdownItem[];
+  title: string;
+  prefix?: string;
+}
+
+export function ArchiveItem({ title, date, slug, prefix }: ArchiveItemProps) {
   return (
     <div className={styles.wrapper}>
       <h4 className={styles.item}>
@@ -18,15 +34,15 @@ export function ArchiveItem({ title, date, slug, prefix }) {
   );
 }
 
-export default function Archive(props) {
+export default function Archive(props: ArchiveProps) {
   const { posts, title, prefix } = props;
 
-  const postsByYear = [];
-  let currentYear = null;
-  let currentYearPosts = [];
+  const postsByYear: [number | null, MarkdownItem[]][] = [];
+  let currentYear: number | null = null;
+  let currentYearPosts: MarkdownItem[] = [];
 
   posts.forEach(post => {
-    const year = new Date(post.date).getFullYear();
+    const year = new Date(post.date!).getFullYear();
     if (year !== currentYear) {
       if (currentYearPosts.length > 0) {
         postsByYear.push([currentYear, currentYearPosts]);
@@ -56,7 +72,7 @@ export default function Archive(props) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps<ArchiveProps> = async () => {
   const posts = getAllPosts(ARCHIVE_FIELDS);
 
   return {
@@ -65,4 +81,4 @@ export async function getStaticProps({ params }) {
       title: "Archive",
     },
   };
-}
+};

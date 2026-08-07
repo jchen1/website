@@ -1,12 +1,20 @@
 import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { ARCHIVE_FIELDS, getAllPosts, getPostsByTag } from "lib/blogs";
 
+import type { MarkdownItem } from "lib/types";
+
 import { ArchiveItem } from "../archive";
 
-export default function IndexPage(props) {
+interface TagPageProps {
+  posts: MarkdownItem[];
+  tag: string;
+}
+
+export default function IndexPage(props: TagPageProps) {
   const { posts, tag } = props;
   const router = useRouter();
   if (!router.isFallback && !posts) {
@@ -25,8 +33,11 @@ export default function IndexPage(props) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  const tag = params.tag;
+export const getStaticProps: GetStaticProps<
+  TagPageProps,
+  { tag: string }
+> = async ({ params }) => {
+  const tag = params!.tag;
   const posts = getPostsByTag(tag, ARCHIVE_FIELDS);
 
   return {
@@ -35,13 +46,13 @@ export async function getStaticProps({ params }) {
       tag,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const tags = [
     ...new Set(
       getAllPosts(["tags"])
-        .map(p => p.tags)
+        .map(p => p.tags!)
         .map(taglist => taglist.split(","))
         .flat(),
     ),
@@ -54,4 +65,4 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   };
-}
+};

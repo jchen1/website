@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NProgress from "lib/nprogress";
 import Router, { useRouter } from "next/router";
+import type { AppProps } from "next/app";
 
 import "styles/main.scss";
 import { BASE_URL, SITE_TITLE, SITE_DESCRIPTION } from "lib/constants";
@@ -16,15 +17,19 @@ import { canonicalize } from "lib/util";
 
 Router.events.on(
   "routeChangeStart",
-  (_, { shallow }) => !shallow && NProgress.start(),
+  (_: string, { shallow }: { shallow: boolean }) =>
+    !shallow && NProgress.start(),
 );
-Router.events.on("routeChangeComplete", (url, { shallow }) => {
-  if (!shallow) {
-    NProgress.done();
-    pageview(url);
-  }
-});
-Router.events.on("routeChangeError", _ => NProgress.done());
+Router.events.on(
+  "routeChangeComplete",
+  (url: string, { shallow }: { shallow: boolean }) => {
+    if (!shallow) {
+      NProgress.done();
+      pageview(url);
+    }
+  },
+);
+Router.events.on("routeChangeError", (_: Error) => NProgress.done());
 
 // to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
 const transitionStyle =
@@ -32,7 +37,7 @@ const transitionStyle =
 
 const fullWidthRoutes = ["/metrics"];
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
 

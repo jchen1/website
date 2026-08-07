@@ -1,12 +1,18 @@
 import Link from "next/link";
+import type { GetStaticProps } from "next";
 
 import { getAllPages } from "lib/track/pages";
+import type { TrackPage } from "lib/track/pages";
 
 import Title from "components/Title";
 
 import styles from "styles/components/Blog.module.scss";
 
-export default function Index({ pages }) {
+interface IndexProps {
+  pages: TrackPage[];
+}
+
+export default function Index({ pages }: IndexProps) {
   return (
     <article className={styles.article}>
       <Title title="Track Utilities" />
@@ -22,11 +28,11 @@ export default function Index({ pages }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<IndexProps> = async () => {
   const pages = getAllPages();
   return {
     props: {
       pages,
     },
   };
-}
+};

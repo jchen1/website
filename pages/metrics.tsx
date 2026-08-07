@@ -13,7 +13,10 @@ import { transformEvents } from "../lib/metricsUtils";
 import { getEvents, connect } from "../lib/api";
 import Meta from "../components/Meta";
 
-const WSIndicator = styled.div`
+import type { PlotConfig } from "../lib/metrics";
+import type { SeriesData } from "../lib/metricsUtils";
+
+const WSIndicator = styled.div<{ color: string }>`
   background-color: ${props => props.color};
   height: 1rem;
   width: 1rem;
@@ -70,7 +73,7 @@ const Title = styled.h1`
   background-color: unset;
 `;
 
-function getSocketColor(ws) {
+function getSocketColor(ws: WebSocket | null) {
   if (!ws) return Colors.RED;
 
   switch (ws.readyState) {
@@ -91,7 +94,9 @@ export default function Metrics() {
   const [activeTab, setActiveTab] = useState("Now");
   const [socketColor, setSocketColor] = useState(Colors.RED);
 
-  const [loadState, setLoadState] = useState("loading");
+  const [loadState, setLoadState] = useState<"loading" | "loaded" | "error">(
+    "loading",
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,7 +122,8 @@ export default function Metrics() {
         setWs(ws);
       },
       (ws, msg) => {
-        const response = JSON.parse(event.data);
+        // reads the deprecated global `window.event` rather than `msg`
+        const response = JSON.parse((event as MessageEvent).data);
         addMetrics(response.events);
       },
     );
@@ -136,7 +142,10 @@ export default function Metrics() {
     if (loadState === "loading") return <h2>Loading...</h2>;
     if (loadState === "error") return <h2>Error loading plots...</h2>;
     return Plots[activeTab]
-      .map(e => [e, transformEvents(metrics, e.datatypes, e)])
+      .map((e): [PlotConfig, SeriesData] => [
+        e,
+        transformEvents(metrics, e.datatypes, e),
+      ])
       .filter(([e, d]) => d[0].length > 0)
       .map(([e, d]) => (
         <Plot

@@ -66,8 +66,8 @@ function generateRssFeed(posts) {
   );
 
   // ignore prefixed & dynamic pages
-  const pages = (await globby(["pages/*.jsx"]))
-    .map(page => page.replace(/\.jsx$/, ""))
+  const pages = (await globby(["pages/*.{jsx,tsx}"]))
+    .map(page => page.replace(/\.(jsx|tsx)$/, ""))
     .map(page => page.replace(/^pages\//, ""))
     .filter(page => !/^[_\[]/.test(page));
 

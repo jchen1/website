@@ -37,3 +37,6 @@ public/sitemap.xml
 
 .idea
 .eslintcache
+
+# typescript incremental cache
+tsconfig.tsbuildinfo

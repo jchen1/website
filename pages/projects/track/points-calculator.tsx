@@ -9,6 +9,8 @@ import {
   units,
 } from "lib/track/points-calculator/constants";
 import { getAllPages } from "lib/track/pages";
+import type { TrackPage } from "lib/track/pages";
+import type { MarkType } from "lib/track/points-calculator/constants";
 
 import Meta from "components/Meta";
 import RelatedPosts from "components/RelatedPosts";
@@ -17,15 +19,21 @@ import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
+
+import type { GetStaticProps } from "next";
+import type { Metas } from "lib/types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 function useSearchParams() {
   const router = useRouter();
-  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+  return useMemo(
+    () => new URLSearchParams(router.query as Record<string, string>),
+    [router.query],
+  );
 }
 
-function score(coefficients, x) {
+function score(coefficients: number[], x: number) {
   if (coefficients.length === 2) {
     return coefficients[0] * x + coefficients[1];
   }
@@ -34,7 +42,7 @@ function score(coefficients, x) {
   );
 }
 
-function getMarkFromScore(coefficients, y) {
+function getMarkFromScore(coefficients: number[], y: number) {
   let ret = Number(
     (
       (-1 * coefficients[1] -
@@ -63,7 +71,7 @@ function getMarkFromScore(coefficients, y) {
   return ret;
 }
 
-function userMarkToMark(userMark, markType) {
+function userMarkToMark(userMark: string, markType: MarkType) {
   switch (markType) {
     case "time":
       const [seconds, minutes, hours] = userMark
@@ -80,11 +88,11 @@ function userMarkToMark(userMark, markType) {
   }
 }
 
-function zeroPad(num, places) {
+function zeroPad(num: number, places: number) {
   return String(num).padStart(places, "0");
 }
 
-function markToUserMark(mark, markType) {
+function markToUserMark(mark: number, markType: MarkType) {
   switch (markType) {
     case "time":
       const hours = Math.floor(mark / 60 / 60);
@@ -109,13 +117,17 @@ function markToUserMark(mark, markType) {
   }
 }
 
-export const metas = {
+export const metas: Metas = {
   title: "World Athletics Points Calculator",
   description:
     "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletics' 2022 scoring tables",
 };
 
-export default function PointsCalculator({ pages }) {
+interface PointsCalculatorProps {
+  pages: TrackPage[];
+}
+
+export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -130,7 +142,9 @@ export default function PointsCalculator({ pages }) {
   const [mark, setMark] = useState(() => searchParams.get("mark") || "");
   const [points, setPoints] = useState(() => searchParams.get("points") || "");
   const [hasShared, setHasShared] = useState(false);
-  const [lastChanged, setLastChanged] = useState(null);
+  const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
+    null,
+  );
 
   // Update URL when state changes
   useEffect(() => {
@@ -167,7 +181,7 @@ export default function PointsCalculator({ pages }) {
 
   // Calculate points from mark
   const calculatePoints = useCallback(
-    (markValue, eventType) => {
+    (markValue: string, eventType: string) => {
       if (markValue === "") return "";
       try {
         const markNum = userMarkToMark(markValue, markTypes[eventType]);
@@ -182,12 +196,13 @@ export default function PointsCalculator({ pages }) {
 
   // Calculate mark from points
   const calculateMark = useCallback(
-    (pointsValue, eventType) => {
+    (pointsValue: string, eventType: string) => {
       if (pointsValue === "" || !coefficients[gender][eventType]) return "";
       try {
         const mark = getMarkFromScore(
           coefficients[gender][eventType],
-          pointsValue,
+          // the quadratic solve coerces the numeric string
+          pointsValue as unknown as number,
         );
         return markToUserMark(mark, markTypes[eventType]);
       } catch {
@@ -198,7 +213,7 @@ export default function PointsCalculator({ pages }) {
   );
 
   const onMarkChanged = useCallback(
-    newMark => {
+    (newMark: string) => {
       try {
         // First parse and format the mark
         const markNum = userMarkToMark(newMark, markTypes[event]);
@@ -219,7 +234,7 @@ export default function PointsCalculator({ pages }) {
   );
 
   const onPointsChanged = useCallback(
-    newPoints => {
+    (newPoints: string) => {
       setPoints(newPoints);
       // Only calculate mark if mark wasn't the last thing changed
       if (lastChanged !== "mark") {
@@ -280,7 +295,7 @@ export default function PointsCalculator({ pages }) {
             <select
               className={styles.select}
               value={category}
-              onChange={e => setCategory(e.target.value)}
+              onChange={e => setCategory((e.target as HTMLSelectElement).value)}
             >
               <option value="outdoor">Outdoor</option>
               <option value="indoor">Indoor</option>
@@ -293,7 +308,7 @@ export default function PointsCalculator({ pages }) {
             <select
               className={styles.select}
               value={gender}
-              onChange={e => setGender(e.target.value)}
+              onChange={e => setGender((e.target as HTMLSelectElement).value)}
             >
               <option value="men">Men</option>
               <option value="women">Women</option>
@@ -306,7 +321,7 @@ export default function PointsCalculator({ pages }) {
             <select
               className={styles.select}
               value={event}
-              onChange={e => setEvent(e.target.value)}
+              onChange={e => setEvent((e.target as HTMLSelectElement).value)}
             >
               {events.map(event => (
                 <option value={event} key={event}>
@@ -385,11 +400,13 @@ export default function PointsCalculator({ pages }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<
+  PointsCalculatorProps
+> = async () => {
   const pages = getAllPages();
   return {
     props: {
       pages,
     },
   };
-}
+};

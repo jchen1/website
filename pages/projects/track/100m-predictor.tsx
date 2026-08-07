@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 
 import { getAllPages } from "lib/track/pages";
+import type { TrackPage } from "lib/track/pages";
 
 import Meta from "components/Meta";
 import RelatedPosts from "components/RelatedPosts";
@@ -12,9 +13,15 @@ import UnitInput from "components/UnitInput";
 import blogStyles from "styles/components/Blog.module.scss";
 import styles from "styles/pages/track-calculators.module.scss";
 
+import type { GetStaticProps } from "next";
+import type { Metas } from "lib/types";
+
 function useSearchParams() {
   const router = useRouter();
-  return useMemo(() => new URLSearchParams(router.query), [router.query]);
+  return useMemo(
+    () => new URLSearchParams(router.query as Record<string, string>),
+    [router.query],
+  );
 }
 
 // P_new = P + a*w + b*P*w + c*w^2
@@ -25,11 +32,16 @@ const predictorCoefficients = [
   2.2441850962837124, 0.14735859276138946, -0.042918544171317706,
 ];
 
-function predict100m(block30, fly10, wind = 0.0, reaction = 0.1) {
-  block30 = parseFloat(block30);
-  fly10 = parseFloat(fly10);
-  wind = parseFloat(wind);
-  reaction = parseFloat(reaction);
+function predict100m(
+  block30: string | number,
+  fly10: string | number,
+  wind: string | number = 0.0,
+  reaction: string | number = 0.1,
+) {
+  block30 = parseFloat(block30 as string);
+  fly10 = parseFloat(fly10 as string);
+  wind = parseFloat(wind as string);
+  reaction = parseFloat(reaction as string);
 
   if (isNaN(block30) || isNaN(fly10) || isNaN(wind) || isNaN(reaction)) {
     return null;
@@ -49,14 +61,14 @@ function predict100m(block30, fly10, wind = 0.0, reaction = 0.1) {
   return predicted - windCorrection + reaction;
 }
 
-export const metas = {
+export const metas: Metas = {
   title: "100m Predictor",
   description: "Predicts 100m times given a block 30 and fly 10 time.",
 };
 
 const wrappedOnChange =
-  (setter, precision = 2) =>
-  v => {
+  (setter: (value: string) => void, precision = 2) =>
+  (v: string) => {
     const floatValue = parseFloat(v);
     // if not a number just set the value
     if (isNaN(floatValue)) {
@@ -66,7 +78,11 @@ const wrappedOnChange =
     setter(floatValue.toFixed(precision));
   };
 
-export default function WindCorrection({ pages }) {
+interface PredictorProps {
+  pages: TrackPage[];
+}
+
+export default function WindCorrection({ pages }: PredictorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -275,11 +291,11 @@ export default function WindCorrection({ pages }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<PredictorProps> = async () => {
   const pages = getAllPages();
   return {
     props: {
       pages,
     },
   };
-}
+};

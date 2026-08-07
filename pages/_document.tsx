@@ -3,8 +3,17 @@ import { ServerStyleSheet } from "styled-components";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 
+import type { DocumentContext, DocumentInitialProps } from "next/document";
+import type { HTMLAttributeCrossOrigin } from "react";
+
+// An empty crossorigin attribute selects anonymous mode; the JSX attribute
+// type only lists the two explicit keywords.
+const ANONYMOUS_CROSSORIGIN = "" as unknown as HTMLAttributeCrossOrigin;
+
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(
+    ctx: DocumentContext,
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -84,19 +93,19 @@ export default class MyDocument extends Document {
             rel="preload"
             href="/fonts/Inter-Regular.woff2"
             as="font"
-            crossOrigin=""
+            crossOrigin={ANONYMOUS_CROSSORIGIN}
           />
           <link
             rel="preload"
             href="/fonts/Inter-Bold.woff2"
             as="font"
-            crossOrigin=""
+            crossOrigin={ANONYMOUS_CROSSORIGIN}
           />
           <link
             rel="preload"
             href="/fonts/Inter-Black.woff2"
             as="font"
-            crossOrigin=""
+            crossOrigin={ANONYMOUS_CROSSORIGIN}
           />
         </Head>
         <body>

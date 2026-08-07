@@ -30,7 +30,7 @@ const OuterContainer = styled.div`
   align-items: center;
 `;
 
-function hashAnswer(answer) {
+function hashAnswer(answer: string | number) {
   return sha256(`${answer}`).toString();
 }
 
@@ -88,11 +88,22 @@ const ClueContainer = styled.div`
   }
 `;
 
-function Code({ clue, numDigits, answerHash, reward, hint }) {
-  const [answeredCorrectly, setAnsweredCorrectly] = useState(null);
-  const [answer, setAnswer] = useState(0);
+interface CodeProps {
+  clue: string;
+  numDigits: number;
+  answerHash: string;
+  reward: string;
+  hint?: string;
+}
 
-  const wrappedSetAnswer = e => setAnswer(e.target.value);
+function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
+  const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(
+    null,
+  );
+  const [answer, setAnswer] = useState<string | number>(0);
+
+  const wrappedSetAnswer = (e: Event) =>
+    setAnswer((e.target as HTMLInputElement).value);
 
   const checkAnswer = () => {
     setAnsweredCorrectly(hashAnswer(answer) === answerHash);
@@ -101,7 +112,8 @@ function Code({ clue, numDigits, answerHash, reward, hint }) {
   useEffect(() => {
     if (answeredCorrectly) {
       if (localStorage.getItem(clue) !== "true") {
-        localStorage.setItem(clue, answeredCorrectly);
+        // setItem stringifies the boolean it is handed
+        localStorage.setItem(clue, answeredCorrectly as unknown as string);
 
         const confettiSettings = { target: "confetti-canvas" };
         const confetti = new ConfettiGenerator(confettiSettings);
@@ -133,9 +145,9 @@ function Code({ clue, numDigits, answerHash, reward, hint }) {
           pattern="0-9"
           value={answer}
           onChange={wrappedSetAnswer}
-          disabled={answeredCorrectly}
+          disabled={answeredCorrectly!}
         />
-        <button onClick={checkAnswer} disabled={answeredCorrectly}>
+        <button onClick={checkAnswer} disabled={answeredCorrectly!}>
           Guess!
         </button>
       </ClueContainer>
