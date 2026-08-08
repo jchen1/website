@@ -26,7 +26,6 @@
   font-family: var(--font-face);
   background-color: var(--white);
   border: 2px solid var(--primary-gray);
-  border-radius: 0.25rem;
   box-shadow: var(--shadow-size) var(--shadow-size) 0 0 var(--primary);
 
   @include mobile {
@@ -78,6 +77,12 @@
   padding: 0.5rem 1rem;
   color: var(--dark-gray);
   cursor: pointer;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: var(--dark-gray);
+  }
 
   @include mobile {
     padding: 0.5rem 0.75rem;
@@ -87,6 +92,11 @@
 .optionSelected {
   background-color: var(--primary);
   color: var(--primary-gray);
+
+  &:hover,
+  &:active {
+    color: var(--primary-gray);
+  }
 
   .date {
     color: var(--primary-gray);

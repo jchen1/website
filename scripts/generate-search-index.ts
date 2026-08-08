@@ -8,7 +8,9 @@ import type {
 } from "../lib/searchIndex";
 import type { MarkdownItem } from "../lib/types";
 
-const PAGES: SearchIndexItem[] = [
+// Every static page needs a deliberate decision: list it here, and add its
+// route to EXCLUDED_PAGE_ROUTES if it should stay out of the search palette.
+const ALL_PAGES: SearchIndexItem[] = [
   { title: "About", route: "/about/", group: "Pages" },
   { title: "Projects", route: "/projects/", group: "Pages" },
   { title: "Archive", route: "/archive/", group: "Pages" },
@@ -38,6 +40,26 @@ const PAGES: SearchIndexItem[] = [
     group: "Pages",
   },
 ];
+
+// Listing and utility pages deliberately kept out of the palette. Individual
+// posts and meet reports are indexed under their own groups, so their listing
+// pages add noise rather than value here.
+const EXCLUDED_PAGE_ROUTES = new Set([
+  "/archive/",
+  "/meet-reports/",
+  "/impact/",
+  "/metrics/",
+  "/jota/",
+  "/projects/track/",
+]);
+
+for (const route of EXCLUDED_PAGE_ROUTES) {
+  if (!ALL_PAGES.some(page => page.route === route)) {
+    throw new Error(`Excluded route not present in ALL_PAGES: ${route}`);
+  }
+}
+
+const PAGES = ALL_PAGES.filter(page => !EXCLUDED_PAGE_ROUTES.has(page.route));
 
 function toItem(
   item: MarkdownItem,

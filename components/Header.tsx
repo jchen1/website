@@ -74,10 +74,7 @@ export default function Header({
           onMouseEnter={onPreloadPalette}
           onFocus={onPreloadPalette}
         >
-          <SearchIcon width={22} height={22} />
-          <kbd className={styles.kbd} aria-hidden="true">
-            ⌘K
-          </kbd>
+          <SearchIcon width={20} height={20} />
         </button>
         <Twitter
           eventAction="header-cta-click"

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { event } from "lib/gtag";
@@ -101,7 +102,7 @@ function groupResults(results: SearchIndexItem[]): ResultGroup[] {
   return groups;
 }
 
-function scrollOptionIntoView(el: HTMLDivElement | null) {
+function scrollOptionIntoView(el: HTMLAnchorElement | null) {
   el?.scrollIntoView({ block: "nearest" });
 }
 
@@ -149,17 +150,24 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
   const flat = useMemo(() => groups.flatMap(g => g.items), [groups]);
   const selectedIndex = flat.length ? Math.min(selected, flat.length - 1) : -1;
 
-  const navigate = useCallback(
+  const trackSelect = useCallback(
     (item: SearchIndexItem) => {
       event({
         action: "command-palette-select",
         category: "engagement",
         label: item.route,
       });
-      void router.push(item.route);
       onClose();
     },
-    [router, onClose],
+    [onClose],
+  );
+
+  const navigate = useCallback(
+    (item: SearchIndexItem) => {
+      trackSelect(item);
+      void router.push(item.route);
+    },
+    [router, trackSelect],
   );
 
   const onQueryChange = useCallback((e: Event) => {
@@ -265,11 +273,13 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
                 const i = group.start + j;
                 const isSelected = i === selectedIndex;
                 return (
-                  <div
+                  <Link
                     key={item.route}
+                    href={item.route}
                     id={`${OPTION_ID_PREFIX}${i}`}
                     role="option"
                     aria-selected={isSelected}
+                    tabIndex={-1}
                     className={
                       isSelected
                         ? `${styles.option} ${styles.optionSelected}`
@@ -277,13 +287,13 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
                     }
                     ref={isSelected ? scrollOptionIntoView : undefined}
                     onMouseMove={() => setSelected(i)}
-                    onClick={() => navigate(item)}
+                    onClick={() => trackSelect(item)}
                   >
                     <span className={styles.title}>{item.title}</span>
                     {item.date && (
                       <span className={styles.date}>{item.date}</span>
                     )}
-                  </div>
+                  </Link>
                 );
               })}
             </div>
