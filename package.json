@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "confetti-js": "^0.0.18",
-    "crypto-js": "^4.2.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "image-size": "^2.0.2",
@@ -27,7 +26,6 @@
     "preact-render-to-string": "^6.7.0",
     "react": "npm:@preact/compat@^18.3.2",
     "react-dom": "npm:@preact/compat@^18.3.2",
-    "react-hooks-global-state": "^1.0.2",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
@@ -45,7 +43,6 @@
     "@rushstack/eslint-patch": "^1.16.1",
     "@svgr/webpack": "^8.1.0",
     "@swc-node/register": "^1.12.1",
-    "@types/crypto-js": "^4.2.2",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",

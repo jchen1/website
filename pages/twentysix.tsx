@@ -1,13 +1,15 @@
-import sha256 from "crypto-js/sha256";
 import React, { useEffect, useState } from "react";
-import ConfettiGenerator from "confetti-js";
 
 import TitleContainer from "components/containers/TitleContainer";
 
+import sha256 from "lib/util/sha256";
+
 import styles from "styles/components/TwentySix.module.scss";
 
+import type ConfettiGenerator from "confetti-js";
+
 function hashAnswer(answer: string | number) {
-  return sha256(`${answer}`).toString();
+  return sha256(`${answer}`);
 }
 
 interface CodeProps {
@@ -37,13 +39,23 @@ function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
         // setItem stringifies the boolean it is handed
         localStorage.setItem(clue, answeredCorrectly as unknown as string);
 
-        const confettiSettings = { target: "confetti-canvas" };
-        const confetti = new ConfettiGenerator(confettiSettings);
-        confetti.render();
+        let confetti: ConfettiGenerator | undefined;
+        let cancelled = false;
 
-        setTimeout(() => confetti.clear(), 5000);
+        void import("confetti-js").then(({ default: ConfettiGenerator }) => {
+          if (cancelled) return;
 
-        return () => confetti.clear();
+          const confettiSettings = { target: "confetti-canvas" };
+          confetti = new ConfettiGenerator(confettiSettings);
+          confetti.render();
+
+          setTimeout(() => confetti?.clear(), 5000);
+        });
+
+        return () => {
+          cancelled = true;
+          confetti?.clear();
+        };
       }
     }
   }, [answeredCorrectly, clue]);
