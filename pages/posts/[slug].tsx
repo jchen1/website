@@ -22,8 +22,11 @@ import type { MarkdownHtml, MarkdownItem } from "lib/types";
 type HeroImageSize = Partial<NonNullable<ReturnType<typeof sizeImage>>>;
 
 interface PostProps {
-  post: MarkdownItem & MarkdownHtml & { heroImageSize: HeroImageSize };
-  relatedPosts: MarkdownItem[];
+  post: Omit<MarkdownItem, "content"> &
+    Pick<MarkdownHtml, "contentHTML" | "excerpt"> & {
+      heroImageSize: HeroImageSize;
+    };
+  relatedPosts: Pick<MarkdownItem, "title" | "slug">[];
 }
 
 export default function Post({ post, relatedPosts }: PostProps) {
@@ -45,7 +48,7 @@ export const getStaticProps: GetStaticProps<
   { slug: string }
 > = async ({ params }) => {
   const post = getPostBySlug(params!.slug, POST_FIELDS);
-  const content = await markdownToHtml(post.content || "");
+  const { contentHTML, excerpt } = await markdownToHtml(post.content || "");
 
   const heroImageSize = (function (): HeroImageSize {
     if (post.heroImage) {
@@ -54,13 +57,17 @@ export const getStaticProps: GetStaticProps<
     return {};
   })();
 
-  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS);
+  const relatedPosts = getRelatedPosts(post, ARCHIVE_FIELDS).map(
+    ({ date: _date, tags: _tags, draft: _draft, ...related }) => related,
+  );
+  const { content: _content, ...postFields } = post;
 
   return {
     props: {
       post: {
-        ...post,
-        ...content,
+        ...postFields,
+        contentHTML,
+        excerpt,
         heroImageSize,
       },
       relatedPosts,

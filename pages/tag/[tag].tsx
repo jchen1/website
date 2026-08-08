@@ -5,12 +5,11 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { ARCHIVE_FIELDS, getAllPosts, getPostsByTag } from "lib/blogs";
 
-import type { MarkdownItem } from "lib/types";
-
 import { ArchiveItem } from "../archive";
+import type { ArchivePost } from "../archive";
 
 interface TagPageProps {
-  posts: MarkdownItem[];
+  posts: ArchivePost[];
   tag: string;
 }
 
@@ -38,7 +37,9 @@ export const getStaticProps: GetStaticProps<
   { tag: string }
 > = async ({ params }) => {
   const tag = params!.tag;
-  const posts = getPostsByTag(tag, ARCHIVE_FIELDS);
+  const posts = getPostsByTag(tag, ARCHIVE_FIELDS).map(
+    ({ tags: _tags, draft: _draft, ...post }) => post,
+  );
 
   return {
     props: {

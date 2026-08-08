@@ -19,7 +19,10 @@ import type { MarkdownItem } from "../lib/types";
 export type HeroImageSize = Partial<NonNullable<ReturnType<typeof sizeImage>>>;
 
 // A post with its excerpt rendered, as listed on an index page.
-export interface SnippetPost extends MarkdownItem {
+export interface SnippetPost extends Omit<
+  MarkdownItem,
+  "content" | "tags" | "draft"
+> {
   excerptHTML: string;
   postExcerptAnchor: string;
   heroImageSize: HeroImageSize;
@@ -65,7 +68,12 @@ export const getStaticProps: GetStaticProps<
         post.content || "",
         { eagerLoad: i === 0 },
       );
-      delete post.content;
+      const {
+        content: _content,
+        tags: _tags,
+        draft: _draft,
+        ...postFields
+      } = post;
 
       const heroImageSize = (function (): HeroImageSize {
         if (post.heroImage) {
@@ -75,7 +83,7 @@ export const getStaticProps: GetStaticProps<
       })();
 
       return {
-        ...post,
+        ...postFields,
         excerptHTML,
         postExcerptAnchor,
         heroImageSize,

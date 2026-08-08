@@ -8,7 +8,8 @@ import ConvertKit from "components/ConvertKit";
 import type { MarkdownHtml, MarkdownItem } from "lib/types";
 
 interface AboutProps {
-  page: MarkdownItem & MarkdownHtml;
+  page: Omit<MarkdownItem, "content"> &
+    Pick<MarkdownHtml, "contentHTML" | "excerpt">;
 }
 
 export default function About({ page }: AboutProps) {
@@ -22,13 +23,15 @@ export default function About({ page }: AboutProps) {
 
 export const getStaticProps: GetStaticProps<AboutProps> = async () => {
   const page = getPageBySlug("about", ["title", "content"]);
-  const content = await markdownToHtml(page.content || "");
+  const { contentHTML, excerpt } = await markdownToHtml(page.content || "");
+  const { content: _content, ...pageFields } = page;
 
   return {
     props: {
       page: {
-        ...page,
-        ...content,
+        ...pageFields,
+        contentHTML,
+        excerpt,
       },
     },
   };
