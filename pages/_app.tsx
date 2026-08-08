@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import NProgress from "lib/nprogress";
 import Router, { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import type { ComponentType } from "react";
@@ -17,21 +16,37 @@ import BlogContainer from "components/containers/BlogContainer";
 import MainContainer from "components/containers/MainContainer";
 import { canonicalize } from "lib/util";
 
+// The progress bar loads in its own chunk; the idle warm-up below makes it
+// available before the first navigation in practice. The module promise is
+// cached, so start/done callbacks run in registration order.
+const nprogress = () => import("lib/nprogress").then(mod => mod.default);
+
 Router.events.on(
   "routeChangeStart",
-  (_: string, { shallow }: { shallow: boolean }) =>
-    !shallow && NProgress.start(),
+  (_: string, { shallow }: { shallow: boolean }) => {
+    if (!shallow) {
+      void nprogress()
+        .then(n => n.start())
+        .catch(() => undefined);
+    }
+  },
 );
 Router.events.on(
   "routeChangeComplete",
   (url: string, { shallow }: { shallow: boolean }) => {
     if (!shallow) {
-      NProgress.done();
+      void nprogress()
+        .then(n => n.done())
+        .catch(() => undefined);
       pageview(url);
     }
   },
 );
-Router.events.on("routeChangeError", (_: Error) => NProgress.done());
+Router.events.on("routeChangeError", (_: Error) => {
+  void nprogress()
+    .then(n => n.done())
+    .catch(() => undefined);
+});
 
 // to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
 const transitionStyle =
@@ -44,6 +59,12 @@ function preloadPalette() {
   void import("components/CommandPalette")
     .then(mod => mod.preloadSearchIndex())
     .catch(() => undefined);
+}
+
+// Warms the async chunks the app loads on demand
+function preloadDeferred() {
+  preloadPalette();
+  void nprogress().catch(() => undefined);
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -89,10 +110,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (!loaded) return;
     if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(preloadPalette);
+      const id = window.requestIdleCallback(preloadDeferred);
       return () => window.cancelIdleCallback(id);
     }
-    const id = window.setTimeout(preloadPalette, 2000);
+    const id = window.setTimeout(preloadDeferred, 2000);
     return () => window.clearTimeout(id);
   }, [loaded]);
 
