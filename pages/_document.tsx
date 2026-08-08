@@ -62,19 +62,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <link
             rel="preload"
-            href="/fonts/Inter-Regular.woff2"
-            as="font"
-            crossOrigin={ANONYMOUS_CROSSORIGIN}
-          />
-          <link
-            rel="preload"
-            href="/fonts/Inter-Bold.woff2"
-            as="font"
-            crossOrigin={ANONYMOUS_CROSSORIGIN}
-          />
-          <link
-            rel="preload"
-            href="/fonts/Inter-Black.woff2"
+            href="/fonts/Inter-Var.woff2"
             as="font"
             crossOrigin={ANONYMOUS_CROSSORIGIN}
           />
