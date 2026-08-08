@@ -1,43 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-import { Colors } from "../../lib/metrics";
-
-const TabContainerRoot = styled.div`
-  flex-basis: 100%;
-  width: 100%;
-  flex-shrink: 0;
-  overflow-x: auto;
-  display: flex;
-
-  border-bottom: 1px solid ${Colors.LIGHT_GRAY};
-  margin: 1rem 0 2rem 0;
-  height: 3rem;
-`;
-
-const Tab = styled.div`
-  color: ${Colors.GRAY};
-  user-select: none;
-  cursor: pointer;
-  outline: 0;
-  margin: 0 1rem;
-
-  &:first-child {
-    margin-left: 0rem;
-  }
-
-  .text {
-    display: inline-block;
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-  }
-
-  &.active {
-    color: ${Colors.BLACK};
-    font-weight: bold;
-    border-bottom: 1px solid ${Colors.BLACK};
-  }
-`;
+import styles from "styles/components/TabContainer.module.scss";
 
 interface TabDefinition {
   name: string;
@@ -56,15 +19,17 @@ export default function TabContainer({
   setActiveTab,
 }: TabContainerProps) {
   const tabMarkup = tabs.map(({ name, value }, idx) => (
-    <Tab
-      className={activeTab === value ? "active" : "inactive"}
+    <div
+      className={
+        activeTab === value ? `${styles.tab} ${styles.active}` : styles.tab
+      }
       tabIndex={idx}
       key={name}
       role="button"
       onClick={e => setActiveTab(value)}
     >
-      <span className="text">{name}</span>
-    </Tab>
+      <span className={styles.text}>{name}</span>
+    </div>
   ));
-  return <TabContainerRoot>{tabMarkup}</TabContainerRoot>;
+  return <div className={styles.container}>{tabMarkup}</div>;
 }

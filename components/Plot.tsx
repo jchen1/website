@@ -1,27 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 
 import LinePlot from "./plots/LinePlot";
 import GithubPlot from "./plots/GithubPlot";
 import LatestPlot from "./plots/LatestPlot";
 
+import styles from "styles/components/Plot.module.scss";
+
 import type { ComponentType } from "react";
 import type { PlotConfig } from "../lib/metrics";
 import type { SeriesData } from "../lib/metricsUtils";
-
-const PlotContainer = styled.div`
-  // https://stackoverflow.com/questions/49174998/incorrect-width-flex-items-with-gap-and-fixed-flex-basis
-  // gap is 1rem
-  flex-basis: calc((100% - 2rem) / 3);
-
-  h3 {
-    text-align: center;
-  }
-
-  @media screen and (max-width: 640px) {
-    flex-basis: 100%;
-  }
-`;
 
 export interface PlotProps {
   type?: PlotConfig["plotType"];
@@ -51,9 +38,9 @@ export default function Plot(props: PlotProps) {
   }
 
   return (
-    <PlotContainer>
+    <div className={styles.container}>
       <h3>{title || opts?.datatypes[0]}</h3>
       <Element {...props} />
-    </PlotContainer>
+    </div>
   );
 }

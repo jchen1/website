@@ -1,92 +1,14 @@
 import sha256 from "crypto-js/sha256";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import ConfettiGenerator from "confetti-js";
 
 import TitleContainer from "components/containers/TitleContainer";
 
-const Title = styled.h1`
-  border: 0;
-  box-shadow: unset;
-  padding: 0;
-  background-color: unset;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  height: 100%;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-`;
-
-const OuterContainer = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-`;
+import styles from "styles/components/TwentySix.module.scss";
 
 function hashAnswer(answer: string | number) {
   return sha256(`${answer}`).toString();
 }
-
-const CodeContainer = styled.div`
-  width: calc(50% - 2rem);
-  border: 1px solid var(--primary-gray);
-  border-radius: 5px;
-  margin: 0.25rem;
-  padding: 0.5rem;
-
-  @media screen and (max-width: 640px) {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 1rem;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 1rem;
-  }
-`;
-
-const ClueContainer = styled.div`
-  width: 100%;
-  display: flex;
-
-  input {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    padding: 10px 10px;
-    border: 1px solid var(--secondary);
-    flex-grow: 1;
-  }
-
-  button {
-    background-color: var(--secondary);
-    border: 1px solid var(--secondary);
-    border-left: 0;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding: 10px 10px;
-    color: white;
-
-    transition: background-color ease-in 0.25s;
-
-    &:active,
-    &:hover {
-      cursor: pointer;
-      background-color: var(--black);
-    }
-
-    &:disabled {
-      background-color: var(--secondary) !important;
-    }
-  }
-`;
 
 interface CodeProps {
   clue: string;
@@ -134,12 +56,12 @@ function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
   }, [clue]);
 
   return (
-    <CodeContainer>
+    <div className={styles.codeContainer}>
       <label htmlFor={clue}>
         {" "}
         {clue} ({numDigits} {numDigits == 1 ? "digit" : "digits"}){" "}
       </label>
-      <ClueContainer>
+      <div className={styles.clueContainer}>
         <input
           id={clue}
           pattern="0-9"
@@ -150,7 +72,7 @@ function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
         <button onClick={checkAnswer} disabled={answeredCorrectly!}>
           Guess!
         </button>
-      </ClueContainer>
+      </div>
 
       {answeredCorrectly && (
         <p>
@@ -169,7 +91,7 @@ function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
           )}
         </p>
       )}
-    </CodeContainer>
+    </div>
   );
 }
 
@@ -216,17 +138,17 @@ export default function TwentySix() {
   ];
 
   return (
-    <OuterContainer>
+    <div className={styles.outerContainer}>
       <canvas id="confetti-canvas" style={{ position: "absolute" }} />
       <TitleContainer>
-        <Title>Happy Birthday!</Title>
+        <h1 className={styles.title}>Happy Birthday!</h1>
       </TitleContainer>
       <h4>Guess the secret codes for rewards</h4>
-      <InnerContainer>
+      <div className={styles.innerContainer}>
         {clues.map((c, i) => (
           <Code {...c} key={i} />
         ))}
-      </InnerContainer>
-    </OuterContainer>
+      </div>
+    </div>
   );
 }

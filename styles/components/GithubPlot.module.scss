@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1.5rem 2.5rem 0;
+  border: 1px solid #222222;
+}
+
+// 100% / 7 columns
+.square {
+  flex-basis: 14.285714285714286%;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}

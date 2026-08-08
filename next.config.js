@@ -104,7 +104,6 @@ const baseConfig = {
       config.externals = [
         "react",
         "react-dom",
-        "styled-components",
         // stateful hook libraries must resolve to the same preact instance
         // as the renderer, so they can't be bundled into server chunks
         "react-hooks-global-state",
