@@ -1,3 +1,4 @@
+import styles from "../styles/components/PlacementOverlay.module.scss";
 import placement from "./placement";
 import { prettifyData } from "./metricsUtils";
 import { formatClockTime, formatMonthDay } from "./util/dateFormat";
@@ -15,11 +16,11 @@ function typeToDisplay(type: string, data: number) {
 }
 
 function getOrCreateOverlay() {
-  const existing = document.querySelector<HTMLElement>(".placement-overlay");
+  const existing = document.querySelector<HTMLElement>(`.${styles.overlay}`);
   if (existing) return existing;
 
   const overlay = document.createElement("div");
-  overlay.className = "placement-overlay";
+  overlay.className = styles.overlay;
   overlay.style.display = "none";
   (overlay.style as unknown as Record<string, string>)["z-index"] = "999";
   document.body.appendChild(overlay);
