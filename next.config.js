@@ -116,6 +116,46 @@ const baseConfig = {
           path: false,
         },
       };
+
+      if (!options.dev) {
+        // Next ships its client runtime twice: CommonJS (dist/*) and ESM
+        // (dist/esm/*, which Next itself uses for the edge runtime). The
+        // browser bundle resolves the CommonJS copy, which webpack cannot
+        // tree-shake, so every unused export (constants, rewrite/middleware
+        // route matchers, path-to-regexp, ...) ships to the client. Pointing
+        // the browser bundle at the ESM copy lets webpack drop unused exports
+        // and scope-hoist the runtime. Absolute-path alias keys catch every
+        // resolution form: entry requests, `next/dist/...` module requests,
+        // and relative imports between dist files. dist/esm/build is
+        // incomplete (no polyfill-module.js), so it maps back to the
+        // CommonJS build dir, whose modules are self-contained polyfills.
+        const nextDist = path.join(
+          path.dirname(require.resolve("next/package.json")),
+          "dist",
+        );
+        for (const dir of ["api", "client", "lib", "pages", "shared"]) {
+          config.resolve.alias[path.join(nextDist, dir)] = path.join(
+            nextDist,
+            "esm",
+            dir,
+          );
+        }
+        config.resolve.alias[path.join(nextDist, "esm", "build")] = path.join(
+          nextDist,
+          "build",
+        );
+
+        // The only client-graph importer of Next's vendored path-to-regexp
+        // is route-match-utils, whose path-to-regexp-using exports serve the
+        // middleware/rewrite matchers — none of which this site configures.
+        // The library is pure (no import-time side effects), but ships no
+        // sideEffects flag, so webpack keeps it even though every import of
+        // it is unused. Flag it so it can be dropped.
+        config.module.rules.push({
+          test: /[\\/]next[\\/]dist[\\/]compiled[\\/]path-to-regexp[\\/]/,
+          sideEffects: false,
+        });
+      }
     }
 
     // SVGs
