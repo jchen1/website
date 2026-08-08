@@ -64,6 +64,26 @@
   }
 }
 
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    fill: var(--primary);
+  }
+
+  svg {
+    display: block;
+  }
+}
+
 .siteName {
   color: var(--white);
   margin: 0;

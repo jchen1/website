@@ -40,8 +40,27 @@ Shared domain types are in `lib/types.ts`. Three dead files were left as
 excluded: Next require()s it at process start, before any transpiler is
 loaded.
 
-## 3. Cmd-K style navigation
+## 3. Cmd-K style navigation (done)
 
-Add a command-palette (⌘K) navigation for jumping to posts, pages, and
-projects. Needs a search index over markdown content and a keyboard-driven UI
-consistent with the site's bundle-size goals.
+⌘K / Ctrl-K opens a hand-rolled, zero-dependency command palette
+(`components/CommandPalette.tsx`) for jumping to posts, pages, and meet
+reports; a search button in the header is the trigger on touch devices. It
+searches titles + metadata (not body text) against a build-time index
+(`scripts/generate-search-index.ts` → `public/search-index.json`, ~3.6 KB gz,
+gitignored) built from the `lib/blogs.ts` getters (so drafts are excluded)
+plus a curated page list; the shared item schema lives in
+`lib/searchIndex.ts`. Index generation runs in both `npm run build` and
+`npm run export`. Bundle cost: +~0.6 KB gz on the shared `_app` chunk (keydown
+listener + header button + lazy mount); the palette itself is a ~2.5 KB gz
+async chunk, prefetched on first idle and on header-button hover, with the
+index fetched once and cached. `next/dynamic` was deliberately avoided — its
+loadable runtime added ~1.7 KB gz to `_app`; a small hand-rolled
+`import()`-in-effect mount replaced it. Follow-ups worth tracking:
+
+- Tag pages are not in the index (deliberate). If they're added, fix the
+  untrimmed-tags bug first: `pages/tag/[tag].tsx` splits `tags` on `","`
+  without trimming, so the export contains duplicate `out/tag/ code/`-style
+  directories for the three posts with spaces after commas.
+- No `description` frontmatter exists, so entries are title + date only; the
+  RSS excerpt machinery (`markdownToHtml().excerpt`) is available if palette
+  entries ever want subtitles.
