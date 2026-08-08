@@ -59,15 +59,20 @@ export function trackingLinks(opts?: TrackingLinksOptions) {
         link.data = link.data || {};
         link.data.hProperties = link.data.hProperties || {};
 
-        const obj = {
-          event_category: category,
-          event_label: label,
-          value: ctx.url,
-        };
+        // Single-quoted JS string literals: double quotes would be entity-
+        // escaped (&#x22;) when the attribute is serialized to HTML,
+        // inflating every tracked link by ~40 bytes.
+        const js = (s: string) =>
+          `'${s.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}'`;
+        const fields: string[] = [];
+        if (category !== undefined) {
+          fields.push(`event_category:${js(category)}`);
+        }
+        fields.push(`event_label:${js(label)}`, `value:${js(ctx.url)}`);
 
         link.data.hProperties.onclick =
           link.data.hProperties.onclick ||
-          `${trackingObject}("event", "${action}", ${JSON.stringify(obj)})`;
+          `${trackingObject}('event',${js(action)},{${fields.join(",")}})`;
       }
     });
   };
