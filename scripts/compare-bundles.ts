@@ -53,7 +53,8 @@ const output = `# Bundle Size
 | --- | --- |
 ${sizes}
 
-<!-- GH BOT -->`;
+<!-- GH BOT -->
+`;
 
 try {
   fs.mkdirSync(outdir);

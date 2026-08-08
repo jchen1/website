@@ -27,6 +27,13 @@ const isFontLoaderChain = use =>
 const webpack = (config, { dev }) => {
   if (dev) return config;
 
+  // The name counter above lives in process memory and restarts at zero each
+  // build, while webpack's persistent filesystem cache replays css-loader
+  // output (generated names included) from prior processes. Mixing the two
+  // assigns the same class name to different modules, so persistent caching
+  // must stay off; the in-build memory cache is per-process and safe.
+  config.cache = { type: "memory" };
+
   let patched = 0;
   for (const { oneOf } of config.module.rules)
     if (Array.isArray(oneOf))
