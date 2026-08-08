@@ -1,6 +1,6 @@
-import moment from "moment";
-
 import styles from "styles/components/LatestPlot.module.scss";
+
+import { formatDateTime } from "../../lib/util/dateFormat";
 
 import type { PlotConfig } from "../../lib/metrics";
 import type { SeriesData } from "../../lib/metricsUtils";
@@ -39,9 +39,7 @@ export default function LatestPlot({ data, title, opts }: LatestPlotProps) {
               {opts?.unit}
             </text>
           </svg>
-          <p className={styles.dataTime}>
-            {moment(latestMeasurement).format("M/DD h:mm A")}
-          </p>
+          <p className={styles.dataTime}>{formatDateTime(latestMeasurement)}</p>
         </div>
       </div>
     </div>

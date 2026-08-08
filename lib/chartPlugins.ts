@@ -1,13 +1,12 @@
-import moment from "moment";
-
 import placement from "./placement";
 import { prettifyData } from "./metricsUtils";
+import { formatClockTime, formatMonthDay } from "./util/dateFormat";
 
 import type uPlot from "uplot";
 
 const typesToDisplay: Record<string, (d: number) => string> = {
-  unixSecs: d => moment(new Date(d * 1000)).format("h:mm A"),
-  unixDays: d => moment(new Date(d * 1000)).format("MM/DD"),
+  unixSecs: d => formatClockTime(new Date(d * 1000)),
+  unixDays: d => formatMonthDay(new Date(d * 1000)),
 };
 
 function typeToDisplay(type: string, data: number) {
