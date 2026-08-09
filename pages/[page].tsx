@@ -13,16 +13,18 @@ import Pagination from "components/Pagination";
 import { sizeImage } from "../lib/util/server";
 
 import type { MarkdownItem } from "../lib/types";
-
-// Dimensions of a post's hero image, or `{}` when the post has no hero image
-// or its dimensions could not be read.
-export type HeroImageSize = Partial<NonNullable<ReturnType<typeof sizeImage>>>;
+import type { HeroImageSize } from "components/BlogPost";
 
 // A post with its excerpt rendered, as listed on an index page.
-export interface SnippetPost extends MarkdownItem {
+export interface SnippetPost extends Omit<
+  MarkdownItem,
+  "content" | "tags" | "draft" | "ogImage"
+> {
   excerptHTML: string;
   postExcerptAnchor: string;
-  heroImageSize: HeroImageSize;
+  // `{}` when the hero image's dimensions could not be read; absent when the
+  // post has no hero image
+  heroImageSize?: HeroImageSize;
 }
 
 export interface IndexPageProps {
@@ -65,20 +67,27 @@ export const getStaticProps: GetStaticProps<
         post.content || "",
         { eagerLoad: i === 0 },
       );
-      delete post.content;
+      const {
+        content: _content,
+        tags: _tags,
+        draft: _draft,
+        ogImage: _ogImage,
+        ...postFields
+      } = post;
 
-      const heroImageSize = (function (): HeroImageSize {
+      const heroImageSize = (function (): HeroImageSize | undefined {
         if (post.heroImage) {
-          return sizeImage(post.heroImage, { basepath: "public" }) || {};
+          const size = sizeImage(post.heroImage, { basepath: "public" });
+          return size ? { width: size.width, height: size.height } : {};
         }
-        return {};
+        return undefined;
       })();
 
       return {
-        ...post,
+        ...postFields,
         excerptHTML,
         postExcerptAnchor,
-        heroImageSize,
+        ...(heroImageSize && { heroImageSize }),
       };
     }),
   );

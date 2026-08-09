@@ -1,10 +1,11 @@
 import uPlot from "uplot";
 import React from "react";
-import styled from "styled-components";
 
 import ResizableContainer from "../containers/ResizableContainer";
 import { Colors } from "../../lib/metrics";
 import { tooltipsPlugin } from "../../lib/chartPlugins";
+
+import styles from "styles/components/LinePlot.module.scss";
 
 import type { ReactNode, RefObject } from "react";
 import type { PlotConfig } from "../../lib/metrics";
@@ -14,14 +15,6 @@ const defaultSeriesOpts = {
   show: true,
   stroke: Colors.YELLOW,
 };
-
-const Container = styled(ResizableContainer)`
-  position: relative;
-
-  .uplot {
-    position: absolute;
-  }
-`;
 
 interface LinePlotProps {
   data: SeriesData;
@@ -126,14 +119,17 @@ export default class LinePlot extends React.Component<
     const { height } = this.state;
 
     return (
-      <Container onResize={this.onResize.bind(this)}>
+      <ResizableContainer
+        className={styles.container}
+        onResize={this.onResize.bind(this)}
+      >
         <div
           style={height !== null && height > 0 ? { height: `${height}px` } : {}}
           ref={this.el}
         >
           {this.props.children}
         </div>
-      </Container>
+      </ResizableContainer>
     );
   }
 }

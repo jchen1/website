@@ -1,0 +1,13 @@
+.container {
+  // https://stackoverflow.com/questions/49174998/incorrect-width-flex-items-with-gap-and-fixed-flex-basis
+  // gap is 1rem
+  flex-basis: calc((100% - 2rem) / 3);
+
+  h3 {
+    text-align: center;
+  }
+
+  @media screen and (max-width: 640px) {
+    flex-basis: 100%;
+  }
+}

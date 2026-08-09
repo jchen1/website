@@ -8,15 +8,14 @@ import styles from "styles/pages/archive.module.scss";
 
 import type { MarkdownItem } from "../lib/types";
 
-export type ArchiveItemProps = Pick<
-  MarkdownItem,
-  "title" | "date" | "slug" | "tags" | "content" | "heroImage" | "ogImage"
-> & {
+export type ArchivePost = Pick<MarkdownItem, "title" | "date" | "slug">;
+
+export type ArchiveItemProps = ArchivePost & {
   prefix?: string;
 };
 
 export interface ArchiveProps {
-  posts: MarkdownItem[];
+  posts: ArchivePost[];
   title: string;
   prefix?: string;
 }
@@ -37,9 +36,9 @@ export function ArchiveItem({ title, date, slug, prefix }: ArchiveItemProps) {
 export default function Archive(props: ArchiveProps) {
   const { posts, title, prefix } = props;
 
-  const postsByYear: [number | null, MarkdownItem[]][] = [];
+  const postsByYear: [number | null, ArchivePost[]][] = [];
   let currentYear: number | null = null;
-  let currentYearPosts: MarkdownItem[] = [];
+  let currentYearPosts: ArchivePost[] = [];
 
   posts.forEach(post => {
     const year = new Date(post.date!).getFullYear();
@@ -73,7 +72,9 @@ export default function Archive(props: ArchiveProps) {
 }
 
 export const getStaticProps: GetStaticProps<ArchiveProps> = async () => {
-  const posts = getAllPosts(ARCHIVE_FIELDS);
+  const posts = getAllPosts(ARCHIVE_FIELDS).map(
+    ({ tags: _tags, draft: _draft, ...post }) => post,
+  );
 
   return {
     props: {

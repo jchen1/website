@@ -25,7 +25,10 @@ export interface HeroImageSize {
   height?: number;
 }
 
-export interface Post extends MarkdownItem, MarkdownHtml {
+export interface Post
+  extends
+    Omit<MarkdownItem, "content">,
+    Pick<MarkdownHtml, "contentHTML" | "excerpt"> {
   heroImageSize?: HeroImageSize;
 }
 

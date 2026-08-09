@@ -7,7 +7,8 @@ import BlogPost from "components/BlogPost";
 import type { MarkdownHtml, MarkdownItem } from "lib/types";
 
 interface JOTAProps {
-  page: MarkdownItem & MarkdownHtml;
+  page: Omit<MarkdownItem, "content"> &
+    Pick<MarkdownHtml, "contentHTML" | "excerpt">;
 }
 
 export default function JOTA({ page }: JOTAProps) {
@@ -16,13 +17,15 @@ export default function JOTA({ page }: JOTAProps) {
 
 export const getStaticProps: GetStaticProps<JOTAProps> = async () => {
   const page = getPageBySlug("jota-index", ["title", "content"]);
-  const content = await markdownToHtml(page.content || "");
+  const { contentHTML, excerpt } = await markdownToHtml(page.content || "");
+  const { content: _content, ...pageFields } = page;
 
   return {
     props: {
       page: {
-        ...page,
-        ...content,
+        ...pageFields,
+        contentHTML,
+        excerpt,
       },
     },
   };

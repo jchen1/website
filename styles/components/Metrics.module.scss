@@ -1,0 +1,56 @@
+.wsIndicator {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.widgetTabContainer {
+  padding: 0 2rem;
+  flex: 1 1 67%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+
+  @media screen and (max-width: 640px) {
+    border: 0;
+    flex: 1 0 100%;
+    padding: 0;
+    overflow-x: auto;
+  }
+}
+
+.plotContainer {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  gap: 1rem;
+
+  @media screen and (max-width: 640px) {
+    max-height: initial;
+    overflow: initial;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.innerContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+
+  @media screen and (max-width: 640px) {
+    flex-wrap: wrap;
+  }
+}
+
+.title {
+  border: 0;
+  box-shadow: unset;
+  padding: 0;
+  background-color: unset;
+}

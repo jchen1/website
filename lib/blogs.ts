@@ -60,7 +60,11 @@ export async function markdownToHtml(
         .use(addCaptionsToImages)
         .use(anchorPostExcerpt)
         // Safe because this only looks at trusted
-        .use(html, { sanitize: false })
+        // content. allowDangerousCharacters keeps ' and ` literal instead of
+        // entity-escaped (&#x27; / &#x60;) — parse-identical inside the
+        // double-quoted attributes this serializer emits, and 5 bytes
+        // smaller per character.
+        .use(html, { sanitize: false, allowDangerousCharacters: true })
         .process(markdown),
   );
 

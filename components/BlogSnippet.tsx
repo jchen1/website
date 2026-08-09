@@ -10,7 +10,10 @@ import Title from "./Title";
 import type { MarkdownItem } from "lib/types";
 import type { HeroImageSize } from "./BlogPost";
 
-export interface Snippet extends MarkdownItem {
+export interface Snippet extends Omit<
+  MarkdownItem,
+  "content" | "tags" | "draft"
+> {
   excerptHTML: string;
   postExcerptAnchor?: string;
   heroImageSize?: HeroImageSize;

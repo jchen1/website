@@ -1,13 +1,13 @@
-import moment from "moment";
-
+import styles from "../styles/components/PlacementOverlay.module.scss";
 import placement from "./placement";
 import { prettifyData } from "./metricsUtils";
+import { formatClockTime, formatMonthDay } from "./util/dateFormat";
 
 import type uPlot from "uplot";
 
 const typesToDisplay: Record<string, (d: number) => string> = {
-  unixSecs: d => moment(new Date(d * 1000)).format("h:mm A"),
-  unixDays: d => moment(new Date(d * 1000)).format("MM/DD"),
+  unixSecs: d => formatClockTime(new Date(d * 1000)),
+  unixDays: d => formatMonthDay(new Date(d * 1000)),
 };
 
 function typeToDisplay(type: string, data: number) {
@@ -16,11 +16,11 @@ function typeToDisplay(type: string, data: number) {
 }
 
 function getOrCreateOverlay() {
-  const existing = document.querySelector<HTMLElement>(".placement-overlay");
+  const existing = document.querySelector<HTMLElement>(`.${styles.overlay}`);
   if (existing) return existing;
 
   const overlay = document.createElement("div");
-  overlay.className = "placement-overlay";
+  overlay.className = styles.overlay;
   overlay.style.display = "none";
   (overlay.style as unknown as Record<string, string>)["z-index"] = "999";
   document.body.appendChild(overlay);

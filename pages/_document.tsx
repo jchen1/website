@@ -1,9 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 
-import type { DocumentContext, DocumentInitialProps } from "next/document";
 import type { HTMLAttributeCrossOrigin } from "react";
 
 // An empty crossorigin attribute selects anonymous mode; the JSX attribute
@@ -11,33 +9,6 @@ import type { HTMLAttributeCrossOrigin } from "react";
 const ANONYMOUS_CROSSORIGIN = "" as unknown as HTMLAttributeCrossOrigin;
 
 export default class MyDocument extends Document {
-  static async getInitialProps(
-    ctx: DocumentContext,
-  ): Promise<DocumentInitialProps> {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-
   render() {
     return (
       <Html lang="en">
@@ -91,19 +62,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <link
             rel="preload"
-            href="/fonts/Inter-Regular.woff2"
-            as="font"
-            crossOrigin={ANONYMOUS_CROSSORIGIN}
-          />
-          <link
-            rel="preload"
-            href="/fonts/Inter-Bold.woff2"
-            as="font"
-            crossOrigin={ANONYMOUS_CROSSORIGIN}
-          />
-          <link
-            rel="preload"
-            href="/fonts/Inter-Black.woff2"
+            href="/fonts/Inter-Var.woff2"
             as="font"
             crossOrigin={ANONYMOUS_CROSSORIGIN}
           />

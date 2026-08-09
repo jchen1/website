@@ -102,12 +102,10 @@ const baseConfig = {
   webpack: (config, options) => {
     if (options.isServer) {
       config.externals = [
+        // react/react-dom must resolve to the same preact instance as the
+        // renderer, so they can't be bundled into server chunks
         "react",
         "react-dom",
-        "styled-components",
-        // stateful hook libraries must resolve to the same preact instance
-        // as the renderer, so they can't be bundled into server chunks
-        "react-hooks-global-state",
         ...config.externals,
       ];
     } else {
@@ -118,6 +116,46 @@ const baseConfig = {
           path: false,
         },
       };
+
+      if (!options.dev) {
+        // Next ships its client runtime twice: CommonJS (dist/*) and ESM
+        // (dist/esm/*, which Next itself uses for the edge runtime). The
+        // browser bundle resolves the CommonJS copy, which webpack cannot
+        // tree-shake, so every unused export (constants, rewrite/middleware
+        // route matchers, path-to-regexp, ...) ships to the client. Pointing
+        // the browser bundle at the ESM copy lets webpack drop unused exports
+        // and scope-hoist the runtime. Absolute-path alias keys catch every
+        // resolution form: entry requests, `next/dist/...` module requests,
+        // and relative imports between dist files. The esm tree omits
+        // build/polyfills/polyfill-module.js, so that one import maps to
+        // the CommonJS copy — a self-contained side-effect polyfill with
+        // nothing to tree-shake.
+        const nextDist = path.join(
+          path.dirname(require.resolve("next/package.json")),
+          "dist",
+        );
+        for (const dir of ["api", "client", "lib", "pages", "shared"]) {
+          config.resolve.alias[path.join(nextDist, dir)] = path.join(
+            nextDist,
+            "esm",
+            dir,
+          );
+        }
+        config.resolve.alias[
+          path.join(nextDist, "esm", "build", "polyfills", "polyfill-module")
+        ] = path.join(nextDist, "build", "polyfills", "polyfill-module.js");
+
+        // The only client-graph importer of Next's vendored path-to-regexp
+        // is route-match-utils, whose path-to-regexp-using exports serve the
+        // middleware/rewrite matchers — none of which this site configures.
+        // The library is pure (no import-time side effects), but ships no
+        // sideEffects flag, so webpack keeps it even though every import of
+        // it is unused. Flag it so it can be dropped.
+        config.module.rules.push({
+          test: /[\\/]next[\\/]dist[\\/]compiled[\\/]path-to-regexp[\\/]/,
+          sideEffects: false,
+        });
+      }
     }
 
     // SVGs

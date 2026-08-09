@@ -10,37 +10,19 @@ $inter-font-path: "/fonts";
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
 
+// Variable font covering the whole weight range. Browsers that understand
+// variable fonts pick the woff2; woff-only browsers fall back to the static
+// Regular and synthesize bolder weights. No local() source: a locally
+// installed static Inter would shadow the variable face and render other
+// weights with a different Inter version.
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 100 900;
   font-display: $inter-font-display;
   src:
-    local("Inter"),
-    url("#{$inter-font-path}/Inter-Regular.woff2") format("woff2"),
+    url("#{$inter-font-path}/Inter-Var.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Regular.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: bold;
-  font-display: $inter-font-display;
-  src:
-    local("Inter Bold"),
-    url("#{$inter-font-path}/Inter-Bold.woff2") format("woff2"),
-    url("#{$inter-font-path}/Inter-Bold.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 900;
-  font-display: $inter-font-display;
-  src:
-    local("Inter Black"),
-    url("#{$inter-font-path}/Inter-Black.woff2") format("woff2"),
-    url("#{$inter-font-path}/Inter-Black.woff") format("woff");
 }
 
 /**************/
@@ -125,11 +107,6 @@ h2 {
   @include mobile {
     font-size: 23px;
     letter-spacing: -0.019em;
-  }
-
-  &.highlight {
-    border-top: 4px solid var(--primary);
-    margin: 0 0 0.25rem;
   }
 }
 
@@ -241,17 +218,6 @@ small {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.placement-overlay {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.5rem;
-  margin: 0.75rem;
-  color: var(--white);
-  z-index: 10;
-  pointer-events: none;
-  font-size: 14px;
 }
 
 figure {

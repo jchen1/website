@@ -36,6 +36,14 @@ export interface TrackingLinksOptions {
   label?: string;
 }
 
+const jsEscapes: Record<string, string> = {
+  "\\": "\\\\",
+  "'": "\\'",
+  "\n": "\\n",
+  "\r": "\\r",
+  "\t": "\\t",
+};
+
 export function trackingLinks(opts?: TrackingLinksOptions) {
   const options = opts || {};
 
@@ -59,15 +67,27 @@ export function trackingLinks(opts?: TrackingLinksOptions) {
         link.data = link.data || {};
         link.data.hProperties = link.data.hProperties || {};
 
-        const obj = {
-          event_category: category,
-          event_label: label,
-          value: ctx.url,
-        };
+        // Single-quoted JS string literals: double quotes would be entity-
+        // escaped (&#x22;) when the attribute is serialized to HTML,
+        // inflating every tracked link by ~40 bytes. Control characters and
+        // the U+2028/U+2029 line separators are escaped too, so the emitted
+        // handler is always a syntactically valid JS expression.
+        const js = (s: string) =>
+          `'${s.replace(
+            /[\\'\u0000-\u001f\u2028\u2029]/g,
+            c =>
+              jsEscapes[c] ||
+              `\\u${c.charCodeAt(0).toString(16).padStart(4, "0")}`,
+          )}'`;
+        const fields: string[] = [];
+        if (category !== undefined) {
+          fields.push(`event_category:${js(category)}`);
+        }
+        fields.push(`event_label:${js(label)}`, `value:${js(ctx.url)}`);
 
         link.data.hProperties.onclick =
           link.data.hProperties.onclick ||
-          `${trackingObject}("event", "${action}", ${JSON.stringify(obj)})`;
+          `${trackingObject}('event',${js(action)},{${fields.join(",")}})`;
       }
     });
   };

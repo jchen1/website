@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import NProgress from "lib/nprogress";
 import Router, { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import type { ComponentType } from "react";
@@ -17,21 +16,51 @@ import BlogContainer from "components/containers/BlogContainer";
 import MainContainer from "components/containers/MainContainer";
 import { canonicalize } from "lib/util";
 
+// The progress bar loads in its own chunk; the idle warm-up below makes it
+// available before the first navigation in practice. Until the chunk arrives,
+// start/done are dropped rather than replayed — a navigation that completes
+// before the module loads never flashes the bar after the fact. Once loaded,
+// the bar starts immediately if a navigation is still in flight.
+let nprogress: (typeof import("lib/nprogress"))["default"] | null = null;
+let navInFlight = false;
+let nprogressPromise: Promise<unknown> | null = null;
+
+function loadNProgress() {
+  if (!nprogressPromise) {
+    nprogressPromise = import("lib/nprogress")
+      .then(mod => {
+        nprogress = mod.default;
+        if (navInFlight) nprogress.start();
+      })
+      .catch(() => undefined);
+  }
+  return nprogressPromise;
+}
+
 Router.events.on(
   "routeChangeStart",
-  (_: string, { shallow }: { shallow: boolean }) =>
-    !shallow && NProgress.start(),
+  (_: string, { shallow }: { shallow: boolean }) => {
+    if (!shallow) {
+      navInFlight = true;
+      void loadNProgress();
+      nprogress?.start();
+    }
+  },
 );
 Router.events.on(
   "routeChangeComplete",
   (url: string, { shallow }: { shallow: boolean }) => {
     if (!shallow) {
-      NProgress.done();
+      navInFlight = false;
+      nprogress?.done();
       pageview(url);
     }
   },
 );
-Router.events.on("routeChangeError", (_: Error) => NProgress.done());
+Router.events.on("routeChangeError", (_: Error) => {
+  navInFlight = false;
+  nprogress?.done();
+});
 
 // to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
 const transitionStyle =
@@ -44,6 +73,12 @@ function preloadPalette() {
   void import("components/CommandPalette")
     .then(mod => mod.preloadSearchIndex())
     .catch(() => undefined);
+}
+
+// Warms the async chunks the app loads on demand
+function preloadDeferred() {
+  preloadPalette();
+  void loadNProgress();
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -89,10 +124,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (!loaded) return;
     if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(preloadPalette);
+      const id = window.requestIdleCallback(preloadDeferred);
       return () => window.cancelIdleCallback(id);
     }
-    const id = window.setTimeout(preloadPalette, 2000);
+    const id = window.setTimeout(preloadDeferred, 2000);
     return () => window.clearTimeout(id);
   }, [loaded]);
 

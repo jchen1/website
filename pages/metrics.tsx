@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import styled from "styled-components";
 import "uplot/dist/uPlot.min.css";
 
 import TabContainer from "../components/containers/TabContainer";
@@ -13,65 +12,10 @@ import { transformEvents } from "../lib/metricsUtils";
 import { getEvents, connect } from "../lib/api";
 import Meta from "../components/Meta";
 
+import styles from "styles/components/Metrics.module.scss";
+
 import type { PlotConfig } from "../lib/metrics";
 import type { SeriesData } from "../lib/metricsUtils";
-
-const WSIndicator = styled.div<{ color: string }>`
-  background-color: ${props => props.color};
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 1rem;
-`;
-
-const WidgetTabContainer = styled.div`
-  padding: 0 2rem;
-  flex: 1 1 67%;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 5px;
-
-  @media screen and (max-width: 640px) {
-    border: 0;
-    flex: 1 0 100%;
-    padding: 0;
-    overflow-x: auto;
-  }
-`;
-
-const PlotContainer = styled.div`
-  flex-basis: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-  max-height: 60vh;
-  overflow-y: auto;
-  gap: 1rem;
-
-  @media screen and (max-width: 640px) {
-    max-height: initial;
-    overflow: initial;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row-reverse;
-  @media screen and (max-width: 640px) {
-    flex-wrap: wrap;
-  }
-`;
-
-const Title = styled.h1`
-  border: 0;
-  box-shadow: unset;
-  padding: 0;
-  background-color: unset;
-`;
 
 function getSocketColor(ws: WebSocket | null) {
   if (!ws) return Colors.RED;
@@ -167,19 +111,22 @@ export default function Metrics() {
     <>
       <Meta {...metas} />
       <TitleContainer>
-        <Title>Metrics</Title>
-        <WSIndicator color={socketColor} />
+        <h1 className={styles.title}>Metrics</h1>
+        <div
+          className={styles.wsIndicator}
+          style={{ backgroundColor: socketColor }}
+        />
       </TitleContainer>
-      <InnerContainer>
-        <WidgetTabContainer>
+      <div className={styles.innerContainer}>
+        <div className={styles.widgetTabContainer}>
           <TabContainer
             tabs={tabs}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
-          <PlotContainer>{plots}</PlotContainer>
-        </WidgetTabContainer>
-      </InnerContainer>
+          <div className={styles.plotContainer}>{plots}</div>
+        </div>
+      </div>
     </>
   );
 }
