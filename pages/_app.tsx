@@ -17,17 +17,33 @@ import MainContainer from "components/containers/MainContainer";
 import { canonicalize } from "lib/util";
 
 // The progress bar loads in its own chunk; the idle warm-up below makes it
-// available before the first navigation in practice. The module promise is
-// cached, so start/done callbacks run in registration order.
-const nprogress = () => import("lib/nprogress").then(mod => mod.default);
+// available before the first navigation in practice. Until the chunk arrives,
+// start/done are dropped rather than replayed — a navigation that completes
+// before the module loads never flashes the bar after the fact. Once loaded,
+// the bar starts immediately if a navigation is still in flight.
+let nprogress: (typeof import("lib/nprogress"))["default"] | null = null;
+let navInFlight = false;
+let nprogressPromise: Promise<unknown> | null = null;
+
+function loadNProgress() {
+  if (!nprogressPromise) {
+    nprogressPromise = import("lib/nprogress")
+      .then(mod => {
+        nprogress = mod.default;
+        if (navInFlight) nprogress.start();
+      })
+      .catch(() => undefined);
+  }
+  return nprogressPromise;
+}
 
 Router.events.on(
   "routeChangeStart",
   (_: string, { shallow }: { shallow: boolean }) => {
     if (!shallow) {
-      void nprogress()
-        .then(n => n.start())
-        .catch(() => undefined);
+      navInFlight = true;
+      void loadNProgress();
+      nprogress?.start();
     }
   },
 );
@@ -35,17 +51,15 @@ Router.events.on(
   "routeChangeComplete",
   (url: string, { shallow }: { shallow: boolean }) => {
     if (!shallow) {
-      void nprogress()
-        .then(n => n.done())
-        .catch(() => undefined);
+      navInFlight = false;
+      nprogress?.done();
       pageview(url);
     }
   },
 );
 Router.events.on("routeChangeError", (_: Error) => {
-  void nprogress()
-    .then(n => n.done())
-    .catch(() => undefined);
+  navInFlight = false;
+  nprogress?.done();
 });
 
 // to prevent a strange FOUC, only load transition CSS after the rest of the app has loaded
@@ -64,7 +78,7 @@ function preloadPalette() {
 // Warms the async chunks the app loads on demand
 function preloadDeferred() {
   preloadPalette();
-  void nprogress().catch(() => undefined);
+  void loadNProgress();
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

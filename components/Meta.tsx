@@ -2,13 +2,24 @@ import Head from "next/head";
 
 import type { Metas } from "lib/types";
 
+// RDFa-style prefixes that Open Graph consumers identify via `property`
+const propertyPrefixes = [
+  "og:",
+  "article:",
+  "profile:",
+  "book:",
+  "music:",
+  "video:",
+  "fb:",
+];
+
 // Every meta needs `name`: next/head dedupes same-key metas emitted by both
 // _app and a page via the `name` attribute (its React-key dedupe never fires
-// under Preact, whose keys lack the `$` prefix it looks for). Open Graph
-// metas additionally need `property`, which is how the OG spec identifies
-// them.
+// under Preact, whose keys lack the `$` prefix it looks for). Metas under an
+// Open Graph prefix additionally need `property`, which is how the OG spec
+// identifies them.
 function meta(key: string, content: string | undefined) {
-  return key.startsWith("og:") ? (
+  return propertyPrefixes.some(prefix => key.startsWith(prefix)) ? (
     <meta key={key} name={key} property={key} content={content} />
   ) : (
     <meta key={key} name={key} content={content} />

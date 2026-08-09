@@ -17,14 +17,23 @@ import selectorParser from "postcss-selector-parser";
 // Cache safety: /_next/static/* is served immutable, and pruned bytes depend
 // on site content, so a pruned file must never keep its old content-hashed
 // name. Every css file whose bytes change is re-hashed to a new filename and
-// all references to the old name (prerendered HTML, build manifests, nft
-// traces, the out/ mirror on static export) are rewritten. Css files loaded
-// by the webpack runtime from inside JS chunks cannot be renamed without
-// editing immutable JS, so they are skipped entirely.
+// all references to the old name (prerendered HTML, build manifests, the
+// out/ mirror on static export) are rewritten. Css files loaded by the
+// webpack runtime from inside JS chunks cannot be renamed without editing
+// immutable JS, so they are skipped entirely.
+//
+// The token and reference model is pages-router-specific: it assumes every
+// renderable page lives in .next/server/pages/**/*.html and every stylesheet
+// reference lives in that HTML or the build manifests. An App Router
+// migration (RSC payloads, .next/server/app, flight data) would break both
+// assumptions and this script must be revisited before one.
 
 // Classes that may be constructed at runtime by string concatenation instead
 // of appearing verbatim anywhere in the build output. uPlot derives its
 // class names from a "u-" prefix, so its selectors are exempt from pruning.
+// This is an inherent limitation of the token model: a class assembled at
+// runtime ("prefix-" + x) never appears verbatim in any build artifact, so
+// the extractor cannot see it — such names must be safelisted here.
 const SAFELIST: RegExp[] = [/^u-/, /^uplot$/];
 
 const TOKEN_RE = /[A-Za-z0-9_-]+/g;
@@ -63,6 +72,11 @@ const isSafelisted = (name: string) => SAFELIST.some(re => re.test(name));
 // no class/id requirement (element, attribute, pseudo, :root, ::selection)
 // are always kept.
 function selectorIsLive(selector: string, tokens: Set<string>): boolean {
+  // The token set only indexes ASCII word characters, so a selector with a
+  // non-ASCII character or a CSS escape sequence names something the
+  // extractor cannot prove dead — keep it unconditionally.
+  if (selector.includes("\\") || /[^\t\n\r\x20-\x7e]/.test(selector))
+    return true;
   let live = true;
   const ast = selectorParser().astSync(selector);
   ast.walk(node => {
@@ -110,7 +124,10 @@ function pruneContainer(
       if (atRule.name === "font-face") continue;
       if (atRule.nodes) {
         pruneContainer(atRule, tokens, stats);
-        if (atRule.nodes.length === 0) atRule.remove();
+        // An emptied @layer block still declares the layer: layer order is
+        // fixed by first appearance, so removing it could flip the cascade.
+        if (atRule.nodes.length === 0 && atRule.name.toLowerCase() !== "layer")
+          atRule.remove();
       }
     }
   }
@@ -125,13 +142,37 @@ function collectAnimationNames(root: Container, names: Set<string>) {
   });
 }
 
+// A @keyframes rule is live if its name appears in a kept animation
+// declaration or anywhere in the build output's token set (inline styles and
+// JS-assigned animations reference names outside any CSS declaration). A
+// var() in any kept declaration can also smuggle an animation name through a
+// custom property, hiding it from both scans; such a stylesheet keeps every
+// @keyframes it contains.
 function pruneKeyframes(
   root: Container,
   animationNames: Set<string>,
+  tokens: Set<string>,
   stats: FileStats,
 ) {
+  let usesVar = false;
+  root.walkDecls(decl => {
+    if (decl.value.includes("var(")) usesVar = true;
+  });
+  if (usesVar) {
+    let kept = 0;
+    root.walkAtRules(/keyframes$/, () => {
+      kept++;
+    });
+    if (kept > 0)
+      console.log(
+        `prune-css: ${stats.file} keeps all ${kept} @keyframes ` +
+          `(a kept declaration uses var())`,
+      );
+    return;
+  }
   root.walkAtRules(/keyframes$/, atRule => {
-    if (!animationNames.has(atRule.params.trim())) {
+    const name = atRule.params.trim();
+    if (!animationNames.has(name) && !tokens.has(name)) {
       stats.selectorsDropped.push(`@${atRule.name} ${atRule.params}`);
       atRule.remove();
       stats.rulesDropped++;
@@ -139,11 +180,15 @@ function pruneKeyframes(
   });
 }
 
-// Rewrites every occurrence of a renamed css filename in the build output's
-// text artifacts: prerendered HTML, _buildManifest.js, build-manifest.json,
-// middleware-build-manifest.js, and the .nft.json trace files. JS chunks are
-// never touched — files referenced from them are never renamed — and
-// .next/cache is webpack's own state, not served output.
+// Rewrites path-qualified references ("static/css/<name>") to renamed css
+// files in the only artifacts that legitimately load a stylesheet:
+// prerendered HTML plus the _buildManifest.js / build-manifest.json build
+// manifests. Nothing else is touched — JS-referenced stylesheets are never
+// renamed, so JS chunks never need rewriting, and a bare filename in page
+// text (an article that merely displays a hashed css name) must stay as the
+// author wrote it. .next/cache is webpack's own state, not served output.
+const REWRITE_MANIFESTS = ["_buildManifest.js", "build-manifest.json"];
+
 function rewriteReferences(
   roots: { dir: string; exclude: string[] }[],
   renames: Map<string, string>,
@@ -155,10 +200,17 @@ function rewriteReferences(
       dir,
       [".html", ".js", ".json"],
       file => {
+        if (
+          !file.endsWith(".html") &&
+          !REWRITE_MANIFESTS.includes(path.basename(file))
+        )
+          return;
         const text = fs.readFileSync(file, "utf8");
         let updated = text;
         for (const [oldName, newName] of renames)
-          updated = updated.split(oldName).join(newName);
+          updated = updated
+            .split(`static/css/${oldName}`)
+            .join(`static/css/${newName}`);
         if (updated !== text) {
           fs.writeFileSync(file, updated);
           rewritten++;
@@ -195,6 +247,21 @@ function main() {
     .readdirSync(cssDir)
     .filter(f => f.endsWith(".css"))
     .map(f => path.join(cssDir, f));
+
+  // A cross-file @import means one stylesheet names another by its hashed
+  // filename, which renaming would break. Pages-router builds never emit
+  // one, so its presence means the build model changed: leave every file
+  // untouched (any byte change would require a rename).
+  const withImport = cssFiles.filter(f =>
+    /@import/i.test(fs.readFileSync(f, "utf8")),
+  );
+  if (withImport.length > 0) {
+    console.log(
+      `prune-css: SKIPPING ALL PRUNING AND RENAMING — @import found in ` +
+        withImport.map(f => path.basename(f)).join(", "),
+    );
+    return;
+  }
 
   // Css files the webpack runtime loads from JS carry their content hash
   // inside immutable chunk code (as `hash + ".css"`), so they can be neither
@@ -239,7 +306,7 @@ function main() {
   const exportCssDir = path.join(outDir, "_next", "static", "css");
   const renames = new Map<string, string>();
   for (const { file, ast, stats } of parsed) {
-    pruneKeyframes(ast, animationNames, stats);
+    pruneKeyframes(ast, animationNames, tokens, stats);
     const output = ast.toResult().css;
     stats.rawAfter = Buffer.byteLength(output);
     stats.gzAfter = zlib.gzipSync(output).length;

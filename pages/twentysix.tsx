@@ -42,15 +42,19 @@ function Code({ clue, numDigits, answerHash, reward, hint }: CodeProps) {
         let confetti: ConfettiGenerator | undefined;
         let cancelled = false;
 
-        void import("confetti-js").then(({ default: ConfettiGenerator }) => {
-          if (cancelled) return;
+        // if the chunk fails to load, the clue stays solved and the one-time
+        // confetti is simply skipped
+        void import("confetti-js")
+          .then(({ default: ConfettiGenerator }) => {
+            if (cancelled) return;
 
-          const confettiSettings = { target: "confetti-canvas" };
-          confetti = new ConfettiGenerator(confettiSettings);
-          confetti.render();
+            const confettiSettings = { target: "confetti-canvas" };
+            confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
 
-          setTimeout(() => confetti?.clear(), 5000);
-        });
+            setTimeout(() => confetti?.clear(), 5000);
+          })
+          .catch(() => undefined);
 
         return () => {
           cancelled = true;

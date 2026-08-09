@@ -126,9 +126,10 @@ const baseConfig = {
         // the browser bundle at the ESM copy lets webpack drop unused exports
         // and scope-hoist the runtime. Absolute-path alias keys catch every
         // resolution form: entry requests, `next/dist/...` module requests,
-        // and relative imports between dist files. dist/esm/build is
-        // incomplete (no polyfill-module.js), so it maps back to the
-        // CommonJS build dir, whose modules are self-contained polyfills.
+        // and relative imports between dist files. The esm tree omits
+        // build/polyfills/polyfill-module.js, so that one import maps to
+        // the CommonJS copy — a self-contained side-effect polyfill with
+        // nothing to tree-shake.
         const nextDist = path.join(
           path.dirname(require.resolve("next/package.json")),
           "dist",
@@ -140,10 +141,9 @@ const baseConfig = {
             dir,
           );
         }
-        config.resolve.alias[path.join(nextDist, "esm", "build")] = path.join(
-          nextDist,
-          "build",
-        );
+        config.resolve.alias[
+          path.join(nextDist, "esm", "build", "polyfills", "polyfill-module")
+        ] = path.join(nextDist, "build", "polyfills", "polyfill-module.js");
 
         // The only client-graph importer of Next's vendored path-to-regexp
         // is route-match-utils, whose path-to-regexp-using exports serve the
