@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "node -r @swc-node/register scripts/generate-search-index.ts && next dev -p 4000",
-    "build": "node -r @swc-node/register scripts/generate-feeds.ts && node -r @swc-node/register scripts/generate-search-index.ts && next build && node -r @swc-node/register scripts/prune-css.ts",
-    "export": "node -r @swc-node/register scripts/generate-search-index.ts && STATIC_EXPORT=1 next build && node -r @swc-node/register scripts/prune-css.ts",
+    "build": "node -r @swc-node/register scripts/generate-feeds.ts && node -r @swc-node/register scripts/generate-search-index.ts && next build && node -r @swc-node/register scripts/prune-css.ts && node -r @swc-node/register scripts/assert-deferred.ts",
+    "export": "node -r @swc-node/register scripts/generate-search-index.ts && STATIC_EXPORT=1 next build && node -r @swc-node/register scripts/prune-css.ts && node -r @swc-node/register scripts/assert-deferred.ts",
     "analyze": "ANALYZE=true NODE_ENV=production next build && node -r @swc-node/register scripts/analyze-bundles.ts",
     "start": "next start",
     "prepare": "husky"
