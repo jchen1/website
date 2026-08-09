@@ -68,6 +68,16 @@ const transitionStyle =
 
 const fullWidthRoutes = ["/metrics"];
 
+declare global {
+  interface Window {
+    /**
+     * Set once the app has hydrated. The deferred-hydration activator in
+     * _document polls this before replaying a pre-hydration ⌘K keydown.
+     */
+    __NEXT_HYDRATED?: boolean;
+  }
+}
+
 // Warms the palette's async chunk and the search-index fetch cache
 function preloadPalette() {
   void import("components/CommandPalette")
@@ -93,6 +103,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     setLoaded(true);
+    window.__NEXT_HYDRATED = true;
   }, []);
 
   useEffect(() => {
