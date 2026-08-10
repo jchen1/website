@@ -89,25 +89,46 @@ class DeferredNextScript extends NextScript {
  * immediately instead of arming listeners and the idle callback.
  *
  * Between the first interaction and hydration there is a gap where the page
- * has no handlers yet. Three capture-phase listeners live until hydration and
- * record what the user did, then replay it once the app signals hydration via
- * `window.__NEXT_HYDRATED` (polled at 50ms, up to 15s):
+ * has no handlers yet. Capture-phase listeners live until hydration and
+ * record what the user did into an ordered journal, then replay it once the
+ * app signals hydration via `window.__NEXT_HYDRATED` (a 50ms poll for the
+ * first 15s, then an indefinite 500ms slow poll — recorded interactions are
+ * never abandoned, they replay whenever hydration eventually completes; a
+ * bfcache freeze pauses the poll and can burn the fast window, which only
+ * means the restore lands straight on the slow poll):
  *
- * - click: the most recent click whose target is not inside a
- *   native-interactive context (anchors and forms already work in static
- *   HTML and must never be double-fired) is re-dispatched as a fresh
+ * - click: every click whose target is not inside a native-interactive
+ *   context (anchors and forms already work in static HTML, and a click in a
+ *   <label> is forwarded to its control natively, so all of those must never
+ *   be double-fired) is journaled in order and re-dispatched as a fresh
  *   MouseEvent if the element is still connected.
- * - input: the last value (and text selection) of each form control the user
- *   edited. On replay the value is put back if a hydration re-render
- *   clobbered it, and an `input` event is dispatched either way so the
- *   framework's controlled-input state adopts what the user typed.
+ * - input/change: the last value (and text selection) of each form control
+ *   the user edited — `change` is what a <select> fires, `input` covers the
+ *   text-likes; one journal entry per element, holding its final value but
+ *   sitting at the position of its last edit. On replay the value is put
+ *   back if a hydration re-render clobbered it, and both an `input` and a
+ *   `change` event are dispatched so the framework's controlled state adopts
+ *   it whichever event name the component listens on. A `focusout` recorder
+ *   marks entries whose element the user left; replay follows those with
+ *   `focusout` + `blur` (unless the element is focused again) so
+ *   commit-on-blur components run their commit path.
  * - ⌘K/^K: has to be separate from activation — a physical ⌘K emits a
  *   keydown for the modifier first, so the modifier activates and the K
  *   keystroke lands in the gap. Each ⌘K in the gap is preventDefault-ed and
  *   held (key repeats keep being suppressed but don't update the replay);
- *   the last one is replayed as a fresh KeyboardEvent. If the poll times
- *   out, ⌘K stops being intercepted so the browser's native shortcut works
- *   again.
+ *   the last one is replayed as a fresh KeyboardEvent, after everything
+ *   else in the journal. When the fast poll window ends, ⌘K stops being
+ *   intercepted so the browser's native shortcut works again, but a held
+ *   replay still fires when hydration completes.
+ *
+ * Replay is sequential: one journal entry per step, with a double-rAF gap
+ * between steps (and before the first) so each dispatched event's state
+ * updates — including effects, which preact flushes after the next frame —
+ * settle before the next entry fires against them. Once hydration is
+ * signalled the recorders drop (and detach on) any further events, so a real
+ * post-hydration event is never also journaled. Replayed events carry no
+ * user activation, so gated APIs (clipboard, fullscreen, popups) invoked by
+ * a replayed handler may reject.
  *
  * A `pageshow` from the bfcache re-arms the idle timer when the page returns
  * not yet activated; arm() cancels any pending idle callback first so
@@ -155,95 +176,127 @@ const ACTIVATOR = `(function () {
     inject();
   }
 
-  var pendingClick = null;
   var pendingKey = null;
-  var edits = [];
+  var journal = [];
   var poll = 0;
 
   function removeCaptureListeners() {
     removeEventListener("keydown", onKeyDown, true);
     removeEventListener("click", onClick, true);
-    removeEventListener("input", onInput, true);
+    removeEventListener("input", onEdit, true);
+    removeEventListener("change", onEdit, true);
+    removeEventListener("focusout", onFocusOut, true);
+  }
+
+  function hydrated() {
+    if (window.__NEXT_HYDRATED) {
+      removeCaptureListeners();
+      return 1;
+    }
+    return 0;
+  }
+
+  function gap(fn) {
+    if (window.requestAnimationFrame) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(fn);
+      });
+    } else {
+      setTimeout(fn, 50);
+    }
+  }
+
+  function replayRecord(rec) {
+    if (!rec.el.isConnected) return;
+    if (rec.kind === "click") {
+      rec.el.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, cancelable: true })
+      );
+      return;
+    }
+    if (rec.el.value !== rec.value) {
+      rec.el.value = rec.value;
+      if (rec.start != null) {
+        try {
+          rec.el.setSelectionRange(rec.start, rec.end);
+        } catch (err) {}
+      }
+    }
+    rec.el.dispatchEvent(new Event("input", { bubbles: true }));
+    rec.el.dispatchEvent(new Event("change", { bubbles: true }));
+    if (rec.blurred && document.activeElement !== rec.el) {
+      rec.el.dispatchEvent(new FocusEvent("focusout", { bubbles: true }));
+      rec.el.dispatchEvent(new FocusEvent("blur"));
+    }
   }
 
   function replay() {
-    for (var i = 0; i < edits.length; i++) {
-      var rec = edits[i];
-      if (!rec.el.isConnected) continue;
-      if (rec.el.value !== rec.value) {
-        rec.el.value = rec.value;
-        if (rec.start != null) {
-          try {
-            rec.el.setSelectionRange(rec.start, rec.end);
-          } catch (err) {}
-        }
+    var i = 0;
+    function step() {
+      if (i < journal.length) {
+        replayRecord(journal[i++]);
+        gap(step);
+        return;
       }
-      rec.el.dispatchEvent(new Event("input", { bubbles: true }));
+      if (pendingKey) {
+        document.dispatchEvent(
+          new KeyboardEvent("keydown", {
+            key: pendingKey.key,
+            metaKey: pendingKey.meta,
+            ctrlKey: pendingKey.ctrl,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
     }
-    if (pendingClick && pendingClick.isConnected) {
-      pendingClick.dispatchEvent(
-        new MouseEvent("click", { bubbles: true, cancelable: true })
-      );
-    }
-    if (pendingKey) {
-      document.dispatchEvent(
-        new KeyboardEvent("keydown", {
-          key: pendingKey.key,
-          metaKey: pendingKey.meta,
-          ctrlKey: pendingKey.ctrl,
-          bubbles: true,
-          cancelable: true,
-        })
-      );
-    }
+    gap(step);
   }
 
   function ensurePoll() {
     if (poll) return;
     var t0 = Date.now();
-    poll = setInterval(function () {
+    function tick() {
       if (window.__NEXT_HYDRATED) {
         clearInterval(poll);
+        poll = 0;
         removeCaptureListeners();
         replay();
-      } else if (Date.now() - t0 > 15e3) {
-        clearInterval(poll);
+      } else if (!gaveUp && Date.now() - t0 > 15e3) {
         gaveUp = 1;
+        clearInterval(poll);
+        poll = setInterval(tick, 500);
       }
-    }, 50);
+    }
+    poll = setInterval(tick, 50);
   }
 
   function onClick(e) {
-    if (window.__NEXT_HYDRATED) {
-      removeEventListener("click", onClick, true);
-      return;
-    }
+    if (hydrated()) return;
     var el = e.target;
     if (
       el && el.closest &&
-      !el.closest("a, form, input, select, textarea, [type=submit]")
+      !el.closest("a, form, label, input, select, textarea, [type=submit]")
     ) {
-      pendingClick = el;
+      journal.push({ kind: "click", el: el });
       ensurePoll();
     }
   }
 
-  function onInput(e) {
-    if (window.__NEXT_HYDRATED) {
-      removeEventListener("input", onInput, true);
-      return;
-    }
+  function onEdit(e) {
+    if (hydrated()) return;
     var el = e.target;
     var tag = el && el.tagName;
     if (tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") return;
     var rec = null;
-    for (var i = 0; i < edits.length; i++) {
-      if (edits[i].el === el) rec = edits[i];
+    for (var i = 0; i < journal.length; i++) {
+      if (journal[i].kind === "edit" && journal[i].el === el) {
+        rec = journal.splice(i, 1)[0];
+        break;
+      }
     }
-    if (!rec) {
-      rec = { el: el };
-      edits.push(rec);
-    }
+    if (!rec) rec = { kind: "edit", el: el, blurred: 0 };
+    journal.push(rec);
     rec.value = el.value;
     rec.start = null;
     rec.end = null;
@@ -256,16 +309,23 @@ const ACTIVATOR = `(function () {
     ensurePoll();
   }
 
-  function onKeyDown(e) {
-    if (window.__NEXT_HYDRATED) {
-      removeEventListener("keydown", onKeyDown, true);
-      return;
+  function onFocusOut(e) {
+    if (hydrated()) return;
+    for (var i = 0; i < journal.length; i++) {
+      if (journal[i].kind === "edit" && journal[i].el === e.target) {
+        journal[i].blurred = 1;
+      }
     }
+  }
+
+  function onKeyDown(e) {
+    if (hydrated()) return;
     if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
-      if (!gaveUp) e.preventDefault();
+      if (gaveUp) return;
+      e.preventDefault();
+      ensurePoll();
       if (e.repeat) return;
       pendingKey = { key: e.key, meta: e.metaKey, ctrl: e.ctrlKey };
-      ensurePoll();
     }
   }
 
@@ -286,7 +346,9 @@ const ACTIVATOR = `(function () {
 
   addEventListener("keydown", onKeyDown, true);
   addEventListener("click", onClick, true);
-  addEventListener("input", onInput, true);
+  addEventListener("input", onEdit, true);
+  addEventListener("change", onEdit, true);
+  addEventListener("focusout", onFocusOut, true);
 
   if (document.querySelector("[data-eager-hydrate]")) {
     activate();
