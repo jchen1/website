@@ -93,25 +93,16 @@ interface ImgAttrsOptions {
   layout: ImageLayout;
   width?: Dimension;
   quality?: number;
-  viewportWidthMultiplier: number;
 }
 
-function generateImgAttrs({
-  src,
-  layout,
-  width,
-  quality,
-  viewportWidthMultiplier,
-}: ImgAttrsOptions) {
+function generateImgAttrs({ src, layout, width, quality }: ImgAttrsOptions) {
   const { widths, kind } = getWidths(width, layout);
   const last = widths.length - 1;
   const srcSet = widths.map(
     (w, i) =>
-      `${loader({
-        src,
-        quality,
-        width: closestSize(w * viewportWidthMultiplier),
-      })} ${kind === "w" ? w : i + 1}${kind}`,
+      `${loader({ src, quality, width: w })} ${
+        kind === "w" ? w : i + 1
+      }${kind}`,
   );
 
   src = loader({ src, quality, width: widths[last] });
@@ -135,8 +126,11 @@ export interface ImageProps extends Omit<
   layout?: ImageLayout;
   priority?: boolean;
   quality?: number;
-  /** fraction of the viewport the image occupies, used to pick srcset widths */
-  viewportWidthMultiplier?: number;
+  /**
+   * rendered width the image occupies, e.g. "(max-width: 780px) 100vw, 720px";
+   * without it browsers assume a w-descriptor srcset spans 100vw
+   */
+  sizes?: string;
   className?: string;
 }
 
@@ -148,7 +142,7 @@ export default function Image({
   quality,
   width,
   height,
-  viewportWidthMultiplier = 1,
+  sizes,
   ...rest
 }: ImageProps) {
   if (process.env.NODE_ENV !== "production") {
@@ -184,7 +178,6 @@ export default function Image({
     layout,
     width,
     quality,
-    viewportWidthMultiplier,
   });
 
   const wrapperStyle = {
@@ -208,6 +201,7 @@ export default function Image({
             href={imgAttributes.src}
             key={src}
             imageSrcSet={imgAttributes.srcSet}
+            imageSizes={sizes}
           />
         </Head>
       )}
@@ -215,6 +209,7 @@ export default function Image({
       <img
         {...rest}
         {...imgAttributes}
+        sizes={sizes}
         loading={isLazy ? "lazy" : "eager"}
         className={className}
         style={{

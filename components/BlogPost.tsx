@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "components/Image";
 
-import { BASE_URL } from "../lib/constants";
+import { BASE_URL, CONTENT_IMAGE_SIZES } from "../lib/constants";
 
 import styles from "styles/components/Blog.module.scss";
 
@@ -115,6 +115,7 @@ export default function BlogPost({
             width={heroImageSize!.width}
             height={heroImageSize!.height}
             layout="responsive"
+            sizes={CONTENT_IMAGE_SIZES}
             priority={preloadHero === true}
             className="background"
           />

@@ -10,7 +10,8 @@ import SearchIcon from "assets/search.svg";
 
 import styles from "styles/components/Header.module.scss";
 
-const PROFILE_SIZE = 320;
+// rendered box of .siteAvatar; layout="fixed" builds a 1x/2x/3x srcset from it
+const PROFILE_SIZE = 80;
 
 export interface HeaderProps {
   onOpenPalette: () => void;
@@ -33,14 +34,15 @@ export default function Header({
           className={styles.siteAvatar}
           aria-label="Home"
         >
+          {/* lazy, not priority: the 80px avatar is never the LCP element,
+              and .siteAvatar is display:none on mobile — lazy loading means
+              those viewports never fetch it at all */}
           <Image
             src="/images/headshot-1200.jpg"
             alt="Profile Picture"
             height={PROFILE_SIZE}
             width={PROFILE_SIZE}
-            priority={true}
-            layout="responsive"
-            viewportWidthMultiplier={0.5}
+            layout="fixed"
           />
         </Link>
         <div className={styles.mobileSpacer} aria-hidden="true" />

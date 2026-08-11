@@ -47,6 +47,14 @@ declare module "css-class-generator" {
   export = generateName;
 }
 
+// Preact's LinkHTMLAttributes types imageSrcSet but omits its companion
+// imageSizes (both are HTMLLinkElement IDL attributes for preload links)
+declare namespace preact.JSX {
+  interface LinkHTMLAttributes {
+    imageSizes?: string;
+  }
+}
+
 // Image-optimizer settings shared with next.config.js, authored as CommonJS
 declare module "lib/imageConfig" {
   export const deviceSizes: number[];

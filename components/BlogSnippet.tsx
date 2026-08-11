@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import Image from "components/Image";
+import { CONTENT_IMAGE_SIZES } from "lib/constants";
 import styles from "styles/components/Blog.module.scss";
 
 import Byline from "./Byline";
@@ -51,6 +52,7 @@ export default function BlogSnippet({ post, opts = {} }: BlogSnippetProps) {
             width={heroImageSize!.width}
             height={heroImageSize!.height}
             layout="responsive"
+            sizes={CONTENT_IMAGE_SIZES}
             priority={preloadHero === true}
             className="background"
           />
