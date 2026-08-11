@@ -10,18 +10,20 @@ $inter-font-path: "/fonts";
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
 
-// Variable font covering the whole weight range. Browsers that understand
-// variable fonts pick the woff2; woff-only browsers fall back to the static
-// Regular and synthesize bolder weights. No local() source: a locally
-// installed static Inter would shadow the variable face and render other
-// weights with a different Inter version.
+// Variable font subset to the site's charset and instanced to the weights the
+// CSS uses (400-900). Browsers that understand variable fonts pick the woff2;
+// woff-only browsers fall back to the static Regular and synthesize bolder
+// weights. No local() source: a locally installed static Inter would shadow
+// the variable face and render other weights with a different Inter version.
+// The filename is content-hashed so it can be cached immutably; regenerate the
+// hash (and the _document.tsx preload) whenever the font bytes change.
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400 900;
   font-display: $inter-font-display;
   src:
-    url("#{$inter-font-path}/Inter-Var.woff2") format("woff2"),
+    url("#{$inter-font-path}/Inter-Var.b95cd252.woff2") format("woff2"),
     url("#{$inter-font-path}/Inter-Regular.woff") format("woff");
 }
 
