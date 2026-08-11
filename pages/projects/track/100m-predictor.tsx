@@ -77,17 +77,7 @@ function predict100m(
     windCoefficients[1] * wind * predicted +
     windCoefficients[2] * wind * wind;
 
-  const outOfRange =
-    blockTime < cell.blockRange[0] ||
-    blockTime > cell.blockRange[1] ||
-    flyVelocity < cell.velocityRange[0] ||
-    flyVelocity > cell.velocityRange[1];
-
-  return {
-    time: predicted - windCorrection + reaction,
-    rmse: cell.rmse,
-    outOfRange,
-  };
+  return predicted - windCorrection + reaction;
 }
 
 export const metas: Metas = {
@@ -145,7 +135,7 @@ export default function Predictor100m({ pages }: PredictorProps) {
   );
   const [hasShared, setHasShared] = useState(false);
 
-  const prediction = predict100m(
+  const predictedTime = predict100m(
     sex,
     blockDistance,
     flyDistance,
@@ -213,9 +203,9 @@ export default function Predictor100m({ pages }: PredictorProps) {
       <Title title={metas.title} />
       <section>
         <p>
-          Predict your 100m time based on your block and fly times, at the
-          distances you measure. Longer flys give more accurate predictions.
-          Wind and reaction time are optional.
+          Predict your 100m time based on your block and fly times. Wind and
+          reaction time are optional. If your times are outside the range of the
+          training data, predictions will be less accurate.
         </p>
         <label className={styles.formContainer}>
           <strong>Sex</strong>
@@ -350,17 +340,9 @@ export default function Predictor100m({ pages }: PredictorProps) {
             className={styles.input}
             disabled={true}
             type="number"
-            value={prediction?.time.toFixed(2)}
+            value={predictedTime?.toFixed(2)}
             unit="s"
           />
-          {prediction?.outOfRange && (
-            <small>
-              <b>
-                Your inputs are outside the range of the training data, so this
-                prediction is an extrapolation.
-              </b>
-            </small>
-          )}
         </label>
         <button
           className={styles.shareButton}
