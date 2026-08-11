@@ -103,6 +103,7 @@ const wrappedOnChange =
     // if not a number just set the value
     if (isNaN(floatValue)) {
       setter(v);
+      return;
     }
 
     setter(floatValue.toFixed(precision));
@@ -212,10 +213,9 @@ export default function Predictor100m({ pages }: PredictorProps) {
       <Title title={metas.title} />
       <section>
         <p>
-          Predict your 100m time from a block start and a fly sprint. Pick the
-          distances you actually measure — longer segments, especially longer
-          flys, give noticeably more accurate predictions. Wind and reaction
-          time are optional.
+          Predict your 100m time based on your block and fly times, at the
+          distances you measure. Longer flys give more accurate predictions.
+          Wind and reaction time are optional.
         </p>
         <label className={styles.formContainer}>
           <strong>Sex</strong>
@@ -231,9 +231,6 @@ export default function Predictor100m({ pages }: PredictorProps) {
               <option value="women">Women</option>
             </select>
           </div>
-          <small>
-            Separate models trained on men&apos;s and women&apos;s races.
-          </small>
         </label>
         <label className={styles.formContainer}>
           <strong>Block distance</strong>
@@ -286,10 +283,6 @@ export default function Predictor100m({ pages }: PredictorProps) {
               ))}
             </select>
           </div>
-          <small>
-            A fly 20 cuts the prediction error by about a third versus a fly 10;
-            a fly 30 nearly halves it.
-          </small>
         </label>
         <label className={styles.formContainer}>
           <strong>Fly {flyDistance}</strong>
@@ -302,9 +295,8 @@ export default function Predictor100m({ pages }: PredictorProps) {
             unit="s"
           />
           <small>
-            Your fastest {flyDistance} meter segment, run fresh off a full
-            run-in (20&ndash;40m); non-FAT times will not produce accurate
-            results.
+            The fastest {flyDistance} meter segment in a run; non-FAT times will
+            not produce accurate results.
           </small>
         </label>
         <label className={styles.formContainer}>
@@ -361,19 +353,12 @@ export default function Predictor100m({ pages }: PredictorProps) {
             value={prediction?.time.toFixed(2)}
             unit="s"
           />
-          {prediction && (
+          {prediction?.outOfRange && (
             <small>
-              &plusmn;{prediction.rmse.toFixed(2)}s expected error for this
-              input combination.
-              {prediction.outOfRange && (
-                <>
-                  {" "}
-                  <b>
-                    Your inputs are outside the range of the training data, so
-                    this prediction is an extrapolation.
-                  </b>
-                </>
-              )}
+              <b>
+                Your inputs are outside the range of the training data, so this
+                prediction is an extrapolation.
+              </b>
             </small>
           )}
         </label>
@@ -391,45 +376,31 @@ export default function Predictor100m({ pages }: PredictorProps) {
         <h2>Methodology</h2>
         <p>
           This predictor is based on log-level regression models trained on
-          professionally timed 100m races with 10m split data from{" "}
+          &gt;2,800 professionally timed men&apos;s and women&apos;s 100m races
+          with 10m split data, which is available{" "}
           <a
             href="https://www.athletefirst.org/"
             target="_blank"
             rel="noreferrer"
           >
-            athletefirst.org
-          </a>{" "}
-          — 1,533 men&apos;s races (9.58&ndash;12.38s) and 1,301 women&apos;s
-          races (10.54&ndash;13.75s). A separate equation is fit for every
-          combination of sex, block distance, and fly distance, and the
-          calculator swaps equations based on your selections. The expected
-          error shown with the prediction is that equation&apos;s 10-fold
-          cross-validated RMSE.
-        </p>
-        <p>
-          The data was cleaned to remove Paralympic athletes, races where the
-          athlete was obviously injured, and physically implausible splits.
-          Reaction time was removed from the data to isolate the effects of the
-          block and fly segments; for races without a recorded reaction time,
-          the dataset average was used. Fly times are converted to velocities
-          before fitting. Fly segments are the fastest stretch of the race at
-          the given length, which is what a fresh practice fly with a normal
-          run-in approximates &mdash; short run-ins (under ~20m) will read slow
-          and skew the prediction slightly slow.
-        </p>
-        <p>
-          Men&apos;s and women&apos;s models are fit separately: at short fly
-          distances the sexes fade differently over the final 40m, so a shared
-          curve would bias women&apos;s predictions by about +0.05s. Analysis
-          code and data live in{" "}
-          <a
-            href="https://github.com/jchen1/100m-analysis"
-            target="_blank"
-            rel="noreferrer"
-          >
-            jchen1/100m-analysis
+            here
           </a>
-          .
+          . A separate model is fit for each combination of sex, block distance,
+          and fly distance.
+        </p>
+        <p>
+          The data was cleaned to remove Paralympic athletes and races where the
+          athlete was obviously injured. Reaction time was removed from the data
+          to isolate the effects of the block and fly times. For races that
+          didn&apos;t have reaction time available, the average reaction time
+          for the dataset was used.
+        </p>
+        <p>
+          Fly times were converted to velocities (m/s) prior to training the
+          models as I suspected velocity would be more predictive. A log-level
+          regression was chosen as the data didn&apos;t look linear, and because
+          the log-level model produced a significantly better fit than a linear
+          model. The trained models have R&sup2; values between 0.92 and 0.99.
         </p>
         <p>
           Wind correction is based on{" "}
