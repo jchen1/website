@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
+import { BLOCK_DISTANCES, FLY_DISTANCES, MODEL } from "lib/track/100m-model";
+import type { Sex } from "lib/track/100m-model";
 
 import Meta from "components/Meta";
 import RelatedPosts from "components/RelatedPosts";
@@ -27,30 +29,47 @@ function useSearchParams() {
 // P_new = P + a*w + b*P*w + c*w^2
 const windCoefficients = [-0.0449, 0.009459, -0.0042];
 
-// P_100 = a + b*Block30 + c*(10 / Fly10)
-const predictorCoefficients = [
-  2.2441850962837124, 0.14735859276138946, -0.042918544171317706,
-];
+// typical time at each distance, used when the user switches distances
+const defaultBlockTimes: Record<string, string> = {
+  "10": "1.90",
+  "20": "3.00",
+  "30": "4.00",
+  "40": "4.95",
+  "50": "5.90",
+  "60": "6.85",
+};
+const defaultFlyTimes: Record<string, string> = {
+  "10": "1.00",
+  "20": "2.00",
+  "30": "3.05",
+};
 
 function predict100m(
-  block30: string | number,
-  fly10: string | number,
+  sex: Sex,
+  blockDistance: string,
+  flyDistance: string,
+  blockTime: string | number,
+  flyTime: string | number,
   wind: string | number = 0.0,
   reaction: string | number = 0.1,
 ) {
-  block30 = parseFloat(block30 as string);
-  fly10 = parseFloat(fly10 as string);
+  blockTime = parseFloat(blockTime as string);
+  flyTime = parseFloat(flyTime as string);
   wind = parseFloat(wind as string);
   reaction = parseFloat(reaction as string);
 
-  if (isNaN(block30) || isNaN(fly10) || isNaN(wind) || isNaN(reaction)) {
+  if (isNaN(blockTime) || isNaN(flyTime) || isNaN(wind) || isNaN(reaction)) {
     return null;
   }
 
+  const cell = MODEL[sex][`${blockDistance}_${flyDistance}`];
+  if (!cell) {
+    return null;
+  }
+
+  const flyVelocity = parseFloat(flyDistance) / flyTime;
   const predicted = Math.exp(
-    predictorCoefficients[0] +
-      predictorCoefficients[1] * block30 +
-      predictorCoefficients[2] * (10 / fly10),
+    cell.intercept + cell.block * blockTime + cell.velocity * flyVelocity,
   );
 
   const windCorrection =
@@ -63,7 +82,8 @@ function predict100m(
 
 export const metas: Metas = {
   title: "100m Predictor",
-  description: "Predicts 100m times given a block 30 and fly 10 time.",
+  description:
+    "Predicts men's and women's 100m times from a block start and a fly sprint at the distances you actually measure.",
 };
 
 const wrappedOnChange =
@@ -73,6 +93,7 @@ const wrappedOnChange =
     // if not a number just set the value
     if (isNaN(floatValue)) {
       setter(v);
+      return;
     }
 
     setter(floatValue.toFixed(precision));
@@ -82,26 +103,55 @@ interface PredictorProps {
   pages: TrackPage[];
 }
 
-export default function WindCorrection({ pages }: PredictorProps) {
+export default function Predictor100m({ pages }: PredictorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [wind, setWind] = useState(() => searchParams.get("wind") || "0.0");
-  const [block30, setBlock30] = useState(
-    () => searchParams.get("block30") || "4.00",
+  const [sex, setSex] = useState<Sex>(() =>
+    searchParams.get("sex") === "women" ? "women" : "men",
   );
-  const [fly10, setFly10] = useState(() => searchParams.get("fly10") || "1.00");
+  const [blockDistance, setBlockDistance] = useState(
+    () => searchParams.get("blockDistance") || "30",
+  );
+  const [flyDistance, setFlyDistance] = useState(
+    () => searchParams.get("flyDistance") || "10",
+  );
+  // block30/fly10 are the query params from before distances were selectable
+  const [blockTime, setBlockTime] = useState(
+    () =>
+      searchParams.get("block") ||
+      searchParams.get("block30") ||
+      defaultBlockTimes["30"],
+  );
+  const [flyTime, setFlyTime] = useState(
+    () =>
+      searchParams.get("fly") ||
+      searchParams.get("fly10") ||
+      defaultFlyTimes["10"],
+  );
+  const [wind, setWind] = useState(() => searchParams.get("wind") || "0.0");
   const [reaction, setReaction] = useState(
     () => searchParams.get("reaction") || "0.149",
   );
   const [hasShared, setHasShared] = useState(false);
 
-  const predictedTime = predict100m(block30, fly10, wind, reaction);
+  const predictedTime = predict100m(
+    sex,
+    blockDistance,
+    flyDistance,
+    blockTime,
+    flyTime,
+    wind,
+    reaction,
+  );
 
   useEffect(() => {
     const params = new URLSearchParams();
-    if (block30) params.set("block30", block30);
-    if (fly10) params.set("fly10", fly10);
+    params.set("sex", sex);
+    params.set("blockDistance", blockDistance);
+    params.set("flyDistance", flyDistance);
+    if (blockTime) params.set("block", blockTime);
+    if (flyTime) params.set("fly", flyTime);
     if (wind) params.set("wind", wind);
     if (reaction) params.set("reaction", reaction);
 
@@ -110,7 +160,16 @@ export default function WindCorrection({ pages }: PredictorProps) {
       router.replace(newUrl, undefined, { shallow: true });
       setHasShared(false);
     }
-  }, [block30, fly10, wind, reaction, router]);
+  }, [
+    sex,
+    blockDistance,
+    flyDistance,
+    blockTime,
+    flyTime,
+    wind,
+    reaction,
+    router,
+  ]);
 
   const handleShare = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
@@ -118,11 +177,22 @@ export default function WindCorrection({ pages }: PredictorProps) {
     setTimeout(() => setHasShared(false), 2000);
   }, []);
 
+  const handleBlockDistance = useCallback((value: string) => {
+    setBlockDistance(value);
+    setBlockTime(defaultBlockTimes[value]);
+  }, []);
+  const handleFlyDistance = useCallback((value: string) => {
+    setFlyDistance(value);
+    setFlyTime(defaultFlyTimes[value]);
+  }, []);
+
   const wrappedSetWind = useCallback(wrappedOnChange(setWind, 1), [setWind]);
-  const wrappedSetBlock30 = useCallback(wrappedOnChange(setBlock30, 2), [
-    setBlock30,
+  const wrappedSetBlockTime = useCallback(wrappedOnChange(setBlockTime, 2), [
+    setBlockTime,
   ]);
-  const wrappedSetFly10 = useCallback(wrappedOnChange(setFly10, 2), [setFly10]);
+  const wrappedSetFlyTime = useCallback(wrappedOnChange(setFlyTime, 2), [
+    setFlyTime,
+  ]);
   const wrappedSetReaction = useCallback(wrappedOnChange(setReaction, 3), [
     setReaction,
   ]);
@@ -133,42 +203,90 @@ export default function WindCorrection({ pages }: PredictorProps) {
       <Title title={metas.title} />
       <section>
         <p>
-          Predict your 100m time based on your block 30 and fly 10 times. Wind
-          and reaction time are optional. The dataset used to train this model
-          is men&apos;s 100m times ranging from 9.58s to slightly above 11s. If
-          your times are outside of this range, predictions will be less
-          accurate.
+          Predict your 100m time based on your block and fly times. Wind and
+          reaction time are optional. If your times are outside the range of the
+          training data, predictions will be less accurate.
         </p>
         <label className={styles.formContainer}>
-          <strong>Block 30</strong>
+          <strong>Sex</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={sex}
+              onChange={e =>
+                setSex((e.target as HTMLSelectElement).value as Sex)
+              }
+            >
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Block distance</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={blockDistance}
+              onChange={e =>
+                handleBlockDistance((e.target as HTMLSelectElement).value)
+              }
+            >
+              {BLOCK_DISTANCES.map(d => (
+                <option value={`${d}`} key={d}>
+                  {d}m
+                </option>
+              ))}
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Block {blockDistance}</strong>
           <UnitInput
             className={styles.input}
             type="number"
             step="0.01"
-            value={block30}
-            onChange={wrappedSetBlock30}
+            value={blockTime}
+            onChange={wrappedSetBlockTime}
             unit="s"
           />
           <small>
-            Timed from start to the 30 meter mark,{" "}
+            Timed from start to the {blockDistance} meter mark,{" "}
             <b>excluding reaction time</b>. Use FAT timing for accurate
             estimates, or add 0.24s to a hand time.
           </small>
         </label>
         <label className={styles.formContainer}>
-          <strong>Fly 10</strong>
+          <strong>Fly distance</strong>
+          <div className={styles.selectWrapper}>
+            <select
+              className={styles.select}
+              value={flyDistance}
+              onChange={e =>
+                handleFlyDistance((e.target as HTMLSelectElement).value)
+              }
+            >
+              {FLY_DISTANCES.map(d => (
+                <option value={`${d}`} key={d}>
+                  {d}m
+                </option>
+              ))}
+            </select>
+          </div>
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Fly {flyDistance}</strong>
           <UnitInput
             className={styles.input}
             type="number"
             step="0.01"
-            value={fly10}
-            onChange={wrappedSetFly10}
+            value={flyTime}
+            onChange={wrappedSetFlyTime}
             unit="s"
           />
           <small>
-            The fastest 10 meter segment in a run; non-FAT times will not
-            produce accurate results. Freelap and camera times will be most
-            accurate if averaged across a 20- or 30-meter split.
+            The fastest {flyDistance} meter segment in a run; non-FAT times will
+            not produce accurate results.
           </small>
         </label>
         <label className={styles.formContainer}>
@@ -239,32 +357,32 @@ export default function WindCorrection({ pages }: PredictorProps) {
       <section className={styles.methodology}>
         <h2>Methodology</h2>
         <p>
-          This predictor is based on a log-level regression model trained on
-          &gt;800 professionally timed men&apos;s 100m races with 10m split
-          data, which is available{" "}
+          This predictor is based on log-level regression models trained on
+          &gt;2,800 professionally timed men&apos;s and women&apos;s 100m races
+          with 10m split data, which is available{" "}
           <a
-            href="https://www.athletefirst.org/wp-content/uploads/2023/10/M100m-by-meeting-Sep-23.pdf"
+            href="https://www.athletefirst.org/"
             target="_blank"
             rel="noreferrer"
           >
             here
           </a>
-          .
+          . A separate model is fit for each combination of sex, block distance,
+          and fly distance.
         </p>
         <p>
           The data was cleaned to remove Paralympic athletes and races where the
           athlete was obviously injured. Reaction time was removed from the data
-          to isolate the effects of block 30 and fly 10 times. For races that
+          to isolate the effects of the block and fly times. For races that
           didn&apos;t have reaction time available, the average reaction time
-          (0.149s) for the dataset was used.
+          for the dataset was used.
         </p>
         <p>
-          Fly 10 times were converted to velocities (m/s) prior to training the
-          model as I suspected velocity would be more predictive. A log-level
+          Fly times were converted to velocities (m/s) prior to training the
+          models as I suspected velocity would be more predictive. A log-level
           regression was chosen as the data didn&apos;t look linear, and because
           the log-level model produced a significantly better fit than a linear
-          fw model. The trained model has an R&sup2; value of 0.964 and a mean
-          squared error of 0.004.
+          model. The trained models have R&sup2; values between 0.92 and 0.99.
         </p>
         <p>
           Wind correction is based on{" "}
