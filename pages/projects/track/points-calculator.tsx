@@ -397,33 +397,31 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
             </select>
           </div>
         </label>
-        <div className={styles.results}>
-          <label className={styles.formContainer}>
-            <strong>Mark</strong>
-            <UnitInput
-              className={styles.input}
-              type="text"
-              value={mark}
-              onChange={v => onMarkChanged(v)}
-              unit={unit}
-            />
-          </label>
-          <label className={styles.formContainer}>
-            <strong>Points</strong>
-            <UnitInput
-              className={styles.input}
-              type="number"
-              step="1"
-              min="0"
-              max="1400"
-              value={points}
-              charBlacklist={["e", ".", "-", "+"]}
-              onChange={v => onPointsChanged(v)}
-              placeholder="0-1400"
-              unit="pts"
-            />
-          </label>
-        </div>
+        <label className={styles.formContainer}>
+          <strong>Mark</strong>
+          <UnitInput
+            className={styles.input}
+            type="text"
+            value={mark}
+            onChange={v => onMarkChanged(v)}
+            unit={unit}
+          />
+        </label>
+        <label className={styles.formContainer}>
+          <strong>Points</strong>
+          <UnitInput
+            className={styles.input}
+            type="number"
+            step="1"
+            min="0"
+            max="1400"
+            value={points}
+            charBlacklist={["e", ".", "-", "+"]}
+            onChange={v => onPointsChanged(v)}
+            placeholder="0-1400"
+            unit="pts"
+          />
+        </label>
         <details className={styles.equivalents}>
           <summary>Equivalent marks in other events</summary>
           <div className={styles.tabs}>
