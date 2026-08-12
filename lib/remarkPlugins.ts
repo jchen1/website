@@ -293,7 +293,7 @@ export function optimizeImages(opts?: OptimizeImagesOptions) {
 }
 
 export function anchorPostExcerpt(opts?: { returnAnchor?: boolean }) {
-  const regex = /<!--(.*?)-->/;
+  const regex = /<!--([\s\S]*?)-->/;
   return function (tree: Root) {
     let index = -1;
     visit(tree, ["html"], node => {
