@@ -175,6 +175,35 @@ const baseConfig = {
   async headers() {
     return [
       {
+        // stable-name font files (the .woff fallbacks): cacheable for a week,
+        // but not immutable because the filename doesn't change with the bytes
+        source: "/fonts/(.*)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800" }],
+      },
+      {
+        // content-hashed fonts (an 8-hex-digit segment before the extension):
+        // the name changes whenever the bytes do, so cache forever. Listed
+        // after the generic /fonts rule because the last matching header wins.
+        source: "/fonts/:name.:hash([0-9a-f]{8}).woff2",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // image sources are occasionally edited in place under the same name,
+        // so serve stale for a day while revalidating instead of immutable
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
         // matching all static files
         source: "/static/(.*)",
         headers: [

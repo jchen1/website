@@ -7,6 +7,7 @@ import GithubSlugger from "github-slugger";
 
 import { isAbsoluteURL, replace, sizeImage } from "./util/server";
 import imageConfig from "./imageConfig";
+import { CONTENT_IMAGE_SIZES } from "./constants";
 
 import type { ElementContent } from "hast";
 import type { Code, Html, Image, Link, LinkReference, Root } from "mdast";
@@ -278,6 +279,7 @@ export function optimizeImages(opts?: OptimizeImagesOptions) {
                 `${path}?url=${encodeURIComponent(image.url)}&w=${w}&q=75 ${w}w`,
             )
             .join(", "),
+          sizes: CONTENT_IMAGE_SIZES,
 
           ...image.data.hProperties,
         };
