@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import type { ComponentType } from "react";
@@ -68,6 +68,18 @@ const transitionStyle =
 
 const fullWidthRoutes = ["/metrics"];
 
+declare global {
+  interface Window {
+    /**
+     * Set at the first commit after hydration. The deferred-hydration
+     * activator in _document polls this before replaying pre-hydration
+     * interactions (edits, clicks, ⌘K), and its recorders stop capturing
+     * the moment it flips.
+     */
+    __NEXT_HYDRATED?: boolean;
+  }
+}
+
 // Warms the palette's async chunk and the search-index fetch cache
 function preloadPalette() {
   void import("components/CommandPalette")
@@ -90,6 +102,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const openPalette = useCallback(() => setPaletteOpen(true), []);
   const closePalette = useCallback(() => setPaletteOpen(false), []);
+
+  // The hydration flag flips at commit time: a passive effect would leave a
+  // window where handlers are live but the activator's recorders still
+  // capture, double-firing any event landing in it.
+  useLayoutEffect(() => {
+    window.__NEXT_HYDRATED = true;
+  }, []);
 
   useEffect(() => {
     setLoaded(true);

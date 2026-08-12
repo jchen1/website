@@ -57,7 +57,11 @@ function InnerHTML(props: InnerHTMLProps) {
     divRef.current!.appendChild(slotHtml); // Append the new content
   }, [html]);
 
-  return <div {...rest} ref={divRef}></div>;
+  // The div is empty in the SSR HTML — the content only exists once the
+  // effect above runs. data-eager-hydrate tells the deferred-hydration
+  // activator in pages/_document.tsx to load the runtime immediately on
+  // such pages instead of waiting for interaction or idle.
+  return <div data-eager-hydrate="" {...rest} ref={divRef}></div>;
 }
 
 interface BlogPostProps {
