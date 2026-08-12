@@ -110,6 +110,24 @@ function markToUserMark(mark: number, markType: MarkType) {
   }
 }
 
+function equivalentMark(eventType: string, points: number, gender: string) {
+  const eventCoefficients = coefficients[gender][eventType];
+  if (!eventCoefficients) {
+    return null;
+  }
+
+  const markType = markTypes[eventType];
+  const mark = getMarkFromScore(eventCoefficients, points);
+  if (!Number.isFinite(mark) || mark <= 0) {
+    return null;
+  }
+
+  return markToUserMark(
+    markType === "points" ? Math.round(mark) : mark,
+    markType,
+  );
+}
+
 export const metas: Metas = {
   title: "World Athletics Points Calculator",
   description:
@@ -129,6 +147,10 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const [mark, setMark] = useState("");
   const [points, setPoints] = useState("");
   const [hasShared, setHasShared] = useState(false);
+  // null follows the main category selector until a tab is clicked
+  const [equivalentsCategory, setEquivalentsCategory] = useState<string | null>(
+    null,
+  );
   const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
     null,
   );
@@ -296,6 +318,26 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     );
   }, [category, gender]);
 
+  const tableCategory = equivalentsCategory ?? category;
+
+  const equivalentMarks = useMemo(() => {
+    const pointsNum = Number(points);
+    if (points === "" || !Number.isFinite(pointsNum)) {
+      return [];
+    }
+    return order[tableCategory]
+      .filter(other => isEventValidForGender(other, gender === "men"))
+      .filter(other => tableCategory !== category || other !== event)
+      .map(other => ({
+        event: other,
+        mark: equivalentMark(other, pointsNum, gender),
+        unit: units[markTypes[other]],
+      }))
+      .filter((row): row is { event: string; mark: string; unit: string } =>
+        Boolean(row.mark),
+      );
+  }, [points, tableCategory, category, event, gender]);
+
   return (
     <article className={blogStyles.article}>
       <Meta {...metas} />
@@ -380,6 +422,50 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
             unit="pts"
           />
         </label>
+        <details className={styles.equivalents}>
+          <summary>Equivalent marks in other events</summary>
+          <div className={styles.tabs}>
+            {Object.keys(order).map(c => (
+              <button
+                key={c}
+                type="button"
+                className={c === tableCategory ? styles.activeTab : undefined}
+                aria-pressed={c === tableCategory}
+                onClick={() => setEquivalentsCategory(c)}
+              >
+                {c.charAt(0).toUpperCase() + c.slice(1)}
+              </button>
+            ))}
+          </div>
+          {equivalentMarks.length > 0 ? (
+            <>
+              <p>
+                Marks worth {points} points in {tableCategory}{" "}
+                {gender === "men" ? "men’s" : "women’s"} events.
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Mark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {equivalentMarks.map(({ event, mark, unit }) => (
+                    <tr key={event}>
+                      <td>{eventNames[event]}</td>
+                      <td>
+                        {mark} {unit}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <p>Enter a mark or points above to compare across events.</p>
+          )}
+        </details>
         <button
           className={styles.shareButton}
           onClick={handleShare}
