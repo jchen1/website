@@ -125,7 +125,7 @@ export default function BlogPost({
           />
         </figure>
       )}
-      {/\<script\>/.test(contentHTML) ? (
+      {contentHTML.toLowerCase().includes("<script") ? (
         <InnerHTML html={contentHTML} />
       ) : (
         <div dangerouslySetInnerHTML={{ __html: contentHTML }} />

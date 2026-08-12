@@ -67,7 +67,7 @@ function toStillAir(
   const markNum = parseFloat(mark as string);
   const windNum = parseFloat((wind || "0") as string);
 
-  if (isNaN(markNum) || isNaN(windNum) || !windEffect[event]) {
+  if (isNaN(markNum) || isNaN(windNum) || !Object.hasOwn(windEffect, event)) {
     return null;
   }
 
@@ -81,7 +81,7 @@ function fromStillAir(
   stillAirMark: number | null,
   wind: number,
 ) {
-  if (stillAirMark == null || !windEffect[event]) {
+  if (stillAirMark == null || !Object.hasOwn(windEffect, event)) {
     return null;
   }
 
