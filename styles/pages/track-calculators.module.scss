@@ -70,7 +70,6 @@
 .results {
   margin: 1rem 0;
   padding: 0.25rem 1rem 0.75rem;
-  background-color: var(--secondary-light-gray);
   border: 1px solid var(--secondary);
   border-radius: 0.25rem;
 }
@@ -83,6 +82,39 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1.2em;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.75rem 0 0;
+
+    button {
+      padding: 0.25rem 1rem;
+      border: 1px solid var(--dark-gray);
+      border-radius: 0.25rem;
+      background: var(--white);
+      color: var(--dark-gray);
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--light-gray);
+      }
+    }
+
+    .activeTab {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-gray);
+      font-weight: bold;
+      cursor: default;
+
+      &:hover {
+        background-color: var(--primary);
+      }
+    }
   }
 
   p {

@@ -147,6 +147,10 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const [mark, setMark] = useState("");
   const [points, setPoints] = useState("");
   const [hasShared, setHasShared] = useState(false);
+  // null follows the main category selector until a tab is clicked
+  const [equivalentsCategory, setEquivalentsCategory] = useState<string | null>(
+    null,
+  );
   const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
     null,
   );
@@ -314,13 +318,16 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     );
   }, [category, gender]);
 
+  const tableCategory = equivalentsCategory ?? category;
+
   const equivalentMarks = useMemo(() => {
     const pointsNum = Number(points);
     if (points === "" || !Number.isFinite(pointsNum)) {
       return [];
     }
-    return events
-      .filter(other => other !== event)
+    return order[tableCategory]
+      .filter(other => isEventValidForGender(other, gender === "men"))
+      .filter(other => tableCategory !== category || other !== event)
       .map(other => ({
         event: other,
         mark: equivalentMark(other, pointsNum, gender),
@@ -329,7 +336,7 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       .filter((row): row is { event: string; mark: string; unit: string } =>
         Boolean(row.mark),
       );
-  }, [points, events, event, gender]);
+  }, [points, tableCategory, category, event, gender]);
 
   return (
     <article className={blogStyles.article}>
@@ -419,10 +426,23 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
         </div>
         <details className={styles.equivalents}>
           <summary>Equivalent marks in other events</summary>
+          <div className={styles.tabs}>
+            {Object.keys(order).map(c => (
+              <button
+                key={c}
+                type="button"
+                className={c === tableCategory ? styles.activeTab : undefined}
+                aria-pressed={c === tableCategory}
+                onClick={() => setEquivalentsCategory(c)}
+              >
+                {c.charAt(0).toUpperCase() + c.slice(1)}
+              </button>
+            ))}
+          </div>
           {equivalentMarks.length > 0 ? (
             <>
               <p>
-                Marks worth {points} points in other {category}{" "}
+                Marks worth {points} points in {tableCategory}{" "}
                 {gender === "men" ? "men’s" : "women’s"} events.
               </p>
               <table>
