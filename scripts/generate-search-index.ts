@@ -25,8 +25,8 @@ const ALL_PAGES: SearchIndexItem[] = [
     group: "Pages",
   },
   {
-    title: "200m Lane Draw Converter",
-    route: "/projects/track/200m-lane-draw/",
+    title: "Lane Draw Converter",
+    route: "/projects/track/lane-draw/",
     group: "Pages",
   },
   {
