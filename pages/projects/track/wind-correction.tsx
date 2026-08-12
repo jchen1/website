@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
+import { useInitialQueryParams } from "lib/hooks";
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
 
@@ -15,14 +16,6 @@ import styles from "styles/pages/track-calculators.module.scss";
 
 import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
-
-function useSearchParams() {
-  const router = useRouter();
-  return useMemo(
-    () => new URLSearchParams(router.query as Record<string, string>),
-    [router.query],
-  );
-}
 
 // Wind's effect on a mark, from Moinat, Fabius & Emanuel (2018):
 // effect(w) = a*w + b*w^2, in the event's native units, expressed as a signed
@@ -101,20 +94,35 @@ interface WindCorrectionProps {
 
 export default function WindCorrection({ pages }: WindCorrectionProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Initialize state from URL params if they exist
-  const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
-  const [wind, setWind] = useState<string | number>(
-    () => parseFloat(searchParams.get("wind") ?? "") || 0,
-  );
-  const [mark, setMark] = useState<string | number>(
-    () => parseFloat(searchParams.get("mark") ?? "") || 9.58,
-  );
+  const [event, setEvent] = useState("100m");
+  const [wind, setWind] = useState<string | number>(0);
+  const [mark, setMark] = useState<string | number>(9.58);
   const [hasShared, setHasShared] = useState(false);
+
+  const loadedFromUrl = useInitialQueryParams(params => {
+    const urlEvent = params.get("event");
+    if (urlEvent && Object.hasOwn(windEffect, urlEvent)) {
+      setEvent(urlEvent);
+    }
+
+    const urlMark = parseFloat(params.get("mark") ?? "");
+    if (!isNaN(urlMark)) {
+      setMark(urlMark);
+    }
+
+    const urlWind = parseFloat(params.get("wind") ?? "");
+    if (!isNaN(urlWind)) {
+      setWind(urlWind);
+    }
+  });
 
   // Update URL when state changes
   useEffect(() => {
+    if (!loadedFromUrl) {
+      return;
+    }
+
     const params = new URLSearchParams();
     if (event) {
       params.set("event", event);
@@ -131,7 +139,7 @@ export default function WindCorrection({ pages }: WindCorrectionProps) {
       router.replace(newUrl, undefined, { shallow: true });
       setHasShared(false);
     }
-  }, [event, mark, wind, router]);
+  }, [loadedFromUrl, event, mark, wind, router]);
 
   // Add share button functionality
   const handleShare = useCallback(() => {

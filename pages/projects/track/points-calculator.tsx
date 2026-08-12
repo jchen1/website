@@ -8,6 +8,7 @@ import {
   order,
   units,
 } from "lib/track/points-calculator/constants";
+import { useInitialQueryParams } from "lib/hooks";
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
 import type { MarkType } from "lib/track/points-calculator/constants";
@@ -24,14 +25,6 @@ import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-function useSearchParams() {
-  const router = useRouter();
-  return useMemo(
-    () => new URLSearchParams(router.query as Record<string, string>),
-    [router.query],
-  );
-}
 
 function score(coefficients: number[], x: number) {
   if (coefficients.length === 2) {
@@ -129,25 +122,52 @@ interface PointsCalculatorProps {
 
 export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Initialize state from URL params if they exist
-  const [category, setCategory] = useState(
-    () => searchParams.get("category") || "outdoor",
-  );
-  const [gender, setGender] = useState(
-    () => searchParams.get("gender") || "men",
-  );
-  const [event, setEvent] = useState(() => searchParams.get("event") || "100m");
-  const [mark, setMark] = useState(() => searchParams.get("mark") || "");
-  const [points, setPoints] = useState(() => searchParams.get("points") || "");
+  const [category, setCategory] = useState("outdoor");
+  const [gender, setGender] = useState("men");
+  const [event, setEvent] = useState("100m");
+  const [mark, setMark] = useState("");
+  const [points, setPoints] = useState("");
   const [hasShared, setHasShared] = useState(false);
   const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
     null,
   );
 
+  const loadedFromUrl = useInitialQueryParams(params => {
+    const urlCategory = params.get("category");
+    const category =
+      urlCategory && Object.hasOwn(order, urlCategory)
+        ? urlCategory
+        : "outdoor";
+    setCategory(category);
+
+    const urlGender = params.get("gender");
+    if (urlGender && Object.hasOwn(coefficients, urlGender)) {
+      setGender(urlGender);
+    }
+
+    const urlEvent = params.get("event");
+    if (urlEvent && order[category].includes(urlEvent)) {
+      setEvent(urlEvent);
+    }
+
+    const urlMark = params.get("mark");
+    if (urlMark) {
+      setMark(urlMark);
+    }
+
+    const urlPoints = params.get("points");
+    if (urlPoints) {
+      setPoints(urlPoints);
+    }
+  });
+
   // Update URL when state changes
   useEffect(() => {
+    if (!loadedFromUrl) {
+      return;
+    }
+
     const params = new URLSearchParams();
     if (category) {
       params.set("category", category);
@@ -170,7 +190,7 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       router.replace(newUrl, undefined, { shallow: true });
       setHasShared(false);
     }
-  }, [category, gender, event, mark, points, router]);
+  }, [loadedFromUrl, category, gender, event, mark, points, router]);
 
   // Add share button functionality
   const handleShare = useCallback(() => {
@@ -251,6 +271,10 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   }, [event, category, gender]);
 
   useEffect(() => {
+    if (!loadedFromUrl) {
+      return;
+    }
+
     if (!coefficients[gender][event] || !order[category].includes(event)) {
       // Set to the equivalent indoor/outdoor event when possible
       if (category === "indoor" && order[category].includes(`${event} sh`)) {
@@ -262,7 +286,7 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       }
     }
     onPointsChanged(points);
-  }, [category, gender, event, onPointsChanged, points]);
+  }, [loadedFromUrl, category, gender, event, onPointsChanged, points]);
 
   const unit = units[markTypes[event]];
 

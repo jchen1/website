@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
+import { useInitialQueryParams } from "lib/hooks";
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
 import { BLOCK_DISTANCES, FLY_DISTANCES, MODEL } from "lib/track/100m-model";
@@ -17,14 +18,6 @@ import styles from "styles/pages/track-calculators.module.scss";
 
 import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
-
-function useSearchParams() {
-  const router = useRouter();
-  return useMemo(
-    () => new URLSearchParams(router.query as Record<string, string>),
-    [router.query],
-  );
-}
 
 // P_new = P + a*w + b*P*w + c*w^2
 const windCoefficients = [-0.0449, 0.009459, -0.0042];
@@ -105,35 +98,60 @@ interface PredictorProps {
 
 export default function Predictor100m({ pages }: PredictorProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const [sex, setSex] = useState<Sex>(() =>
-    searchParams.get("sex") === "women" ? "women" : "men",
-  );
-  const [blockDistance, setBlockDistance] = useState(
-    () => searchParams.get("blockDistance") || "30",
-  );
-  const [flyDistance, setFlyDistance] = useState(
-    () => searchParams.get("flyDistance") || "10",
-  );
-  // block30/fly10 are the query params from before distances were selectable
-  const [blockTime, setBlockTime] = useState(
-    () =>
-      searchParams.get("block") ||
-      searchParams.get("block30") ||
-      defaultBlockTimes["30"],
-  );
-  const [flyTime, setFlyTime] = useState(
-    () =>
-      searchParams.get("fly") ||
-      searchParams.get("fly10") ||
-      defaultFlyTimes["10"],
-  );
-  const [wind, setWind] = useState(() => searchParams.get("wind") || "0.0");
-  const [reaction, setReaction] = useState(
-    () => searchParams.get("reaction") || "0.149",
-  );
+  const [sex, setSex] = useState<Sex>("men");
+  const [blockDistance, setBlockDistance] = useState("30");
+  const [flyDistance, setFlyDistance] = useState("10");
+  const [blockTime, setBlockTime] = useState(defaultBlockTimes["30"]);
+  const [flyTime, setFlyTime] = useState(defaultFlyTimes["10"]);
+  const [wind, setWind] = useState("0.0");
+  const [reaction, setReaction] = useState("0.149");
   const [hasShared, setHasShared] = useState(false);
+
+  const loadedFromUrl = useInitialQueryParams(params => {
+    if (params.get("sex") === "women") {
+      setSex("women");
+    }
+
+    const urlBlockDistance = params.get("blockDistance");
+    if (
+      urlBlockDistance &&
+      BLOCK_DISTANCES.some(d => String(d) === urlBlockDistance)
+    ) {
+      setBlockDistance(urlBlockDistance);
+      setBlockTime(defaultBlockTimes[urlBlockDistance]);
+    }
+
+    const urlFlyDistance = params.get("flyDistance");
+    if (
+      urlFlyDistance &&
+      FLY_DISTANCES.some(d => String(d) === urlFlyDistance)
+    ) {
+      setFlyDistance(urlFlyDistance);
+      setFlyTime(defaultFlyTimes[urlFlyDistance]);
+    }
+
+    // block30/fly10 are the query params from before distances were selectable
+    const urlBlockTime = params.get("block") || params.get("block30");
+    if (urlBlockTime) {
+      setBlockTime(urlBlockTime);
+    }
+
+    const urlFlyTime = params.get("fly") || params.get("fly10");
+    if (urlFlyTime) {
+      setFlyTime(urlFlyTime);
+    }
+
+    const urlWind = params.get("wind");
+    if (urlWind) {
+      setWind(urlWind);
+    }
+
+    const urlReaction = params.get("reaction");
+    if (urlReaction) {
+      setReaction(urlReaction);
+    }
+  });
 
   const predictedTime = predict100m(
     sex,
@@ -146,6 +164,10 @@ export default function Predictor100m({ pages }: PredictorProps) {
   );
 
   useEffect(() => {
+    if (!loadedFromUrl) {
+      return;
+    }
+
     const params = new URLSearchParams();
     params.set("sex", sex);
     params.set("blockDistance", blockDistance);
@@ -161,6 +183,7 @@ export default function Predictor100m({ pages }: PredictorProps) {
       setHasShared(false);
     }
   }, [
+    loadedFromUrl,
     sex,
     blockDistance,
     flyDistance,

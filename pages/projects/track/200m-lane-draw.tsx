@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
+import { useInitialQueryParams } from "lib/hooks";
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
 
@@ -15,14 +16,6 @@ import styles from "styles/pages/track-calculators.module.scss";
 
 import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
-
-function useSearchParams() {
-  const router = useRouter();
-  return useMemo(
-    () => new URLSearchParams(router.query as Record<string, string>),
-    [router.query],
-  );
-}
 
 const LANE_EFFECT = 0.018;
 const LANES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -55,20 +48,34 @@ interface LaneDrawConverterProps {
 
 export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const [time, setTime] = useState<string | number>(
-    () => parseFloat(searchParams.get("time") ?? "") || 19.79,
-  );
-  const [currentLane, setCurrentLane] = useState(
-    () => parseInt(searchParams.get("currentLane") ?? "", 10) || 5,
-  );
-  const [targetLane, setTargetLane] = useState(
-    () => parseInt(searchParams.get("targetLane") ?? "", 10) || 5,
-  );
+  const [time, setTime] = useState<string | number>(19.79);
+  const [currentLane, setCurrentLane] = useState(5);
+  const [targetLane, setTargetLane] = useState(5);
   const [hasShared, setHasShared] = useState(false);
 
+  const loadedFromUrl = useInitialQueryParams(params => {
+    const urlTime = parseFloat(params.get("time") ?? "");
+    if (!isNaN(urlTime)) {
+      setTime(urlTime);
+    }
+
+    const urlCurrentLane = parseInt(params.get("currentLane") ?? "", 10);
+    if (LANES.includes(urlCurrentLane)) {
+      setCurrentLane(urlCurrentLane);
+    }
+
+    const urlTargetLane = parseInt(params.get("targetLane") ?? "", 10);
+    if (LANES.includes(urlTargetLane)) {
+      setTargetLane(urlTargetLane);
+    }
+  });
+
   useEffect(() => {
+    if (!loadedFromUrl) {
+      return;
+    }
+
     const params = new URLSearchParams();
     if (time) params.set("time", time.toString());
     if (currentLane) params.set("currentLane", currentLane.toString());
@@ -79,7 +86,7 @@ export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
       router.replace(newUrl, undefined, { shallow: true });
       setHasShared(false);
     }
-  }, [time, currentLane, targetLane, router]);
+  }, [loadedFromUrl, time, currentLane, targetLane, router]);
 
   const handleShare = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
