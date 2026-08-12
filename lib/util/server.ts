@@ -1,7 +1,7 @@
 // https://github.com/sindresorhus/is-absolute-url/blob/master/index.js
 import { join } from "path";
 import { readFileSync } from "fs";
-import { imageSize } from "image-size";
+import probe from "probe-image-size";
 
 export function isAbsoluteURL(url: string) {
   if (typeof url !== "string") {
@@ -23,7 +23,13 @@ export function sizeImage(image: string, opts: { basepath?: string } = {}) {
   if (!isAbsoluteURL(image) && image.startsWith("/")) {
     const path = join(process.cwd(), opts.basepath || "", image);
     try {
-      return imageSize(readFileSync(path));
+      const size = probe.sync(readFileSync(path));
+      if (!size) {
+        console.warn(`Unrecognized image format for ${image} (path: ${path})`);
+        return undefined;
+      }
+      // SVG dimensions can be fractional; the pipeline expects integers
+      return { width: Math.round(size.width), height: Math.round(size.height) };
     } catch (e) {
       console.warn(`Error getting dimensions for ${image} (path: ${path})!`, e);
     }
