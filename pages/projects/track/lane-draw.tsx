@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
+import { useInitialQueryParams } from "lib/hooks";
 import { getAllPages } from "lib/track/pages";
 import type { TrackPage } from "lib/track/pages";
 import { laneSlope } from "lib/track/laneDraw";
@@ -18,14 +19,6 @@ import styles from "styles/pages/track-calculators.module.scss";
 import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
 
-function useSearchParams() {
-  const router = useRouter();
-  return useMemo(
-    () => new URLSearchParams(router.query as Record<string, string>),
-    [router.query],
-  );
-}
-
 const LANES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // World-class marks, used as the starting point for each cohort
@@ -34,25 +27,12 @@ const defaultTimes: Record<LaneEvent, Record<Gender, string>> = {
   "400m": { men: "44.15", women: "49.50" },
 };
 
-interface LaneDrawState {
-  event: LaneEvent;
-  gender: Gender;
-  time: string;
-  currentLane: number;
-  targetLane: number;
+function isLaneEvent(value: string | null): value is LaneEvent {
+  return value === "200m" || value === "400m";
 }
 
-function stateFromParams(params: URLSearchParams): LaneDrawState {
-  const event: LaneEvent = params.get("event") === "400m" ? "400m" : "200m";
-  const gender: Gender = params.get("gender") === "women" ? "women" : "men";
-
-  return {
-    event,
-    gender,
-    time: params.get("time") || defaultTimes[event][gender],
-    currentLane: parseInt(params.get("currentLane") ?? "", 10) || 5,
-    targetLane: parseInt(params.get("targetLane") ?? "", 10) || 5,
-  };
+function isGender(value: string | null): value is Gender {
+  return value === "men" || value === "women";
 }
 
 interface Conversion {
@@ -94,43 +74,46 @@ interface LaneDrawConverterProps {
 
 export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const initial = stateFromParams(searchParams);
-  const [event, setEvent] = useState<LaneEvent>(initial.event);
-  const [gender, setGender] = useState<Gender>(initial.gender);
-  const [time, setTime] = useState<string | number>(initial.time);
+  const [event, setEvent] = useState<LaneEvent>("200m");
+  const [gender, setGender] = useState<Gender>("men");
+  const [time, setTime] = useState<string | number>(defaultTimes["200m"].men);
   // a time that came from the user or a link is never replaced by a cohort
   // default
-  const [timeIsUserSet, setTimeIsUserSet] = useState(
-    () => !!searchParams.get("time"),
-  );
-  const [currentLane, setCurrentLane] = useState(initial.currentLane);
-  const [targetLane, setTargetLane] = useState(initial.targetLane);
-  const [adoptedParams, setAdoptedParams] = useState(false);
+  const [timeIsUserSet, setTimeIsUserSet] = useState(false);
+  const [currentLane, setCurrentLane] = useState(5);
+  const [targetLane, setTargetLane] = useState(5);
   const [hasShared, setHasShared] = useState(false);
 
-  // On a statically generated page router.query is empty until the router is
-  // ready, so the query a shared link carries is adopted as soon as it arrives.
-  useEffect(() => {
-    if (adoptedParams || !router.isReady) {
-      return;
+  const loadedFromUrl = useInitialQueryParams(params => {
+    const urlEvent = params.get("event");
+    const urlGender = params.get("gender");
+    const cohortEvent = isLaneEvent(urlEvent) ? urlEvent : "200m";
+    const cohortGender = isGender(urlGender) ? urlGender : "men";
+    setEvent(cohortEvent);
+    setGender(cohortGender);
+
+    const urlTime = parseFloat(params.get("time") ?? "");
+    if (isNaN(urlTime)) {
+      setTime(defaultTimes[cohortEvent][cohortGender]);
+    } else {
+      setTime(urlTime);
+      setTimeIsUserSet(true);
     }
 
-    const incoming = stateFromParams(searchParams);
-    setEvent(incoming.event);
-    setGender(incoming.gender);
-    setTime(incoming.time);
-    setTimeIsUserSet(!!searchParams.get("time"));
-    setCurrentLane(incoming.currentLane);
-    setTargetLane(incoming.targetLane);
-    setAdoptedParams(true);
-  }, [adoptedParams, router.isReady, searchParams]);
+    const urlCurrentLane = parseInt(params.get("currentLane") ?? "", 10);
+    if (LANES.includes(urlCurrentLane)) {
+      setCurrentLane(urlCurrentLane);
+    }
 
-  // Writing the URL before the query has been adopted would replace a shared
-  // link's params with the defaults rendered ahead of them.
+    const urlTargetLane = parseInt(params.get("targetLane") ?? "", 10);
+    if (LANES.includes(urlTargetLane)) {
+      setTargetLane(urlTargetLane);
+    }
+  });
+
   useEffect(() => {
-    if (!adoptedParams) {
+    if (!loadedFromUrl) {
       return;
     }
 
@@ -146,7 +129,7 @@ export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
       router.replace(newUrl, undefined, { shallow: true });
       setHasShared(false);
     }
-  }, [adoptedParams, event, gender, time, currentLane, targetLane, router]);
+  }, [loadedFromUrl, event, gender, time, currentLane, targetLane, router]);
 
   const handleShare = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
