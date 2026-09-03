@@ -10,6 +10,7 @@ import Byline from "./Byline";
 
 import Title from "./Title";
 import PostCTA from "./PostCTA";
+import PostContent from "./PostContent";
 import RelatedPosts from "./RelatedPosts";
 
 import type { ComponentProps } from "react";
@@ -128,7 +129,7 @@ export default function BlogPost({
       {contentHTML.toLowerCase().includes("<script") ? (
         <InnerHTML html={contentHTML} />
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
+        <PostContent html={contentHTML} />
       )}
       {showScroll && (
         <>

@@ -41,3 +41,4 @@ public/search-index.json
 
 # typescript incremental cache
 tsconfig.tsbuildinfo
+.claude

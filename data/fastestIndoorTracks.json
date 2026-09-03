@@ -1,0 +1,1838 @@
+[
+  {
+    "rank": 1,
+    "venue": "Mountaineer Fieldhouse - Gunnison, CO",
+    "elevationFt": 7723.0,
+    "advantageMs": 90.1381746581282,
+    "lowerMs": 82.4154770085394,
+    "upperMs": 97.8608723077169,
+    "races": 774
+  },
+  {
+    "rank": 2,
+    "venue": "High Altitude Events Center - Alamosa, CO",
+    "elevationFt": 7547.0,
+    "advantageMs": 78.599626296563,
+    "lowerMs": 71.9296884895623,
+    "upperMs": 85.2695641035636,
+    "races": 794
+  },
+  {
+    "rank": 3,
+    "venue": "Northern Arizona-Skydome - Flagstaff, AZ",
+    "elevationFt": 6877.0,
+    "advantageMs": 74.8206689894459,
+    "lowerMs": 70.2922364310122,
+    "upperMs": 79.3491015478797,
+    "races": 4055
+  },
+  {
+    "rank": 4,
+    "venue": "Montana State-Breeden FH (Flat) - Bozeman, MT",
+    "elevationFt": 4926.0,
+    "advantageMs": 71.5911019683068,
+    "lowerMs": 65.7103964092747,
+    "upperMs": 77.4718075273389,
+    "races": 1347
+  },
+  {
+    "rank": 5,
+    "venue": "UCCS Mountain Lion Fieldhouse - Colorado Springs, CO",
+    "elevationFt": 6291.0,
+    "advantageMs": 65.5402395486333,
+    "lowerMs": 58.541538168567,
+    "upperMs": 72.5389409286996,
+    "races": 864
+  },
+  {
+    "rank": 6,
+    "venue": "Air Force-Cadet Field House - Colorado Springs, CO",
+    "elevationFt": 7048.0,
+    "advantageMs": 64.4807766985921,
+    "lowerMs": 60.1284936567363,
+    "upperMs": 68.833059740448,
+    "races": 3067
+  },
+  {
+    "rank": 7,
+    "venue": "Colorado Mines-Steinhauer FH - Golden, CO",
+    "elevationFt": 5737.0,
+    "advantageMs": 60.4228534962765,
+    "lowerMs": 54.9148173422737,
+    "upperMs": 65.9308896502793,
+    "races": 1642
+  },
+  {
+    "rank": 8,
+    "venue": "Colorado-Indoor Practice Facility - Boulder, CO",
+    "elevationFt": 5337.0,
+    "advantageMs": 59.4969711248034,
+    "lowerMs": 52.4527047398061,
+    "upperMs": 66.5412375098007,
+    "races": 1177
+  },
+  {
+    "rank": 9,
+    "venue": "BYU-Smith Field House - Provo, UT",
+    "elevationFt": 4627.0,
+    "advantageMs": 52.9824640003481,
+    "lowerMs": 43.8915525894063,
+    "upperMs": 62.0733754112899,
+    "races": 844
+  },
+  {
+    "rank": 10,
+    "venue": "Idaho State-Holt Arena (Banked) - Pocatello, ID",
+    "elevationFt": 4539.0,
+    "advantageMs": 49.5378996623926,
+    "lowerMs": 43.8686935157361,
+    "upperMs": 55.207105809049,
+    "races": 1993
+  },
+  {
+    "rank": 11,
+    "venue": "Black Hills St.-Donald Young Center - Spearfish, SD",
+    "elevationFt": 3593.0,
+    "advantageMs": 43.2653685260784,
+    "lowerMs": 37.4401716086805,
+    "upperMs": 49.0905654434763,
+    "races": 1590
+  },
+  {
+    "rank": 12,
+    "venue": "Cedarville-Doden FH - Cedarville, OH",
+    "elevationFt": 1056.0,
+    "advantageMs": 42.2538987629228,
+    "lowerMs": 36.3876246298208,
+    "upperMs": 48.1201728960247,
+    "races": 801
+  },
+  {
+    "rank": 13,
+    "venue": "Reno-Sparks Convention Center - Reno, NV",
+    "elevationFt": 4450.0,
+    "advantageMs": 40.8847372715343,
+    "lowerMs": 32.5901918731427,
+    "upperMs": 49.1792826699259,
+    "races": 1121
+  },
+  {
+    "rank": 14,
+    "venue": "Albuquerque Convention Center - Albuquerque, NM",
+    "elevationFt": 4958.0,
+    "advantageMs": 40.0090828010619,
+    "lowerMs": 37.3489973551365,
+    "upperMs": 42.6691682469873,
+    "races": 10829
+  },
+  {
+    "rank": 15,
+    "venue": "Wichita State-Heskett Center - Witchita, KS",
+    "elevationFt": 1407.0,
+    "advantageMs": 39.895905775237,
+    "lowerMs": 35.2835104889438,
+    "upperMs": 44.5083010615301,
+    "races": 2813
+  },
+  {
+    "rank": 16,
+    "venue": "Pittsburg St-Robert W. Plaster Center - Pittsburg, KS",
+    "elevationFt": 929.0,
+    "advantageMs": 39.7095745724072,
+    "lowerMs": 36.8795014517603,
+    "upperMs": 42.5396476930542,
+    "races": 10341
+  },
+  {
+    "rank": 17,
+    "venue": "Boise State-Jackson's Track - Nampa, ID",
+    "elevationFt": 2492.0,
+    "advantageMs": 39.4014593998267,
+    "lowerMs": 34.2381762190209,
+    "upperMs": 44.5647425806324,
+    "races": 4588
+  },
+  {
+    "rank": 18,
+    "venue": "Texas Tech-Sports Performance Center - Lubbock, TX",
+    "elevationFt": 3217.0,
+    "advantageMs": 38.5898639341196,
+    "lowerMs": 34.4105440244668,
+    "upperMs": 42.7691838437724,
+    "races": 7031
+  },
+  {
+    "rank": 19,
+    "venue": "Embry-Riddle (I) - Daytona Beach, FL",
+    "elevationFt": 30.0,
+    "advantageMs": 38.1052751320542,
+    "lowerMs": 19.7980346688786,
+    "upperMs": 56.4125155952299,
+    "races": 594
+  },
+  {
+    "rank": 20,
+    "venue": "The Podium in Spokane - Spokane, WA",
+    "elevationFt": 1885.0,
+    "advantageMs": 37.1200316980253,
+    "lowerMs": 32.8129270605377,
+    "upperMs": 41.427136335513,
+    "races": 4421
+  },
+  {
+    "rank": 21,
+    "venue": "Edinboro-Zafirovski Rec Center - Edinboro, PA",
+    "elevationFt": 1213.0,
+    "advantageMs": 36.9044986497104,
+    "lowerMs": 31.7574020768747,
+    "upperMs": 42.0515952225462,
+    "races": 1252
+  },
+  {
+    "rank": 22,
+    "venue": "Concordia (Neb.)-Bulldog FH - Seward, NE",
+    "elevationFt": 1481.0,
+    "advantageMs": 36.5806219371873,
+    "lowerMs": 32.4292107512833,
+    "upperMs": 40.7320331230913,
+    "races": 3011
+  },
+  {
+    "rank": 23,
+    "venue": "Nebraska-Kearney-Cushing FH - Kearney, NE",
+    "elevationFt": 2180.0,
+    "advantageMs": 36.1617107927978,
+    "lowerMs": 31.558257022302,
+    "upperMs": 40.7651645632937,
+    "races": 1274
+  },
+  {
+    "rank": 24,
+    "venue": "NW Missouri-Hughes Fieldhouse - Maryville, MO",
+    "elevationFt": 1157.0,
+    "advantageMs": 34.8075793192663,
+    "lowerMs": 30.5535272695942,
+    "upperMs": 39.0616313689383,
+    "races": 3968
+  },
+  {
+    "rank": 25,
+    "venue": "UW-Milwaukee-Klotche Center - Milwaukee, WI",
+    "elevationFt": 593.0,
+    "advantageMs": 33.8356708117625,
+    "lowerMs": 28.3801832819479,
+    "upperMs": 39.2911583415772,
+    "races": 988
+  },
+  {
+    "rank": 26,
+    "venue": "Northern Iowa-UNI Dome - Cedar Falls, IA",
+    "elevationFt": 945.0,
+    "advantageMs": 31.9029368985406,
+    "lowerMs": 27.4905939017439,
+    "upperMs": 36.3152798953374,
+    "races": 2379
+  },
+  {
+    "rank": 27,
+    "venue": "Centre College-Lisa H. Owens Fieldhouse - Danville, KY",
+    "elevationFt": 979.0,
+    "advantageMs": 31.8633183096639,
+    "lowerMs": 23.1067141910199,
+    "upperMs": 40.6199224283079,
+    "races": 594
+  },
+  {
+    "rank": 28,
+    "venue": "Harvard-Gordon Track and Tennis - Cambridge, MA",
+    "elevationFt": 17.0,
+    "advantageMs": 30.9675056264232,
+    "lowerMs": 27.051278054313,
+    "upperMs": 34.8837331985334,
+    "races": 3851
+  },
+  {
+    "rank": 29,
+    "venue": "Johnson County CC - Overland Park, KS",
+    "elevationFt": 1067.0,
+    "advantageMs": 30.7250774589805,
+    "lowerMs": 23.3580486253392,
+    "upperMs": 38.0921062926218,
+    "races": 506
+  },
+  {
+    "rank": 30,
+    "venue": "Penn State-Ashenfelter Track (Banked) - University Park, PA",
+    "elevationFt": 1162.0,
+    "advantageMs": 29.4845450803442,
+    "lowerMs": 26.4791882095754,
+    "upperMs": 32.4899019511131,
+    "races": 5456
+  },
+  {
+    "rank": 31,
+    "venue": "Nebraska-Devaney Center - Lincoln, NE",
+    "elevationFt": 1150.0,
+    "advantageMs": 29.1168671702462,
+    "lowerMs": 26.5998036299104,
+    "upperMs": 31.6339307105819,
+    "races": 7296
+  },
+  {
+    "rank": 32,
+    "venue": "North Dakota-High Performance Center - Grand Forks, ND",
+    "elevationFt": 833.0,
+    "advantageMs": 28.9168971514557,
+    "lowerMs": 23.4280512541153,
+    "upperMs": 34.4057430487962,
+    "races": 1059
+  },
+  {
+    "rank": 33,
+    "venue": "Central Missouri-Multipurpose Bldg - Warrensburg, MO",
+    "elevationFt": 825.0,
+    "advantageMs": 28.8149276051372,
+    "lowerMs": 24.7501056945951,
+    "upperMs": 32.8797495156792,
+    "races": 2662
+  },
+  {
+    "rank": 34,
+    "venue": "Iowa-Recreation Building (Banked) - Iowa City, IA",
+    "elevationFt": 650.0,
+    "advantageMs": 28.1172946022333,
+    "lowerMs": 24.0838816865408,
+    "upperMs": 32.1507075179258,
+    "races": 2451
+  },
+  {
+    "rank": 35,
+    "venue": "Hamilton-South FH - Clinton, NY",
+    "elevationFt": 895.0,
+    "advantageMs": 28.0858316253646,
+    "lowerMs": 20.7387728973512,
+    "upperMs": 35.4328903533781,
+    "races": 509
+  },
+  {
+    "rank": 36,
+    "venue": "Jane and David Ott Center - Philadelphia, PA",
+    "elevationFt": 34.0,
+    "advantageMs": 27.5261625920663,
+    "lowerMs": 22.9018244027399,
+    "upperMs": 32.1505007813927,
+    "races": 1657
+  },
+  {
+    "rank": 37,
+    "venue": "Kerr-Pegula Athletic Complex - Houghton, NY",
+    "elevationFt": 1306.0,
+    "advantageMs": 27.2112130661113,
+    "lowerMs": 21.3203264230498,
+    "upperMs": 33.1020997091727,
+    "races": 1435
+  },
+  {
+    "rank": 38,
+    "venue": "Clemson-Indoor Track Facility (Flat) - Clemson, SC",
+    "elevationFt": 742.0,
+    "advantageMs": 26.1119496133671,
+    "lowerMs": 21.0659964289953,
+    "upperMs": 31.1579027977389,
+    "races": 2945
+  },
+  {
+    "rank": 39,
+    "venue": "Lehigh-Rauch FH - Bethlehem, PA",
+    "elevationFt": 533.0,
+    "advantageMs": 25.6283667201196,
+    "lowerMs": 21.0905168894282,
+    "upperMs": 30.1662165508111,
+    "races": 3340
+  },
+  {
+    "rank": 40,
+    "venue": "Lauren McCluskey Track in Idaho - Moscow, ID",
+    "elevationFt": 2650.0,
+    "advantageMs": 24.8770894926868,
+    "lowerMs": 18.5836698512392,
+    "upperMs": 31.1705091341345,
+    "races": 1838
+  },
+  {
+    "rank": 41,
+    "venue": "Akron-Field House - Akron, OH",
+    "elevationFt": 1060.0,
+    "advantageMs": 24.5725861997323,
+    "lowerMs": 21.0350864344741,
+    "upperMs": 28.1100859649904,
+    "races": 2940
+  },
+  {
+    "rank": 42,
+    "venue": "Doane Univ. -Fuhrer FH - Crete, NE",
+    "elevationFt": 1434.0,
+    "advantageMs": 24.3339412012548,
+    "lowerMs": 20.0840828571416,
+    "upperMs": 28.5837995453679,
+    "races": 2652
+  },
+  {
+    "rank": 43,
+    "venue": "Cornell College-Multi-Sport Center - Mt. Vernon, IA",
+    "elevationFt": 861.0,
+    "advantageMs": 24.2633117790224,
+    "lowerMs": 15.9876153916225,
+    "upperMs": 32.5390081664223,
+    "races": 825
+  },
+  {
+    "rank": 44,
+    "venue": "Turnstone Center - Fort Wayne, IN",
+    "elevationFt": 794.0,
+    "advantageMs": 23.3966200538633,
+    "lowerMs": 16.3442614401405,
+    "upperMs": 30.448978667586,
+    "races": 612
+  },
+  {
+    "rank": 45,
+    "venue": "Kansas State-Ahearn FH - Manhattan, KS",
+    "elevationFt": 1067.0,
+    "advantageMs": 23.381251661346,
+    "lowerMs": 18.7234195170009,
+    "upperMs": 28.039083805691,
+    "races": 2338
+  },
+  {
+    "rank": 46,
+    "venue": "MSU-Mankato-Myers FH - Mankato, MN",
+    "elevationFt": 1003.0,
+    "advantageMs": 23.1214224693892,
+    "lowerMs": 19.6373974642356,
+    "upperMs": 26.6054474745427,
+    "races": 6418
+  },
+  {
+    "rank": 47,
+    "venue": "Dakota Wesleyan Indoor - Mitchell, SD",
+    "elevationFt": 1304.0,
+    "advantageMs": 23.1064719407244,
+    "lowerMs": 15.6991504748623,
+    "upperMs": 30.5137934065866,
+    "races": 566
+  },
+  {
+    "rank": 48,
+    "venue": "Bowling Green-Perry Field House - Bowling Green, OH",
+    "elevationFt": 674.0,
+    "advantageMs": 22.2990510224723,
+    "lowerMs": 16.557754510541,
+    "upperMs": 28.0403475344036,
+    "races": 904
+  },
+  {
+    "rank": 49,
+    "venue": "Virginia Tech-Rector FH - Blacksburg, VA",
+    "elevationFt": 2072.0,
+    "advantageMs": 22.0162183303243,
+    "lowerMs": 18.5826642114844,
+    "upperMs": 25.4497724491642,
+    "races": 6128
+  },
+  {
+    "rank": 50,
+    "venue": "U. of Mary-FH - Bismarck, ND",
+    "elevationFt": 1695.0,
+    "advantageMs": 21.653663837227,
+    "lowerMs": 14.519355075413,
+    "upperMs": 28.787972599041,
+    "races": 753
+  },
+  {
+    "rank": 51,
+    "venue": "Saint Olaf College-Tostrud Center - Northfield, MN",
+    "elevationFt": 1018.0,
+    "advantageMs": 21.2844184120332,
+    "lowerMs": 16.1155603947011,
+    "upperMs": 26.4532764293653,
+    "races": 1594
+  },
+  {
+    "rank": 52,
+    "venue": "North Central-Res/Rec Center - Naperville, IL",
+    "elevationFt": 710.0,
+    "advantageMs": 21.2593590272624,
+    "lowerMs": 17.2801789329554,
+    "upperMs": 25.2385391215694,
+    "races": 3948
+  },
+  {
+    "rank": 53,
+    "venue": "Bucknell-Gerhard Field House - Lewisburg, PA",
+    "elevationFt": 462.0,
+    "advantageMs": 20.8552777307827,
+    "lowerMs": 17.1838232410989,
+    "upperMs": 24.5267322204666,
+    "races": 5222
+  },
+  {
+    "rank": 54,
+    "venue": "Monmouth College-Huff AC - Monmouth, IL",
+    "elevationFt": 737.0,
+    "advantageMs": 20.8080995268796,
+    "lowerMs": 14.3845674289286,
+    "upperMs": 27.2316316248306,
+    "races": 1275
+  },
+  {
+    "rank": 55,
+    "venue": "Ashland-Niss Athletic Center - Ashland, OH",
+    "elevationFt": 1073.0,
+    "advantageMs": 20.7292116792485,
+    "lowerMs": 14.0416949013131,
+    "upperMs": 27.4167284571838,
+    "races": 1598
+  },
+  {
+    "rank": 56,
+    "venue": "Indiana Wesleyan-Indoor Sports Complex - Marion, IN",
+    "elevationFt": 851.0,
+    "advantageMs": 20.6407879188861,
+    "lowerMs": 16.5382637729457,
+    "upperMs": 24.7433120648266,
+    "races": 2424
+  },
+  {
+    "rank": 57,
+    "venue": "Ithaca-Athletics & Events Center - Ithaca, NY",
+    "elevationFt": 912.0,
+    "advantageMs": 20.6168079415476,
+    "lowerMs": 15.0488677425817,
+    "upperMs": 26.1847481405135,
+    "races": 2723
+  },
+  {
+    "rank": 58,
+    "venue": "Otterbein College-Rike Center - Westerville, OH",
+    "elevationFt": 863.0,
+    "advantageMs": 20.3516995471295,
+    "lowerMs": 15.024537291179,
+    "upperMs": 25.6788618030799,
+    "races": 1464
+  },
+  {
+    "rank": 59,
+    "venue": "Youngstown State-WATTS - Youngstown, OH",
+    "elevationFt": 939.0,
+    "advantageMs": 20.2358509636278,
+    "lowerMs": 17.092334914042,
+    "upperMs": 23.3793670132135,
+    "races": 6432
+  },
+  {
+    "rank": 60,
+    "venue": "Case Western-Veale Convocation Center - Cleveland, OH",
+    "elevationFt": 712.0,
+    "advantageMs": 20.0967404164394,
+    "lowerMs": 11.1556701333302,
+    "upperMs": 29.0378106995486,
+    "races": 840
+  },
+  {
+    "rank": 61,
+    "venue": "ARC-Indianapolis - Indianapolis, IN",
+    "elevationFt": 755.0,
+    "advantageMs": 19.9539908533468,
+    "lowerMs": 15.3631820573588,
+    "upperMs": 24.5447996493348,
+    "races": 3081
+  },
+  {
+    "rank": 62,
+    "venue": "Missouri Southern-Leggett & Platt Ath. Center - Joplin, MO",
+    "elevationFt": 1021.0,
+    "advantageMs": 19.9525241088208,
+    "lowerMs": 15.580716874393,
+    "upperMs": 24.3243313432486,
+    "races": 2105
+  },
+  {
+    "rank": 63,
+    "venue": "Buena Vista U-Lamberti Rec Center - Storm Lake, IA",
+    "elevationFt": 1414.0,
+    "advantageMs": 19.7112584473026,
+    "lowerMs": 14.2395374700443,
+    "upperMs": 25.1829794245609,
+    "races": 1462
+  },
+  {
+    "rank": 64,
+    "venue": "Ohio State-French FH - Columbus, OH",
+    "elevationFt": 737.0,
+    "advantageMs": 19.4274308873134,
+    "lowerMs": 13.3033882609643,
+    "upperMs": 25.5514735136625,
+    "races": 931
+  },
+  {
+    "rank": 65,
+    "venue": "Washington State-Indoor Facility - Pullman, WA",
+    "elevationFt": 2553.0,
+    "advantageMs": 19.3334922698544,
+    "lowerMs": 12.6997327822511,
+    "upperMs": 25.9672517574577,
+    "races": 1210
+  },
+  {
+    "rank": 66,
+    "venue": "Marshall-Chris Cline Athletic Complex - Huntington, WV",
+    "elevationFt": 549.0,
+    "advantageMs": 19.1968743497728,
+    "lowerMs": 13.6867131520067,
+    "upperMs": 24.7070355475389,
+    "races": 2104
+  },
+  {
+    "rank": 67,
+    "venue": "St. Scholastica-Burns Wellness Commons - Duluth, MN",
+    "elevationFt": 1247.0,
+    "advantageMs": 19.1096100207942,
+    "lowerMs": 12.3432335299116,
+    "upperMs": 25.8759865116768,
+    "races": 821
+  },
+  {
+    "rank": 68,
+    "venue": "Central College-Kuyper FH - Pella, IA",
+    "elevationFt": 823.0,
+    "advantageMs": 18.8562182761404,
+    "lowerMs": 11.7648900742081,
+    "upperMs": 25.9475464780726,
+    "races": 1021
+  },
+  {
+    "rank": 69,
+    "venue": "Macalester-Leonard Center - St. Paul, MN",
+    "elevationFt": 953.0,
+    "advantageMs": 18.7366365198342,
+    "lowerMs": 10.2311277802836,
+    "upperMs": 27.2421452593848,
+    "races": 780
+  },
+  {
+    "rank": 70,
+    "venue": "RIT-Gordon FH - Rochester, NY",
+    "elevationFt": 539.0,
+    "advantageMs": 18.2488515480126,
+    "lowerMs": 12.1326158316811,
+    "upperMs": 24.3650872643441,
+    "races": 1817
+  },
+  {
+    "rank": 71,
+    "venue": "Clemson-Indoor Track (Banked) - Clemson, SC",
+    "elevationFt": 742.0,
+    "advantageMs": 18.1213963345777,
+    "lowerMs": 13.6425120432552,
+    "upperMs": 22.6002806259003,
+    "races": 4896
+  },
+  {
+    "rank": 72,
+    "venue": "Eastern Michigan-Bowen Fieldhouse - Ypsilanti, MI",
+    "elevationFt": 743.0,
+    "advantageMs": 17.8713006600241,
+    "lowerMs": 11.9828902071661,
+    "upperMs": 23.759711112882,
+    "races": 1141
+  },
+  {
+    "rank": 73,
+    "venue": "Mount Marty-Donohue First Dakota FH - Yankton, SD",
+    "elevationFt": 1293.0,
+    "advantageMs": 17.73763546519,
+    "lowerMs": 10.8595413936967,
+    "upperMs": 24.6157295366833,
+    "races": 824
+  },
+  {
+    "rank": 74,
+    "venue": "Houston-Yeoman FH - Houston, TX",
+    "elevationFt": 44.0,
+    "advantageMs": 17.6243541332712,
+    "lowerMs": 13.8294607794202,
+    "upperMs": 21.4192474871222,
+    "races": 6972
+  },
+  {
+    "rank": 75,
+    "venue": "Eastern Illinois-Lantz FH - Charleston, IL",
+    "elevationFt": 690.0,
+    "advantageMs": 17.5960881060276,
+    "lowerMs": 13.334728632184,
+    "upperMs": 21.8574475798712,
+    "races": 2602
+  },
+  {
+    "rank": 76,
+    "venue": "Norton Healthcare SLC (Banked) - Louisville, KY",
+    "elevationFt": 461.0,
+    "advantageMs": 17.4581238938801,
+    "lowerMs": 12.2759174393501,
+    "upperMs": 22.64033034841,
+    "races": 3776
+  },
+  {
+    "rank": 77,
+    "venue": "Wheaton College-Haas Athletic Center - Norton, MA",
+    "elevationFt": 73.0,
+    "advantageMs": 17.1796844306486,
+    "lowerMs": 11.0181096582877,
+    "upperMs": 23.3412592030094,
+    "races": 951
+  },
+  {
+    "rank": 78,
+    "venue": "Saint John's U-McNeeley Spectrum - Collegeville, MN",
+    "elevationFt": 1175.0,
+    "advantageMs": 17.1568385925498,
+    "lowerMs": 11.2004766540123,
+    "upperMs": 23.1132005310873,
+    "races": 842
+  },
+  {
+    "rank": 79,
+    "venue": "SUNY Brockport-SERC - Brockport, NY",
+    "elevationFt": 550.0,
+    "advantageMs": 17.1253809176782,
+    "lowerMs": 11.1922080626295,
+    "upperMs": 23.0585537727268,
+    "races": 2484
+  },
+  {
+    "rank": 80,
+    "venue": "Principia-Jim Crafton Training Center - Elsah, IL",
+    "elevationFt": 662.0,
+    "advantageMs": 17.0067516895328,
+    "lowerMs": 11.3181798048302,
+    "upperMs": 22.6953235742353,
+    "races": 1675
+  },
+  {
+    "rank": 81,
+    "venue": "Yale-Coxe Cage - New Haven, CT",
+    "elevationFt": 43.0,
+    "advantageMs": 16.9606228581832,
+    "lowerMs": 11.7893928372312,
+    "upperMs": 22.1318528791351,
+    "races": 2933
+  },
+  {
+    "rank": 82,
+    "venue": "Rose-Hulman-Sports & Rec Center - Terre Haute, IN",
+    "elevationFt": 524.0,
+    "advantageMs": 16.7439520834173,
+    "lowerMs": 12.8922130331868,
+    "upperMs": 20.5956911336478,
+    "races": 2096
+  },
+  {
+    "rank": 83,
+    "venue": "MIT-MIT Indoor Track - Cambridge, MA",
+    "elevationFt": 10.0,
+    "advantageMs": 16.7143395248699,
+    "lowerMs": 10.4131553499405,
+    "upperMs": 23.0155236997992,
+    "races": 950
+  },
+  {
+    "rank": 84,
+    "venue": "VMI-Corps Physical Training Facility - Lexington, VA",
+    "elevationFt": 983.0,
+    "advantageMs": 16.6834380058867,
+    "lowerMs": 12.4596535479204,
+    "upperMs": 20.9072224638531,
+    "races": 3473
+  },
+  {
+    "rank": 85,
+    "venue": "Illinois State-Horton FH - Normal, IL",
+    "elevationFt": 797.0,
+    "advantageMs": 16.6138667731389,
+    "lowerMs": 9.53866541811286,
+    "upperMs": 23.6890681281649,
+    "races": 579
+  },
+  {
+    "rank": 86,
+    "venue": "Minnesota-Minnesota FH - Minneapolis, MN",
+    "elevationFt": 958.0,
+    "advantageMs": 16.4801770512549,
+    "lowerMs": 13.0041399440914,
+    "upperMs": 19.9562141584184,
+    "races": 3152
+  },
+  {
+    "rank": 87,
+    "venue": "Wis.-Platteville-Williams FH - Platteville, WI",
+    "elevationFt": 982.0,
+    "advantageMs": 16.431030454913,
+    "lowerMs": 11.7919874264768,
+    "upperMs": 21.0700734833492,
+    "races": 1841
+  },
+  {
+    "rank": 88,
+    "venue": "Purdue-Lambert FH - West Lafayette, IN",
+    "elevationFt": 620.0,
+    "advantageMs": 16.2912929831223,
+    "lowerMs": 10.6482782330958,
+    "upperMs": 21.9343077331488,
+    "races": 1366
+  },
+  {
+    "rank": 89,
+    "venue": "UW-La Crosse Fieldhouse - La Crosse, WI",
+    "elevationFt": 670.0,
+    "advantageMs": 15.9589418380747,
+    "lowerMs": 9.27212693732496,
+    "upperMs": 22.6457567388243,
+    "races": 1041
+  },
+  {
+    "rank": 90,
+    "venue": "Oklahoma-Mosier Indoor Track - Norman, OK",
+    "elevationFt": 1157.0,
+    "advantageMs": 15.7264155050597,
+    "lowerMs": 11.3846897073831,
+    "upperMs": 20.0681413027362,
+    "races": 3939
+  },
+  {
+    "rank": 91,
+    "venue": "Wartburg College-FH at the W - Waverly, IA",
+    "elevationFt": 918.0,
+    "advantageMs": 15.7081702620644,
+    "lowerMs": 12.0165485773328,
+    "upperMs": 19.399791946796,
+    "races": 3663
+  },
+  {
+    "rank": 92,
+    "venue": "Wisconsin-Camp Randall Sports Complex - Madison, WI",
+    "elevationFt": 924.0,
+    "advantageMs": 15.6633847227421,
+    "lowerMs": 10.3029009387921,
+    "upperMs": 21.023868506692,
+    "races": 946
+  },
+  {
+    "rank": 93,
+    "venue": "St. Ambrose-Wellness and Rec Center - Davenport, IA",
+    "elevationFt": 692.0,
+    "advantageMs": 15.584571063996,
+    "lowerMs": 10.6605927009122,
+    "upperMs": 20.5085494270798,
+    "races": 2034
+  },
+  {
+    "rank": 94,
+    "venue": "Armory Track & Field Center - New York, NY",
+    "elevationFt": 44.0,
+    "advantageMs": 15.1578887049782,
+    "lowerMs": 12.8691526623088,
+    "upperMs": 17.4466247476476,
+    "races": 18474
+  },
+  {
+    "rank": 95,
+    "venue": "Hillsdale-Margot V. Biermann AC - Hillsdale, MI",
+    "elevationFt": 1119.0,
+    "advantageMs": 15.0765967637546,
+    "lowerMs": 10.6053456658108,
+    "upperMs": 19.5478478616985,
+    "races": 2029
+  },
+  {
+    "rank": 96,
+    "venue": "Smith College-Indoor Track & Tennis - Northhampton, MA",
+    "elevationFt": 138.0,
+    "advantageMs": 14.8677418509347,
+    "lowerMs": 7.37009797626852,
+    "upperMs": 22.365385725601,
+    "races": 989
+  },
+  {
+    "rank": 97,
+    "venue": "Defiance-R.M. & C.M. Small Track - Defiance, OH",
+    "elevationFt": 685.0,
+    "advantageMs": 14.673445939109,
+    "lowerMs": 7.11015837484514,
+    "upperMs": 22.2367335033729,
+    "races": 730
+  },
+  {
+    "rank": 98,
+    "venue": "UW-Oshkosh-Kolf Sports Center - Oshkosh, WI",
+    "elevationFt": 764.0,
+    "advantageMs": 14.571613828757,
+    "lowerMs": 9.18801114828216,
+    "upperMs": 19.9552165092318,
+    "races": 1845
+  },
+  {
+    "rank": 99,
+    "venue": "Bemidji State-Gillette Rec Center - Bemidji, MN",
+    "elevationFt": 1350.0,
+    "advantageMs": 14.3703800180097,
+    "lowerMs": 8.54220409943071,
+    "upperMs": 20.1985559365887,
+    "races": 525
+  },
+  {
+    "rank": 100,
+    "venue": "Pima CC (I) - Tucson, AZ",
+    "elevationFt": 2366.0,
+    "advantageMs": 14.1721398410723,
+    "lowerMs": -1.86043786734431,
+    "upperMs": 30.2047175494889,
+    "races": 576
+  },
+  {
+    "rank": 101,
+    "venue": "Nazareth-Golisano Training Facility - Rochester, NY",
+    "elevationFt": 446.0,
+    "advantageMs": 13.8863458305099,
+    "lowerMs": 8.58375382936972,
+    "upperMs": 19.18893783165,
+    "races": 1993
+  },
+  {
+    "rank": 102,
+    "venue": "Illinois-Armory - Champaign, IL",
+    "elevationFt": 743.0,
+    "advantageMs": 13.6914725600979,
+    "lowerMs": 9.49761677818852,
+    "upperMs": 17.8853283420073,
+    "races": 1907
+  },
+  {
+    "rank": 103,
+    "venue": "Army-Gillis FH - West Point, NY",
+    "elevationFt": 26.0,
+    "advantageMs": 13.3742670568502,
+    "lowerMs": 7.08381836858182,
+    "upperMs": 19.6647157451186,
+    "races": 1877
+  },
+  {
+    "rank": 104,
+    "venue": "South Dakota-DakotaDome - Vermillion, SD",
+    "elevationFt": 1211.0,
+    "advantageMs": 12.9975869925182,
+    "lowerMs": 7.20598181039708,
+    "upperMs": 18.7891921746393,
+    "races": 1246
+  },
+  {
+    "rank": 105,
+    "venue": "Washburn-Indoor Athletic Facility - Topeka, KS",
+    "elevationFt": 925.0,
+    "advantageMs": 12.9608791125939,
+    "lowerMs": 8.16660167021261,
+    "upperMs": 17.7551565549752,
+    "races": 4361
+  },
+  {
+    "rank": 106,
+    "venue": "Kansas-Anschutz FH - Lawrence, KS",
+    "elevationFt": 1007.0,
+    "advantageMs": 12.8952197006729,
+    "lowerMs": 8.99664088558369,
+    "upperMs": 16.7937985157621,
+    "races": 3127
+  },
+  {
+    "rank": 107,
+    "venue": "Notre Dame-Loftus Center - Notre Dame, IN",
+    "elevationFt": 738.0,
+    "advantageMs": 12.8142047873126,
+    "lowerMs": 9.31927336830482,
+    "upperMs": 16.3091362063204,
+    "races": 4581
+  },
+  {
+    "rank": 108,
+    "venue": "North Dakota St.-Bison Sports Arena - Fargo, ND",
+    "elevationFt": 904.0,
+    "advantageMs": 12.7477565314125,
+    "lowerMs": 8.55790307230746,
+    "upperMs": 16.9376099905176,
+    "races": 2950
+  },
+  {
+    "rank": 109,
+    "venue": "Ripon-Willmore Center Fieldhouse - Ripon, WI",
+    "elevationFt": 872.0,
+    "advantageMs": 12.366164734536,
+    "lowerMs": 7.33815386513049,
+    "upperMs": 17.3941756039416,
+    "races": 1630
+  },
+  {
+    "rank": 110,
+    "venue": "Kentucky-Nutter FH - Lexington, KY",
+    "elevationFt": 1019.0,
+    "advantageMs": 12.0260504002137,
+    "lowerMs": 8.41228459595113,
+    "upperMs": 15.6398162044762,
+    "races": 3391
+  },
+  {
+    "rank": 111,
+    "venue": "SVSU Fieldhouse - Saginaw, MI",
+    "elevationFt": 594.0,
+    "advantageMs": 11.8857034076453,
+    "lowerMs": 8.46739372282286,
+    "upperMs": 15.3040130924677,
+    "races": 4012
+  },
+  {
+    "rank": 112,
+    "venue": "Indiana Tech-Doug Edgar Indoor Track - Fort Wayne, IN",
+    "elevationFt": 790.0,
+    "advantageMs": 11.8066727004911,
+    "lowerMs": 4.34423908095815,
+    "upperMs": 19.269106320024,
+    "races": 667
+  },
+  {
+    "rank": 113,
+    "venue": "Sanford-Jackrabbit Athletic Complex - Brookings, SD",
+    "elevationFt": 1626.0,
+    "advantageMs": 11.2425392586917,
+    "lowerMs": 8.25660284571049,
+    "upperMs": 14.2284756716728,
+    "races": 7059
+  },
+  {
+    "rank": 114,
+    "venue": "Michigan-Indoor Track Center - Ann Arbor, MI",
+    "elevationFt": 886.0,
+    "advantageMs": 10.9084442505467,
+    "lowerMs": 6.68271242884637,
+    "upperMs": 15.1341760722471,
+    "races": 2399
+  },
+  {
+    "rank": 115,
+    "venue": "Trine-Indoor Track - Angola, IN",
+    "elevationFt": 1055.0,
+    "advantageMs": 10.8898455243512,
+    "lowerMs": 5.29373673459236,
+    "upperMs": 16.48595431411,
+    "races": 2093
+  },
+  {
+    "rank": 116,
+    "venue": "Wittenberg-The Steemer - Springfield, OH",
+    "elevationFt": 1003.0,
+    "advantageMs": 10.7396967146322,
+    "lowerMs": 4.91855712950658,
+    "upperMs": 16.5608362997577,
+    "races": 1796
+  },
+  {
+    "rank": 117,
+    "venue": "Findlay-Malcolm AC - Findlay, OH",
+    "elevationFt": 781.0,
+    "advantageMs": 9.76301875059556,
+    "lowerMs": 5.957410964671,
+    "upperMs": 13.5686265365201,
+    "races": 3832
+  },
+  {
+    "rank": 118,
+    "venue": "Vanderbilt-Multipurpose Facility - Nashville, TN",
+    "elevationFt": 569.0,
+    "advantageMs": 9.54374990777671,
+    "lowerMs": 6.05472959701092,
+    "upperMs": 13.0327702185425,
+    "races": 4545
+  },
+  {
+    "rank": 119,
+    "venue": "Concordia College-Olson Forum - Moorhead, MN",
+    "elevationFt": 906.0,
+    "advantageMs": 9.26177737230156,
+    "lowerMs": 3.9584912841519,
+    "upperMs": 14.5650634604512,
+    "races": 862
+  },
+  {
+    "rank": 120,
+    "venue": "Bates College-Merrill Gymnasium - Lewiston, ME",
+    "elevationFt": 255.0,
+    "advantageMs": 9.2424940489598,
+    "lowerMs": 3.01854810847523,
+    "upperMs": 15.4664399894444,
+    "races": 884
+  },
+  {
+    "rank": 121,
+    "venue": "Missouri-Hearnes FH - Columbia, MO",
+    "elevationFt": 729.0,
+    "advantageMs": 9.23781889439822,
+    "lowerMs": 5.07350551962619,
+    "upperMs": 13.4021322691703,
+    "races": 2133
+  },
+  {
+    "rank": 122,
+    "venue": "Dr. Conrad Worrill Indoor Track and Field Facility - Chicago, IL",
+    "elevationFt": 594.0,
+    "advantageMs": 8.80661371839417,
+    "lowerMs": 4.46747041017108,
+    "upperMs": 13.1457570266173,
+    "races": 3093
+  },
+  {
+    "rank": 123,
+    "venue": "Alachua County Events Center at Celebration Pointe - Gainesville, FL",
+    "elevationFt": 179.0,
+    "advantageMs": 8.58128799487665,
+    "lowerMs": 3.22147957894928,
+    "upperMs": 13.941096410804,
+    "races": 2517
+  },
+  {
+    "rank": 124,
+    "venue": "Navy-Wesley A. Brown FH - Annapolis, MD",
+    "elevationFt": 29.0,
+    "advantageMs": 8.25025952036558,
+    "lowerMs": 4.46565111982353,
+    "upperMs": 12.0348679209076,
+    "races": 3657
+  },
+  {
+    "rank": 125,
+    "venue": "Cornell-Barton Hall - Ithaca, NY",
+    "elevationFt": 847.0,
+    "advantageMs": 7.28446963227289,
+    "lowerMs": 3.72279136153919,
+    "upperMs": 10.8461479030066,
+    "races": 5719
+  },
+  {
+    "rank": 126,
+    "venue": "Aquinas-Alksnis Indoor Track - Grand Rapids, MI",
+    "elevationFt": 742.0,
+    "advantageMs": 7.21368775835605,
+    "lowerMs": 3.3026924458586,
+    "upperMs": 11.1246830708535,
+    "races": 1957
+  },
+  {
+    "rank": 127,
+    "venue": "St. Lawrence-Newell FH - Canton, NY",
+    "elevationFt": 386.0,
+    "advantageMs": 7.08746610872308,
+    "lowerMs": 0.479933599171987,
+    "upperMs": 13.6949986182742,
+    "races": 1027
+  },
+  {
+    "rank": 128,
+    "venue": "Christopher Newport -Freeman Center - Newport News, VA",
+    "elevationFt": 35.0,
+    "advantageMs": 7.04981710883807,
+    "lowerMs": 3.03533114436948,
+    "upperMs": 11.0643030733067,
+    "races": 3241
+  },
+  {
+    "rank": 129,
+    "venue": "Washington-Dempsey Indoor - Seattle, WA",
+    "elevationFt": 28.0,
+    "advantageMs": 6.82557712556443,
+    "lowerMs": 2.68494192874858,
+    "upperMs": 10.9662123223803,
+    "races": 7817
+  },
+  {
+    "rank": 130,
+    "venue": "UW-Whitewater-Kachel FH - Whitewater, WI",
+    "elevationFt": 867.0,
+    "advantageMs": 6.79390153352863,
+    "lowerMs": 2.52868407020358,
+    "upperMs": 11.0591189968537,
+    "races": 3105
+  },
+  {
+    "rank": 131,
+    "venue": "SPIRE Institute Indoor Track & Field Facility - Geneva, OH",
+    "elevationFt": 673.0,
+    "advantageMs": 6.52431545716451,
+    "lowerMs": 3.1269579450761,
+    "upperMs": 9.92167296925292,
+    "races": 5780
+  },
+  {
+    "rank": 132,
+    "venue": "Bowdoin College-Farley Field House - Brunswick, ME",
+    "elevationFt": 75.0,
+    "advantageMs": 6.43267137804375,
+    "lowerMs": 0.88490192462872,
+    "upperMs": 11.9804408314588,
+    "races": 1287
+  },
+  {
+    "rank": 133,
+    "venue": "Ocean Breeze Athletic Complex - Staten Island, NY",
+    "elevationFt": 160.0,
+    "advantageMs": 6.32033161497291,
+    "lowerMs": 3.70307891883153,
+    "upperMs": 8.93758431111428,
+    "races": 13666
+  },
+  {
+    "rank": 134,
+    "venue": "Grinnell-Bear Athletic Center - Grinnell, IA",
+    "elevationFt": 1010.0,
+    "advantageMs": 5.95793278075561,
+    "lowerMs": 1.26246809897645,
+    "upperMs": 10.6533974625348,
+    "races": 1624
+  },
+  {
+    "rank": 135,
+    "venue": "Denison-Mitchell Center - Granville, OH",
+    "elevationFt": 995.0,
+    "advantageMs": 5.63884023827923,
+    "lowerMs": 0.833415308743039,
+    "upperMs": 10.4442651678154,
+    "races": 1156
+  },
+  {
+    "rank": 136,
+    "venue": "East Tennessee State-Memorial Center - Johnson City, TN",
+    "elevationFt": 1635.0,
+    "advantageMs": 5.56704494609552,
+    "lowerMs": 1.20352560584069,
+    "upperMs": 9.93056428635035,
+    "races": 4282
+  },
+  {
+    "rank": 137,
+    "venue": "U. of St. Thomas-Anderson FH - St. Paul, MN",
+    "elevationFt": 766.0,
+    "advantageMs": 5.16624196992598,
+    "lowerMs": -1.33497269023202,
+    "upperMs": 11.667456630084,
+    "races": 1196
+  },
+  {
+    "rank": 138,
+    "venue": "Indiana-Gladstein FH - Bloomington, IN",
+    "elevationFt": 867.0,
+    "advantageMs": 5.13177012425728,
+    "lowerMs": 1.88644235257195,
+    "upperMs": 8.3770978959426,
+    "races": 3962
+  },
+  {
+    "rank": 139,
+    "venue": "Alvernia-Flynn PLEX - Reading, PA",
+    "elevationFt": 345.0,
+    "advantageMs": 5.01467306090291,
+    "lowerMs": -3.98550250856251,
+    "upperMs": 14.0148486303683,
+    "races": 1241
+  },
+  {
+    "rank": 140,
+    "venue": "Kenyon College-Kenyon - Gambier, OH",
+    "elevationFt": 1004.0,
+    "advantageMs": 4.84257590272864,
+    "lowerMs": -2.80128710624252,
+    "upperMs": 12.4864389116998,
+    "races": 523
+  },
+  {
+    "rank": 141,
+    "venue": "College of Wooster-Scot Center - Wooster, OH",
+    "elevationFt": 1059.0,
+    "advantageMs": 4.52941371716694,
+    "lowerMs": -2.2190810360981,
+    "upperMs": 11.277908470432,
+    "races": 877
+  },
+  {
+    "rank": 142,
+    "venue": "Illinois College-King FH - Jacksonville, IL",
+    "elevationFt": 624.0,
+    "advantageMs": 4.42966015484935,
+    "lowerMs": -0.59875982638349,
+    "upperMs": 9.45808013608218,
+    "races": 1933
+  },
+  {
+    "rank": 143,
+    "venue": "North Carolina-Eddie Smith FH - Chapel Hill, NC",
+    "elevationFt": 441.0,
+    "advantageMs": 3.72750241194423,
+    "lowerMs": -1.46224490830713,
+    "upperMs": 8.9172497321956,
+    "races": 2212
+  },
+  {
+    "rank": 144,
+    "venue": "Middlebury-Field House - Middlebury, VT",
+    "elevationFt": 415.0,
+    "advantageMs": 3.68512804329465,
+    "lowerMs": -1.58313649348143,
+    "upperMs": 8.95339258007072,
+    "races": 1230
+  },
+  {
+    "rank": 145,
+    "venue": "Liberty-Tolsma Indoor Track Center - Lynchburg, VA",
+    "elevationFt": 948.0,
+    "advantageMs": 3.27892363901383,
+    "lowerMs": -3.27326624368825,
+    "upperMs": 9.83111352171591,
+    "races": 1174
+  },
+  {
+    "rank": 146,
+    "venue": "Iowa State-Leid Rec Center - Ames, IA",
+    "elevationFt": 939.0,
+    "advantageMs": 3.00039525549569,
+    "lowerMs": -0.693514050558907,
+    "upperMs": 6.69430456155029,
+    "races": 4499
+  },
+  {
+    "rank": 147,
+    "venue": "Birmingham Metro CrossPlex - Birmingham, AL",
+    "elevationFt": 610.0,
+    "advantageMs": 2.9974330180471,
+    "lowerMs": 0.77218662519912,
+    "upperMs": 5.22267941089508,
+    "races": 22721
+  },
+  {
+    "rank": 148,
+    "venue": "UW-Stout-Sports & Fitness Center - Mennomenie, WI",
+    "elevationFt": 845.0,
+    "advantageMs": 2.8249816943807,
+    "lowerMs": -2.30974082626332,
+    "upperMs": 7.95970421502471,
+    "races": 1810
+  },
+  {
+    "rank": 149,
+    "venue": "UW-Superior-Lydia Thering FH - Superior, WI",
+    "elevationFt": 636.0,
+    "advantageMs": 2.65807940422233,
+    "lowerMs": -3.66156287749584,
+    "upperMs": 8.9777216859405,
+    "races": 813
+  },
+  {
+    "rank": 150,
+    "venue": "Kerr-Cregger Field House - Salem, VA",
+    "elevationFt": 1070.0,
+    "advantageMs": 2.54556358991632,
+    "lowerMs": -2.27491649824196,
+    "upperMs": 7.36604367807461,
+    "races": 2926
+  },
+  {
+    "rank": 151,
+    "venue": "Princeton-Jadwin Gym - Princeton, NJ",
+    "elevationFt": 145.0,
+    "advantageMs": 2.53195418283635,
+    "lowerMs": -1.90942954459941,
+    "upperMs": 6.97333791027211,
+    "races": 2135
+  },
+  {
+    "rank": 152,
+    "venue": "Arkansas-Randal Tyson Track Center - Fayetteville, AR",
+    "elevationFt": 1286.0,
+    "advantageMs": 2.18032322446711,
+    "lowerMs": -0.628524615316092,
+    "upperMs": 4.98917106425032,
+    "races": 8051
+  },
+  {
+    "rank": 153,
+    "venue": "Franklin & Marshall-ASFC FH - Lancaster, PA",
+    "elevationFt": 388.0,
+    "advantageMs": 2.08973117763569,
+    "lowerMs": -2.58994342969079,
+    "upperMs": 6.76940578496217,
+    "races": 1918
+  },
+  {
+    "rank": 154,
+    "venue": "Springfield College-Field House - Springfield, MA",
+    "elevationFt": 188.0,
+    "advantageMs": 1.98027306613063,
+    "lowerMs": -2.23162626249161,
+    "upperMs": 6.19217239475287,
+    "races": 2098
+  },
+  {
+    "rank": 155,
+    "venue": "Purdue Fort Wayne-Hilliard Gates Center - Fort Wayne, IN",
+    "elevationFt": 804.0,
+    "advantageMs": 1.78497908908426,
+    "lowerMs": -3.281272856887,
+    "upperMs": 6.85123103505552,
+    "races": 1564
+  },
+  {
+    "rank": 156,
+    "venue": "JDL Fast Track - Winston-Salem, NC",
+    "elevationFt": 910.0,
+    "advantageMs": 0.492654827350808,
+    "lowerMs": -2.34972195234885,
+    "upperMs": 3.33503160705047,
+    "races": 12734
+  },
+  {
+    "rank": 157,
+    "venue": "Dartmouth-Leverone FH - Hanover, NH",
+    "elevationFt": 502.0,
+    "advantageMs": 0.176840031542856,
+    "lowerMs": -4.6156772044606,
+    "upperMs": 4.96935726754631,
+    "races": 2456
+  },
+  {
+    "rank": 158,
+    "venue": "Muskingum-Bullock Health and Wellness Complex - New Concord, OH",
+    "elevationFt": 917.0,
+    "advantageMs": 0.174540009990565,
+    "lowerMs": -7.6779048079438,
+    "upperMs": 8.02698482792493,
+    "races": 864
+  },
+  {
+    "rank": 159,
+    "venue": "Kent State-Kent State FH - Kent, OH",
+    "elevationFt": 1127.0,
+    "advantageMs": 0.140900331975555,
+    "lowerMs": -3.93062339526117,
+    "upperMs": 4.21242405921228,
+    "races": 4416
+  },
+  {
+    "rank": 160,
+    "venue": "Prince George's Sports Complex - Landover, MD",
+    "elevationFt": 123.0,
+    "advantageMs": -0.543103621291927,
+    "lowerMs": -6.60139714199215,
+    "upperMs": 5.5151898994083,
+    "races": 2056
+  },
+  {
+    "rank": 161,
+    "venue": "Capital U-Cap Center - Columbus, OH",
+    "elevationFt": 857.0,
+    "advantageMs": -0.569196004496973,
+    "lowerMs": -6.30990970835402,
+    "upperMs": 5.17151769936008,
+    "races": 1462
+  },
+  {
+    "rank": 162,
+    "venue": "U. of Chicago-Henry Crown FH - Chicago, IL",
+    "elevationFt": 591.0,
+    "advantageMs": -0.583579012326247,
+    "lowerMs": -7.28143158043663,
+    "upperMs": 6.11427355578414,
+    "races": 1535
+  },
+  {
+    "rank": 163,
+    "venue": "Indiana State-ISU Indoor Track - Terre Haute, IN",
+    "elevationFt": 499.0,
+    "advantageMs": -0.844472366632283,
+    "lowerMs": -6.39127234559298,
+    "upperMs": 4.70232761232842,
+    "races": 958
+  },
+  {
+    "rank": 164,
+    "venue": "Ohio Northern-King Horn Sports Center - Ada, OH",
+    "elevationFt": 960.0,
+    "advantageMs": -0.886313728043064,
+    "lowerMs": -5.69485363917186,
+    "upperMs": 3.92222618308574,
+    "races": 1460
+  },
+  {
+    "rank": 165,
+    "venue": "Anderson U.-Wellness Center - Anderson, IN",
+    "elevationFt": 893.0,
+    "advantageMs": -1.30657884040541,
+    "lowerMs": -7.22723715131935,
+    "upperMs": 4.61407947050853,
+    "races": 963
+  },
+  {
+    "rank": 166,
+    "venue": "Illinois Wesleyan-Shirk Center - Bloomington, IL",
+    "elevationFt": 771.0,
+    "advantageMs": -2.01135804826741,
+    "lowerMs": -6.40765488925684,
+    "upperMs": 2.38493879272202,
+    "races": 3539
+  },
+  {
+    "rank": 167,
+    "venue": "Utica-Hutton Sports and Rec Dome - Utica, NY",
+    "elevationFt": 410.0,
+    "advantageMs": -2.07433539649877,
+    "lowerMs": -6.70641030030727,
+    "upperMs": 2.55773950730972,
+    "races": 2478
+  },
+  {
+    "rank": 168,
+    "venue": "Dubuque-Chlapaty Rec Center - Dubuque, IA",
+    "elevationFt": 860.0,
+    "advantageMs": -2.2090857468455,
+    "lowerMs": -8.64014345028319,
+    "upperMs": 4.2219719565922,
+    "races": 923
+  },
+  {
+    "rank": 169,
+    "venue": "Fall Creek Pavilion at Indiana State Fairgrounds - Indianapolis, IN",
+    "elevationFt": 719.0,
+    "advantageMs": -2.21107657056123,
+    "lowerMs": -8.06340352926577,
+    "upperMs": 3.64125038814331,
+    "races": 1683
+  },
+  {
+    "rank": 170,
+    "venue": "Bethel U-Bethel FH - St. Paul, MN",
+    "elevationFt": 766.0,
+    "advantageMs": -2.76525862393327,
+    "lowerMs": -9.22040198506584,
+    "upperMs": 3.68988473719931,
+    "races": 550
+  },
+  {
+    "rank": 171,
+    "venue": "UMES-Hytche Center - Baltimore, MD",
+    "elevationFt": 16.0,
+    "advantageMs": -2.86125292210563,
+    "lowerMs": -10.892590212378,
+    "upperMs": 5.17008436816673,
+    "races": 613
+  },
+  {
+    "rank": 172,
+    "venue": "George Mason-Rec. Sports Complex - Fairfax, VA",
+    "elevationFt": 343.0,
+    "advantageMs": -3.4237767037988,
+    "lowerMs": -8.25815314776395,
+    "upperMs": 1.41059974016636,
+    "races": 2897
+  },
+  {
+    "rank": 173,
+    "venue": "Virginia Beach Sports Center - Virginia Beach, VA",
+    "elevationFt": 11.0,
+    "advantageMs": -3.68693791057346,
+    "lowerMs": -8.14205072914102,
+    "upperMs": 0.768174907994105,
+    "races": 3019
+  },
+  {
+    "rank": 174,
+    "venue": "DePauw-Tennis & Track Center - Greencastle, IN",
+    "elevationFt": 835.0,
+    "advantageMs": -4.30076252158574,
+    "lowerMs": -9.74119423183511,
+    "upperMs": 1.13966918866363,
+    "races": 1648
+  },
+  {
+    "rank": 175,
+    "venue": "James R. Wilkins, Jr. Athletics and Events Center - Winchester, VA",
+    "elevationFt": 704.0,
+    "advantageMs": -4.88646715372448,
+    "lowerMs": -13.7423446768792,
+    "upperMs": 3.9694103694302,
+    "races": 528
+  },
+  {
+    "rank": 176,
+    "venue": "Wesleyan-Bacon FH - Middletown, CT",
+    "elevationFt": 142.0,
+    "advantageMs": -5.2129518581683,
+    "lowerMs": -10.0861206202369,
+    "upperMs": -0.339783096099653,
+    "races": 1276
+  },
+  {
+    "rank": 177,
+    "venue": "Liberty-Indoor Track Complex (Banked) - Lynchburg, VA",
+    "elevationFt": 948.0,
+    "advantageMs": -5.25705870005536,
+    "lowerMs": -9.37416913688741,
+    "upperMs": -1.1399482632233,
+    "races": 5385
+  },
+  {
+    "rank": 178,
+    "venue": "Grand Valley State-Laker Turf Building - Allendale, MI",
+    "elevationFt": 668.0,
+    "advantageMs": -6.64879259830225,
+    "lowerMs": -9.13260537939679,
+    "upperMs": -4.1649798172077,
+    "races": 11449
+  },
+  {
+    "rank": 179,
+    "venue": "Reggie Lewis Center - Roxbury, MA",
+    "elevationFt": 18.0,
+    "advantageMs": -7.16383529879575,
+    "lowerMs": -12.7461462170618,
+    "upperMs": -1.58152438052971,
+    "races": 4074
+  },
+  {
+    "rank": 180,
+    "venue": "Central Michigan-Indoor Athletic Complex - Lansing, MI",
+    "elevationFt": 793.0,
+    "advantageMs": -7.61351133695259,
+    "lowerMs": -13.5761870313552,
+    "upperMs": -1.65083564254999,
+    "races": 1077
+  },
+  {
+    "rank": 181,
+    "venue": "Paradise Valley CC (I) - Phoenix, AZ",
+    "elevationFt": 1088.0,
+    "advantageMs": -8.0769445334583,
+    "lowerMs": -19.4363902672096,
+    "upperMs": 3.28250120029298,
+    "races": 834
+  },
+  {
+    "rank": 182,
+    "venue": "Tiffin-Heminger Center - Tiffin, OH",
+    "elevationFt": 766.0,
+    "advantageMs": -8.34203684458228,
+    "lowerMs": -13.2488663108166,
+    "upperMs": -3.43520737834793,
+    "races": 2492
+  },
+  {
+    "rank": 183,
+    "venue": "Tufts-Gantcher FH - Medford, MA",
+    "elevationFt": 40.0,
+    "advantageMs": -8.34396877395235,
+    "lowerMs": -12.730694934076,
+    "upperMs": -3.95724261382873,
+    "races": 3212
+  },
+  {
+    "rank": 184,
+    "venue": "The TRACK at New Balance - Boston, MA",
+    "elevationFt": 30.0,
+    "advantageMs": -8.5887705677644,
+    "lowerMs": -12.9962074416141,
+    "upperMs": -4.18133369391467,
+    "races": 4029
+  },
+  {
+    "rank": 185,
+    "venue": "Olivet Nazarene-Student Rec. Center - Bourbonnais, IL",
+    "elevationFt": 664.0,
+    "advantageMs": -8.62833954059574,
+    "lowerMs": -13.5351987661596,
+    "upperMs": -3.72148031503182,
+    "races": 2251
+  },
+  {
+    "rank": 186,
+    "venue": "Southern Illinois-Rec Center FH - Carbondale, IL",
+    "elevationFt": 436.0,
+    "advantageMs": -8.74020315954691,
+    "lowerMs": -13.9787507831246,
+    "upperMs": -3.50165553596927,
+    "races": 2172
+  },
+  {
+    "rank": 187,
+    "venue": "UW-Stevens Point-Multi Activity Center - Stevens Point, WI",
+    "elevationFt": 1089.0,
+    "advantageMs": -9.35002016623807,
+    "lowerMs": -15.1193888490809,
+    "upperMs": -3.58065148339527,
+    "races": 2533
+  },
+  {
+    "rank": 188,
+    "venue": "West Virginia-WVU Shell - Morgantown, WV",
+    "elevationFt": 949.0,
+    "advantageMs": -9.40352518872759,
+    "lowerMs": -17.5163357988525,
+    "upperMs": -1.29071457860272,
+    "races": 596
+  },
+  {
+    "rank": 189,
+    "venue": "Brown-Olney-Margolies AC - Providence, RI",
+    "elevationFt": 141.0,
+    "advantageMs": -9.61135013152528,
+    "lowerMs": -16.784021551078,
+    "upperMs": -2.43867871197259,
+    "races": 1126
+  },
+  {
+    "rank": 190,
+    "venue": "Haverford College-Alumni FH - Haverford, PA",
+    "elevationFt": 346.0,
+    "advantageMs": -9.96730286411117,
+    "lowerMs": -15.1845199060704,
+    "upperMs": -4.75008582215195,
+    "races": 1325
+  },
+  {
+    "rank": 191,
+    "venue": "St. Anthony's High School - South Huntington, NY",
+    "elevationFt": 159.0,
+    "advantageMs": -10.0961542841103,
+    "lowerMs": -17.0697704167806,
+    "upperMs": -3.12253815143991,
+    "races": 929
+  },
+  {
+    "rank": 192,
+    "venue": "South Carolina-Indoor Track & Field Complex - Columbia, SC",
+    "elevationFt": 235.0,
+    "advantageMs": -10.7325663396289,
+    "lowerMs": -14.8882366913848,
+    "upperMs": -6.57689598787295,
+    "races": 4366
+  },
+  {
+    "rank": 193,
+    "venue": "Rhode Island-Mackal FH - Kingston, RI",
+    "elevationFt": 114.0,
+    "advantageMs": -10.789438158957,
+    "lowerMs": -15.4076562273574,
+    "upperMs": -6.1712200905566,
+    "races": 2814
+  },
+  {
+    "rank": 194,
+    "venue": "Susquehanna-Garrett Sports Complex - Selinsgrove, PA",
+    "elevationFt": 454.0,
+    "advantageMs": -11.1135749819092,
+    "lowerMs": -15.7367263811813,
+    "upperMs": -6.49042358263717,
+    "races": 3291
+  },
+  {
+    "rank": 195,
+    "venue": "Texas A&M-R.A. Murray Fasken '38 Indoor Track - College Station, TX",
+    "elevationFt": 337.0,
+    "advantageMs": -11.5448456160265,
+    "lowerMs": -14.6689992706411,
+    "upperMs": -8.42069196141178,
+    "races": 6531
+  },
+  {
+    "rank": 196,
+    "venue": "Plymouth State-ALLWell - Plymouth, NH",
+    "elevationFt": 472.0,
+    "advantageMs": -11.849039003206,
+    "lowerMs": -17.8574073132485,
+    "upperMs": -5.84067069316351,
+    "races": 848
+  },
+  {
+    "rank": 197,
+    "venue": "Mount Union-Peterson FH - Alliance, OH",
+    "elevationFt": 1228.0,
+    "advantageMs": -12.3861801763242,
+    "lowerMs": -16.283674008216,
+    "upperMs": -8.48868634443251,
+    "races": 2187
+  },
+  {
+    "rank": 198,
+    "venue": "LSU-Maddox FH - Baton Rouge, LA",
+    "elevationFt": 24.0,
+    "advantageMs": -14.9832308992363,
+    "lowerMs": -19.9483406506709,
+    "upperMs": -10.0181211478018,
+    "races": 3927
+  },
+  {
+    "rank": 199,
+    "venue": "Boston University-Track & Tennis Center - Boston, MA",
+    "elevationFt": 27.0,
+    "advantageMs": -17.4315557972046,
+    "lowerMs": -20.6992251711959,
+    "upperMs": -14.1638864232132,
+    "races": 10986
+  },
+  {
+    "rank": 200,
+    "venue": "Tryon International - Indoor Complex - Mill Spring, NC",
+    "elevationFt": 776.0,
+    "advantageMs": -20.0575594930937,
+    "lowerMs": -32.1672856157545,
+    "upperMs": -7.94783337043283,
+    "races": 905
+  },
+  {
+    "rank": 201,
+    "venue": "Ursinus College-Bakes FH - Collegeville, PA",
+    "elevationFt": 222.0,
+    "advantageMs": -23.4508244619325,
+    "lowerMs": -27.7026759013958,
+    "upperMs": -19.1989730224692,
+    "races": 2650
+  },
+  {
+    "rank": 202,
+    "venue": "Monmouth-Multi-Purpose AC - West Long Branch, NJ",
+    "elevationFt": 37.0,
+    "advantageMs": -28.2544273608025,
+    "lowerMs": -35.9599211342007,
+    "upperMs": -20.5489335874044,
+    "races": 1080
+  },
+  {
+    "rank": 203,
+    "venue": "George Fox-Indoor - Newberg, OR",
+    "elevationFt": 185.0,
+    "advantageMs": -30.9621577177969,
+    "lowerMs": -41.1538028323013,
+    "upperMs": -20.7705126032925,
+    "races": 522
+  },
+  {
+    "rank": 204,
+    "venue": "Maryland - College Park, MD",
+    "elevationFt": 116.0,
+    "advantageMs": -40.0160141117324,
+    "lowerMs": -45.8635690496716,
+    "upperMs": -34.1684591737932,
+    "races": 544
+  }
+]

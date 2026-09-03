@@ -1,0 +1,164 @@
+@import "mixins";
+
+.container {
+  margin: var(--vertical-margin) 0;
+}
+
+.searchLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.search {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--dark-gray);
+  border-radius: 0.25rem;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  min-width: 34rem;
+
+  th {
+    font-weight: bold;
+  }
+}
+
+.numeric {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 1rem;
+  text-align: center;
+}
+
+.venueName {
+  vertical-align: middle;
+}
+
+.shareLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.1rem;
+  border-radius: 0.2rem;
+  color: var(--gray);
+  vertical-align: middle;
+
+  svg {
+    fill: currentcolor;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--light-gray);
+    color: var(--primary-gray);
+  }
+}
+
+.linked {
+  outline: 3px solid var(--primary);
+  outline-offset: -3px;
+}
+
+.mobileDetails {
+  display: none;
+}
+
+.topPagination {
+  margin-top: 0.75rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  button {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--dark-gray);
+    border-radius: 0.25rem;
+    background-color: var(--white);
+    color: var(--dark-gray);
+    font: inherit;
+    cursor: pointer;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background-color: var(--primary);
+    }
+
+    &:disabled {
+      border-color: var(--light-gray);
+      color: var(--gray);
+      cursor: default;
+    }
+  }
+}
+
+.pageStatus {
+  color: var(--gray);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@include mobile {
+  .table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .elevation {
+    display: none;
+  }
+
+  .rank {
+    width: 2.25rem;
+  }
+
+  .venue {
+    width: auto;
+  }
+
+  .advantage {
+    width: 7rem;
+  }
+
+  .mobileDetails {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--gray);
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .advantageValue {
+    font-weight: bold;
+  }
+
+  .pagination {
+    gap: 0.5rem;
+
+    button {
+      padding: 0.35rem 0.5rem;
+    }
+  }
+}
