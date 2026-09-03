@@ -32,7 +32,11 @@ export default function Meta(props: Metas) {
       const val = props[key];
       switch (key) {
         case "title":
-          return [<title key={key}>{val}</title>, meta("og:title", val)];
+          return props["og:title"] === undefined ? (
+            [<title key={key}>{val}</title>, meta("og:title", val)]
+          ) : (
+            <title key={key}>{val}</title>
+          );
         case "description":
           return [meta("description", val), meta("og:description", val)];
         default:

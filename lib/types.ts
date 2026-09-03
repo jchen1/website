@@ -13,7 +13,9 @@ export interface MarkdownItem {
   /** comma-separated list, e.g. "track,review" */
   tags?: string;
   heroImage?: string;
+  ogTitle?: string;
   ogImage?: string;
+  description?: string;
   author?: string;
   layout?: string;
 }

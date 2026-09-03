@@ -29,7 +29,9 @@ export const POST_FIELDS = [
   "slug",
   "content",
   "heroImage",
+  "ogTitle",
   "ogImage",
+  "description",
   "tags",
 ];
 

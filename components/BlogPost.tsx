@@ -81,7 +81,9 @@ export default function BlogPost({
     date,
     slug,
     heroImage,
+    ogTitle,
     ogImage,
+    description: frontmatterDescription,
     contentHTML,
     excerpt,
     heroImageSize,
@@ -89,8 +91,9 @@ export default function BlogPost({
 
   const { showDate, setTitle, showScroll, preloadHero, titleClass } = opts;
 
-  const description =
-    excerpt.length > DESCRIPTION_MAX_LENGTH
+  const description = frontmatterDescription
+    ? frontmatterDescription
+    : excerpt.length > DESCRIPTION_MAX_LENGTH
       ? excerpt.substring(0, DESCRIPTION_MAX_LENGTH - 3) + "..."
       : excerpt;
 
@@ -98,7 +101,7 @@ export default function BlogPost({
 
   const meta: Metas = {
     title: title!,
-    "og:title": title,
+    "og:title": ogTitle || title,
     description: description,
     "og:image": `https://${BASE_URL}${
       ogImage || heroImage || "/images/headshot-1200.jpg"

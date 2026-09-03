@@ -1,6 +1,8 @@
 ---
 layout: post
 title: '"No true science"—altitude, venue effects, and the fastest indoor track in America'
+ogTitle: '"No true science"'
+description: "altitude, venue effects, and the fastest indoor track in america"
 date: "2026-09-02"
 author: Jeff Chen
 tags: track
@@ -38,6 +40,8 @@ We can also run the comparison using only athlete-seasons with results from at l
 Despite BU's sterling reputation for being one of the fastest indoor tracks in the world for distance events, we find that its short sprint performances are disappointing.
 
 What might explain the differences here? Unfortunately, the model has no answers. Some possible mechanisms include the track surface (and subsurface), track age, building temperature, and timing discrepancies. My favorite mechanism, also unjustified, is that the distance from the finish line to the bank and crash pads psychologically affects athletes—nobody likes to sprint at a wall.
+
+Some other surprisingly fast venues for their altitude include Doden Fieldhouse in Cedarville OH (+42 ms at just 1,056 ft) and Heskett Center in Wichita, KS (+40ms at 1,407 ft).
 
 Knowing that venue effects exist, and that they are about as strong as altitude effects, we can combine them to answer the question: what's the fastest indoor track in America?
 
