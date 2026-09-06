@@ -18,7 +18,7 @@ Because sleep is so important, I've assembled a stack of habits and tools for me
 - **Consistent bed and wake time.** [Sleep regularity is associated with stronger academic performance](https://www.nature.com/articles/s41598-017-03171-4). I make sure to sleep and wake within a 30 minute window every weeknight. Although I try to keep my bedtimes consistent on the weekends as well, I'm admittedly much worse at that.
 - **Nine-hour sleep opportunity.** I'm in bed for at least nine hours a night. Focusing on sleep opportunity instead of time slept helps me break insomniac's anxiety—I can't sleep because I'm worried about not being able to sleep.
 - **No NSAIDs or antihistamines at night.** NSAIDs [disrupt sleep](https://www.sciencedirect.com/science/article/abs/pii/0031938494903883). Antihistamines [interfere with deep sleep](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3252975/). Simple enough to avoid both of these before bed.
-- **No devices in bed.** Devices in bed can [affect your circadian cycle](https://www.sleepfoundation.org/how-sleep-works/how-electronics-affect-sleep) and are generally stimulating instead of relaxing. I'm had trouble sticking to this habit, but my sleep quality is demonstrably better when I do manage to put away my phone before bed.
+- **No devices in bed.** Devices in bed can [affect your circadian cycle](https://www.sleepfoundation.org/how-sleep-works/how-electronics-affect-sleep) and are generally stimulating instead of relaxing. I've had trouble sticking to this habit, but my sleep quality is demonstrably better when I do manage to put away my phone before bed.
 
 ## Tools
 
