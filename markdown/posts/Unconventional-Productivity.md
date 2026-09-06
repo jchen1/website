@@ -22,7 +22,7 @@ I think I'm a fairly productive person—I thought it'd be interesting to catego
 ## Unconventional
 
 - I aggressively multitask—for example, I'm writing this post while at the gym. On my laptop, I'm always juggling between windows and tabs.
-- Similarly, I keep notifications on. I've found that fast response times are more important uninterrupted focus blocks for my current role.
+- Similarly, I keep notifications on. I've found that fast response times are more important than uninterrupted focus blocks for my current role.
 - I don't separate my work and personal spaces—I do pretty much everything from my desk.
 - I don't listen to music while I work.
 - When I do have free time, I rarely force myself to spend time on any particular task. Instead, I prefer to have lots of optionality, and work on what's interesting to me at the time. This could be work, a side project, reading, writing, or even just zoning out on YouTube.

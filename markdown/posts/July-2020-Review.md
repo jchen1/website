@@ -7,7 +7,7 @@ tags: review
 ---
 
 - The biggest piece of news for the month: I moved out of SF into my parent's house in Dublin! With coronavirus & related precautions, urban areas no longer have network advantages over suburbs. While Emily and I think about where we want to move long-term (perhaps Denver or New York after coronavirus fades away), we're saving a bundle.
-  - We're really grateful to have this option: both that our jobs allow us to work remotely during coronavirus and that my parents are willing & able to house both fo us while we ride out the storm.
+  - We're really grateful to have this option: both that our jobs allow us to work remotely during coronavirus and that my parents are willing & able to house both of us while we ride out the storm.
 
 <!-- excerpt -->
 

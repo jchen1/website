@@ -8,7 +8,7 @@ tags: track
 
 I drove down to Oxford, Alabama for the TFCUSA Club National Championships. It's primarily a youth meet, but thankfully they had an open section. The meet was well-run, especially given that they were wrangling children as young as 1 year old. I'm definitely encouraged by the track community I've seen since moving to Georgia: everyone I've talked to has been warm, friendly, and obsessed with track!
 
-The meet wasn't tracking wind information, but there was a medium-strength headwind all day. And it was hot! I brought 5 Gatorades, whcih I thought would be more than enough, but I had to supplement that with lots of water through the day.
+The meet wasn't tracking wind information, but there was a medium-strength headwind all day. And it was hot! I brought 5 Gatorades, which I thought would be more than enough, but I had to supplement that with lots of water through the day.
 
 <!-- excerpt -->
 

@@ -120,7 +120,7 @@ function create(context) {
         const absoluteImportPath = path.normalize(
           path.join(path.dirname(filename), importSource);
         );
-        const expectedPath = path.relative(baseUrl, absolutePath);
+        const expectedPath = path.relative(baseUrl, absoluteImportPath);
 
         if (importSource !== expectedPath) {
           context.report({

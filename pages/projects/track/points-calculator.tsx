@@ -131,7 +131,7 @@ function equivalentMark(eventType: string, points: number, gender: string) {
 export const metas: Metas = {
   title: "World Athletics Points Calculator",
   description:
-    "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletics' 2022 scoring tables",
+    "Converts athletics marks to World Athletics points and vice versa using equations derived from World Athletics' 2025 scoring tables",
 };
 
 interface PointsCalculatorProps {
@@ -345,7 +345,7 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       <section>
         <p>
           Converts athletics marks to World Athletics points and vice versa
-          using equations derived from World Athletic&apos;s{" "}
+          using equations derived from World Athletics&apos;{" "}
           <a
             href="https://www.worldathletics.org/about-iaaf/documents/technical-information"
             target="_blank"

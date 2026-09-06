@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Meet Report: 2023 Bobcat PReview"
+title: "Meet Report: 2023 Bobcat Preview"
 date: "2023-12-16"
 author: Jeff Chen
 tags: track

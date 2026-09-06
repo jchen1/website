@@ -31,7 +31,7 @@ update or delete on table "bar" violates foreign key constraint "fk_foo_bar_bar_
 DETAIL:  Key (id)=(a15ba931-eb31-412a-aadb-49d699af4435) is still referenced from table "bar".
 ```
 
-Of course, you can get around this manually, but this becomes increasingly tedious as your entity relationships scale. A better approach would be to sort our delete operations programatically.
+Of course, you can get around this manually, but this becomes increasingly tedious as your entity relationships scale. A better approach would be to sort our delete operations programmatically.
 
 ## Finding dependencies in EF Core
 
@@ -93,7 +93,7 @@ private static IDictionary<
 }
 ```
 
-Note that we distinguish between "weak" and normal references. Many of the relationships in our data model are optional, meaning that the foreign key column is nullable. For example, we have a `borrowers` table with a nullable `spouse_id` column that points to another borrower. To delete a borrowers with a spouse, then, we need to null out `spouse_id` before deleting the borrowers:
+Note that we distinguish between "weak" and normal references. Many of the relationships in our data model are optional, meaning that the foreign key column is nullable. For example, we have a `borrowers` table with a nullable `spouse_id` column that points to another borrower. To delete a borrower with a spouse, then, we need to null out `spouse_id` before deleting the borrower:
 
 ```sql
 UPDATE borrowers SET spouse_id=NULL WHERE tenant_id='test_tenant';

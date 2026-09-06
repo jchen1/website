@@ -32,11 +32,11 @@ The weather was beautiful—my first warm meet of the year—but marred by a nas
 ## 200m: 21.55 (-2.3)
 
 - [Video](https://youtu.be/XgSnjrlezYM)/[slow-motion](https://photos.app.goo.gl/aErKnUDrwyemk3N46)
-- I only had about 40 minute between events, so after chatting with a couple people, I went straight back into dynamic drills and strides.
+- I only had about 40 minutes between events, so after chatting with a couple people, I went straight back into dynamic drills and strides.
 - This time, my heat was (almost) full. I came in with the second-fastest seed time and raced in lane 5.
 - After my blocks slipping in warmups, my start wasn't as forceful as it could have been, but I still ate up the stagger on lanes 7 and 8.
 - My lower body felt disorganized on the second half of the curve—I had a couple strides where my foot landed at a sharp angle.
 - I exited the curve about even with lane 4 (the fastest seed time) but pulled away over the last hundred meters.
 - 21.55 is a facility record (previously 22.30) and a 0.3 second PR for me! That wind-adjusts to 21.29 in neutral conditions, so I'm looking forward to see what I can do in the next couple of races.
 
-Next up for me is either the Tennesse Challenge in Knoxville or the Life U Last Chance in Marietta depending on which meet I can get in to.
+Next up for me is either the Tennessee Challenge in Knoxville or the Life U Last Chance in Marietta depending on which meet I can get into.

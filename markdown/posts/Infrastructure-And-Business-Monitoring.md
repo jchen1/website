@@ -22,7 +22,7 @@ At this point, Stairway should focus on developing **business monitoring**. Thes
 
 Business metrics, of course, have downsides compared to infrastructure metrics. The biggest downside is that business metrics aren't specific: when a business alert fires, it's not easily clear what actions an engineer should take to fix them. Often it's necessary to dive into logs or look at infrastructure-level metrics—business metrics should be set up **after** infrastructure metrics.
 
-Our story has a happy ending—Stairway engineers set up business-level monitors and alerts, they were able to detect and respond to outages much faster. Eventually, Stairway became the next tech decacorn, and everybody lived happily after ever.
+Our story has a happy ending—Stairway engineers set up business-level monitors and alerts, they were able to detect and respond to outages much faster. Eventually, Stairway became the next tech decacorn, and everybody lived happily ever after.
 
 ## Recap
 

@@ -13,7 +13,7 @@ This year, Adidas entered the superspike game with their Prime SP2. Their athlet
 
 ## Fit and feel
 
-I appreciate Adidas shipping a relatively normal colorway, especially compared to the recent awful [Maxfly](<![img](https://i.ebayimg.com/images/g/J4MAAOSwbd9isv7e/s-l500.jpg)>) [colorways](https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f669d845-033c-47a6-b917-89f984ba52d6/air-zoom-maxfly-track-field-sprinting-spikes-C2ZBRP.png).
+I appreciate Adidas shipping a relatively normal colorway, especially compared to the recent awful [Maxfly](https://i.ebayimg.com/images/g/J4MAAOSwbd9isv7e/s-l500.jpg) [colorways](https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f669d845-033c-47a6-b917-89f984ba52d6/air-zoom-maxfly-track-field-sprinting-spikes-C2ZBRP.png).
 
 The Prime SP2s run a half size large: I’m normally a 10.5 in trainers and spikes, but needed to size down to a 10 for these. The spike is comfortable—there’s a noticeable difference between these and Maxflies which make my feet hurt after just a few minutes in them.
 

@@ -21,7 +21,7 @@ As usual, I raced the 60 and 200 at this meet. This time, I was the fastest seed
 
 ## 60m prelims: 6.85
 
-- 6.85 is a all-conditions lifetime PR for me—besting the [indoor 6.89](https://jeffchen.dev/posts/Meet-Report-2023-Bobcat-Challenge/) I set earlier this year and the [wind-aided 6.88](https://jeffchen.dev/posts/Meet-Report-2022-Berkeley-All-Comers-2/) I ran last Februrary outdoors! It also won me my heat and put me in pole position for the finals.
+- 6.85 is an all-conditions lifetime PR for me—besting the [indoor 6.89](https://jeffchen.dev/posts/Meet-Report-2023-Bobcat-Challenge/) I set earlier this year and the [wind-aided 6.88](https://jeffchen.dev/posts/Meet-Report-2022-Berkeley-All-Comers-2/) I ran last February outdoors! It also won me my heat and put me in pole position for the finals.
 - I had a very good block start, probably my best effort in a race so far. This could partially be subjective, as I was flanked by two slower runners, but I felt smoother and stronger than I ever have.
 - I successfully came upright somewhere between 20-30m.
 - Because I led wire to wire and didn't really feel any athletes the whole race, I was really relaxed at max speed and was able to easily carry that through the line.

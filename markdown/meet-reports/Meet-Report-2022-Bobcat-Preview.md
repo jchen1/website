@@ -34,6 +34,6 @@ The MSU indoor track is an excellent flat 200 meter track. Importantly for me, i
 - I won my heat handily but took second place overall in the meet by two-thousandths of a second.
 - I had about 45 minutes between races. I felt pretty fatigued after the 60, all the way up to stepping in the blocks: my heart rate was around 150 at that point.
 - Because of that, I executed a conservative race plan: instead of gunning it all the way, I floated down the back stretch and reaccelerated through the second curve.
-- I'm really not used to how sharp indoor curves are. I had major issues staying coordinated on both curves; I had more than one step where my right (ouside) foot landed way to the inside of my center of balance.
+- I'm really not used to how sharp indoor curves are. I had major issues staying coordinated on both curves; I had more than one step where my right (outside) foot landed way to the inside of my center of balance.
 
 This was as good of an opener as I could have hoped for: two heat wins, two indoor PRs, and a clean bill of health. My next meet won't be until next year—likely back in Bozeman for the Bobcat Challenge on 1/13/23.

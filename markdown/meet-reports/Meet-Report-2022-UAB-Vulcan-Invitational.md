@@ -29,6 +29,6 @@ That said, I have a lot to improve on for next time:
 
 - I had an awful start—I haven't done any curved starts yet this year, and barely have any experience at all with banked tracks.
 - At least two times, I placed my right foot way too far to the inside, causing me to stumble (and scrape my foot against my left calf).
-- My speed endurance, while surprisingly good for January, isn't where it wil hopefully be by the end of the season. My form broke down in the last 50 meters.
+- My speed endurance, while surprisingly good for January, isn't where it will hopefully be by the end of the season. My form broke down in the last 50 meters.
 
 Overall, I ran surprisingly fast for the time of year—I wasn't expecting any PRs. It's an encouraging start to the season and I'm excited to see what I can do at my next meet!

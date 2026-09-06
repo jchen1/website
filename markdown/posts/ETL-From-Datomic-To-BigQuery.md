@@ -103,7 +103,7 @@ Next, we need a way to transform a Datomic entity into a BigQuery row given its 
   {:user/id id
    :user/name name
    :user/apps (map :db/id apps)
-   :user/email (:db/id email))})
+   :user/email (:db/id email)})
 
 (defmethod entity->row* :application
   [{:app/keys [id answers] :as entity}]
@@ -129,7 +129,7 @@ That's it! To run a single ETL job, all that's left is to run `entity->row` agai
 
 Eventually, we'll outgrow a daily ETL job. With more data, the job will take many hours to complete (or fail!), leaving our data warehouse woefully out of date. Daily jobs also slow down feedback cycles when making changes. Fortunately, Datomic can help us out here!
 
-Datomic [stores a log](https://docs.datomic.com/on-prem/log.html) of all transaction data in time order. This lets us efficiently ask the question "What changed betweeen `t1` and `t2`?" with [`tx-range`](https://docs.datomic.com/on-prem/clojure/index.html#datomic.api/tx-range). With this primitive, we can upload only those entities that have changed since the last time we ran our ETL job. In fact, we can go one step further: by running our upload function in a tight loop, we can achieve data latency of just a few seconds! Let's sketch it out:
+Datomic [stores a log](https://docs.datomic.com/on-prem/log.html) of all transaction data in time order. This lets us efficiently ask the question "What changed between `t1` and `t2`?" with [`tx-range`](https://docs.datomic.com/on-prem/clojure/index.html#datomic.api/tx-range). With this primitive, we can upload only those entities that have changed since the last time we ran our ETL job. In fact, we can go one step further: by running our upload function in a tight loop, we can achieve data latency of just a few seconds! Let's sketch it out:
 
 ```clojure
 (defn upload-changed-entities-to-bigquery
@@ -163,4 +163,4 @@ With this last piece, we've built a system that:
 - converts entities into well-formed BigQuery rows
 - uploads new and changed entities to BigQuery (almost) instantly
 
-We've also expressed one of our core engineering values - to shorten feedback loops: engineers can see effects of their changes once their code is deployed rather than waiting for a nightly ETL job to run. More imporantly, our data science and product teams can analyze our data **as it's generated**!
+We've also expressed one of our core engineering values - to shorten feedback loops: engineers can see effects of their changes once their code is deployed rather than waiting for a nightly ETL job to run. More importantly, our data science and product teams can analyze our data **as it's generated**!

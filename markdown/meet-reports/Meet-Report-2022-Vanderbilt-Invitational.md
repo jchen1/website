@@ -22,4 +22,4 @@ My heat had a lot of fast seed times—only one of them actually delivered. Desp
 
 Unfortunately, I ended up in 10th place, just 0.05 away from making finals. I think that with a second chance, I could have dipped down into the low 6.9s or even the 6.8s.
 
-This might end up being the last indoor meet I'll run this year—next up for me is either the Berkeley all-comers or the De Anza Invitational in mid-Februrary back in California.
+This might end up being the last indoor meet I'll run this year—next up for me is either the Berkeley all-comers or the De Anza Invitational in mid-February back in California.

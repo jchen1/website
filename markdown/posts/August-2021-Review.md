@@ -20,7 +20,7 @@ My time in Montana is coming to an end—I'll be spending the next few days camp
 ## Track & Fitness
 
 - I'm fully recovered from my hamstring tear! I even managed to get back on the track for some acceleration work.
-- I feel really bouncy—I don't have any numbers, but I'm almost hitting my head against the ten-foot gym ceiling on double-leg veritcal jumps!
+- I feel really bouncy—I don't have any numbers, but I'm almost hitting my head against the ten-foot gym ceiling on double-leg vertical jumps!
 - August was a light month for me; I'll be starting preseason training next month when I'm back in Atlanta.
 
 ## Projects

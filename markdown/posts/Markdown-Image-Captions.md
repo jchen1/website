@@ -60,7 +60,7 @@ Upon encountering an image node, our first step is to extract the caption from t
 ```javascript
 function extractCaption(node) {
   const captionRegex = /(\{caption=([^\{\}]+)\})/;
-  if (!node.alt || !captionRegex.text(node.alt)) {
+  if (!node.alt || !captionRegex.test(node.alt)) {
     return { alt: node.alt };
   }
 
@@ -131,7 +131,7 @@ function replace(source, target) {
 
 function extractCaption(node) {
   const captionRegex = /(\{caption=([^\{\}]+)\})/;
-  if (!node.alt || !captionRegex.text(node.alt)) {
+  if (!node.alt || !captionRegex.test(node.alt)) {
     return { alt: node.alt };
   }
 

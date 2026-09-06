@@ -18,7 +18,7 @@ I didn't expect much going into this meet: with a rolling schedule, I knew it'd 
 
 - I won both my heat and the meet outright.
 - I've run three 60s this season and PR'd all three times! This time was with a slight tailwind and adjusts to either a windless [6.90](https://maximmoinat.github.io/windCalculator.html) or [6.93](https://jmureika.lmu.build/track/wind/index.html) depending on the conversion factor you use. Both times are still faster than my old PR.
-- I focused on driving back into the track and having negative foot speed on my first few steps. I think I did this reasonably well, though I defnitely haven't mastered it yet.
+- I focused on driving back into the track and having negative foot speed on my first few steps. I think I did this reasonably well, though I definitely haven't mastered it yet.
 - For the first time in a race, I felt like I was forced upright by my speed instead of getting impatient and coming upright early.
 - I think I need some more practice starting off a reaction instead of going on my own mark.
 

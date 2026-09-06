@@ -290,7 +290,7 @@ export const eventNames: Record<string, string> = {
   "Road 10kmW": "10km race walk (road)",
   DT: "Discus throw",
   "100mH": "100m hurdles",
-  "4x400m sh": "4x400m Relay (indoor)",
+  "4x400m sh": "4x400m relay (indoor)",
   "Dec.": "Decathlon",
   "Road 20 km": "20km (road)",
   "200m sh": "200m (indoor)",

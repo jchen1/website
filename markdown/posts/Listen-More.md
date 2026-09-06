@@ -18,7 +18,7 @@ Leaders should be quiet instead of loud; they should spend more time listening i
 
 Listening to your people starts by learning about them. I think there are a couple important answers you should know about each report:
 
-- Does your report process new information quickly or slowly? If they're a slower processor, they may come up with ideas or counterpoints after a meeting has concluded, and you should encourage them to to voice those no matter the timeframe.
+- Does your report process new information quickly or slowly? If they're a slower processor, they may come up with ideas or counterpoints after a meeting has concluded, and you should encourage them to voice those no matter the timeframe.
 - Are they comfortable speaking up during meetings? If not, you may need mechanisms to help them get their opinions shared: you could explicitly ask them to share their thoughts during meetings, or follow up afterwards on Slack to get their take.
 
 Here are some other tactics for the listening leader beyond knowing your reports:

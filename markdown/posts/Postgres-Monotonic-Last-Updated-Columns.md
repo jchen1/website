@@ -64,5 +64,5 @@ The 1 microsecond interval ensures that even if `now()` returns a timestamp lowe
 we still bump it so that readers of that timestamp can register an updated record.
 
 From the above case: transaction `B` will commit `last_modified_at=2024-01-01T00:00:01.000000Z`, then when transaction A
-commits, it will set `last_modified_at = greatest(2 + inverval '1 microsecond', 2024-01-01T00:00:00.000000Z) = 2024-01-01T10:00:00.000001Z`,
+commits, it will set `last_modified_at = greatest(2 + interval '1 microsecond', 2024-01-01T00:00:00.000000Z) = 2024-01-01T10:00:00.000001Z`,
 preserving monotonicity.

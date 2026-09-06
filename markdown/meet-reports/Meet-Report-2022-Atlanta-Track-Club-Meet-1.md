@@ -21,7 +21,7 @@ This meet only contested the 100m and 400m, so I ran just the 100m. There were t
 - [Here's](https://photos.app.goo.gl/BHNjaVDLtJFokv9x7) a slowed down side view of the race.
 - I had a pretty strong and smooth start. I've been working a lot on driving my feet back into the track with my first few steps, and I think I executed well on that in this race.
 - I was a bit tense as I got upright, and it resulted in being a bit hard for me to hold my form through the race.
-- In particular, it felt like my leg were a little bit behind me towards the end. The video clearly shows my feet rising to my butt.
+- In particular, it felt like my legs were a little bit behind me towards the end. The video clearly shows my feet rising to my butt.
 - Overall, I came in 8th place in the prelims out of 13, which let me sneak into the fast finals heat in lane 8.
 
 ## 100m finals: 10.71 (-1.3)
@@ -31,7 +31,7 @@ This meet only contested the 100m and 400m, so I ran just the 100m. There were t
 - I've never been left behind in the blocks like that before! Pros are pros—but it's amazing to see the difference even in the first two steps.
 - My start was also plain bad. I didn't drive back nearly as well as in the prelims, and I ended up getting upright pretty early.
 - Upright running felt much better than in the prelims. I did a good job staying relaxed and finished strong.
-- I finished dead last in my heat—interestingly, pretty much everybody had a much better difference betweeen their prelim and final time than me. For example, Samson Colebrooke and Ameer Webb were neck and neck in both prelims and finals, but ran 10.32/10.34 in the prelims and just 10.01/10.04 in the finals!
+- I finished dead last in my heat—interestingly, pretty much everybody had a much better difference between their prelim and final time than me. For example, Samson Colebrooke and Ameer Webb were neck and neck in both prelims and finals, but ran 10.32/10.34 in the prelims and just 10.01/10.04 in the finals!
 - 10.71 is a big PR for me from my previous best of 10.79 (+2.9)... and 10.71 (-1.3) translates to 10.63 (0.0)/10.53 (+2.0) so I think I have a lot more in store this season.
 
 Next up for me is the Sewanee Mountain Laurel Twilight Invitational in Sewanee, Tennessee on April 23.

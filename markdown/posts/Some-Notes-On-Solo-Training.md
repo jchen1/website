@@ -8,7 +8,7 @@ tags: track
 
 ## Be Patient.
 
-Measureable improvement takes a long time. Don't vaccilate between training methodologies. Instead, commit to a program for at least one full season before making strategic changes.
+Measurable improvement takes a long time. Don't vacillate between training methodologies. Instead, commit to a program for at least one full season before making strategic changes.
 
 Listen to your body—don't risk injury. The best ability is availability. It's better to miss a couple reps at the end of a workout than to pop a hamstring and miss weeks or even months.
 

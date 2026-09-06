@@ -85,7 +85,7 @@ function fromStillAir(
 export const metas: Metas = {
   title: "Wind Correction Calculator",
   description:
-    "Corrects sprint and jump marks for wind based on Moniat, Fabius, and Emanuel (2018).",
+    "Corrects sprint and jump marks for wind based on Moinat, Fabius, and Emanuel (2018).",
 };
 
 interface WindCorrectionProps {

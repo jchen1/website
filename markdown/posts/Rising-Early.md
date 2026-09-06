@@ -30,7 +30,7 @@ Early rising improves my productivity -- but it improves others' impression of m
 
 There's no better way to start the day than warming up on the track as the sun rises.
 
-![{caption=Sunrise on the track}Sunrise on the traack](/images/rising-early/sunrise.jpg)
+![{caption=Sunrise on the track}Sunrise on the track](/images/rising-early/sunrise.jpg)
 
 ## Drawbacks to rising early
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Februrary 2021 Review
+title: February 2021 Review
 date: "2021-02-28"
 author: Jeff Chen
 tags: review

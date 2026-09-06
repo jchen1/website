@@ -20,7 +20,7 @@ MSU has been a fantastic host—I'm grateful to the team for allowing me to comp
 - While I was able to stay in the race, I didn't really have a shot at a good time.
 - The last 30 meters showed my top speed is improving—I was making up ground on the competitors in front of me.
 - 6.98 is the worst time I've run over the past two years... but still is faster than any 60 I ran before then. To have that bad of a stumble and still come out under 7 seconds is encouraging.
-- All that said, this races feels like a missed opportunity. The winner of the meet ran 6.88, and I was clearly in the lead at 10 meters—what could I have done today?
+- All that said, this race feels like a missed opportunity. The winner of the meet ran 6.88, and I was clearly in the lead at 10 meters—what could I have done today?
 
 ## 200m: 22.25
 

@@ -29,7 +29,7 @@ Goals also need to be achievable. We all know the saying "shoot for the moon". I
 
 Ironic, coming from a sprinter.
 
-Without a coach to keep me in check, I tend to overtrain. One more set, one more rep, why not give it 100% every workout? Because track seasons are long - careers are even longer. The most successful athletes, in any discipline, are those who are able to consistently train year over year, building on their existing fitness. Athletes who overtrain end burnt out or injured - which forces them to spend time rehabilitating their base instead of improving it.
+Without a coach to keep me in check, I tend to overtrain. One more set, one more rep, why not give it 100% every workout? Because track seasons are long - careers are even longer. The most successful athletes, in any discipline, are those who are able to consistently train year over year, building on their existing fitness. Athletes who overtrain end up burnt out or injured - which forces them to spend time rehabilitating their base instead of improving it.
 
 Overtraining has permanent consequences. I've learned this lesson many times over and I have the battle scars to show for it: nasty lumps of scar tissue in my hamstrings, persistent tendonitis in my knees, a shoulder that can dislocate putting on a jacket... the list goes on. These days, I train less than I ever did in college. I stay focused on the long-term - as long as I'm working sustainably, I have many reps, many workouts, many seasons ahead of me.
 
