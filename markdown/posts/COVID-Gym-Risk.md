@@ -35,7 +35,7 @@ This page is interactive: try estimating risk for your own gym sessions!
 - `county_cases_reported` = <input type="number" id="county-cases-reported" value=1686 onchange="calculate()" min=0 max=999999 />
   - cases in the county during the last `active_infection_days` days
   - [In the last 4 weeks of full reporting (9/13 - 10/4), Ada county reported 1686 cases](https://public.tableau.com/profile/central.district.health#!/vizhome/CDHCOVID-19/CDHCOVID-19Information)
-- `county_postivity_rate` = <input type="number" id="county-positivity-rate" value=0.07 onchange="calculate()" min=0 max=1000 step=0.01 />
+- `county_positivity_rate` = <input type="number" id="county-positivity-rate" value=0.07 onchange="calculate()" min=0 max=1000 step=0.01 />
   - test positivity rate over the last `active_infection_days`
 - `county_population` = <input type="number" id="county-population" value=502970 onchange="calculate()" min=0 max=99999999 />
   - number of people in the county

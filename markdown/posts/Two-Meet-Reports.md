@@ -13,7 +13,7 @@ My first official meet in 15 months! It was absolutely phenomenal to compete aga
 
 ### [100m: 10.92 (+0.2)](https://photos.app.goo.gl/KFSCgxzWEpB7WUtY8)
 
-The wind cooperated, turning in or favor right before our race. I was strong out of the blocks and probably had a lead for the first 20 meters. I wasn't patient with my transition, however, and was fully upright before the 30m mark. By 50 meters, I'd lost my lead, and I had to grit through the last 20 meters. All that was enough, however, to run a FAT PR of 10.92!
+The wind cooperated, turning in our favor right before our race. I was strong out of the blocks and probably had a lead for the first 20 meters. I wasn't patient with my transition, however, and was fully upright before the 30m mark. By 50 meters, I'd lost my lead, and I had to grit through the last 20 meters. All that was enough, however, to run a FAT PR of 10.92!
 
 <!-- excerpt -->
 
@@ -56,4 +56,4 @@ Overall, although the times weren't what I was looking for, this was a fun meet 
 
 ## Next up
 
-I'm running at the [TFCUSA Club National Championships](https://coachoregistration.com/dbi-bin/meetinfopage.pl?Web_Site_Id=al_tfcusa&Meet_Id=tfcclunatc2101&Team_Id=&) in Oxford, Alabama on Saturday, May 22. I'll be competing in the 100m and 200m. It appears to be mostly a youth meet, but there's a a few competitors with sub-11 and sub-22 seed times, so it should be a good time!
+I'm running at the [TFCUSA Club National Championships](https://coachoregistration.com/dbi-bin/meetinfopage.pl?Web_Site_Id=al_tfcusa&Meet_Id=tfcclunatc2101&Team_Id=&) in Oxford, Alabama on Saturday, May 22. I'll be competing in the 100m and 200m. It appears to be mostly a youth meet, but there's a few competitors with sub-11 and sub-22 seed times, so it should be a good time!

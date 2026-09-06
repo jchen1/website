@@ -63,7 +63,7 @@ An iPhone app implementing [contrast limited adaptive histogram equalization (CL
 
 [![Espresso](/images/espresso.png)](https://caretcaret.github.io/espresso/)
 
-**Espresso** is a simple deep learning framework written the [Halide](http://halide-lang.org/) image proessing language compatible with [Caffe](http://caffe.berkeleyvision.org/) configuration files.
+**Espresso** is a simple deep learning framework written in the [Halide](http://halide-lang.org/) image processing language that is compatible with [Caffe](http://caffe.berkeleyvision.org/) configuration files.
 
 ## [threadpool](https://www.github.com/jchen1/threadpool)
 

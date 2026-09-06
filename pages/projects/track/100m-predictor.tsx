@@ -414,7 +414,7 @@ export default function Predictor100m({ pages }: PredictorProps) {
             target="_blank"
             rel="noreferrer"
           >
-            Moniat, Fabius, and Emanuel (2018)
+            Moinat, Fabius, and Emanuel (2018)
           </a>
           .
         </p>

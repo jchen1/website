@@ -32,7 +32,7 @@ I've interviewed hundreds of engineering candidates across multiple companies. W
   - In particular - help candidates with standard library calls. Having the standard library memorized or not isn't good signal.
 - Take notes: it's hard to remember what happened in an interview after the fact.
 - Try to end on a positive note: if we end in the middle of a section, I like to connect where they are with where I wanted them to go.
-- As you close the question, tie it back back to a real-world problem.
+- As you close the question, tie it back to a real-world problem.
 
 ## Closing out
 

@@ -37,7 +37,7 @@ I don't have enough variance in my data to definitively answer this question. Al
 
 ![workouttime_rep](/images/tracking-fly-times/workouttime_rep.png)
 
-[This recent Harvard meta-analysis](https://pubmed.ncbi.nlm.nih.gov/34431827/) found that "there is strong evidence that anerobic power as well as jump height are maximal between 13:00 and 19:00". Of the measurements studied, those two are most strongly correlated with sprint performance.
+[This recent Harvard meta-analysis](https://pubmed.ncbi.nlm.nih.gov/34431827/) found that "there is strong evidence that anaerobic power as well as jump height are maximal between 13:00 and 19:00". Of the measurements studied, those two are most strongly correlated with sprint performance.
 
 I don't have enough (or any) afternoon data to confirm this, but there's definitely a correlation between later workouts and faster times for me. In the upcoming season, I may experiment with afternoon workouts, especially on the weekend, to see if I can confirm the meta-analysis any more.
 

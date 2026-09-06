@@ -75,7 +75,7 @@ This month, I started using [Readwise](https://readwise.io/i/jeff346), which wil
 
 ### COVID
 
-- [Estimating True Infections | COVID-19 Projections Using Machine Learning](https://covid19-projections.com/estimating-true-infections/)"
+- [Estimating True Infections | COVID-19 Projections Using Machine Learning](https://covid19-projections.com/estimating-true-infections/)
 - [microCOVID Project](https://www.microcovid.org)
 
 ### Other

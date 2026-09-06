@@ -14,7 +14,7 @@ I'm definitely enjoying the change of environment and pace; hopefully it's not j
 
 - 🟡 **Get 1% faster.** I ran a FAT PR of 10.92 in my first race back, then 10.93 two weeks later. Unfortunately, it looks like Freelap times don't translate to FAT+0.15: the difference seems more like 0.35 seconds. That said, those PRs were set after hard training weeks: I think I have a lot of headroom with a good peaking cycle and some minor technical cleanup.
 - 🔴 **50% less discretionary spending.** I expected to go red this month, and did. We're buying lots of furniture, spending time in fancy hotels, and generally making our first month in Atlanta a month to remember. My spending this month was 215% of my average spending from last year.
-- 🟡 **One hour of solitary free time a day.** I'm still not doing a great job of tracking this, but my work-life balance has significantly improved since moving to Atlanta. I don't start my workday until around 11AM, and I've managed to keep a strict end-of-work time of 7PM. That gives me plenty of time to myself on Tuesdays an Thursdays (when I'm not doubling up at the track and gym).
+- 🟡 **One hour of solitary free time a day.** I'm still not doing a great job of tracking this, but my work-life balance has significantly improved since moving to Atlanta. I don't start my workday until around 11AM, and I've managed to keep a strict end-of-work time of 7PM. That gives me plenty of time to myself on Tuesdays and Thursdays (when I'm not doubling up at the track and gym).
 - 🟡 **Twice-weekly live conversations with friends.** I haven't really been focusing on this goal. Even so, I managed to hit it every week but this past one. Next month, I'll pay more attention and get this back into the green!
 
 <!-- excerpt -->

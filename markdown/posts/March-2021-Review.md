@@ -10,7 +10,7 @@ I'm getting in right at the buzzer here, so no thoughts about the month.
 
 ## Goal Tracking
 
-- 🟢 **Get 1% faster.** I hit PRs in both of my time trials! I managed **10.73** for the 100m and **21.85** for the 200m. I'm **so close** to hitting my goal of being 1% faster (10.69 in the 100m and 21.73 i the 200m), and it's still pretty early in the year.
+- 🟢 **Get 1% faster.** I hit PRs in both of my time trials! I managed **10.73** for the 100m and **21.85** for the 200m. I'm **so close** to hitting my goal of being 1% faster (10.69 in the 100m and 21.73 in the 200m), and it's still pretty early in the year.
 - 🟢 **50% less discretionary spending.** My March discretionary spending was **87%** lower than my average monthly spend in 2020. Looking good!
 - 🔴**One hour of solitary free time a day.** I did manage my sub-goal from last month of keeping track of my free time. Unfortunately, outside of weekends, I've managed a single hour of free time (maybe two, if you include the hour I'm writing this post in).
 - 🟢 **Twice-weekly live conversations with friends.** 4/4 again! I remain surprised at how this goal has gone—maybe I should have been more ambitious.

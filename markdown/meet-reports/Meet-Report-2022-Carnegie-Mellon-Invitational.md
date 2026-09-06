@@ -17,7 +17,7 @@ Meet conditions were... typical for Pittsburgh in March, with temperatures in th
 - This was definitely my worst race this year. I was a bit rushed to the starting line as I had too many layers of sweats on, and wasn't as locked in as normal.
 - My calves cramped on steps 2 and 3 and stayed aggravated the whole race. This led to me popping up pretty much right away and ruined any chance I had at a great time.
 - I suspect that the cramps were a combination of cold weather and a bit of dehydration, but it's becoming something of a recurring pattern for me. I'll have to figure something out soon.
-- Despite the cramps, I managed to win my heat and the meet as a whole. This time converts to a 11.03 in neutral wind conditions—way off my PR and way slower than what my 60m would indicate.
+- Despite the cramps, I managed to win my heat and the meet as a whole. This time converts to an 11.03 in neutral wind conditions—way off my PR and way slower than what my 60m would indicate.
 
 ## 200m: 22.24 (-4.3)
 

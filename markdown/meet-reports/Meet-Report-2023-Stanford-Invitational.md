@@ -20,7 +20,7 @@ I've also been dealing with a couple injuries over the past month, most recently
 - Unfortunately, at max velocity, I didn't have as much bounce as I'm used to. I think this was the back injury limiting my ability to rotate my hips.
   Without that, my stride length felt much shorter than usual, and I was left behind.
 - I finished 7th in my heat and 34th overall.
-- This is the slowest 100 I ran since my [outdoor opener last year](https://jeffchen.dev/posts/Meet-Report-2022-Carnegie-Mellon-Invitational/), a 11.24 into a -2.9 headwind.
+- This is the slowest 100 I ran since my [outdoor opener last year](https://jeffchen.dev/posts/Meet-Report-2022-Carnegie-Mellon-Invitational/), an 11.24 into a -2.9 headwind.
 
 ## 200m: 22.54 (+0.7)
 

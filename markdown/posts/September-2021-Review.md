@@ -8,7 +8,7 @@ tags: review
 
 September was eventful!
 
-I spent the first part of the month camping in Glacier National Park and driving back to Atlanta. Glacier was gorgeous and a great way to end my time in Montana. We drove back through the northern route, stopping in eastern Montana, Mineapolis, Madison, and Louisville. It was definitely strange re-entering civilization after months in sparsely populated Montana.
+I spent the first part of the month camping in Glacier National Park and driving back to Atlanta. Glacier was gorgeous and a great way to end my time in Montana. We drove back through the northern route, stopping in eastern Montana, Minneapolis, Madison, and Louisville. It was definitely strange re-entering civilization after months in sparsely populated Montana.
 
 September 24th was my last day at Ladder. The following Monday I joined [Vesta](https://vestatech.io) as one of the first handful of software engineers. I'm sad to leave Ladder—I enjoyed my time there, learned a ton, and made a bunch of friends. But I'm super excited to build the foundational pieces of an extremely young company!
 
@@ -16,7 +16,7 @@ My pre-season training is well underway—my first GPP block finished up this we
 
 ## Goal Tracking
 
-- 🟢 **Get ~1~2% faster.** I'm resetting this goal to be 2% faster than the 10.79 I ran at the end of last season—that's a goal of 10.57. I doubled my goal mainly because I managed the 10.79 while injuring myself.
+- 🟢 **Get ~~1~~2% faster.** I'm resetting this goal to be 2% faster than the 10.79 I ran at the end of last season—that's a goal of 10.57. I doubled my goal mainly because I managed the 10.79 while injuring myself.
 - 🔴 **50% less discretionary spending.** My discretionary spending was 22% higher than my 2020 average. Camping, a week-long road trip, and some furniture purchasing will do that!
 - 🟡 **One hour of solitary free time a day.** This has been improving, and I expect it to continue to get better: my work schedule promises to be a lot more flexible with this new gig.
 - 🟡 **Twice-weekly live conversations with friends.** Although I didn't manage to do this while traveling, since I've returned home to Atlanta I've gotten back into the routine.

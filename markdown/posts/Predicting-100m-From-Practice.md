@@ -31,8 +31,8 @@ I played with many different model types, ranging from simple linear and polynom
 The more complex approaches proved to be less accurate and extremely prone to overfitting—with only two input variables and a single output, the relationship between inputs and outputs is necessarily not very complicated.
 
 In the end, I used an exponential regression using 30m block and maximum velocity as inputs, which was calculated by inverting 10m fly times, i.e. `10 / fly_time`.
-This produced an R&sup2; of 0.964 and mean squared error of just 0.004. Interestingly, training a regression against each single input (i.e. 30m block and 10m fly) produced R&sup2; values of just under 0.9, indicating that even a single
-This had the extra advantage of being extremely simple to port over to Javascript for the [online calulator](/projects/track/100m-predictor).
+This produced an R&sup2; of 0.964 and mean squared error of just 0.004. Interestingly, training a regression against each single input (i.e. 30m block and 10m fly) produced R&sup2; values of just under 0.9, indicating that both block and fly times have significant predictive power on their own. This is most likely because in practice, acceleration and max velocity are tightly correlated.
+This had the extra advantage of being extremely simple to port over to Javascript for the [online calculator](/projects/track/100m-predictor).
 
 ## Future work
 

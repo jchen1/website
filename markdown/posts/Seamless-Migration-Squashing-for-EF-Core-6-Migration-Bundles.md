@@ -7,9 +7,9 @@ tags: code
 heroImage: /images/seamless-migration-squashing-for-ef-core-6-migration-bundles/hero.png
 ---
 
-EF Core generates and stores a full snapshot of the database for every migration. For a large data model, like we have at Vesta ([come join us!](https://www.usevesta.com/careers)), every migration adds ~15k LOC. Over time, we end up with more migration than application code—in 10 months, we generated over 2 million(!) lines of migration code.
+EF Core generates and stores a full snapshot of the database for every migration. For a large data model, like we have at Vesta ([come join us!](https://www.usevesta.com/careers)), every migration adds ~15k LOC. Over time, we end up with more migration code than application code—in 10 months, we generated over 2 million(!) lines of migration code.
 
-All these snapshots significantly impact compile time, and without configuration, makes interacting with the codebase more tedious and slower. These snapshots also aren't useful—after enough time has passed, it becomes prohibitively difficult to actually revert N migrations back.
+All these snapshots significantly impact compile time and, without configuration, make interacting with the codebase more tedious and slower. These snapshots also aren't useful—after enough time has passed, it becomes prohibitively difficult to actually revert N migrations back.
 
 Ideally, we'd be able to "squash" old migrations into one, removing the old snapshots and migration logic while preserving the ability to spin up a fresh database. In the following, I'll describe how we achieved this at Vesta.
 
