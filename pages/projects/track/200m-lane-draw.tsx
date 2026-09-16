@@ -1,206 +1,48 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useRouter } from "next/router";
 
-import { useInitialQueryParams } from "lib/hooks";
-import { getAllPages } from "lib/track/pages";
-import type { TrackPage } from "lib/track/pages";
-
-import Meta from "components/Meta";
-import RelatedPosts from "components/RelatedPosts";
 import Title from "components/Title";
-import UnitInput from "components/UnitInput";
 
 import blogStyles from "styles/components/Blog.module.scss";
-import styles from "styles/pages/track-calculators.module.scss";
 
-import type { GetStaticProps } from "next";
 import type { Metas } from "lib/types";
 
-const LANE_EFFECT = 0.018;
-const LANES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-function convertLaneTime(
-  time: string | number,
-  currentLane: string | number,
-  targetLane: string | number,
-) {
-  const timeNum = parseFloat(time as string);
-  const currentNum = parseInt(currentLane as string, 10);
-  const targetNum = parseInt(targetLane as string, 10);
-
-  if (isNaN(timeNum) || isNaN(currentNum) || isNaN(targetNum)) {
-    return null;
-  }
-
-  return timeNum + (currentNum - targetNum) * LANE_EFFECT;
-}
+// The 200m-only converter this slug used to serve now lives at /lane-draw/,
+// which covers the 400m and both sexes as well.
+const TARGET = "/projects/track/lane-draw/";
 
 export const metas: Metas = {
   title: "200m Lane Draw Converter",
-  description:
-    "Converts 200m times between lanes based on lane draw advantage.",
+  description: "Moved to the Lane Draw Converter.",
 };
 
-interface LaneDrawConverterProps {
-  pages: TrackPage[];
-}
+// keeps the slug out of the utilities index and the "Other Utilities" lists
+export const hidden = true;
 
-export default function LaneDrawConverter({ pages }: LaneDrawConverterProps) {
+export default function Moved200mLaneDraw() {
   const router = useRouter();
 
-  const [time, setTime] = useState<string | number>(19.79);
-  const [currentLane, setCurrentLane] = useState(5);
-  const [targetLane, setTargetLane] = useState(5);
-  const [hasShared, setHasShared] = useState(false);
-
-  const loadedFromUrl = useInitialQueryParams(params => {
-    const urlTime = parseFloat(params.get("time") ?? "");
-    if (!isNaN(urlTime)) {
-      setTime(urlTime);
-    }
-
-    const urlCurrentLane = parseInt(params.get("currentLane") ?? "", 10);
-    if (LANES.includes(urlCurrentLane)) {
-      setCurrentLane(urlCurrentLane);
-    }
-
-    const urlTargetLane = parseInt(params.get("targetLane") ?? "", 10);
-    if (LANES.includes(urlTargetLane)) {
-      setTargetLane(urlTargetLane);
-    }
-  });
-
   useEffect(() => {
-    if (!loadedFromUrl) {
-      return;
+    const existing = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams({ event: "200m", gender: "men" });
+    for (const key of ["time", "currentLane", "targetLane"]) {
+      const value = existing.get(key);
+      if (value) {
+        params.set(key, value);
+      }
     }
 
-    const params = new URLSearchParams();
-    if (time) params.set("time", time.toString());
-    if (currentLane) params.set("currentLane", currentLane.toString());
-    if (targetLane) params.set("targetLane", targetLane.toString());
-
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
-    if (window.location.pathname + window.location.search !== newUrl) {
-      router.replace(newUrl, undefined, { shallow: true });
-      setHasShared(false);
-    }
-  }, [loadedFromUrl, time, currentLane, targetLane, router]);
-
-  const handleShare = useCallback(() => {
-    navigator.clipboard.writeText(window.location.href);
-    setHasShared(true);
-    setTimeout(() => setHasShared(false), 2000);
-  }, []);
-
-  const convertedTime = convertLaneTime(time, currentLane, targetLane);
+    router.replace(`${TARGET}?${params.toString()}`);
+  }, [router]);
 
   return (
     <article className={blogStyles.article}>
-      <Meta {...metas} />
       <Title title={metas.title} />
       <p>
-        Converts outdoor 200m times between lanes. Outside lanes have an
-        advantage of approximately 0.018 seconds per lane, based on{" "}
-        <a
-          href="/posts/Effect-of-Lane-Draw-In-200m-Sprinters/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          analysis of Diamond League results from 2015-2021
-        </a>
-        .
+        This calculator moved to the <a href={TARGET}>Lane Draw Converter</a>,
+        which also handles the 400m and women&apos;s races.
       </p>
-      <label className={styles.formContainer}>
-        <strong>200m Time</strong>
-        <UnitInput
-          className={styles.input}
-          type="number"
-          step="0.01"
-          value={time}
-          onChange={v => setTime(v)}
-          unit="s"
-        />
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Current Lane</strong>
-        <div className={styles.selectWrapper}>
-          <select
-            className={styles.select}
-            value={currentLane}
-            onChange={e =>
-              setCurrentLane(
-                parseInt((e.target as HTMLSelectElement).value, 10),
-              )
-            }
-          >
-            {LANES.map(lane => (
-              <option value={lane} key={lane}>
-                Lane {lane}
-              </option>
-            ))}
-          </select>
-        </div>
-        <small>The lane the time was run in.</small>
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Target Lane</strong>
-        <div className={styles.selectWrapper}>
-          <select
-            className={styles.select}
-            value={targetLane}
-            onChange={e =>
-              setTargetLane(parseInt((e.target as HTMLSelectElement).value, 10))
-            }
-          >
-            {LANES.map(lane => (
-              <option value={lane} key={lane}>
-                Lane {lane}
-              </option>
-            ))}
-          </select>
-        </div>
-        <small>The lane to convert the time to.</small>
-      </label>
-      <label className={styles.formContainer}>
-        <strong>Converted Time</strong>
-        <UnitInput
-          className={styles.input}
-          disabled={true}
-          type="number"
-          value={convertedTime?.toFixed(2)}
-          unit="s"
-        />
-      </label>
-      <button
-        className={styles.shareButton}
-        onClick={handleShare}
-        aria-label="Copy link to clipboard"
-        disabled={hasShared}
-      >
-        {hasShared ? "Copied link!" : "Share"}
-      </button>
-      <RelatedPosts
-        title="Other Utilities"
-        posts={pages
-          .filter(({ title }) => title !== metas.title)
-          .map(({ title, page }) => ({
-            fullSlug: `/projects/track/${page}`,
-            title,
-          }))}
-      />
     </article>
   );
 }
-
-export const getStaticProps: GetStaticProps<
-  LaneDrawConverterProps
-> = async () => {
-  const pages = getAllPages();
-  return {
-    props: {
-      pages,
-    },
-  };
-};
