@@ -23,7 +23,7 @@
     "next": "^15.5.22",
     "preact": "^10.29.8",
     "preact-render-to-string": "^6.7.0",
-    "probe-image-size": "^7.3.0",
+    "probe-image-size": "^7.4.0",
     "react": "npm:@preact/compat@^18.3.2",
     "react-dom": "npm:@preact/compat@^18.3.2",
     "remark": "^15.0.1",
