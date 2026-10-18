@@ -58,7 +58,7 @@
     "postcss": "^8.5.26",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^11.3.2",
-    "postcss-selector-parser": "^7.1.5",
+    "postcss-selector-parser": "^7.1.6",
     "prettier": "^3.9.6",
     "rss": "^1.2.2",
     "typescript": "^5.9.3",
