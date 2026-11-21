@@ -121,6 +121,22 @@ function pointsForMark(markValue: string, eventType: string, gender: string) {
   }
 }
 
+// Normalizes a mark the way the mark field does (e.g. 10.003 -> 10.00) and
+// scores the normalized value, so typed and linked marks get the same points.
+// A mark that doesn't parse is kept as typed, with no points.
+function applyMark(markValue: string, eventType: string, gender: string) {
+  try {
+    const markNum = userMarkToMark(markValue, markTypes[eventType]);
+    if (!Number.isFinite(markNum)) {
+      throw new Error(`unparseable mark ${markValue}`);
+    }
+    const mark = markToUserMark(markNum, markTypes[eventType]);
+    return { mark, points: pointsForMark(mark, eventType, gender) };
+  } catch {
+    return { mark: markValue, points: "" };
+  }
+}
+
 // Shares equivalentMark's inverse so the mark field and the equivalents table
 // agree: empty when the curve has no positive real solution (e.g. 400m at 0
 // points), whole points for combined events.
@@ -210,21 +226,21 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     );
     setEvent(event);
 
-    const urlMark = params.get("mark");
-    if (urlMark) {
-      setMark(urlMark);
-    }
-
     // Fill in whichever of mark/points the link left out. A link with both
-    // keeps both as given, so a shared mark isn't rewritten via its points.
+    // keeps both as given, so a shared mark isn't rewritten via its points; a
+    // mark-only link goes through the same path as a typed mark.
+    const urlMark = params.get("mark");
     const urlPoints = params.get("points");
-    if (urlPoints) {
+    if (urlMark && urlPoints) {
+      setMark(urlMark);
       setPoints(urlPoints);
-      if (!urlMark) {
-        setMark(markForPoints(urlPoints, event, gender));
-      }
+    } else if (urlPoints) {
+      setPoints(urlPoints);
+      setMark(markForPoints(urlPoints, event, gender));
     } else if (urlMark) {
-      setPoints(pointsForMark(urlMark, event, gender));
+      const applied = applyMark(urlMark, event, gender);
+      setMark(applied.mark);
+      setPoints(applied.points);
     }
   });
 
@@ -265,13 +281,6 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     setTimeout(() => setHasShared(false), 2000);
   }, []);
 
-  // Calculate points from mark
-  const calculatePoints = useCallback(
-    (markValue: string, eventType: string) =>
-      pointsForMark(markValue, eventType, gender),
-    [gender],
-  );
-
   // Calculate mark from points
   const calculateMark = useCallback(
     (pointsValue: string, eventType: string) =>
@@ -281,25 +290,11 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
 
   const onMarkChanged = useCallback(
     (newMark: string) => {
-      try {
-        // First parse and format the mark
-        const markNum = userMarkToMark(newMark, markTypes[event]);
-        if (!Number.isFinite(markNum)) {
-          throw new Error(`unparseable mark ${newMark}`);
-        }
-        const formattedMark = markToUserMark(markNum, markTypes[event]);
-        setMark(formattedMark);
-
-        // Always calculate points when mark changes
-        const newPoints = calculatePoints(formattedMark, event);
-        setPoints(newPoints);
-      } catch {
-        // If mark is invalid (e.g. partial input), just set the raw value
-        setMark(newMark);
-        setPoints("");
-      }
+      const applied = applyMark(newMark, event, gender);
+      setMark(applied.mark);
+      setPoints(applied.points);
     },
-    [event, calculatePoints],
+    [event, gender],
   );
 
   const onPointsChanged = useCallback(
