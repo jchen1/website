@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
   coefficients,
@@ -121,6 +121,20 @@ function pointsForMark(markValue: string, eventType: string, gender: string) {
   }
 }
 
+function markForPoints(pointsValue: string, eventType: string, gender: string) {
+  if (pointsValue === "" || !coefficients[gender][eventType]) return "";
+  try {
+    const mark = getMarkFromScore(
+      coefficients[gender][eventType],
+      // the quadratic solve coerces the numeric string
+      pointsValue as unknown as number,
+    );
+    return markToUserMark(mark, markTypes[eventType]);
+  } catch {
+    return "";
+  }
+}
+
 // Falls back to the matching indoor/outdoor event, or the category's first
 // event, when the event doesn't exist in the category or for the gender.
 function resolveEvent(category: string, gender: string, event: string) {
@@ -176,9 +190,9 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const [equivalentsCategory, setEquivalentsCategory] = useState<string | null>(
     null,
   );
-  const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
-    null,
-  );
+  // the selection the mark was last derived for, so the mark is only
+  // re-derived from points when the selection actually changes
+  const markSelection = useRef<string | null>(null);
 
   const loadedFromUrl = useInitialQueryParams(params => {
     const urlCategory = params.get("category");
@@ -206,11 +220,14 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       setMark(urlMark);
     }
 
-    // Points drive the mark once loaded, so a link with only a mark needs its
-    // points derived here, or the mark gets wiped instead of scored.
+    // Fill in whichever of mark/points the link left out. A link with both
+    // keeps both as given, so a shared mark isn't rewritten via its points.
     const urlPoints = params.get("points");
     if (urlPoints) {
       setPoints(urlPoints);
+      if (!urlMark) {
+        setMark(markForPoints(urlPoints, event, gender));
+      }
     } else if (urlMark) {
       setPoints(pointsForMark(urlMark, event, gender));
     }
@@ -262,19 +279,8 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
 
   // Calculate mark from points
   const calculateMark = useCallback(
-    (pointsValue: string, eventType: string) => {
-      if (pointsValue === "" || !coefficients[gender][eventType]) return "";
-      try {
-        const mark = getMarkFromScore(
-          coefficients[gender][eventType],
-          // the quadratic solve coerces the numeric string
-          pointsValue as unknown as number,
-        );
-        return markToUserMark(mark, markTypes[eventType]);
-      } catch {
-        return "";
-      }
-    },
+    (pointsValue: string, eventType: string) =>
+      markForPoints(pointsValue, eventType, gender),
     [gender],
   );
 
@@ -283,13 +289,15 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       try {
         // First parse and format the mark
         const markNum = userMarkToMark(newMark, markTypes[event]);
+        if (!Number.isFinite(markNum)) {
+          throw new Error(`unparseable mark ${newMark}`);
+        }
         const formattedMark = markToUserMark(markNum, markTypes[event]);
         setMark(formattedMark);
 
         // Always calculate points when mark changes
         const newPoints = calculatePoints(formattedMark, event);
         setPoints(newPoints);
-        setLastChanged("mark");
       } catch {
         // If mark is invalid (e.g. partial input), just set the raw value
         setMark(newMark);
@@ -302,20 +310,14 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const onPointsChanged = useCallback(
     (newPoints: string) => {
       setPoints(newPoints);
-      // Only calculate mark if mark wasn't the last thing changed
-      if (lastChanged !== "mark") {
-        setMark(calculateMark(newPoints, event));
-      }
-      setLastChanged("points");
+      setMark(calculateMark(newPoints, event));
     },
-    [event, calculateMark, lastChanged],
+    [event, calculateMark],
   );
 
-  // Reset lastChanged when event/category/gender changes
-  useEffect(() => {
-    setLastChanged(null);
-  }, [event, category, gender]);
-
+  // When the category/gender/event changes, hold points and re-derive the mark
+  // for the new event. Mark and points edits don't pass through here, so an
+  // entered mark is never rewritten via its rounded points.
   useEffect(() => {
     if (!loadedFromUrl) {
       return;
@@ -324,9 +326,15 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     const resolvedEvent = resolveEvent(category, gender, event);
     if (resolvedEvent !== event) {
       setEvent(resolvedEvent);
+      return;
     }
-    onPointsChanged(points);
-  }, [loadedFromUrl, category, gender, event, onPointsChanged, points]);
+
+    const selection = `${category}|${gender}|${event}`;
+    if (markSelection.current !== null && markSelection.current !== selection) {
+      setMark(calculateMark(points, event));
+    }
+    markSelection.current = selection;
+  }, [loadedFromUrl, category, gender, event, calculateMark, points]);
 
   const unit = units[markTypes[event]];
 
