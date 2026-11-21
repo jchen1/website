@@ -121,18 +121,13 @@ function pointsForMark(markValue: string, eventType: string, gender: string) {
   }
 }
 
+// Shares equivalentMark's inverse so the mark field and the equivalents table
+// agree: empty when the curve has no positive real solution (e.g. 400m at 0
+// points), whole points for combined events.
 function markForPoints(pointsValue: string, eventType: string, gender: string) {
-  if (pointsValue === "" || !coefficients[gender][eventType]) return "";
-  try {
-    const mark = getMarkFromScore(
-      coefficients[gender][eventType],
-      // the quadratic solve coerces the numeric string
-      pointsValue as unknown as number,
-    );
-    return markToUserMark(mark, markTypes[eventType]);
-  } catch {
-    return "";
-  }
+  const points = Number(pointsValue);
+  if (pointsValue === "" || !Number.isFinite(points)) return "";
+  return equivalentMark(eventType, points, gender) ?? "";
 }
 
 // Falls back to the matching indoor/outdoor event, or the category's first
