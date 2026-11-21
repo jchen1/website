@@ -110,6 +110,31 @@ function markToUserMark(mark: number, markType: MarkType) {
   }
 }
 
+function pointsForMark(markValue: string, eventType: string, gender: string) {
+  if (markValue === "") return "";
+  try {
+    const markNum = userMarkToMark(markValue, markTypes[eventType]);
+    const points = score(coefficients[gender][eventType], markNum);
+    return points >= 0 && points <= 1400 ? points.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+// Falls back to the matching indoor/outdoor event, or the category's first
+// event, when the event doesn't exist in the category or for the gender.
+function resolveEvent(category: string, gender: string, event: string) {
+  const candidates = [
+    event,
+    category === "indoor" ? `${event} sh` : event.replace(/ sh$/, ""),
+  ];
+  return (
+    candidates.find(
+      e => coefficients[gender][e] && order[category].includes(e),
+    ) ?? order[category][0]
+  );
+}
+
 function equivalentMark(eventType: string, points: number, gender: string) {
   const eventCoefficients = coefficients[gender][eventType];
   if (!eventCoefficients) {
@@ -164,23 +189,30 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     setCategory(category);
 
     const urlGender = params.get("gender");
-    if (urlGender && Object.hasOwn(coefficients, urlGender)) {
-      setGender(urlGender);
-    }
+    const gender =
+      urlGender && Object.hasOwn(coefficients, urlGender) ? urlGender : "men";
+    setGender(gender);
 
     const urlEvent = params.get("event");
-    if (urlEvent && order[category].includes(urlEvent)) {
-      setEvent(urlEvent);
-    }
+    const event = resolveEvent(
+      category,
+      gender,
+      urlEvent && Object.hasOwn(markTypes, urlEvent) ? urlEvent : "100m",
+    );
+    setEvent(event);
 
     const urlMark = params.get("mark");
     if (urlMark) {
       setMark(urlMark);
     }
 
+    // Points drive the mark once loaded, so a link with only a mark needs its
+    // points derived here, or the mark gets wiped instead of scored.
     const urlPoints = params.get("points");
     if (urlPoints) {
       setPoints(urlPoints);
+    } else if (urlMark) {
+      setPoints(pointsForMark(urlMark, event, gender));
     }
   });
 
@@ -223,16 +255,8 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
 
   // Calculate points from mark
   const calculatePoints = useCallback(
-    (markValue: string, eventType: string) => {
-      if (markValue === "") return "";
-      try {
-        const markNum = userMarkToMark(markValue, markTypes[eventType]);
-        const points = score(coefficients[gender][eventType], markNum);
-        return points >= 0 && points <= 1400 ? points.toString() : "";
-      } catch {
-        return "";
-      }
-    },
+    (markValue: string, eventType: string) =>
+      pointsForMark(markValue, eventType, gender),
     [gender],
   );
 
@@ -297,15 +321,9 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
       return;
     }
 
-    if (!coefficients[gender][event] || !order[category].includes(event)) {
-      // Set to the equivalent indoor/outdoor event when possible
-      if (category === "indoor" && order[category].includes(`${event} sh`)) {
-        setEvent(`${event} sh`);
-      } else if (category === "outdoor" && event.endsWith(" sh")) {
-        setEvent(event.replace(" sh", ""));
-      } else {
-        setEvent(order[category][0]);
-      }
+    const resolvedEvent = resolveEvent(category, gender, event);
+    if (resolvedEvent !== event) {
+      setEvent(resolvedEvent);
     }
     onPointsChanged(points);
   }, [loadedFromUrl, category, gender, event, onPointsChanged, points]);
