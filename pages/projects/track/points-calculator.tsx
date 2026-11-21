@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
   coefficients,
@@ -110,6 +110,56 @@ function markToUserMark(mark: number, markType: MarkType) {
   }
 }
 
+function pointsForMark(markValue: string, eventType: string, gender: string) {
+  if (markValue === "") return "";
+  try {
+    const markNum = userMarkToMark(markValue, markTypes[eventType]);
+    const points = score(coefficients[gender][eventType], markNum);
+    return points >= 0 && points <= 1400 ? points.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+// Normalizes a mark the way the mark field does (e.g. 10.003 -> 10.00) and
+// scores the normalized value, so typed and linked marks get the same points.
+// A mark that doesn't parse is kept as typed, with no points.
+function applyMark(markValue: string, eventType: string, gender: string) {
+  try {
+    const markNum = userMarkToMark(markValue, markTypes[eventType]);
+    if (!Number.isFinite(markNum)) {
+      throw new Error(`unparseable mark ${markValue}`);
+    }
+    const mark = markToUserMark(markNum, markTypes[eventType]);
+    return { mark, points: pointsForMark(mark, eventType, gender) };
+  } catch {
+    return { mark: markValue, points: "" };
+  }
+}
+
+// Shares equivalentMark's inverse so the mark field and the equivalents table
+// agree: empty when the curve has no positive real solution (e.g. 400m at 0
+// points), whole points for combined events.
+function markForPoints(pointsValue: string, eventType: string, gender: string) {
+  const points = Number(pointsValue);
+  if (pointsValue === "" || !Number.isFinite(points)) return "";
+  return equivalentMark(eventType, points, gender) ?? "";
+}
+
+// Falls back to the matching indoor/outdoor event, or the category's first
+// event, when the event doesn't exist in the category or for the gender.
+function resolveEvent(category: string, gender: string, event: string) {
+  const candidates = [
+    event,
+    category === "indoor" ? `${event} sh` : event.replace(/ sh$/, ""),
+  ];
+  return (
+    candidates.find(
+      e => coefficients[gender][e] && order[category].includes(e),
+    ) ?? order[category][0]
+  );
+}
+
 function equivalentMark(eventType: string, points: number, gender: string) {
   const eventCoefficients = coefficients[gender][eventType];
   if (!eventCoefficients) {
@@ -151,9 +201,9 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
   const [equivalentsCategory, setEquivalentsCategory] = useState<string | null>(
     null,
   );
-  const [lastChanged, setLastChanged] = useState<"mark" | "points" | null>(
-    null,
-  );
+  // the selection the mark was last derived for, so the mark is only
+  // re-derived from points when the selection actually changes
+  const markSelection = useRef<string | null>(null);
 
   const loadedFromUrl = useInitialQueryParams(params => {
     const urlCategory = params.get("category");
@@ -164,23 +214,33 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     setCategory(category);
 
     const urlGender = params.get("gender");
-    if (urlGender && Object.hasOwn(coefficients, urlGender)) {
-      setGender(urlGender);
-    }
+    const gender =
+      urlGender && Object.hasOwn(coefficients, urlGender) ? urlGender : "men";
+    setGender(gender);
 
     const urlEvent = params.get("event");
-    if (urlEvent && order[category].includes(urlEvent)) {
-      setEvent(urlEvent);
-    }
+    const event = resolveEvent(
+      category,
+      gender,
+      urlEvent && Object.hasOwn(markTypes, urlEvent) ? urlEvent : "100m",
+    );
+    setEvent(event);
 
+    // Fill in whichever of mark/points the link left out. A link with both
+    // keeps both as given, so a shared mark isn't rewritten via its points; a
+    // mark-only link goes through the same path as a typed mark.
     const urlMark = params.get("mark");
-    if (urlMark) {
-      setMark(urlMark);
-    }
-
     const urlPoints = params.get("points");
-    if (urlPoints) {
+    if (urlMark && urlPoints) {
+      setMark(urlMark);
       setPoints(urlPoints);
+    } else if (urlPoints) {
+      setPoints(urlPoints);
+      setMark(markForPoints(urlPoints, event, gender));
+    } else if (urlMark) {
+      const applied = applyMark(urlMark, event, gender);
+      setMark(applied.mark);
+      setPoints(applied.points);
     }
   });
 
@@ -221,94 +281,50 @@ export default function PointsCalculator({ pages }: PointsCalculatorProps) {
     setTimeout(() => setHasShared(false), 2000);
   }, []);
 
-  // Calculate points from mark
-  const calculatePoints = useCallback(
-    (markValue: string, eventType: string) => {
-      if (markValue === "") return "";
-      try {
-        const markNum = userMarkToMark(markValue, markTypes[eventType]);
-        const points = score(coefficients[gender][eventType], markNum);
-        return points >= 0 && points <= 1400 ? points.toString() : "";
-      } catch {
-        return "";
-      }
-    },
-    [gender],
-  );
-
   // Calculate mark from points
   const calculateMark = useCallback(
-    (pointsValue: string, eventType: string) => {
-      if (pointsValue === "" || !coefficients[gender][eventType]) return "";
-      try {
-        const mark = getMarkFromScore(
-          coefficients[gender][eventType],
-          // the quadratic solve coerces the numeric string
-          pointsValue as unknown as number,
-        );
-        return markToUserMark(mark, markTypes[eventType]);
-      } catch {
-        return "";
-      }
-    },
+    (pointsValue: string, eventType: string) =>
+      markForPoints(pointsValue, eventType, gender),
     [gender],
   );
 
   const onMarkChanged = useCallback(
     (newMark: string) => {
-      try {
-        // First parse and format the mark
-        const markNum = userMarkToMark(newMark, markTypes[event]);
-        const formattedMark = markToUserMark(markNum, markTypes[event]);
-        setMark(formattedMark);
-
-        // Always calculate points when mark changes
-        const newPoints = calculatePoints(formattedMark, event);
-        setPoints(newPoints);
-        setLastChanged("mark");
-      } catch {
-        // If mark is invalid (e.g. partial input), just set the raw value
-        setMark(newMark);
-        setPoints("");
-      }
+      const applied = applyMark(newMark, event, gender);
+      setMark(applied.mark);
+      setPoints(applied.points);
     },
-    [event, calculatePoints],
+    [event, gender],
   );
 
   const onPointsChanged = useCallback(
     (newPoints: string) => {
       setPoints(newPoints);
-      // Only calculate mark if mark wasn't the last thing changed
-      if (lastChanged !== "mark") {
-        setMark(calculateMark(newPoints, event));
-      }
-      setLastChanged("points");
+      setMark(calculateMark(newPoints, event));
     },
-    [event, calculateMark, lastChanged],
+    [event, calculateMark],
   );
 
-  // Reset lastChanged when event/category/gender changes
-  useEffect(() => {
-    setLastChanged(null);
-  }, [event, category, gender]);
-
+  // When the category/gender/event changes, hold points and re-derive the mark
+  // for the new event. Mark and points edits don't pass through here, so an
+  // entered mark is never rewritten via its rounded points.
   useEffect(() => {
     if (!loadedFromUrl) {
       return;
     }
 
-    if (!coefficients[gender][event] || !order[category].includes(event)) {
-      // Set to the equivalent indoor/outdoor event when possible
-      if (category === "indoor" && order[category].includes(`${event} sh`)) {
-        setEvent(`${event} sh`);
-      } else if (category === "outdoor" && event.endsWith(" sh")) {
-        setEvent(event.replace(" sh", ""));
-      } else {
-        setEvent(order[category][0]);
-      }
+    const resolvedEvent = resolveEvent(category, gender, event);
+    if (resolvedEvent !== event) {
+      setEvent(resolvedEvent);
+      return;
     }
-    onPointsChanged(points);
-  }, [loadedFromUrl, category, gender, event, onPointsChanged, points]);
+
+    const selection = `${category}|${gender}|${event}`;
+    if (markSelection.current !== null && markSelection.current !== selection) {
+      setMark(calculateMark(points, event));
+    }
+    markSelection.current = selection;
+  }, [loadedFromUrl, category, gender, event, calculateMark, points]);
 
   const unit = units[markTypes[event]];
 

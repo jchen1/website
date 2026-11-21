@@ -27,10 +27,10 @@ export default function UnitInput({
 }: UnitInputProps) {
   const [typingValue, setTypingValue] = useState(value ?? "");
 
+  // Mirror every change, including to empty: skipping falsy values left the
+  // field showing a stale value the parent had already cleared.
   useEffect(() => {
-    if (value) {
-      setTypingValue(value);
-    }
+    setTypingValue(value ?? "");
   }, [value]);
 
   const previousValue = usePrevious(value);
